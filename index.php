@@ -37,8 +37,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
-    <h1 class="display-3">Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <h1 class="display-3">Sustainable Fashion</h1>
+    <p>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
   </div>
 </div>
@@ -47,19 +47,16 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      <h2>Sustainability</h2>
+      <p>The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
     </div>
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      <h2>Circular Fashion Solution</h2>
+      <p>Our solution is designed to break free from the linear fashion system, and instead advocating for a circular approach where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
     </div>
     <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      <h2>Aligning Style with the Environment</h2>
+      <p>The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
     </div>
   </div>
 
@@ -71,7 +68,7 @@
 
 <!-- Footer --> 
 <footer class="container">
-<p>&copy; Company 2017-2018</p>
+<p>&copy; Team 20 2023-2024</p>
 </footer>
 
 
