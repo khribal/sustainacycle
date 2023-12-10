@@ -38,7 +38,6 @@
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Our Solution</h1>
                 <p class="lead">Read more about our approach to reducing the environmental impacts of the fast fashion industry.</p>
-                <a class="btn btn-lg btn-light" href="#about">Start scrolling!</a>
             </div>
         </header>
         <!-- About section-->
@@ -81,18 +80,18 @@
                         <h2>Features and benefits</h2>
                         <p class="lead">Features:</p>
                         <ul>
-                            <li><strong>Digital Platform:</strong> The project proposes creating a digital platform to faciliate communication and collaboration between recycling entities and manufacturers.</li>
-                            <li><strong>Recycler Locator:</strong> We will include a locator through the use of Google Maps API to allow individuals to locate their nearest textile recycler.</li>
-                            <li><strong>Examine environmental impacts:</strong> Because the platform is data driven, it allows insights into the amount of waste generated and amount of waste that has been repurposed, allowing for mathematical examination of improvement.</li>
-                            <li><strong>Community:</strong> The site includes a community section, to allow discourse among eco conscious individuals.</li>
-                            <li><strong>Education:</strong> Education will be at the forefront of our site as well, allowing visitors to explore the consequences of fast fashion and source sustainable fashion brands.</li>
+                            <li>Digital Platform: The project proposes creating a digital platform to faciliate communication and collaboration between recycling entities and manufacturers.</li>
+                            <li>Recycler Locator: We will include a locator through the use of Google Maps API to allow individuals to locate their nearest textile recycler.</li>
+                            <li>Examine environmental impacts: Because the platform is data driven, it allows insights into the amount of waste generated and amount of waste that has been repurposed, allowing for mathematical examination of improvement.</li>
+                            <li>Community: The site includes a community section, to allow discourse among eco conscious individuals.</li>
+                            <li>Education: Education will be at the forefront of our site as well, allowing visitors to explore the consequences of fast fashion and source sustainable fashion brands.</li>
                         </ul>
                         <p class="lead">Benefits:</p>
                         <ul>
-                            <li><strong>Efficient communication:</strong> The platform streamlines the process of recycling textile materiasl and integrating them back into the manufacturing chain by enabling effective communication.</li>
-                            <li><strong>Environmental Monitoring:</strong> Implementation of features that allow tracking and moitoring of environmental metrics will showcase the positive impacts of sustainble practices.</li>
-                            <li><strong>Waste reduction:</strong> The project contributes to reducing textile waste by promoting recycling and repurposing.</li>
-                            <li><strong>Resource preservation:</strong> A focus on a circular approach helps preserve resources by reusing materials within the fashion supply chain.</li>
+                            <li>Efficient communication: The platform streamlines the process of recycling textile materiasl and integrating them back into the manufacturing chain by enabling effective communication.</li>
+                            <li>Environmental Monitoring: Implementation of features that allow tracking and moitoring of environmental metrics will showcase the positive impacts of sustainble practices.</li>
+                            <li>Waste reduction: The project contributes to reducing textile waste by promoting recycling and repurposing.</li>
+                            <li>Resource preservation: A focus on a circular approach helps preserve resources by reusing materials within the fashion supply chain.</li>
                         </ul>
                     </div>
                 </div>
