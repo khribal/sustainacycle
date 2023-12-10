@@ -38,9 +38,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
+    <div class="headline-image">
     <h1 class="display-3">Sustainable Fashion</h1>
     <p>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
   </div>
 </div>
 
@@ -69,7 +71,7 @@
 
 <!-- Footer --> 
 <footer class="container">
-<p>&copy; Team 20 2023-2024</p>
+<p>&copy; Team 20, 2023-2024</p>
 </footer>
 
 
