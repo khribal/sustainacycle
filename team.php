@@ -33,6 +33,7 @@
 
 <main>
     <div class="container mt-5">
+    <h1 class="display-4">Our Team</h1>
     <div class="row">
         <div class="col-md-6">
         <div class="team-member">
@@ -58,7 +59,7 @@
         <div class="team-member">
             <div class="member-info">
             <h2>Kimberly Hribal</h2>
-            <p>Description about Kimberly goes here.</p>
+            <p>Kim is a senior at Indiana University studying informatics with a business cognate. She enjoys working with databases and improving user experience.</p>
             </div>
             <img src="img/kim.jpg" alt="Kim Hribal">
         </div>
