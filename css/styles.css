@@ -1,0 +1,43 @@
+/*
+index.php
+*/
+
+.jumbotron {
+    background-image: url('/img/landfill.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/*
+team.php
+*/
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+  
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px; 
+    margin-right: 20px; 
+    margin-left: 20px; 
+}
+
+.member-info {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .team-member img {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}
