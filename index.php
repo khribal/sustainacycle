@@ -17,16 +17,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About Us</a>
+        <a class="nav-link" href="team.php">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About the Project</a>
+        <a class="nav-link" href="project.php">About the Project</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Promotional Video</a>
+        <a class="nav-link" href="video.php">Promotional Video</a>
       </li>
     </ul>
   </div>
@@ -37,9 +37,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
+    <div class="headline-image">
     <h1 class="display-3">Sustainable Fashion</h1>
     <p>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
   </div>
 </div>
 
@@ -68,7 +70,7 @@
 
 <!-- Footer --> 
 <footer class="container">
-<p>&copy; Team 20 2023-2024</p>
+<p>&copy; Team 20, 2023-2024</p>
 </footer>
 
 
