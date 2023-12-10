@@ -45,10 +45,10 @@
         </div>
         <div class="col-md-6">
         <div class="team-member">
-            <img src="https://iu.instructure.com/images/thumbnails/105546558/Dgdrl0s6bw4Nmts9DiVY5D0tGHYIODiXxgeYLRP3" alt="Naya Gupta">
+            <img src="img/naya.jpg" alt="Naya Gupta">
             <div class="member-info">
             <h2>Naya Gupta</h2>
-            <p>Description about Naya goes here.</p>
+            <p>Naya is a senior at Indiana University studying informatics with a business cognate. She has passions about working within the beauty industry and hopes to find employment within that field after graduation.</p>
             </div>
         </div>
         </div>
@@ -60,7 +60,7 @@
             <h2>Kimberly Hribal</h2>
             <p>Description about Kimberly goes here.</p>
             </div>
-            <img src="img/kim.jpg" alt="Emily Johnson">
+            <img src="img/kim.jpg" alt="Kim Hribal">
         </div>
         </div>
         <div class="col-md-6">

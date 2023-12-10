@@ -40,7 +40,7 @@
   <div class="container">
     <div class="headline-image">
     <h1 class="display-3">Sustainable Fashion</h1>
-    <p>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</p>
+    <h4>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</h4>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
   </div>

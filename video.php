@@ -30,6 +30,8 @@
     </ul>
   </div>
 </nav>
+
+<p> Watch the video above to see our team's pitch, which includes our ABT Statement, our UX research, the development process and the solution. </p>
     
 
 
