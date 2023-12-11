@@ -41,3 +41,8 @@ team.php
         margin-bottom: 10px;
     }
 }
+
+/* project.php */
+.project-header{
+    height: 250px;
+}

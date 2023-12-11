@@ -30,7 +30,7 @@
     </ul>
   </div>
 </nav>
-<video class="w-100" autoplay loop muted>
+<video class="w-50 p-3" autoplay loop muted>
   <source src="img/promotion.mp4" type="video/mp4" />
 </video>
 <p> Watch the video above to see our team's pitch, which includes our ABT Statement, our UX research, the development process and the solution. </p>

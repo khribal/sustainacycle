@@ -34,12 +34,15 @@
 <main>
     <!--Bootstrap template -->
   <!-- Header-->
+  <div class="project-header">
   <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Our Solution</h1>
                 <p class="lead">Read more about our approach to reducing the environmental impacts of the fast fashion industry.</p>
             </div>
         </header>
+</div>
+
         <!-- About section-->
         <section id="about">
             <div class="container px-4">

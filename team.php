@@ -33,9 +33,7 @@
 
 <main>
     <div class="container mt-5" >
-    <div class="text-center">
     <h1 class="display-4">Our Team</h1>
-    </div>
     <div class="row">
         <div class="col-md-6">
         <div class="team-member">
