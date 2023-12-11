@@ -66,10 +66,10 @@
         </div>
         <div class="col-md-6">
         <div class="team-member">
-            <img src="https://iu.instructure.com/images/thumbnails/162506152/mZcyD3fum4NfctYaLxwyBhG7IN2NjWxjsXL2Eka8" alt="Delany Hupke">
+            <img src="img/delaney.jpg" alt="Delaney Hupke">
             <div class="member-info">
             <h2>Delaney Hupke</h2>
-            <p>Description about Delaney goes here.</p>
+            <p>Delaney is a senior at Indiana University studying marketing and informatics with a business cognate. She enjoys finding creative and innovative ways to continue merging business and technology.</p>
             </div>
         </div>
         </div>

@@ -40,7 +40,7 @@
   <div class="container">
     <div class="headline-image">
     <h1 class="display-3">Sustainable Fashion</h1>
-    <h4>Transforming fashion: bridging the gap between trendy styles and environmental responsibility through a circular fashion ecosystem.</h4>
+    <h4>Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
     <p><a class="btn btn-primary btn-lg" href="project.php" role="button">Learn more &raquo;</a></p>
     </div>
   </div>
@@ -55,7 +55,7 @@
     </div>
     <div class="col-md-4">
       <h2>Circular Fashion Solution</h2>
-      <p>Our solution is designed to break free from the linear fashion system, and instead advocating for a circular approach where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
+      <p>Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
     </div>
     <div class="col-md-4">
       <h2>Aligning Style with the Environment</h2>

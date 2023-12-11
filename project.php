@@ -91,7 +91,7 @@
                         </ul>
                         <p class="lead">Benefits:</p>
                         <ul>
-                            <li>Efficient communication: The platform streamlines the process of recycling textile materiasl and integrating them back into the manufacturing chain by enabling effective communication.</li>
+                            <li>Efficient communication: The platform streamlines the process of recycling textile materials and circulating them back into the manufacturing chain by enabling effective communication.</li>
                             <li>Environmental Monitoring: Implementation of features that allow tracking and moitoring of environmental metrics will showcase the positive impacts of sustainble practices.</li>
                             <li>Waste reduction: The project contributes to reducing textile waste by promoting recycling and repurposing.</li>
                             <li>Resource preservation: A focus on a circular approach helps preserve resources by reusing materials within the fashion supply chain.</li>
