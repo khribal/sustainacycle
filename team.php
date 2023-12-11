@@ -39,7 +39,7 @@
         <div class="team-member">
             <div class="member-info">
             <h2>Leyla Gulsen</h2>
-            <p>Leyla is a senior at Indiana University studyiing informatics wih a web design and development cognate. She has a passion for helping others and creating technologies for the people.</p>
+            <p>Leyla is a senior at Indiana University studying informatics with a web design and development cognate. She has a passion for helping others and creating technologies for the people.</p>
             </div>
             <img src="img/leyla.jpeg" alt="Leyla Gulsen">
         </div>
