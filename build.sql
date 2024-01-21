@@ -149,7 +149,7 @@ VALUES
   (22,"Nunc LLP",22),
   (23,"Sem Consequat PC",23),
   (24,"Ante Vivamus Inc.",24),
-  (25,"Iaculis Nec Eleifend Corp.",25) engine=innodb;
+  (25,"Iaculis Nec Eleifend Corp.",25);
 
 INSERT INTO 'recycler_materials' ('companyID','acceptedMaterial')
 VALUES
@@ -211,7 +211,57 @@ VALUES
 
 INSERT INTO 'materials' ('materialID','quantity','materialName','manufacturerID')
 VALUES
+  (1, 752, 'Cotton', 9),
+  (2, 436, 'Silk', 5),
+  (3, 67, 'Polyester', 8),
+  (4, 840, 'Linen', 15),
+  (5, 95, 'Wool', 15),
+  (6, 903, 'Leather', 24),
+  (7, 954, 'Wool', 5),
+  (8, 546, 'Satin', 9),
+  (9, 22, 'Cotton', 13),
+  (10, 690, 'Leather', 14),
+  (11, 295, 'Silk', 5),
+  (12, 434, 'Wool', 20),
+  (13, 682, 'Polyester', 3),
+  (14, 155, 'Leather', 16),
+  (15, 239, 'Polyester', 19),
+  (16, 912, 'Cotton', 10),
+  (17, 523, 'Cotton', 5),
+  (18, 365, 'Polyester', 23),
+  (19, 990, 'Satin', 25),
+  (20, 332, 'Silk', 13),
+  (21, 912, 'Cotton', 19),
+  (22, 116, 'Silk', 14),
+  (23, 124, 'Cotton', 3),
+  (24, 120, 'Leather', 18),
+  (25, 1, 'Silk', 20);
 
 
 INSERT INTO 'communities' ('communityID','communityName','communityRules','manufacturerID')
 VALUES
+  (1, 'Recycle Right', 'Follow community guidelines. Respect all members. No spam.', 'waste-management, upcycling, environment'),
+  (2, 'Sustainability Advocates', 'Follow community guidelines. Respect all members. No spam.', 'environment, green-living, climate-action'),
+  (3, 'Clean & Green', 'Follow community guidelines. Respect all members. No spam.', 'upcycling, sustainability, recycling'),
+  (4, 'Eco Warriors', 'Follow community guidelines. Respect all members. No spam.', 'conservation, eco-friendly, recycling'),
+  (5, 'Planet Protectors', 'Follow community guidelines. Respect all members. No spam.', 'green-living, sustainability, eco-friendly'),
+  (6, 'Green Innovators', 'Follow community guidelines. Respect all members. No spam.', 'climate-action, environment, conservation'),
+  (7, 'Eco Heroes', 'Follow community guidelines. Respect all members. No spam.', 'sustainability, waste-management, eco-friendly'),
+  (8, 'Eco-Friendly Minds', 'Follow community guidelines. Respect all members. No spam.', 'recycling, renewable, green-living'),
+  (9, 'Waste Not', 'Follow community guidelines. Respect all members. No spam.', 'conservation, sustainability, upcycling'),
+  (10, 'Green Earth', 'Follow community guidelines. Respect all members. No spam.', 'eco-friendly, renewable, environment'),
+  (11, 'Eco Warriors', 'Follow community guidelines. Respect all members. No spam.', 'upcycling, recycling, waste-management'),
+  (12, 'Clean & Green', 'Follow community guidelines. Respect all members. No spam.', 'sustainability, eco-friendly, recycling'),
+  (13, 'Sustainability Advocates', 'Follow community guidelines. Respect all members. No spam.', 'green-living, environment, climate-action'),
+  (14, 'Eco Heroes', 'Follow community guidelines. Respect all members. No spam.', 'recycling, renewable, conservation'),
+  (15, 'Green Earth', 'Follow community guidelines. Respect all members. No spam.', 'recycling, conservation, climate-action'),
+  (16, 'Eco Warriors', 'Follow community guidelines. Respect all members. No spam.', 'upcycling, recycling, waste-management'),
+  (17, 'Eco Warriors', 'Follow community guidelines. Respect all members. No spam.', 'renewable, upcycling, green-living'),
+  (18, 'Sustainability Advocates', 'Follow community guidelines. Respect all members. No spam.', 'waste-management, recycling, conservation'),
+  (19, 'Sustainability Advocates', 'Follow community guidelines. Respect all members. No spam.', 'conservation, eco-friendly, renewable'),
+  (20, 'Waste Not', 'Follow community guidelines. Respect all members. No spam.', 'environment, climate-action, recycling'),
+  (21, 'Eco-Friendly Minds', 'Follow community guidelines. Respect all members. No spam.', 'recycling, waste-management, sustainability'),
+  (22, 'Green Earth', 'Follow community guidelines. Respect all members. No spam.', 'waste-management, renewable, upcycling'),
+  (23, 'Planet Protectors', 'Follow community guidelines. Respect all members. No spam.', 'upcycling, eco-friendly, green-living'),
+  (24, 'Waste Not', 'Follow community guidelines. Respect all members. No spam.', 'climate-action, waste-management, eco-friendly'),
+  (25, 'Clean & Green', 'Follow community guidelines. Respect all members. No spam.', 'renewable, sustainability, waste-management');
