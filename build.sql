@@ -207,3 +207,11 @@ VALUES
   (23,"Gravida Molestie Associates",23),
   (24,"Velit Limited",24),
   (25,"Ante LLC",25);
+
+
+INSERT INTO 'materials' ('materialID','quantity','materialName','manufacturerID')
+VALUES
+
+
+INSERT INTO 'communities' ('communityID','communityName','communityRules','manufacturerID')
+VALUES
