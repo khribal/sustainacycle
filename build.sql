@@ -266,7 +266,7 @@ VALUES
   (24, 'Waste Not', 'Follow community guidelines. Respect all members. No spam.', 'climate-action, waste-management, eco-friendly'),
   (25, 'Clean & Green', 'Follow community guidelines. Respect all members. No spam.', 'renewable, sustainability, waste-management');
 
-  INSERT INTO `user_community` (`userID`, `communityID`) VALUES
+  INSERT INTO 'user_community' ('userID', 'communityID') VALUES
   (12, 16),
   (10, 25),
   (10, 4),
@@ -293,7 +293,7 @@ VALUES
   (6, 21),
   (1, 22);
 
-   INSERT INTO `transactions` (`transactionID`, `transactionDate`, `quantity`, `status`, `materialID`) VALUES
+   INSERT INTO 'transactions' ('transactionID', 'transactionDate', 'quantity', 'status', 'materialID') VALUES
   (1, '2023-03-29', 91, 'Pending', 11),
   (2, '2023-11-13', 14, 'Completed', 17),
   (3, '2023-05-30', 74, 'Cancelled', 14),
@@ -320,7 +320,7 @@ VALUES
   (24, '2023-08-08', 39, 'In Progress', 19),
   (25, '2023-06-16', 89, 'Cancelled', 24);
 
-    INSERT INTO `user_transaction` (`userID`, `transactionID`) VALUES
+    INSERT INTO 'user_transaction' ('userID', 'transactionID') VALUES
   (19, 3),
   (13, 13),
   (4, 5),
