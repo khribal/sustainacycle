@@ -2,7 +2,11 @@ drop table if exists users;
 drop table if exists recyclers;
 drop table if exists recycler_materials;
 drop table if exists manufacturers;
-
+drop table if exists materials;
+drop table if exists communities;
+drop table if exists user_community;
+drop table if exists transactions;
+drop table if exists user_transaction;
 
 
 CREATE TABLE users(
