@@ -40,18 +40,24 @@
 </div>
 
 <?php
-    $conn = mysqli_connect("db.luddy.indiana.edu", "i495s24_team20", "my+sql=i495s24_team20", "i495s24_team20");
+    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_dhupke", "my+sql=i494f23_dhupke", "i494f23_dhupke");
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT materialName, quantity, manufacturerID FROM materials";
-    $result = $cpmm->query($sql);
+    $sql = "SELECT materialName, quantity, description FROM materials";
+    $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+      echo "<div class='grid-container'>";
         while($row = $result->fetch_assoc()) {
-            echo "Material Name: " . $row["materialName"]. "<br>Quantity: " . $row["quanity"]. "<br>Manufacturer: " . $row["ManufacturerID"];
+          echo "<div class='grid-item'>";
+          echo "<p><strong>Material Name:</strong>" . $row["materialName"]. "</p>";
+          echo "<p><strong>Quantity:</strong>" . $row["quantity"]. "</p>";
+          echo "<p><strong>Description:</strong>" . $row["description"]. "</p>";
+          echo "</div>";
         }
+        echo "</div>";
     } else {
         echo "0 results";
     }
