@@ -1,13 +1,12 @@
-drop table if exists users;
-drop table if exists recyclers;
-drop table if exists recycler_materials;
-drop table if exists manufacturers;
-drop table if exists materials;
-drop table if exists communities;
-drop table if exists user_community;
-drop table if exists transactions;
 drop table if exists user_transaction;
-
+drop table if exists transactions;
+drop table if exists user_community;
+drop table if exists communities;
+drop table if exists materials;
+drop table if exists manufacturers;
+drop table if exists recycler_materials;
+drop table if exists recyclers;
+drop table if exists users;
 
 CREATE TABLE users(
     userID int NOT NULL,
@@ -16,7 +15,7 @@ CREATE TABLE users(
     email varchar(50) NOT NULL,
     username varchar(50) NOT NULL,
     pass varchar(50) NOT NULL,
-    contactNum int(10),
+    contactNum VARCHAR(13),
     user_location varchar(50),
     usertype varchar(20) CHECK (usertype IN ('recycler', 'manufacturer', 'individual_user')),
     PRIMARY KEY (userID)
@@ -98,36 +97,36 @@ CREATE TABLE user_transaction(
 
 
 
-INSERT INTO 'users' ('userID','firstName','lastName','email','username','pass','contactNUm','user_location','userType')
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, user_location, userType)
 VALUES
-  (1,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747) 579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
-  (2,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","1-660-389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
-  (3,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574) 423-0552","994-8803 Faucibus Avenue","individual_user"),
-  (4,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426) 548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
-  (5,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","1-445-818-5484","124-3288 Sollicitudin St.","recycler"),
-  (6,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","1-482-316-3347","Ap #526-5108 Facilisis. St.","recycler"),
-  (7,"Micah","Rosales","risus.donec@hotmail.net","yrivera","HVG61QFO7AN","1-624-731-4078","Ap #259-4007 Odio Street","recycler"),
-  (8,"Yoko","Rivera","libero.mauris@outlook.org","yrivera","VPJ56SKE4TY","1-436-152-4706","Ap #904-491 Quisque Avenue","recycler"),
-  (9,"Alan","Butler","sed@hotmail.org","abutler","ZDI77INO1TS","(601) 883-0795","1691 Curae Ave","manufacturer"),
-  (10,"Gabriel","Moody","donec.fringilla.donec@outlook.edu","gmoody","HHB41VYL8HB","1-285-187-7761","656-6317 Nisi. Street","individual_user"),
-  (11,"Anthony","Hobbs","placerat.velit.quisque@google.org","ahobbs","NRL47EWL5OY","(879) 342-5716","684-588 Eget Street","recycler"),
-  (12,"Hamish","English","vitae.erat.vel@icloud.net","henglish","NBD27UKW6JI","(341) 665-6067","Ap #551-8562 Fusce Ave","manufacturer"),
-  (13,"Fitzgerald","Gordon","ultricies@hotmail.com","fgordon","YAA14CEN9XC","1-466-782-4882","2043 Ullamcorper Ave","recycler"),
-  (14,"Wallace","Bean","vitae@hotmail.ca","wbean","VXW23LPP3SE","1-948-681-6175","335-6999 Consequat, Ave","individual_user"),
-  (15,"Joy","Gentry","imperdiet.ullamcorper@google.couk","jgentry","IEE63UPS8KD","(516) 510-5548","Ap #680-2485 Vel St.","recycler"),
-  (16,"Igor","Chen","tortor.nunc.commodo@outlook.net","ichen","YLY05PRE2HP","(744) 351-2703","7691 Adipiscing St.","individual_user"),
-  (17,"Riley","Pittman","tincidunt.dui.augue@outlook.net","rpittman","ELF30HQA9VF","(828) 961-6516","855-840 Dictum Rd.","manufacturer"),
-  (18,"Shad","Underwood","sodales.at.velit@aol.org","sunderwood","XYK94XOH3JK","1-736-253-4713","Ap #773-7387 Magnis Street","manufacturer"),
-  (19,"Nayda","Rodriquez","praesent@google.com","nrodriquez","LOP32FTB3OC","1-503-265-2037","396-1225 Donec Ave","manufacturer"),
-  (20,"Nadine","Hopper","odio.phasellus@icloud.com","nhopper","GRH47MXV3JN","1-256-787-7639","5332 Ultrices Avenue","recycler"),
-  (21,"Maggie","Sanchez","orci.ut@icloud.com","msanchez","HBU33ABK5XY","(386) 493-9187","P.O. Box 636, 9618 Vitae Rd.","recycler"),
-  (22,"Aiko","Douglas","aliquet.magna.a@icloud.org","adouglas","HGX69LCK7GH","1-287-914-2946","Ap #814-4525 Pharetra Rd.","recycler"),
-  (23,"Anthony","Stevens","sed.pede@aol.ca","astevens","FOB75AKX5UR","1-471-377-2276","Ap #548-3698 Donec Road","individual_user"),
-  (24,"Keaton","Vincent","lectus@google.ca","kvincent","SQT44HKR6TP","(769) 749-5611","P.O. Box 570, 6358 Et Street","recycler"),
-  (25,"Kaye","Lawrence","ac.mi@protonmail.com","klawrence","UMW49GIH8MJ","1-119-945-3846","P.O. Box 685, 1976 Placerat Av.","recycler");
+  (1,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
+  (2,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
+  (3,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
+  (4,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
+  (5,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler"),
+  (6,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","(482)316-3347","Ap #526-5108 Facilisis. St.","recycler"),
+  (7,"Micah","Rosales","risus.donec@hotmail.net","yrivera","HVG61QFO7AN","(624)731-4078","Ap #259-4007 Odio Street","recycler"),
+  (8,"Yoko","Rivera","libero.mauris@outlook.org","yrivera","VPJ56SKE4TY","(436)152-4706","Ap #904-491 Quisque Avenue","recycler"),
+  (9,"Alan","Butler","sed@hotmail.org","abutler","ZDI77INO1TS","(601)883-0795","1691 Curae Ave","manufacturer"),
+  (10,"Gabriel","Moody","donec.fringilla.donec@outlook.edu","gmoody","HHB41VYL8HB","(285)187-7761","656-6317 Nisi. Street","individual_user"),
+  (11,"Anthony","Hobbs","placerat.velit.quisque@google.org","ahobbs","NRL47EWL5OY","(879)342-5716","684-588 Eget Street","recycler"),
+  (12,"Hamish","English","vitae.erat.vel@icloud.net","henglish","NBD27UKW6JI","(341)665-6067","Ap #551-8562 Fusce Ave","manufacturer"),
+  (13,"Fitzgerald","Gordon","ultricies@hotmail.com","fgordon","YAA14CEN9XC","(466)782-4882","2043 Ullamcorper Ave","recycler"),
+  (14,"Wallace","Bean","vitae@hotmail.ca","wbean","VXW23LPP3SE","(948)681-6175","335-6999 Consequat, Ave","individual_user"),
+  (15,"Joy","Gentry","imperdiet.ullamcorper@google.couk","jgentry","IEE63UPS8KD","(516)510-5548","Ap #680-2485 Vel St.","recycler"),
+  (16,"Igor","Chen","tortor.nunc.commodo@outlook.net","ichen","YLY05PRE2HP","(744)351-2703","7691 Adipiscing St.","individual_user"),
+  (17,"Riley","Pittman","tincidunt.dui.augue@outlook.net","rpittman","ELF30HQA9VF","(828)961-6516","855-840 Dictum Rd.","manufacturer"),
+  (18,"Shad","Underwood","sodales.at.velit@aol.org","sunderwood","XYK94XOH3JK","(736)253-4713","Ap #773-7387 Magnis Street","manufacturer"),
+  (19,"Nayda","Rodriquez","praesent@google.com","nrodriquez","LOP32FTB3OC","(503)265-2037","396-1225 Donec Ave","manufacturer"),
+  (20,"Nadine","Hopper","odio.phasellus@icloud.com","nhopper","GRH47MXV3JN","(256)787-7639","5332 Ultrices Avenue","recycler"),
+  (21,"Maggie","Sanchez","orci.ut@icloud.com","msanchez","HBU33ABK5XY","(386)493-9187","P.O. Box 636, 9618 Vitae Rd.","recycler"),
+  (22,"Aiko","Douglas","aliquet.magna.a@icloud.org","adouglas","HGX69LCK7GH","(287)914-2946","Ap #814-4525 Pharetra Rd.","recycler"),
+  (23,"Anthony","Stevens","sed.pede@aol.ca","astevens","FOB75AKX5UR","(471)377-2276","Ap #548-3698 Donec Road","individual_user"),
+  (24,"Keaton","Vincent","lectus@google.ca","kvincent","SQT44HKR6TP","(769)749-5611","P.O. Box 570, 6358 Et Street","recycler"),
+  (25,"Kaye","Lawrence","ac.mi@protonmail.com","klawrence","UMW49GIH8MJ","(119)945-3846","P.O. Box 685, 1976 Placerat Av.","recycler");
 
 
-INSERT INTO 'recyclers' ('companyID','companyName','userID')
+INSERT INTO recyclers (companyID, companyName, userID)
 VALUES
   (1,"Mi Incorporated",1),
   (2,"Purus Ac LLC",2),
@@ -155,7 +154,7 @@ VALUES
   (24,"Ante Vivamus Inc.",24),
   (25,"Iaculis Nec Eleifend Corp.",25);
 
-INSERT INTO 'recycler_materials' ('companyID','acceptedMaterial')
+INSERT INTO recycler_materials (companyID, acceptedMaterial)
 VALUES
   (1,"Silk"),
   (2,"Cotton"),
