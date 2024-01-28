@@ -61,7 +61,7 @@ CREATE TABLE materials(
 CREATE TABLE communities(
     communityID int NOT NULL,
     communityName varchar(50) NOT NULL,
-    Description TEXT NOT NULL,
+    Description TEXT,
     communityRules TEXT NOT NULL,
     tags varchar(50) NOT NULL,
     PRIMARY KEY (communityID)
@@ -183,7 +183,7 @@ VALUES
   (25,"Silk");
 
 
-INSERT INTO 'manufacturers' ('manufacturerID','companyName','userID')
+INSERT INTO manufacturers (manufacturerID, companyName, userID)
 VALUES
   (1,"Non Hendrerit Corporation",1),
   (2,"Duis Risus Inc.",2),
@@ -212,36 +212,36 @@ VALUES
   (25,"Ante LLC",25);
 
 
-INSERT INTO 'materials' ('materialID','quantity','materialName','manufacturerID')
+INSERT INTO materials (materialID, quantity, materialName, description, manufacturerID)
 VALUES
-  (1, 752, 'Cotton', 9),
-  (2, 436, 'Silk', 5),
-  (3, 67, 'Polyester', 8),
-  (4, 840, 'Linen', 15),
-  (5, 95, 'Wool', 15),
-  (6, 903, 'Leather', 24),
-  (7, 954, 'Wool', 5),
-  (8, 546, 'Satin', 9),
-  (9, 22, 'Cotton', 13),
-  (10, 690, 'Leather', 14),
-  (11, 295, 'Silk', 5),
-  (12, 434, 'Wool', 20),
-  (13, 682, 'Polyester', 3),
-  (14, 155, 'Leather', 16),
-  (15, 239, 'Polyester', 19),
-  (16, 912, 'Cotton', 10),
-  (17, 523, 'Cotton', 5),
-  (18, 365, 'Polyester', 23),
-  (19, 990, 'Satin', 25),
-  (20, 332, 'Silk', 13),
-  (21, 912, 'Cotton', 19),
-  (22, 116, 'Silk', 14),
-  (23, 124, 'Cotton', 3),
-  (24, 120, 'Leather', 18),
-  (25, 1, 'Silk', 20);
+  (1, 752, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 9),
+  (2, 436, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
+  (3, 67, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 8),
+  (4, 840, 'Linen', 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.', 15),
+  (5, 95, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 15),
+  (6, 903, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 24),
+  (7, 954, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 5),
+  (8, 546, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 9),
+  (9, 22, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 13),
+  (10, 690, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 14),
+  (11, 295, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
+  (12, 434, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 20),
+  (13, 682, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 3),
+  (14, 155, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 16),
+  (15, 239, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 19),
+  (16, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 10),
+  (17, 523, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.',  5),
+  (18, 365, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 23),
+  (19, 990, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 25),
+  (20, 332, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 13),
+  (21, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 19),
+  (22, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 14),
+  (23, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 3),
+  (24, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 18),
+  (25, 1, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 20);
 
 
-INSERT INTO 'communities' ('communityID','communityName','communityRules','manufacturerID')
+INSERT INTO communities (communityID, communityName, communityRules, tags)
 VALUES
   (1, 'Recycle Right', 'Follow community guidelines. Respect all members. No spam.', 'waste-management, upcycling, environment'),
   (2, 'Sustainability Advocates', 'Follow community guidelines. Respect all members. No spam.', 'environment, green-living, climate-action'),
@@ -269,7 +269,7 @@ VALUES
   (24, 'Waste Not', 'Follow community guidelines. Respect all members. No spam.', 'climate-action, waste-management, eco-friendly'),
   (25, 'Clean & Green', 'Follow community guidelines. Respect all members. No spam.', 'renewable, sustainability, waste-management');
 
-  INSERT INTO 'user_community' ('userID', 'communityID') VALUES
+  INSERT INTO user_community (userID, communityID) VALUES
   (12, 16),
   (10, 25),
   (10, 4),
@@ -296,7 +296,7 @@ VALUES
   (6, 21),
   (1, 22);
 
-   INSERT INTO 'transactions' ('transactionID', 'transactionDate', 'quantity', 'status', 'materialID') VALUES
+INSERT INTO transactions (transactionID, transactionDate, quantity, status, materialID) VALUES
   (1, '2023-03-29', 91, 'Pending', 11),
   (2, '2023-11-13', 14, 'Completed', 17),
   (3, '2023-05-30', 74, 'Cancelled', 14),
@@ -323,7 +323,7 @@ VALUES
   (24, '2023-08-08', 39, 'In Progress', 19),
   (25, '2023-06-16', 89, 'Cancelled', 24);
 
-    INSERT INTO 'user_transaction' ('userID', 'transactionID') VALUES
+INSERT INTO user_transaction (userID, transactionID) VALUES
   (19, 3),
   (13, 13),
   (4, 5),
