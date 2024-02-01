@@ -34,3 +34,11 @@
     </div>
     </nav>
 
+
+    <div class="container mt-4">
+        <h4>Communities</h4>
+        <?php
+        $conn = mysqli_connect("db.luddy.indiana.edu");
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
