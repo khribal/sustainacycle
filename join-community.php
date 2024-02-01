@@ -34,19 +34,27 @@
     </div>
     </nav>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ed0546e862b500dd2bc2b8eb87ed7fa7d1d8912d
     <div class="container mt-4">
         <h4>Communities</h4>
         <?php
         $conn = mysqli_connect("db.luddy.indiana.edu");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
-<<<<<<< HEAD
         }
+
     
-=======
+    // display available communities//
+        $sqlcommunities = "SELECT id, name FROM communities";
+        $resultcommunities = $conn->query($sqlcommunities);
+
+        if ($resultcommunities->num_rows > 0) {
+            echo "<ul>";
+            while ($rowcommunity = $resultcommunities->fetch_assoc()) {
+                echo "<li>{$rowcommunity['name']} - <a href='join-community.php?community_id={$rowcommunity['id']}'>Join</a></li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "No communities available.";
         }
->>>>>>> ed0546e862b500dd2bc2b8eb87ed7fa7d1d8912d
+        ?>
