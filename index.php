@@ -30,6 +30,9 @@
       <li class="nav-item">
         <a class="nav-link" href="video.php">Promotional Video</a>
       </li>
+      <li>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      </li>
     </ul>
   </div>
 </nav>
