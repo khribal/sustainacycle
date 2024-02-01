@@ -34,11 +34,19 @@
     </div>
     </nav>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ed0546e862b500dd2bc2b8eb87ed7fa7d1d8912d
     <div class="container mt-4">
         <h4>Communities</h4>
         <?php
         $conn = mysqli_connect("db.luddy.indiana.edu");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
+<<<<<<< HEAD
         }
     
+=======
+        }
+>>>>>>> ed0546e862b500dd2bc2b8eb87ed7fa7d1d8912d
