@@ -42,3 +42,19 @@
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
+
+    
+    // display available communities//
+        $sqlcommunities = "SELECT id, name FROM communities";
+        $resultcommunities = $conn->query($sqlcommunities);
+
+        if ($resultcommunities->num_rows > 0) {
+            echo "<ul>";
+            while ($rowcommunity = $resultcommunities->fetch_assoc()) {
+                echo "<li>{$rowcommunity['name']} - <a href='join-community.php?community_id={$rowcommunity['id']}'>Join</a></li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "No communities available.";
+        }
+        ?>
