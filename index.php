@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <title>Landing Page</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google API Client -->
+    <script src="js/login.js"></script> <!-- avascript file for Google Login -->
 </head>
 <body>
 
@@ -30,8 +31,10 @@
       <li class="nav-item">
         <a class="nav-link" href="video.php">Promotional Video</a>
       </li>
-      <li>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <button class="btn btn-primary" id="googleSignInButton">Sign in with Google</button>
       </li>
     </ul>
   </div>
