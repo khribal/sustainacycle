@@ -49,6 +49,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+      echo "<div class='container'>";
       echo "<div class='grid-container'>";
         while($row = $result->fetch_assoc()) {
           echo "<div class='grid-item'>";
@@ -57,6 +58,7 @@
           echo "<p><strong>Description:</strong>" . $row["description"]. "</p>";
           echo "</div>";
         }
+        echo "</div>";
         echo "</div>";
     } else {
         echo "0 results";
