@@ -47,21 +47,26 @@ waste.php
 */
 
 .container {
-    max-width: 700px;
-    padding: 50px;
+    padding: 50px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    margin: 0 auto;
     gap: 20px;
-    padding: 10px;
 }
 
 .grid-item {
     border: 1px solid #ccc;
     padding: 30px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 

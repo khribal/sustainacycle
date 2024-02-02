@@ -52,7 +52,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-      echo "<div>";
+      echo "<div class='container'>";
       $currentManufacturer = null;
         while($row = $result->fetch_assoc()) {
           if ($row["companyName"] !== $currentManufacturer) {
@@ -67,9 +67,9 @@
           }
           
           echo "<div class='grid-item'>";
-          echo "<p><strong>Material Name:</strong>" . $row["materialName"]. "</p>";
-          echo "<p><strong>Quantity:</strong>" . $row["quantity"]. "</p>";
-          echo "<p><strong>Description:</strong>" . $row["description"]. "</p>";
+          echo "<p><strong>Material Name: </strong>" . $row["materialName"]. "</p>";
+          echo "<p><strong>Quantity: </strong>" . $row["quantity"]. "</p>";
+          echo "<p><strong>Description: </strong>" . $row["description"]. "</p>";
           echo "</div>";
         }
         echo "</div>";
