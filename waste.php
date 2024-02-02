@@ -61,7 +61,7 @@
               echo "</div>";
             }
 
-            echo "<h2>" . $row["companyName"] . "</h2>";
+            echo "<h2 class='mt-4'>" . $row["companyName"] . "</h2>";
             echo "<div class='grid-container'>";
             $currentManufacturer = $row["companyName"];
           }
