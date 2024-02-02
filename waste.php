@@ -45,7 +45,9 @@
       die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT materialName, quantity, description FROM materials";
+    $sql = "SELECT materials.manufacturerID, materials.materialName, materials.quantity, materials.description, manufacturers.companyName
+    FROM materials
+    JOIN manufacturers ON materials.manufacturerID = manufacturers.manufacturerID";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -53,6 +55,7 @@
       echo "<div class='grid-container'>";
         while($row = $result->fetch_assoc()) {
           echo "<div class='grid-item'>";
+          echo "<p><strong>Manufacturer:</strong>" . $row["companyName"]. "</p>";
           echo "<p><strong>Material Name:</strong>" . $row["materialName"]. "</p>";
           echo "<p><strong>Quantity:</strong>" . $row["quantity"]. "</p>";
           echo "<p><strong>Description:</strong>" . $row["description"]. "</p>";
