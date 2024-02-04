@@ -84,4 +84,39 @@
         ?>
 
     </div>
+
+
+    <!-- allow user to join community -->
+
+    <?php
+    session_start();
+    require_once "config.php";
+
+    if (!isset($_SESSION["user_id"])) {
+        header("Location: login.php");
+        exit();
+    }
+
+    $user_id = $_SESSION["user_id"];
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["community_id"])) {
+        $community_id = $_GET["community_id"];
+
+        // checking if user joined community /
+        $checkMembership = "SELECT id FROM user_communitiess WHERE user_id = '$user_id' AND community_id = '$community_id'";
+        $result = $conn->query($checkMembership);
+        // if not joined then join//
+        if ($result->num_rows == 0) {
+            $joinCommunity = "INSER INTO user_communities (user_id, community_id) VALUES ('$user_id', '$community_id')";
+            $conn->query($joinCommunity);
+            echo "You have joined the community!";
+        } else {
+            echo "You are already a member of this community.";
+        }
+    }
+
+    $conn->close();
+    ?>
+        
+    
     
