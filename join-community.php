@@ -58,3 +58,30 @@
             echo "No communities available.";
         }
         ?>
+
+    <!-- posts -->
+
+        $sqlPosts = "SELECT posts.*, communites.name AS community_name
+                    FROM posts
+                    JOIN communities on posts.community_id = communities.id
+                    WHERE posts.comunity_id IN (
+                        SELECT community_id FROM user_communities WHERE user_id = '$user_id'
+                    )";
+
+        $resultPosts = $conn->qury($sqlPosts);
+
+        if ($resultPosts->num_rows > 0) {
+            while ($rowPost = $resultPosts->fetch_assoc()) {
+                echo "<div class='post'>";
+                echo "<p>{$rowPost['community_name']} - {$rowPost['content']}</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "No posts available in your communities.";
+        }
+
+        $conn->close();
+        ?>
+
+    </div>
+    
