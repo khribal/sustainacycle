@@ -46,6 +46,13 @@ team.php
 waste.php
 */
 
+.container {
+    padding: 50px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -54,7 +61,12 @@ waste.php
 
 .grid-item {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 30px;
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 
