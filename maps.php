@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Locator</title>
 
     <!-- Google Maps API -->
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&callback=console.debug&libraries=maps,marker&v=beta"></script>
-</head>
+    <!--CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
 <body>
 <?php include('includes/nav.php');?>
 
