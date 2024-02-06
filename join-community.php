@@ -24,7 +24,7 @@
 
     
     // display available communities//
-        $sqlcommunities = "SELECT id, name FROM communities";
+        $sqlcommunities = "SELECT communityID, communityName FROM communities";
         $resultcommunities = $conn->query($sqlcommunities);
 
         if ($resultcommunities->num_rows > 0) {
