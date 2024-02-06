@@ -49,6 +49,8 @@ function createMarker(place) {
 }
 
 function initMap() {
+    console.log('initMap called');
+
     // Get user location
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
