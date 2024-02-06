@@ -22,6 +22,8 @@ function successCallback(position) {
 }
 
 function handlePlacesResults(results, status) {
+    console.log('Handle Places Results:', results, status);
+
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
             createMarker(place);
@@ -49,7 +51,6 @@ function createMarker(place) {
 }
 
 function initMap() {
-    console.log('initMap called');
 
     // Get user location
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
