@@ -51,6 +51,8 @@ function createMarker(place) {
 
 function initMap() {
     // Search for recycling companies by keyword
+    console.log('initMap called');
+
     const service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: map.getCenter(),
