@@ -1,4 +1,3 @@
-// Define global variables
 let map;
 let infoWindow;
 
@@ -18,8 +17,8 @@ function successCallback(position) {
     // Initialize an info window for markers
     infoWindow = new google.maps.InfoWindow();
 
-    // Call initMap when the map is ready
-    initMap();
+    // Search for recycling companies by keyword
+    initMap(); // Call initMap here after the map is initialized
 }
 
 function handlePlacesResults(results, status) {
@@ -50,19 +49,9 @@ function createMarker(place) {
 }
 
 function initMap() {
-    // Search for recycling companies by keyword
-    console.log('initMap called');
-
-    const service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-        location: map.getCenter(),
-        radius: 5000,
-        keyword: 'recycling center',
-    }, handlePlacesResults);
+    // Get user location
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
-
-// Get user location
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 // Error callback function, if needed
 function errorCallback(error) {
