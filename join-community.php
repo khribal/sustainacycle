@@ -60,7 +60,7 @@
         ?>
 
     <!-- posts -->
-
+        <?php
         $sqlPosts = "SELECT posts.*, communites.name AS community_name
                     FROM posts
                     JOIN communities on posts.community_id = communities.id
