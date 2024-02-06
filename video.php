@@ -8,28 +8,8 @@
     <title>Promotional Video</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="team.php">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="project.php">About the Project</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="video.php">Promotional Video <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<?php include('includes/nav.php') ?>
+
 <video class="w-75 p-3 text-center" autoplay loop muted>
   <source src="img/promotion.mp4" type="video/mp4" />
 </video>
