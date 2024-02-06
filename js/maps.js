@@ -30,6 +30,11 @@ function successCallback(position) {
     }, handlePlacesResults);
 }
 
+function errorCallback(error) {
+    // Handle errors when obtaining the user's location
+    console.error('Error getting user location:', error);
+}
+
 function handlePlacesResults(results, status) {
     // Handle the results from the Places API
     if (status === google.maps.places.PlacesServiceStatus.OK) {
