@@ -40,7 +40,7 @@
 </div>
 
 <?php
-    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_dhupke", "my+sql=i494f23_dhupke", "i494f23_dhupke");
+    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }

@@ -38,9 +38,9 @@
     <div class="container mt-4">
         <h4>Communities</h4>
         <?php
-        $conn = mysqli_connect("db.luddy.indiana.edu");
+        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
         if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
+          die("Connection failed: " . mysqli_connect_error());
         }
 
     
