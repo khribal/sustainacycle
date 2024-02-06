@@ -1,4 +1,3 @@
-// Define global variables
 let map;
 let infoWindow;
 
@@ -15,7 +14,7 @@ function successCallback(position) {
     // Initialize the map
     map = new google.maps.Map(document.getElementById('map'), {
         center: userLocation,
-        zoom: 15,  // Adjust the zoom level as needed
+        zoom: 15,
     });
 
     // Initialize an info window for markers
@@ -25,14 +24,9 @@ function successCallback(position) {
     const service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: userLocation,
-        radius: 5000,  // Set your desired search radius in meters.
+        radius: 5000,
         keyword: 'recycling center',
     }, handlePlacesResults);
-}
-
-function errorCallback(error) {
-    // Handle errors when obtaining the user's location
-    console.error('Error getting user location:', error);
 }
 
 function handlePlacesResults(results, status) {
@@ -65,4 +59,8 @@ function createMarker(place) {
         `);
         infoWindow.open(map, marker);
     });
+}
+
+function errorCallback(error) {
+    console.error('Error getting user location:', error);
 }
