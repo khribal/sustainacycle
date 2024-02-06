@@ -1,10 +1,7 @@
 let map;
 let infoWindow;
 
-// Get user location
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-
-// Create var for user location
+// Move the function definition outside the initMap function
 function successCallback(position) {
     const userLocation = {
         lat: position.coords.latitude,
@@ -30,9 +27,7 @@ function successCallback(position) {
 }
 
 function handlePlacesResults(results, status) {
-    // Handle the results from the Places API
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        // Process the results, e.g., create markers on the map
         for (const place of results) {
             createMarker(place);
         }
@@ -40,16 +35,13 @@ function handlePlacesResults(results, status) {
 }
 
 function createMarker(place) {
-    // Create a marker on the map for each place
     const marker = new google.maps.Marker({
         position: place.geometry.location,
         map: map,
         title: place.name,
     });
 
-    // Add a click event listener to the marker
     marker.addListener('click', function () {
-        // Open an info window with place details
         infoWindow.setContent(`
             <div>
                 <strong>${place.name}</strong><br>
@@ -61,6 +53,12 @@ function createMarker(place) {
     });
 }
 
+function initMap() {
+    // Get user location
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+}
+
+// Error callback function, if needed
 function errorCallback(error) {
     console.error('Error getting user location:', error);
 }
