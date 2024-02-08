@@ -14,7 +14,7 @@
     
     <!-- JS -->
     <script src="js/maps.js"></script>
-    <!-- <script src="js/get-location.js"></script> -->
+    <script src="js/get-location.js"></script>
     
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
