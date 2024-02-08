@@ -18,6 +18,8 @@ CREATE TABLE users(
     contactNum VARCHAR(13),
     user_location varchar(50),
     usertype varchar(20) CHECK (usertype IN ('recycler', 'manufacturer', 'individual_user')),
+    lat decimal(9,7),
+    lng decimal(10,7),
     PRIMARY KEY (userID)
 ) ENGINE=INNODB;
 
