@@ -17,12 +17,12 @@ const options = {
 
 // Request geolocation permission
   if (!hasLocation) {
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+    navigator.geolocation.getCurrentPosition(geoSuccessCallback, errorCallback, options);
   }
 
 
 //Access the latitude and longitude
-function successCallback(position) {
+function geoSuccessCallback(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
   
