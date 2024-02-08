@@ -4,8 +4,17 @@ if (navigator.geolocation) {
     console.log("Geolocation is not supported by this browser.");
   }
 
+
+// Define options for geolocation
+const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+
 //Request geolocation permission
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
 
 //Access the latitude and longitude
 function successCallback(position) {
