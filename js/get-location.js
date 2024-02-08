@@ -13,8 +13,13 @@ const options = {
   };
 
 
-//Request geolocation permission
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+  let hasLocation = false;
+
+// Request geolocation permission
+  if (!hasLocation) {
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+  }
+
 
 //Access the latitude and longitude
 function successCallback(position) {
@@ -23,6 +28,8 @@ function successCallback(position) {
   
     console.log("Latitude:", latitude);
     console.log("Longitude:", longitude);
+
+    hasLocation = true;
   }
   
 //Handle errors
