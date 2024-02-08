@@ -14,13 +14,13 @@
     
     <!-- JS -->
     <script src="js/maps.js"></script>
+    <script src="js/get-location.js"></script>
     
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
 <body>
 <?php include('includes/nav.php');?>
-
 
     <div id="map"></div>
 
