@@ -5,7 +5,7 @@ if (navigator.geolocation) {
   }
 
 //Request geolocation permission
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 //Access the latitude and longitude
 function successCallback(position) {
