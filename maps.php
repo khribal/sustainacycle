@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- Google Maps API -->
-    <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&callback=console.debug&libraries=maps,marker&v=beta"></script> -->
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places"></script> -->
-
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&loading=async&libraries=places&callback=initMap"></script>
     
     <!-- JS -->
@@ -24,10 +21,6 @@
 <body>
 <?php include('includes/nav.php');?>
 
-
-    <!-- <gmp-map center="41.75224304199219,-88.18560791015625" zoom="14" map-id="DEMO_MAP_ID">
-      <gmp-advanced-marker position="41.75224304199219,-88.18560791015625" title="My location"></gmp-advanced-marker>
-    </gmp-map> -->
 
     <div id="map"></div>
 
