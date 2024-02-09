@@ -40,6 +40,10 @@
       <div id="map"></div>
 
       <script>
+            //Global var for info window
+            let infoWindow;
+
+
             function initMap() {
             // Create a map centered at a specific location
             const map = new google.maps.Map(document.getElementById("map"), {
@@ -77,26 +81,30 @@
                             });
 
                             // Add a click event listener to the marker
-                marker.addListener('click', () => {
-                    // Set content for the InfoWindow
-                    const content = `
-                        <div>
-                            <strong>${place.name}</strong><br>
-                            Address: ${place.formatted_address || 'N/A'}<br>
-                            Rating: ${place.rating || 'N/A'}
-                        </div>
-                    `;
-                    
-                    // Set the content and open the InfoWindow
-                    infoWindow.setContent(content);
-                    infoWindow.open(map, marker);
-                });
+                            addMarkerClickListener(marker, place);
                             // Do something with each place
                             console.log(place);
                         }
                     }
                 }
             );
+            // Function to add click event listener to a marker
+        function addMarkerClickListener(marker, place) {
+            marker.addListener('click', () => {
+                // Set content for the InfoWindow
+                const content = `
+                    <div>
+                        <strong>${place.name}</strong><br>
+                        Address: ${place.formatted_address || 'N/A'}<br>
+                        Rating: ${place.rating || 'N/A'}
+                    </div>
+                `;
+                
+                // Set the content and open the InfoWindow
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
+            });
+        }
         }
     </script>
 
