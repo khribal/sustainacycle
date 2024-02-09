@@ -22,7 +22,15 @@
 <body>
 <?php include('includes/nav.php');?>
 
-    <div id="map"></div>
+<div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h2>Results</h2>
+        <ul id="places"></ul>
+        <button id="more">Load more results</button>
+      </div>
+    </div>
+
 
 </body>
 </html>

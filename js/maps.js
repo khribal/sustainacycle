@@ -1,83 +1,73 @@
-let map;
-let infoWindow;
-
-const fixedLocation = {
-    lat: 39.173100,
-    lng: -86.524239
-};
-
-
-function handlePlacesResults(results, status) {
-    console.log('Handle Places Results:', results, status);
-
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (const place of results) {
-            createMarker(place);
-        }
-    }
-}
-
-function createMarker(place) {
-    const marker = new google.maps.Marker({
-        position: place.geometry.location,
-        map: map,
-        title: place.name,
-    });
-
-    marker.addListener('click', function () {
-        infoWindow.setContent(`
-            <div>
-                <strong>${place.name}</strong><br>
-                Address: ${place.vicinity}<br>
-                Rating: ${place.rating || 'N/A'}
-            </div>
-        `);
-        infoWindow.open(map, marker);
-    });
-}
-
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initMap() {
-    // Use the PlacesService to search for recycling centers
-    const service = new google.maps.places.PlacesService(map);
-
-    // Define the request for recycling centers
-    const request = {
-        location: map.getCenter(),
-        radius: 5000, // adjust the radius as needed
-        keyword: 'restaurant',
-    };
-
-    // Perform the nearby search
-    service.nearbySearch(request, handlePlacesResults);
-
-    map.setZoom(15);
-}
-
-
-function successCallback(position) {
-    const userLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-    };
-
-    // Initialize the map
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: fixedLocation,
-        zoom: 15,
+    // Create the map.
+    const pyrmont = { lat: -33.866, lng: 151.196 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: pyrmont,
+      zoom: 17,
+      mapId: "8d193001f940fde3",
     });
-
-    // Initialize an info window for markers
-    infoWindow = new google.maps.InfoWindow();
-
-    // Search for recycling companies by keyword
-    initMap(); // Call initMap here after the map is initialized
-}
-
-
-// Error callback function, if needed
-function errorCallback(error) {
-    console.error('Error getting user location:', error);
-}
-
-// Call the initMap function when the page loads
-successCallback(/* provide a position object here if needed */);
+    // Create the places service.
+    const service = new google.maps.places.PlacesService(map);
+    let getNextPage;
+    const moreButton = document.getElementById("more");
+  
+    moreButton.onclick = function () {
+      moreButton.disabled = true;
+      if (getNextPage) {
+        getNextPage();
+      }
+    };
+  
+    // Perform a nearby search.
+    service.nearbySearch(
+      { location: pyrmont, radius: 500, type: "store" },
+      (results, status, pagination) => {
+        if (status !== "OK" || !results) return;
+  
+        addPlaces(results, map);
+        moreButton.disabled = !pagination || !pagination.hasNextPage;
+        if (pagination && pagination.hasNextPage) {
+          getNextPage = () => {
+            // Note: nextPage will call the same handler function as the initial call
+            pagination.nextPage();
+          };
+        }
+      },
+    );
+  }
+  
+  function addPlaces(places, map) {
+    const placesList = document.getElementById("places");
+  
+    for (const place of places) {
+      if (place.geometry && place.geometry.location) {
+        const image = {
+          url: place.icon,
+          size: new google.maps.Size(71, 71),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(17, 34),
+          scaledSize: new google.maps.Size(25, 25),
+        };
+  
+        new google.maps.Marker({
+          map,
+          icon: image,
+          title: place.name,
+          position: place.geometry.location,
+        });
+  
+        const li = document.createElement("li");
+  
+        li.textContent = place.name;
+        placesList.appendChild(li);
+        li.addEventListener("click", () => {
+          map.setCenter(place.geometry.location);
+        });
+      }
+    }
+  }
+  
+  window.initMap = initMap;
