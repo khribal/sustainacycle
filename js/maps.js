@@ -58,7 +58,7 @@ function initMap() {
     const request = {
         location: map.getCenter(),
         radius: 5000, // adjust the radius as needed
-        keyword: 'recycling center',
+        keyword: 'restaurant',
     };
 
     // Perform the nearby search
