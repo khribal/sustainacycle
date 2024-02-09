@@ -43,7 +43,7 @@
             function initMap() {
             // Create a map centered at a specific location
             const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -33.867, lng: 151.195 },
+                center: { lat: 39.173100, lng: -86.524239 },
                 zoom: 15,
             });
 
