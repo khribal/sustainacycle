@@ -3,7 +3,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initMap() {
     // Create the map.
-    const pyrmont = { lat: -33.866, lng: 151.196 };
+    const pyrmont = { lat: 39.173100, lng: -86.524239};
     const map = new google.maps.Map(document.getElementById("map"), {
       center: pyrmont,
       zoom: 17,
@@ -23,7 +23,7 @@ function initMap() {
   
     // Perform a nearby search.
     service.nearbySearch(
-      { location: pyrmont, radius: 500, type: "store" },
+      { location: pyrmont, radius: 500, type: "recycling center" },
       (results, status, pagination) => {
         if (status !== "OK" || !results) return;
   
