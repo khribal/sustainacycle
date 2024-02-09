@@ -81,6 +81,16 @@
         }
       }
     );
+
+    function initMap() {
+            // Create a map centered at a specific location
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -33.867, lng: 151.195 },
+                zoom: 15,
+            });
+
+            // You can add additional map-related setup or actions here
+        }
   </script>
 
 </body>
