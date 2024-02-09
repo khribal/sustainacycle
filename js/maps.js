@@ -1,6 +1,12 @@
 let map;
 let infoWindow;
 
+
+const fixedLocation = {
+    lat: 39.173100,
+    lng: -86.524239
+};
+
 // Move the function definition outside the initMap function
 function successCallback(position) {
     const userLocation = {
@@ -10,7 +16,7 @@ function successCallback(position) {
 
     // Initialize the map
     map = new google.maps.Map(document.getElementById('map'), {
-        center: userLocation,
+        center: fixedLocation,
         zoom: 15,
     });
 
@@ -49,6 +55,7 @@ function createMarker(place) {
         infoWindow.open(map, marker);
     });
 }
+
 
 function initMap() {
     // Use the PlacesService to search for recycling centers
