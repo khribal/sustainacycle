@@ -6,25 +6,6 @@ const fixedLocation = {
     lng: -86.524239
 };
 
-// Move the function definition outside the initMap function
-function successCallback(position) {
-    const userLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-    };
-
-    // Initialize the map
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: fixedLocation,
-        zoom: 15,
-    });
-
-    // Initialize an info window for markers
-    infoWindow = new google.maps.InfoWindow();
-
-    // Search for recycling companies by keyword
-    initMap(); // Call initMap here after the map is initialized
-}
 
 function handlePlacesResults(results, status) {
     console.log('Handle Places Results:', results, status);
@@ -71,6 +52,27 @@ function initMap() {
 
     map.setZoom(15);
 }
+
+
+function successCallback(position) {
+    const userLocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+    };
+
+    // Initialize the map
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: fixedLocation,
+        zoom: 15,
+    });
+
+    // Initialize an info window for markers
+    infoWindow = new google.maps.InfoWindow();
+
+    // Search for recycling companies by keyword
+    initMap(); // Call initMap here after the map is initialized
+}
+
 
 // Error callback function, if needed
 function errorCallback(error) {
