@@ -27,32 +27,46 @@
 
       <div id="map"></div>
 
-<script>
-  // Initialize the map
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -33.867, lng: 151.195 },
-    zoom: 15,
-  });
+      <script>
+    // Initialize the map
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: -33.867, lng: 151.195 },
+      zoom: 15,
+    });
 
-  // Create a PlacesService instance
-  const service = new google.maps.places.PlacesService(map);
+    // Create a PlacesService instance
+    const service = new google.maps.places.PlacesService(map);
 
-  // Perform a text search
-  service.textSearch(
-    {
-      query: "restaurants in Sydney",
-      // You can add more parameters if needed
-    },
-    (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (const place of results) {
-          // Do something with each place
-          console.log(place);
+    // Perform a text search
+    service.textSearch(
+      {
+        query: "restaurants in Sydney",
+        // You can add more parameters if needed
+      },
+      (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (const place of results) {
+            // Use a bright red marker
+            const marker = new google.maps.Marker({
+              map,
+              position: place.geometry.location,
+              title: place.name,
+              icon: {
+                url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', // Bright red marker icon
+                size: new google.maps.Size(32, 32),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(16, 32),
+                scaledSize: new google.maps.Size(32, 32),
+              },
+            });
+
+            // Do something with each place
+            console.log(place);
+          }
         }
       }
-    }
-  );
-</script>
+    );
+  </script>
 
 </body>
 </html>
