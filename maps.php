@@ -53,13 +53,13 @@
             // Perform a text search
             service.textSearch(
                 {
-                    query: "restaurants in Sydney",
+                    query: "recycling center",
                     // You can add more parameters if needed
                 },
                 (results, status) => {
                     if (status === google.maps.places.PlacesServiceStatus.OK) {
                         for (const place of results) {
-                            // Use a bright red marker
+                            // Use a red marker
                             const marker = new google.maps.Marker({
                                 map,
                                 position: place.geometry.location,
