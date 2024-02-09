@@ -67,7 +67,7 @@
               position: place.geometry.location,
               title: place.name,
               icon: {
-                url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', // Bright red marker icon
+                url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', // Bright red marker icon
                 size: new google.maps.Size(32, 32),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(16, 32),
