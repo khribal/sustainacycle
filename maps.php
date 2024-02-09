@@ -69,7 +69,7 @@
                                     size: new google.maps.Size(32, 32),
                                     origin: new google.maps.Point(0, 0),
                                     anchor: new google.maps.Point(16, 32),
-                                    scaledSize: new google.maps.Size(32, 32),
+                                    scaledSize: new google.maps.Size(64, 64),
                                 },
                             });
 
