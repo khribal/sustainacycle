@@ -63,6 +63,8 @@ function initMap() {
 
     // Perform the nearby search
     service.nearbySearch(request, handlePlacesResults);
+
+    map.setZoom(15);
 }
 
 
