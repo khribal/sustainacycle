@@ -51,10 +51,20 @@ function createMarker(place) {
 }
 
 function initMap() {
+    // Use the PlacesService to search for recycling centers
+    const service = new google.maps.places.PlacesService(map);
 
-    // Get user location
-    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    // Define the request for recycling centers
+    const request = {
+        location: map.getCenter(),
+        radius: 5000, // adjust the radius as needed
+        keyword: 'recycling center',
+    };
+
+    // Perform the nearby search
+    service.nearbySearch(request, handlePlacesResults);
 }
+
 
 // Error callback function, if needed
 function errorCallback(error) {
