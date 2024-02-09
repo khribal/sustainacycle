@@ -13,7 +13,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&loading=async&libraries=places&callback=initMap" async defer></script>
     
     <!-- JS -->
-    <script src="js/maps.js"></script>
+    <!-- <script src="js/maps.js"></script> -->
     <!-- <script src="js/get-location.js"></script> -->
     
     <!--CSS -->
@@ -22,15 +22,37 @@
 <body>
 <?php include('includes/nav.php');?>
 
-<div id="container">
       <div id="map"></div>
-      <div id="sidebar">
-        <h2>Results</h2>
-        <ul id="places"></ul>
-        <button id="more">Load more results</button>
-      </div>
-    </div>
 
+
+      <div id="map"></div>
+
+<script>
+  // Initialize the map
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -33.867, lng: 151.195 },
+    zoom: 15,
+  });
+
+  // Create a PlacesService instance
+  const service = new google.maps.places.PlacesService(map);
+
+  // Perform a text search
+  service.textSearch(
+    {
+      query: "restaurants in Sydney",
+      // You can add more parameters if needed
+    },
+    (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (const place of results) {
+          // Do something with each place
+          console.log(place);
+        }
+      }
+    }
+  );
+</script>
 
 </body>
 </html>
