@@ -76,7 +76,7 @@
             });
 
             // Do something with each place
-            console.log(place);
+            console.log(place[business_status]);
           }
         }
       }
