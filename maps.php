@@ -50,6 +50,9 @@
             // Create a PlacesService instance
             const service = new google.maps.places.PlacesService(map);
 
+            // Create an InfoWindow
+            const infoWindow = new google.maps.InfoWindow();
+
             // Perform a text search
             service.textSearch(
                 {
@@ -73,6 +76,21 @@
                                 },
                             });
 
+                            // Add a click event listener to the marker
+                marker.addListener('click', () => {
+                    // Set content for the InfoWindow
+                    const content = `
+                        <div>
+                            <strong>${place.name}</strong><br>
+                            Address: ${place.formatted_address || 'N/A'}<br>
+                            Rating: ${place.rating || 'N/A'}
+                        </div>
+                    `;
+                    
+                    // Set the content and open the InfoWindow
+                    infoWindow.setContent(content);
+                    infoWindow.open(map, marker);
+                });
                             // Do something with each place
                             console.log(place);
                         }
