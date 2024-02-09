@@ -1,73 +1,66 @@
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+//Global var for info window
+let infoWindow;
+
+
 function initMap() {
-    // Create the map.
-    const pyrmont = { lat: 39.173100, lng: -86.524239};
+    // Create a map centered at a specific location
     const map = new google.maps.Map(document.getElementById("map"), {
-      center: pyrmont,
-      zoom: 17,
-      mapId: "8d193001f940fde3",
+        center: { lat: 39.173100, lng: -86.524239 },
+        zoom: 15,
     });
-    // Create the places service.
+
+    // Create a PlacesService instance
     const service = new google.maps.places.PlacesService(map);
-    let getNextPage;
-    const moreButton = document.getElementById("more");
-  
-    moreButton.onclick = function () {
-      moreButton.disabled = true;
-      if (getNextPage) {
-        getNextPage();
-      }
-    };
-  
-    // Perform a nearby search.
-    service.nearbySearch(
-      { location: pyrmont, radius: 500, type: "store" },
-      (results, status, pagination) => {
-        if (status !== "OK" || !results) return;
-  
-        addPlaces(results, map);
-        moreButton.disabled = !pagination || !pagination.hasNextPage;
-        if (pagination && pagination.hasNextPage) {
-          getNextPage = () => {
-            // Note: nextPage will call the same handler function as the initial call
-            pagination.nextPage();
-          };
+
+    // Create an InfoWindow
+    const infoWindow = new google.maps.InfoWindow();
+
+    // Perform a text search
+    service.textSearch(
+        {
+            query: "recycling center",
+            // You can add more parameters if needed
+        },
+        (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (const place of results) {
+                    // Use a red marker
+                    const marker = new google.maps.Marker({
+                        map,
+                        position: place.geometry.location,
+                        title: place.name,
+                        icon: {
+                            url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', // Bright red marker icon
+                            size: new google.maps.Size(64, 64),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(16, 32),
+                            scaledSize: new google.maps.Size(64, 64),
+                        },
+                    });
+
+                    // Add a click event listener to the marker
+                    addMarkerClickListener(marker, place);
+                    // Do something with each place
+                    console.log(place);
+                }
+            }
         }
-      },
     );
-  }
-  
-  function addPlaces(places, map) {
-    const placesList = document.getElementById("places");
-  
-    for (const place of places) {
-      if (place.geometry && place.geometry.location) {
-        const image = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25),
-        };
-  
-        new google.maps.Marker({
-          map,
-          icon: image,
-          title: place.name,
-          position: place.geometry.location,
+    // Function to add click event listener to a marker
+    function addMarkerClickListener(marker, place) {
+        marker.addListener('click', () => {
+            // Set content for the InfoWindow
+            const content = `
+        <div>
+            <strong>${place.name}</strong><br>
+            Address: ${place.formatted_address || 'N/A'}<br>
+            Rating: ${place.rating || 'N/A'}
+        </div>
+    `;
+
+            // Set the content and open the InfoWindow
+            infoWindow.setContent(content);
+            infoWindow.open(map, marker);
         });
-  
-        const li = document.createElement("li");
-  
-        li.textContent = place.name;
-        placesList.appendChild(li);
-        li.addEventListener("click", () => {
-          map.setCenter(place.geometry.location);
-        });
-      }
     }
-  }
-  
-  window.initMap = initMap;
+}

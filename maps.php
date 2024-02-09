@@ -10,25 +10,10 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- Google Maps API -->
-
-    <!-- <script>
-        // Define the initMap function
-        function initMap() {
-            // Create a map centered at a specific location
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -33.867, lng: 151.195 },
-                zoom: 15,
-            });
-
-            // You can add additional map-related setup or actions here
-        }
-    </script> -->
-
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&loading=async&libraries=places&callback=initMap" async defer></script>
     
     <!-- JS -->
-    <!-- <script src="js/maps.js"></script> -->
+    <script src="js/maps.js"></script>
     <!-- <script src="js/get-location.js"></script> -->
     
     <!--CSS -->
@@ -39,7 +24,7 @@
 
       <div id="map"></div>
 
-      <script>
+      <!-- <script>
             //Global var for info window
             let infoWindow;
 
@@ -106,7 +91,7 @@
             });
         }
         }
-    </script>
+    </script> -->
 
 </body>
 </html>
