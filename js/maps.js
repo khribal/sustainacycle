@@ -1,7 +1,6 @@
 let map;
 let infoWindow;
 
-
 const fixedLocation = {
     lat: 39.173100,
     lng: -86.524239
@@ -56,7 +55,6 @@ function createMarker(place) {
     });
 }
 
-
 function initMap() {
     // Use the PlacesService to search for recycling centers
     const service = new google.maps.places.PlacesService(map);
@@ -74,8 +72,10 @@ function initMap() {
     map.setZoom(15);
 }
 
-
 // Error callback function, if needed
 function errorCallback(error) {
     console.error('Error getting user location:', error);
 }
+
+// Call the initMap function when the page loads
+successCallback(/* provide a position object here if needed */);
