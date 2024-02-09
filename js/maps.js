@@ -23,7 +23,7 @@ function initMap() {
   
     // Perform a nearby search.
     service.nearbySearch(
-      { location: pyrmont, radius: 500, type: "restaurant" },
+      { location: pyrmont, radius: 500, type: "store" },
       (results, status, pagination) => {
         if (status !== "OK" || !results) return;
   
