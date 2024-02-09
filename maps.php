@@ -11,7 +11,7 @@
 
     <!-- Google Maps API -->
 
-    <script>
+    <!-- <script>
         // Define the initMap function
         function initMap() {
             // Create a map centered at a specific location
@@ -22,9 +22,9 @@
 
             // You can add additional map-related setup or actions here
         }
-    </script>
+    </script> -->
 
-    
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&loading=async&libraries=places&callback=initMap" async defer></script>
     
     <!-- JS -->
