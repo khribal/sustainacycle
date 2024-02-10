@@ -109,7 +109,7 @@ const dataa = {
   datasets: [{
     label: 'My First Dataset',
     data: <?php echo $jsonResult2 ?>
-    fill: false,
+    // fill: false,
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1
   }]
