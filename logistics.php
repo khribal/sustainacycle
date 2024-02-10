@@ -60,6 +60,12 @@ $conn->close();
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
 
+        <div class="chart-view">
+            <canvas id="bubbleChartCanvas" width="573" height="286"
+            style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
+        </div>
+
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- <script type="module" src="dimensions.js"></script> -->
@@ -68,8 +74,39 @@ $conn->close();
 
 <script type="module">
     import { createChart } from './js/charts.js';
+    
+    
     var dataFromPHP = <?php echo $jsonResult; ?>;
     createChart(dataFromPHP);
+
+
+    //TESTING BUBBLE CHART
+    const data = {
+            datasets: [{
+                label: 'First Dataset',
+                data: [{
+                    x: 20,
+                    y: 30,
+                    r: 15
+                }, {
+                    x: 40,
+                    y: 10,
+                    r: 10
+                }],
+                backgroundColor: 'rgb(255, 99, 132)'
+            }]
+        };
+
+        const config = {
+            type: 'bubble',
+            data: data,
+            options: {}
+        };
+
+        // Create the chart
+        const ctx = document.getElementById('bubbleChartCanvas').getContext('2d');
+        new Chart(ctx, config);
+
 </script>
 
 </body>
