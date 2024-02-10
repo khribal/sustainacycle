@@ -37,6 +37,7 @@ join user_transaction as ut on t.transactionID=ut.transactionID
 join users as u on u.userID=ut.userID
 join recyclers as r on r.userID=u.userID
 join manufacturers as ma on ma.userID=u.userID
+WHERE u.userID in (SELECT userID from user_transaction)
 order by t.quantity DESC
 limit 15";
 
@@ -95,44 +96,41 @@ $conn->close();
 
 
 <script type="module">
+
+    //Bar chart
     import { createChart } from './js/charts.js';
-    
-    
     var dataFromPHP = <?php echo $jsonResult; ?>;
     createChart(dataFromPHP);
 
 
-    //TESTING LINE CHART
-
+    //LINE CHART
     const dataFromPHP2 = <?php echo $jsonResult2; ?>;
 
     // Extract labels, quantities, and material names from the PHP data
     const labels2 = dataFromPHP2.map(entry => entry.transationDate);
     const quantities = dataFromPHP2.map(entry => entry.quantity);
-
-
+    const materialName = dataFromPHP2.map(entry => entry.materialName);
 
     const dataa = {
-    labels: labels2,
-    datasets: [{
-    label: 'My First Dataset',
-    data: quantities,
-    fill: false,
-    borderColor: 'rgb(75, 192, 192)',
-    tension: 0.1
-  }]
-};
-const lineChartConfig = {
-  type: 'line',
-  data: dataa,
-};
+        labels: labels2,
+        datasets: [{
+        label: 'lbs of materials donated',
+        data: quantities,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+        }]
+    };
+    const lineChartConfig = {
+    type: 'line',
+    data: dataa,
+    };
 
-const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
+    const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
     
     // Create the line chart
     new Chart(lineChartCanvas, lineChartConfig);
 
-console.log(<?php echo $jsonResult2 ?>)
 </script>
 
 </body>

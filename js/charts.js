@@ -4,7 +4,7 @@ export function createChart(data){
     {
       type: 'bar',
       data: {
-        labels: data.map(row => row.donator),
+        labels: data.map(row => `${row.donator} - ${row.materialName}`), // Concatenate donator and material name
         datasets: [
           {
             label: 'Pounds of material donated',
