@@ -64,8 +64,8 @@ $conn->close();
 
 <script>
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    console.log(dataFromPHP);
-    // initializeChart(dataFromPHP);
+    // console.log(dataFromPHP);
+    createChart(dataFromPHP);
 </script>
 
 </body>
