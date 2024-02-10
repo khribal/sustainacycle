@@ -41,12 +41,13 @@ WHERE u.userID in (SELECT userID from user_transaction)
 order by t.quantity DESC
 limit 15";
 
-$sql2 = "SELECT t.transactionDate, t.quantity, m.materialName
+$sql2 = "SELECT t.transactionDate, sum(t.quantity) as quantity
 from transactions as t
 join user_transaction as ut on ut.transactionID=t.transactionID
 join users as u on u.userID=ut.userID
 join manufacturers as ma on ma.userID=u.userID
 join materials as m on m.manufacturerID=ma.manufacturerID
+group by t.transactionDate
 order by t.transactionDate";
 
 $result = $conn->query($sql);
