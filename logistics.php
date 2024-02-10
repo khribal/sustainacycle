@@ -39,7 +39,7 @@ while($row = $result->fetch_assoc){
         'quantity'=$row['quantity'],
         'materialName' = $row['materialName'],
         'donator' = $row['donator']
-    )
+    );
 }
 
 $jsonResult = json_encode($data);
@@ -55,8 +55,8 @@ $conn->close();
 
 
 <script>
-    // var dataFromPHP = <?php echo $jsonResult; ?>;
     // initializeChart(dataFromPHP);
+    
     console.log($jsonResult)
 </script>
 
