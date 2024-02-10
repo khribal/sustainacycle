@@ -69,7 +69,6 @@ $conn->close();
 <script type="module">
     import { createChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    // console.log(dataFromPHP);
     createChart(dataFromPHP);
 </script>
 

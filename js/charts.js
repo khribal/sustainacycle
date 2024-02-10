@@ -7,7 +7,7 @@ export function createChart(data){
         labels: data.map(row => row.donator),
         datasets: [
           {
-            label: 'Acquisitions by year',
+            label: data.map(row => row.materialName),
             data: data.map(row => row.quantity),
             backgroundColor: 'rgba(75, 192, 192, 0.2)', // Set the color here
             borderColor: 'rgba(75, 192, 192, 1)', // Border color (if needed)
@@ -19,4 +19,4 @@ export function createChart(data){
   );
 }
 
- 
+
