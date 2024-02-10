@@ -122,6 +122,8 @@ $conn->close();
         const bubbleCtx = document.getElementById('bubbleChartCanvas').getContext('2d');
         new Chart(bubbleCtx, bubbleConfig);
 
+        console.log($jsonResult2);
+
 </script>
 
 </body>
