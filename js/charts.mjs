@@ -1,4 +1,4 @@
-function createChart(data){
+export function createChart(data){
   new Chart(
     document.getElementById('chart-space'),
     {
