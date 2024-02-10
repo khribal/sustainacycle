@@ -10,7 +10,6 @@
 <body>
 
 <?php
-
 $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
@@ -35,11 +34,11 @@ limit 15";
 $result = $conn->query($sql);
 
 $data = array();
-while($row = $result->fetch_assoc){
+while($row = $result->fetch_assoc()){
     $data[] = array(
-        'quantity'=$row['quantity'],
-        'materialName' = $row['materialName'],
-        'donator' = $row['donator']
+        'quantity'=> $row['quantity'],
+        'materialName' => $row['materialName'],
+        'donator' => $row['donator']
     );
 }
 
