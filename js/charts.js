@@ -14,7 +14,7 @@ import Chart from 'chart.js/auto'
   ];
 
   new Chart(
-    document.getElementById('acquisitions'),
+    document.getElementById('chart-space'),
     {
       type: 'bar',
       data: {

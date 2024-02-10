@@ -8,6 +8,7 @@
     <script scr="js/charts.js"></script>
 </head>
 <body>
+<?php include('includes/nav.php');?>
 
 <?php
 $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -48,16 +49,15 @@ $conn->close();
 ?>
 
         <!-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br/> -->
-        <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+        <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
         <!-- <script type="module" src="dimensions.js"></script> -->
-        <script type="module" src="acquisitions.js"></script>
-
+        <script type="module" src="charts.js"></script>
 
 <script>
+    var dataFromPHP = <?php echo $jsonResult; ?>;
+    console.log(dataFromPHP);
     // initializeChart(dataFromPHP);
-    
-    // console.log($jsonResult)
 </script>
 
 </body>
