@@ -114,7 +114,7 @@ const dataa = {
     tension: 0.1
   }]
 };
-const config = {
+const lineChartConfig = {
   type: 'line',
   data: dataa,
 };
