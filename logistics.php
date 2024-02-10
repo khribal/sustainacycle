@@ -124,6 +124,7 @@ const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2
     // Create the line chart
     new Chart(lineChartCanvas, lineChartConfig);
 
+console.log(<?php echo $jsonResult2 ?>)
 </script>
 
 </body>
