@@ -40,7 +40,19 @@ join manufacturers as ma on ma.userID=u.userID
 order by t.quantity DESC
 limit 15";
 
+$sql2 = "SELECT m.materialName, m.quantity,
+CASE
+WHEN u.usertype='manufacturer' THEN ma.companyName
+END AS company
+from transactions as t
+join user_transaction as ut on ut.transactionID=t.transactionID
+join users as u on ut.userID=u.userID
+join manufacturers as ma on ma.userID=u.userID
+join materials as m on m.manufacturerID=ma.manufacturerID
+where u.usertype='manufacturer' AND u.userID IN (SELECT userID from user_transaction)";
+
 $result = $conn->query($sql);
+$result2 = $conn->query($sql2);
 
 $data = array();
 while($row = $result->fetch_assoc()){
@@ -51,7 +63,18 @@ while($row = $result->fetch_assoc()){
     );
 }
 
+$data2 = array();
+while($row = $result->fetch_assoc()){
+    $data[] = array(
+        'materialName' => $row['materialName'],
+        'quantity'=> $row['quantity'],
+        'company' => $row['company']
+    );
+}
+
 $jsonResult = json_encode($data);
+$jsonResult2 = json_encode($data2);
+
 
 $conn->close();
 ?>
@@ -81,31 +104,23 @@ $conn->close();
 
 
     //TESTING BUBBLE CHART
-    const data = {
+    const bubbleData = {
             datasets: [{
                 label: 'First Dataset',
-                data: [{
-                    x: 20,
-                    y: 30,
-                    r: 15
-                }, {
-                    x: 40,
-                    y: 10,
-                    r: 10
-                }],
+                data: <?php echo $jsonResult2 ?>,
                 backgroundColor: 'rgb(255, 99, 132)'
             }]
         };
 
-        const config = {
+        const bubbleConfig = {
             type: 'bubble',
-            data: data,
+            data: bubbleData,
             options: {}
         };
 
         // Create the chart
-        const ctx = document.getElementById('bubbleChartCanvas').getContext('2d');
-        new Chart(ctx, config);
+        const bubbleCtx = document.getElementById('bubbleChartCanvas').getContext('2d');
+        new Chart(bubbleCtx, bubbleConfig);
 
 </script>
 
