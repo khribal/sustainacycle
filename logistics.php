@@ -62,6 +62,9 @@ $conn->close();
         <!-- <script type="module" src="dimensions.js"></script> -->
         <script type="module" src="js/charts.js"></script>
 
+<!-- Import charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     var dataFromPHP = <?php echo $jsonResult; ?>;
     // console.log(dataFromPHP);

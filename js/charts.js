@@ -1,5 +1,3 @@
-import Chart from 'chart.js/auto'
-
 function createChart(data){
   new Chart(
     document.getElementById('chart-space'),
