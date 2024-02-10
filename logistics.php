@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- JS --> 
-    <script type="module" src="js/charts.mjs"></script>
+    <!-- <script type="module" src="js/charts.js"></script> -->
 
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -60,7 +60,7 @@ $conn->close();
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
         <!-- <script type="module" src="dimensions.js"></script> -->
-        <script type="module" src="charts.js"></script>
+        <script type="module" src="js/charts.js"></script>
 
 <script>
     var dataFromPHP = <?php echo $jsonResult; ?>;
