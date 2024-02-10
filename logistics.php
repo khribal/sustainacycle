@@ -59,6 +59,9 @@ $conn->close();
         <!-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br/> -->
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <!-- <script type="module" src="dimensions.js"></script> -->
         <script type="module" src="js/charts.js"></script>
 
