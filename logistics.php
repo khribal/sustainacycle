@@ -62,10 +62,10 @@ $conn->close();
         <!-- <script type="module" src="dimensions.js"></script> -->
         <script type="module" src="js/charts.js"></script>
 
-        
+
 <script>
+    import { createChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    import { createChart } from 'js/charts.js';
     // console.log(dataFromPHP);
     createChart(dataFromPHP);
 </script>
