@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css">
 
     <!-- JS --> 
-    <script type="module" src="js/charts.js"></script>
+    <script type="module" src="js/charts.mjs"></script>
 
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
