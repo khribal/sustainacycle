@@ -103,7 +103,7 @@ $conn->close();
 
 
     //TESTING LINE CHART
-    const labels = Utils.months({count: 7});
+    const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5', 'Label 6', 'Label 7'];
 const dataa = {
   labels: labels,
   datasets: [{
