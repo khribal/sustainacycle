@@ -63,6 +63,9 @@ while($row = $result->fetch_assoc()){
     );
 }
 
+$jsonResult = json_encode($data);
+
+
 $data2 = array();
 while($row = $result2->fetch_assoc()){
     $data2[] = array(
@@ -72,9 +75,7 @@ while($row = $result2->fetch_assoc()){
     );
 }
 
-$jsonResult = json_encode($data);
 $jsonResult2 = json_encode($data2);
-
 
 $conn->close();
 ?>
