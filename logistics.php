@@ -103,12 +103,20 @@ $conn->close();
 
 
     //TESTING LINE CHART
-    const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5', 'Label 6', 'Label 7'];
-const dataa = {
-  labels: labels,
-  datasets: [{
+
+    const dataFromPHP2 = <?php echo $jsonResult2; ?>;
+
+    // Extract labels, quantities, and material names from the PHP data
+    const labels2 = dataFromPHP2.map(entry => entry.transationDate);
+    const quantities = dataFromPHP2.map(entry => entry.quantity);
+
+
+
+    const dataa = {
+    labels: labels2,
+    datasets: [{
     label: 'My First Dataset',
-    data: <?php echo $jsonResult2 ?>,
+    data: quantities,
     fill: false,
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1
