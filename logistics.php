@@ -65,7 +65,7 @@ while($row = $result->fetch_assoc()){
 
 $data2 = array();
 while($row = $result->fetch_assoc()){
-    $data[] = array(
+    $data2[] = array(
         'materialName' => $row['materialName'],
         'quantity'=> $row['quantity'],
         'company' => $row['company']
