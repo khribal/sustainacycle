@@ -40,18 +40,16 @@ join manufacturers as ma on ma.userID=u.userID
 order by t.quantity DESC
 limit 15";
 
-$sql2 = "SELECT m.materialName, m.quantity,
-CASE
-WHEN u.usertype='manufacturer' THEN ma.companyName
-END AS company
+$sql2 = "SELECT t.transactionDate, t.quantity, m.materialName
 from transactions as t
 join user_transaction as ut on ut.transactionID=t.transactionID
-join users as u on ut.userID=u.userID
+join users as u on u.userID=ut.userID
 join manufacturers as ma on ma.userID=u.userID
 join materials as m on m.manufacturerID=ma.manufacturerID
-where u.usertype='manufacturer' AND u.userID IN (SELECT userID from user_transaction)";
+order by t.transactionDate";
 
 $result = $conn->query($sql);
+
 $result2 = $conn->query($sql2);
 
 $data = array();
@@ -69,9 +67,9 @@ $jsonResult = json_encode($data);
 $data2 = array();
 while($row = $result2->fetch_assoc()){
     $data2[] = array(
-        'materialName' => $row['materialName'],
+        'transationDate' => $row['transactionDate'],
         'quantity'=> $row['quantity'],
-        'company' => $row['company']
+        'materialName' => $row['materialName']
     );
 }
 
@@ -85,7 +83,7 @@ $conn->close();
 
 
         <div class="chart-view">
-            <canvas id="bubbleChartCanvas" width="573" height="286"
+            <canvas id="lineChartCanvas" width="573" height="286"
             style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
         </div>
 
@@ -104,26 +102,27 @@ $conn->close();
     createChart(dataFromPHP);
 
 
-    //TESTING BUBBLE CHART
-    const bubbleData = {
-            datasets: [{
-                label: 'First Dataset',
-                data: <?php echo $jsonResult2 ?>,
-                backgroundColor: 'rgb(255, 99, 132)'
-            }]
-        };
+    //TESTING LINE CHART
+    const labels = Utils.months({count: 7});
+const dataa = {
+  labels: labels,
+  datasets: [{
+    label: 'My First Dataset',
+    data: [65, 59, 80, 81, 56, 55, 40],
+    fill: false,
+    borderColor: 'rgb(75, 192, 192)',
+    tension: 0.1
+  }]
+};
+const config = {
+  type: 'line',
+  data: dataa,
+};
 
-        const bubbleConfig = {
-            type: 'bubble',
-            data: bubbleData,
-            options: {}
-        };
-
-        // Create the chart
-        const bubbleCtx = document.getElementById('bubbleChartCanvas').getContext('2d');
-        new Chart(bubbleCtx, bubbleConfig);
-
-        console.log(<?php echo $jsonResult2 ?>);
+const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
+    
+    // Create the line chart
+    new Chart(lineChartCanvas, lineChartConfig);
 
 </script>
 
