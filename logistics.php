@@ -32,25 +32,21 @@ join user_transaction as ut on t.transactionID=ut.transactionID
 join users as u on u.userID=ut.userID
 join recyclers as r on r.userID=u.userID
 join manufacturers as ma on ma.userID=u.userID
-WHERE u.userID in (SELECT userID from user_transaction)
+WHERE u.userID in (SELECT userID from user_transaction) AND u.usertype='manufacturer'
 group by ma.manufacturerID
 order by sum(t.quantity) DESC
 limit 15";
 
-$sqll = "SELECT sum(t.quantity) as quantity,
-CASE 
-WHEN u.usertype='individual_user' THEN CONCAT(u.firstName, ' ', u.lastName)
-WHEN u.usertype = 'recycler' THEN r.companyName
-WHEN u.usertype= 'manufacturer' THEN ma.companyName
-END AS donator
+
+$sqll = "SELECT sum(t.quantity) as quantity, r.companyName as company
 from transactions as t
 join materials as m on m.materialID = t.materialID
 join user_transaction as ut on t.transactionID=ut.transactionID
 join users as u on u.userID=ut.userID
 join recyclers as r on r.userID=u.userID
 join manufacturers as ma on ma.userID=u.userID
-WHERE u.userID in (SELECT userID from user_transaction)
-group by t.transactionID
+WHERE u.userID in (SELECT userID from user_transaction) AND u.usertype='recycler'
+group by ma.manufacturerID
 order by sum(t.quantity) DESC
 limit 15";
 
@@ -74,6 +70,7 @@ group by m.materialName
 order by (m.quantity)";
 
 $result = $conn->query($sql);
+$resultt = $conn->query($sqll);
 
 $result2 = $conn->query($sql2);
 
@@ -90,6 +87,15 @@ while($row = $result->fetch_assoc()){
 
 $jsonResult = json_encode($data);
 
+$data1 = array();
+while($row = $resultt->fetch_assoc()){
+    $data1[] = array(
+        'quantity'=> $row['quantity'],
+        'company' => $row['company']
+    );
+}
+
+$jsonResult1 = json_encode($data1);
 
 $data2 = array();
 while($row = $result2->fetch_assoc()){
@@ -115,7 +121,12 @@ $jsonResult3 = json_encode($data3);
 $conn->close();
 ?>
         <!-- Horizontal bar chart -->
+        
+            <!--Manufacturer-->
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
+        
+            <!--Recycler-->
+        <div style="width: 800px;"><canvas id="chart-space1"></canvas></div>
 
         <!--Line chart -->
         <div class="chart-view">
@@ -139,9 +150,12 @@ $conn->close();
     //Horizontal bar chart manufacturers
     import { createHorizontalBarChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity));
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space');
 
     //Horizontal bar chart recyclers 
+    import { createHorizontalBarChart } from './js/charts.js';
+    var dataFromPHP1 = <?php echo $jsonResult1; ?>;
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space1');
 
     //Line chart
     import { createLine } from './js/charts.js';

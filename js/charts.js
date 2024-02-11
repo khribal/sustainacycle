@@ -1,11 +1,11 @@
 //HORIZONTAL BAR CHART
-export function createHorizontalBarChart(labels, dataset) {
+export function createHorizontalBarChart(labels, dataset, chartspace) {
   // Set up data for the chart
   const data = {
       labels: labels,
       datasets: [
           {
-              label: `Lbs of textiles donated:`,
+              label: `Lbs of textiles:`,
               data: dataset,
               backgroundColor: 'rgba(255, 99, 132, 0.2)',
               borderColor: 'rgba(255, 99, 132, 1)',
@@ -34,7 +34,7 @@ export function createHorizontalBarChart(labels, dataset) {
   };
 
   // Create the chart instance
-  const chartCanvas = document.getElementById('chart-space').getContext('2d');
+  const chartCanvas = document.getElementById(chartspace).getContext('2d');
   new Chart(chartCanvas, config);
 }
 
