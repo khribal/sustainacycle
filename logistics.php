@@ -51,9 +51,20 @@ join materials as m on m.manufacturerID=ma.manufacturerID
 group by t.transactionDate
 order by t.transactionDate";
 
+$sql3 = "SELECT m.materialName, sum(m.quantity) as quantity
+from materials as m
+join manufacturers as ma on ma.manufacturerID=m.manufacturerID
+join users as u on u.userID=ma.userID
+join user_transaction as ut on u.userID=ut.userID
+where u.userID in (select userID from user_transaction)
+group by m.materialName
+order by (m.quantity)";
+
 $result = $conn->query($sql);
 
 $result2 = $conn->query($sql2);
+
+$result3 = $conn->query($sql3);
 
 $data = array();
 while($row = $result->fetch_assoc()){
@@ -78,19 +89,31 @@ while($row = $result2->fetch_assoc()){
 
 $jsonResult2 = json_encode($data2);
 
+$data3 = array();
+while($row = $result3->fetch_assoc()){
+    $data3[] = array(
+        'materialName' => $row['materialName'],
+        'quantity'=> $row['quantity'],
+    );
+}
+
+$jsonResult3 = json_encode($data3);
+
 $conn->close();
 ?>
 
         <!-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br/> -->
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
-
         <div class="chart-view">
             <canvas id="lineChartCanvas" width="573" height="286"
             style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
         </div>
 
+        <!-- Pie chart -->
+        <div style="width: 800px;"><canvas id="chart-pie"></canvas></div>
 
+        <!-- Link to charts.js extension -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- <script type="module" src="dimensions.js"></script> -->
@@ -138,6 +161,10 @@ $conn->close();
     // Create the line chart
     new Chart(lineChartCanvas, lineChartConfig);
 
+    //Pie chart
+    import { createPieChart } from './js/charts.js';
+    var dataFromPHP3 = <?php echo $jsonResult3; ?>;
+    createPieChart(dataFromPHP3);
 </script>
 
 </body>

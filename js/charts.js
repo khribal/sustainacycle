@@ -58,5 +58,26 @@ export function createHorizontalBarChart(labels, dataset) {
   new Chart(chartCanvas, config);
 }
 
-// Example usage:
-// createHorizontalBarChart(['Label 1', 'Label 2', 'Label 3'], [30, 50, 10], [20, 40, 60]);
+
+export function createPieChart(data) {
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Chart.js Pie Chart',
+        },
+      },
+    },
+  };
+
+  // Create the chart instance
+  const chartCanvas = document.getElementById('chart-pie').getContext('2d');
+  new Chart(chartCanvas, config);
+}
