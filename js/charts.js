@@ -5,7 +5,7 @@ export function createHorizontalBarChart(labels, dataset) {
       labels: labels,
       datasets: [
           {
-              label: `Lbs of textile donated:`,
+              label: `Lbs of textiles donated:`,
               data: dataset,
               backgroundColor: 'rgba(255, 99, 132, 0.2)',
               borderColor: 'rgba(255, 99, 132, 1)',

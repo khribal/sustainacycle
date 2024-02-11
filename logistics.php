@@ -25,7 +25,19 @@ $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23
     }
 
 
-$sql = "SELECT sum(t.quantity) as quantity,
+$sql = "SELECT sum(t.quantity) as quantity, ma.companyName as company
+from transactions as t
+join materials as m on m.materialID = t.materialID
+join user_transaction as ut on t.transactionID=ut.transactionID
+join users as u on u.userID=ut.userID
+join recyclers as r on r.userID=u.userID
+join manufacturers as ma on ma.userID=u.userID
+WHERE u.userID in (SELECT userID from user_transaction)
+group by ma.manufacturerID
+order by sum(t.quantity) DESC
+limit 15";
+
+$sqll = "SELECT sum(t.quantity) as quantity,
 CASE 
 WHEN u.usertype='individual_user' THEN CONCAT(u.firstName, ' ', u.lastName)
 WHEN u.usertype = 'recycler' THEN r.companyName
@@ -41,6 +53,7 @@ WHERE u.userID in (SELECT userID from user_transaction)
 group by t.transactionID
 order by sum(t.quantity) DESC
 limit 15";
+
 
 $sql2 = "SELECT t.transactionDate, sum(t.quantity) as quantity
 from transactions as t
@@ -71,7 +84,7 @@ while($row = $result->fetch_assoc()){
     $data[] = array(
         'quantity'=> $row['quantity'],
         // 'materialName' => $row['materialName'],
-        'donator' => $row['donator']
+        'company' => $row['company']
     );
 }
 
@@ -101,10 +114,10 @@ $jsonResult3 = json_encode($data3);
 
 $conn->close();
 ?>
-
-        <!-- <div style="width: 500px;"><canvas id="dimensions"></canvas></div><br/> -->
+        <!-- Horizontal bar chart -->
         <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
 
+        <!--Line chart -->
         <div class="chart-view">
             <canvas id="lineChartCanvas" width="573" height="286"
             style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
@@ -113,27 +126,24 @@ $conn->close();
         <!-- Pie chart -->
         <div style="width: 800px;"><canvas id="chart-pie"></canvas></div>
 
+
+
         <!-- Link to charts.js extension -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <!-- <script type="module" src="dimensions.js"></script> -->
+        
+        <!-- Link to js chart functions -->
         <script type="module" src="js/charts.js"></script>
 
-
+<!-- Calling chart functions -->
 <script type="module">
-
-    
-    //Bar chart
-    // import { createChart } from './js/charts.js';
-    // var dataFromPHP = <?php echo $jsonResult; ?>;
-    // createChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
-
-    //Horizontal bar chart
+    //Horizontal bar chart manufacturers
     import { createHorizontalBarChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity));
 
-    //LINE CHART
+    //Horizontal bar chart recyclers 
+
+    //Line chart
     import { createLine } from './js/charts.js';
     var dataFromPHP2 = <?php echo $jsonResult2; ?>;
     createLine(dataFromPHP2.map(entry => entry.quantity), dataFromPHP2.map(entry => entry.transationDate));
