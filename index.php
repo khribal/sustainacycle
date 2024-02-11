@@ -14,6 +14,7 @@
 
     <!-- Google verification oauth-->
     <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   </head>
 <body>
@@ -90,7 +91,7 @@
 
 
 <!-- Google login stuff -->
-<script src="google-login.js"></script>
+<script src="js/google-login.js"></script>
 
 <script>
   function signOut() {
