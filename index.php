@@ -63,7 +63,7 @@
 </div> <!-- /container -->
 
 <!-- Sign in sign out buttons -->
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<div class="g-signin2" data-onsuccess="onSignIn" data-clientid="198263467133-7i24c3iaup4pdgdbqiuu7d3sduru7dai.apps.googleusercontent.com"></div>
 <a href="#" onclick="signOut();">Sign out</a>
 
 </main>
