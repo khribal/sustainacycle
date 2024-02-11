@@ -98,11 +98,16 @@ $conn->close();
 
 <script type="module">
 
+    
     //Bar chart
-    import { createChart } from './js/charts.js';
-    var dataFromPHP = <?php echo $jsonResult; ?>;
-    createChart(dataFromPHP);
+    // import { createChart } from './js/charts.js';
+    // var dataFromPHP = <?php echo $jsonResult; ?>;
+    // createChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
 
+    //Horizontal bar chart
+    import {createHorizontalBarChart} from './js/charts.js';
+    var dataFromPHP = <?php echo $jsonResult; ?>;
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
 
     //LINE CHART
     const dataFromPHP2 = <?php echo $jsonResult2; ?>;
