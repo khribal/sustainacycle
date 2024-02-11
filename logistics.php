@@ -25,7 +25,7 @@ $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23
     }
 
 
-$sql = "SELECT sum(t.quantity),
+$sql = "SELECT sum(t.quantity) as quantity,
 CASE 
 WHEN u.usertype='individual_user' THEN CONCAT(u.firstName, ' ', u.lastName)
 WHEN u.usertype = 'recycler' THEN r.companyName
