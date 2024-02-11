@@ -26,8 +26,7 @@ export function createHorizontalBarChart(labels, dataset, chartspace) {
                   position: 'right',
               },
               title: {
-                  display: true,
-                  text: 'Top Manufacturers and Lbs of Accepted Textiles'
+                  display: false,
               }
           }
       },

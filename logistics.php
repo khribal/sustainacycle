@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- JS --> 
-    <!-- <script type="module" src="js/charts.js"></script> -->
-
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -122,12 +119,20 @@ $conn->close();
 ?>
         <!-- Horizontal bar chart -->
         
-            <!--Manufacturer-->
-        <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
-        
-            <!--Recycler-->
-        <div style="width: 800px;"><canvas id="chart-space1"></canvas></div>
-
+            <div class=horiz-parent>
+                    <!--Manufacturer-->
+                <div class="horiz-chart">
+                    <h2>Manufacturer Donated Textiles</h2>
+                    <p>Here you will find some of the manufacturers who have donated textiles, ranked by those who donated the most according to our database.</p>
+                    <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
+                </div>
+                    <!--Recycler-->
+                    <div class="horiz-chart">
+                    <h2>Recycler Accepted Textiles</h2>
+                    <p>Here you will find some of the recyclers who have accepted textiles, ranked by those who accepted the most according to our database.</p>
+                    <div style="width: 800px;"><canvas id="chart-space1"></canvas></div>
+                    </div>
+            </div>
         <!--Line chart -->
         <div class="chart-view">
             <canvas id="lineChartCanvas" width="573" height="286"

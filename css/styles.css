@@ -74,3 +74,11 @@ h2 {
 #map{
     height: 100vh;
 }
+
+
+/************* Logistics **********************/
+.horiz-parent{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
