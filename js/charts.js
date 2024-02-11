@@ -79,13 +79,13 @@ export function createPieChart(quantity, materialName) {
 
 //LINE CHART
 
-export function createLine(data, labels){
+export function createLine(quantity, labels){
 
-const data = {
+const dataForChart = {
     labels: labels,
     datasets: [{
     label: 'lbs of materials donated',
-    data: quantities,
+    data: quantity,
     fill: false,
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1
@@ -93,7 +93,7 @@ const data = {
 };
 const lineChartConfig = {
 type: 'line',
-data: data,
+data: dataForChart,
 };
 
 const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
