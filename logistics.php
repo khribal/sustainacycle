@@ -25,7 +25,7 @@ $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23
     }
 
 
-$sql = "SELECT sum(t.quantity) as quantity, ma.companyName as company
+$sql = "SELECT sum(t.quantity) as quantity, ma.companyName as manufacturer
 from transactions as t
 join materials as m on m.materialID = t.materialID
 join user_transaction as ut on t.transactionID=ut.transactionID
@@ -38,7 +38,7 @@ order by sum(t.quantity) DESC
 limit 15";
 
 
-$sqll = "SELECT sum(t.quantity) as quantity, r.companyName as company
+$sqll = "SELECT sum(t.quantity) as quantity, r.companyName as recycler
 from transactions as t
 join materials as m on m.materialID = t.materialID
 join user_transaction as ut on t.transactionID=ut.transactionID
@@ -81,7 +81,7 @@ while($row = $result->fetch_assoc()){
     $data[] = array(
         'quantity'=> $row['quantity'],
         // 'materialName' => $row['materialName'],
-        'company' => $row['company']
+        'manufacturer' => $row['manufacturer']
     );
 }
 
@@ -91,7 +91,7 @@ $data1 = array();
 while($row = $resultt->fetch_assoc()){
     $data1[] = array(
         'quantity'=> $row['quantity'],
-        'company' => $row['company']
+        'recycler' => $row['recycler']
     );
 }
 
@@ -150,11 +150,11 @@ $conn->close();
     //Horizontal bar chart manufacturers
     import { createHorizontalBarChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space');
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.manufacturer), dataFromPHP.map(entry => entry.quantity), 'chart-space');
 
     //Horizontal bar chart recyclers 
     var dataFromPHP1 = <?php echo $jsonResult1; ?>;
-    createHorizontalBarChart(dataFromPHP1.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space1');
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP.map(entry => entry.quantity), 'chart-space1');
 
     //Line chart
     import { createLine } from './js/charts.js';
