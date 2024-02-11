@@ -107,7 +107,7 @@ $conn->close();
     //Horizontal bar chart
     import {createHorizontalBarChart} from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity), dataFromPHP.map(entry => entry.materialName));
 
     //LINE CHART
     const dataFromPHP2 = <?php echo $jsonResult2; ?>;
