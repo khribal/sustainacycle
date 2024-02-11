@@ -1,10 +1,9 @@
-// Initialization
-// Initialization
-// gapi.load('auth2', function() {
+gapi.load('auth2', function() {
     gapi.auth2.init({
         client_id: '198263467133-7i24c3iaup4pdgdbqiuu7d3sduru7dai.apps.googleusercontent.com',
-     });
-     // });
+    });
+});
+
   
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
