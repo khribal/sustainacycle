@@ -19,13 +19,13 @@ export function createChart(data){
   );
 }
 
-export function createHorizontalBarChart(labels, dataset, material) {
+export function createHorizontalBarChart(labels, dataset) {
   // Set up data for the chart
   const data = {
       labels: labels,
       datasets: [
           {
-              label: `Lbs of ${material} donated:`,
+              label: `Lbs of textile donated:`,
               data: dataset,
               backgroundColor: 'rgba(255, 99, 132, 0.2)',
               borderColor: 'rgba(255, 99, 132, 1)',

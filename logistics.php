@@ -25,7 +25,7 @@ $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23
     }
 
 
-$sql = "SELECT t.quantity, m.materialName,
+$sql = "SELECT sum(t.quantity),
 CASE 
 WHEN u.usertype='individual_user' THEN CONCAT(u.firstName, ' ', u.lastName)
 WHEN u.usertype = 'recycler' THEN r.companyName
@@ -38,7 +38,8 @@ join users as u on u.userID=ut.userID
 join recyclers as r on r.userID=u.userID
 join manufacturers as ma on ma.userID=u.userID
 WHERE u.userID in (SELECT userID from user_transaction)
-order by t.quantity DESC
+group by t.transactionID
+order by sum(t.quantity) DESC
 limit 15";
 
 $sql2 = "SELECT t.transactionDate, sum(t.quantity) as quantity
@@ -58,7 +59,7 @@ $data = array();
 while($row = $result->fetch_assoc()){
     $data[] = array(
         'quantity'=> $row['quantity'],
-        'materialName' => $row['materialName'],
+        // 'materialName' => $row['materialName'],
         'donator' => $row['donator']
     );
 }
@@ -105,9 +106,9 @@ $conn->close();
     // createChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
 
     //Horizontal bar chart
-    import {createHorizontalBarChart} from './js/charts.js';
+    import { createHorizontalBarChart } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity), dataFromPHP.map(entry => entry.materialName));
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
 
     //LINE CHART
     const dataFromPHP2 = <?php echo $jsonResult2; ?>;
