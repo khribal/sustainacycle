@@ -13,8 +13,8 @@
     <!-- <script src="js/login.js"></script> -->
 
     <!-- Google verification oauth-->
-    <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
   </head>
 <body>
@@ -62,10 +62,6 @@
   <hr>
 </div> <!-- /container -->
 
-<!-- Sign in sign out buttons -->
-<div class="g-signin2" data-onsuccess="onSignIn" data-clientid="198263467133-7i24c3iaup4pdgdbqiuu7d3sduru7dai.apps.googleusercontent.com"></div>
-<a href="#" onclick="signOut();">Sign out</a>
-
 </main>
 
 <!-- Footer --> 
@@ -86,17 +82,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
 
 
-<!-- Google login stuff -->
-<script src="js/google-login.js"></script>
-
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script>
 
 </body>
 </html>
