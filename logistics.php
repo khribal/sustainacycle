@@ -46,7 +46,7 @@ join users as u on u.userID=ut.userID
 join recyclers as r on r.userID=u.userID
 join manufacturers as ma on ma.userID=u.userID
 WHERE u.userID in (SELECT userID from user_transaction) AND u.usertype='recycler'
-group by ma.manufacturerID
+group by r.companyID
 order by sum(t.quantity) DESC
 limit 15";
 
@@ -154,7 +154,7 @@ $conn->close();
 
     //Horizontal bar chart recyclers 
     var dataFromPHP1 = <?php echo $jsonResult1; ?>;
-    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP.map(entry => entry.quantity), 'chart-space1');
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP1.map(entry => entry.quantity), 'chart-space1');
 
     //Line chart
     import { createLine } from './js/charts.js';
