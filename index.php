@@ -9,7 +9,11 @@
     <title>Landing Page</title>
     <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google API Client -->
     <script src="js/login.js"></script> <!-- avascript file for Google Login -->
-</head>
+
+    <!-- Google verification oauth-->
+    <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
+
+  </head>
 <body>
 
 <?php include('includes/nav.php') ?>
