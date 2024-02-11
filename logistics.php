@@ -153,7 +153,6 @@ $conn->close();
     createHorizontalBarChart(dataFromPHP.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space');
 
     //Horizontal bar chart recyclers 
-    import { createHorizontalBarChart } from './js/charts.js';
     var dataFromPHP1 = <?php echo $jsonResult1; ?>;
     createHorizontalBarChart(dataFromPHP1.map(entry => entry.company), dataFromPHP.map(entry => entry.quantity), 'chart-space1');
 
