@@ -53,13 +53,6 @@
   </div>
 
   <div>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<a href="#" onclick="signOut();">Sign out</a>
-
-  </div>
-
-  <div>
     <div class="container">
     <h4>See what materials manufacturers have available to recycle right now!</h4>
     <p><a class="btn btn-primary btn-lg" href="waste.php" role="button">See Available Waste &raquo;</a></p>
@@ -67,8 +60,11 @@
   </div>
 
   <hr>
-
 </div> <!-- /container -->
+
+<!-- Sign in sign out buttons -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href="#" onclick="signOut();">Sign out</a>
 
 </main>
 
