@@ -59,7 +59,21 @@ export function createHorizontalBarChart(labels, dataset) {
 }
 
 
-export function createPieChart(data) {
+// charts.js
+
+// Define a function to create a pie chart
+export function createPieChart(quantity, materialName) {
+  const data = {
+    labels: materialName,
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: quantity,
+        backgroundColor: ['#FF6347', '#FFD700', '#ADFF2F', '#87CEEB', '#8A2BE2'],
+      },
+    ],
+  };
+
   const config = {
     type: 'pie',
     data: data,

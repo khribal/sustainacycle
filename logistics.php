@@ -164,7 +164,7 @@ $conn->close();
     //Pie chart
     import { createPieChart } from './js/charts.js';
     var dataFromPHP3 = <?php echo $jsonResult3; ?>;
-    createPieChart(dataFromPHP3);
+    createPieChart(dataFromPHP3.map(entry => entry.quantity), dataFromPHP3.map(entry => entry.materialName));
 </script>
 
 </body>
