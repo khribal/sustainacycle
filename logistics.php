@@ -117,10 +117,12 @@ $jsonResult3 = json_encode($data3);
 
 $conn->close();
 ?>
+
+<div>
 <div class="heading">
     <h1>Textile Recycling Logistics Overview</h1>
     <p>Welcome to our Textile Recycling Logistics Overview page, where we provide a comprehensive view of the journey your textile donations take within our recycling ecosystem. Explore detailed graphs and insightful data visualizations showcasing manufacturers' generous contributions, recyclers' acceptance of various textile quantities, the evolving pattern of donations over time, and a breakdown of the types of textiles generously given by our community. Gain valuable insights into the impact of textile recycling on sustainability and contribute to a greener, more eco-friendly future. Join us on this visual journey through the logistics of textile recycling, illustrating the positive influence each donation makes in our collective effort to promote environmental responsibility.</p>
-</div>
+</div class="container-charts">
 
         <!-- Horizontal bar chart -->
         
@@ -151,10 +153,10 @@ $conn->close();
         <!-- Pie chart -->
         <div class="pie-parent">
             <h2>Types of textiles recycled</h2>
-            <p>In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each.</p>
+            <p>In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each type of material. The quantity is the amount in lbs that have been recycled since the creation of our platform.</p>
             <div style="width: 800px;"><canvas id="chart-pie"></canvas></div>
         </div>
-
+</div>
         <!-- Link to charts.js extension -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         

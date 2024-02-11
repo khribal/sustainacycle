@@ -46,7 +46,7 @@ export function createPieChart(quantity, materialName) {
     labels: materialName,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Quantity (lbs)',
         data: quantity,
         backgroundColor: ['#FF6347', '#FFD700', '#ADFF2F', '#87CEEB', '#8A2BE2'],
       },

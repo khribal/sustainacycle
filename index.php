@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <title>Landing Page</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google API Client -->
-    <script src="js/login.js"></script> <!-- avascript file for Google Login -->
+    <!-- Google API Client -->
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>  -->
+     <!-- Javascript file for Google Login -->
+    <!-- <script src="js/login.js"></script> -->
 
     <!-- Google verification oauth-->
     <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
@@ -49,6 +51,12 @@
     </div>
   </div>
 
+  <div>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<a href="#" onclick="signOut();">Sign out</a>
+
+  </div>
 
   <div>
     <div class="container">
@@ -79,5 +87,19 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../assets/js/vendor/popper.min.js"></script>
     <script src="../../dist/js/bootstrap.min.js"></script>
+
+
+<!-- Google login stuff -->
+<script src="google-login.js"></script>
+
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 </body>
 </html>
