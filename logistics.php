@@ -134,32 +134,9 @@ $conn->close();
     createHorizontalBarChart(dataFromPHP.map(entry => entry.donator), dataFromPHP.map(entry => entry.quantity));
 
     //LINE CHART
-    const dataFromPHP2 = <?php echo $jsonResult2; ?>;
-
-    // Extract labels, quantities, and material names from the PHP data
-    const labels2 = dataFromPHP2.map(entry => entry.transationDate);
-    const quantities = dataFromPHP2.map(entry => entry.quantity);
-    const materialName = dataFromPHP2.map(entry => entry.materialName);
-
-    const dataa = {
-        labels: labels2,
-        datasets: [{
-        label: 'lbs of materials donated',
-        data: quantities,
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-        }]
-    };
-    const lineChartConfig = {
-    type: 'line',
-    data: dataa,
-    };
-
-    const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
-    
-    // Create the line chart
-    new Chart(lineChartCanvas, lineChartConfig);
+    import { createLine } from './js/charts.js';
+    var dataFromPHP2 = <?php echo $jsonResult2; ?>;
+    createLine(dataFromPHP2.map(entry => entry.quantity), dataFromPHP2.map(entry => entry.transationDate));
 
     //Pie chart
     import { createPieChart } from './js/charts.js';

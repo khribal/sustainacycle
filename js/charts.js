@@ -1,24 +1,4 @@
-export function createChart(data){
-  new Chart(
-    document.getElementById('chart-space'),
-    {
-      type: 'bar',
-      data: {
-        labels: data.map(row => `${row.donator} - ${row.materialName}`), // Concatenate donator and material name
-        datasets: [
-          {
-            label: 'Pounds of material donated',
-            data: data.map(row => row.quantity),
-            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Set the color here
-            borderColor: 'rgba(75, 192, 192, 1)', // Border color (if needed)
-            borderWidth: 1, // Border width (if needed)
-          }
-        ]
-      }
-    }
-  );
-}
-
+//HORIZONTAL BAR CHART
 export function createHorizontalBarChart(labels, dataset) {
   // Set up data for the chart
   const data = {
@@ -47,7 +27,7 @@ export function createHorizontalBarChart(labels, dataset) {
               },
               title: {
                   display: true,
-                  text: 'Horizontal Bar Chart'
+                  text: 'Top Manufacturers and Lbs of Accepted Textiles'
               }
           }
       },
@@ -59,7 +39,7 @@ export function createHorizontalBarChart(labels, dataset) {
 }
 
 
-// charts.js
+// PIE CHART
 
 // Define a function to create a pie chart
 export function createPieChart(quantity, materialName) {
@@ -85,7 +65,7 @@ export function createPieChart(quantity, materialName) {
         },
         title: {
           display: true,
-          text: 'Chart.js Pie Chart',
+          text: 'Donated Textiles by Type',
         },
       },
     },
@@ -94,4 +74,31 @@ export function createPieChart(quantity, materialName) {
   // Create the chart instance
   const chartCanvas = document.getElementById('chart-pie').getContext('2d');
   new Chart(chartCanvas, config);
+}
+
+
+//LINE CHART
+
+export function createLine(data, labels){
+
+const data = {
+    labels: labels,
+    datasets: [{
+    label: 'lbs of materials donated',
+    data: quantities,
+    fill: false,
+    borderColor: 'rgb(75, 192, 192)',
+    tension: 0.1
+    }]
+};
+const lineChartConfig = {
+type: 'line',
+data: data,
+};
+
+const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
+
+// Create the line chart
+new Chart(lineChartCanvas, lineChartConfig);
+
 }
