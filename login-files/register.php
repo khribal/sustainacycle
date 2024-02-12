@@ -48,12 +48,12 @@
 
         //Adjust values for database 
         if ($userType == 'Recycling company'){
-            $userType = 'recycler'
+            $userType = 'recycler';
         } elseif ($userType == 'Manufacturer'){
-            $userType = 'manufacturer'
+            $userType = 'manufacturer';
         }
         else{
-            $userType = 'individual_user'
+            $userType = 'individual_user';
         }
 
         //!!! ADD PASSWORD ENCRYPTION HERE //
