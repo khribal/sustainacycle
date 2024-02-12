@@ -9,7 +9,7 @@ drop table if exists recyclers;
 drop table if exists users;
 
 CREATE TABLE users(
-    userID int NOT NULL,
+    userID int NOT NULL AUTO_INCREMENT,
     firstName varchar(50) NOT NULL,
     lastName varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE users(
 
 
 CREATE TABLE recyclers(
-    companyID int NOT NULL,
+    companyID int NOT NULL AUTO_INCREMENT,
     companyName varchar(50) NOT NULL,
     userID int NOT NULL,
     PRIMARY KEY (companyID),
@@ -41,7 +41,7 @@ CREATE TABLE recycler_materials(
 
 
 CREATE TABLE manufacturers(
-     manufacturerID int NOT NULL,
+     manufacturerID int NOT NULL AUTO_INCREMENT,
      companyName varchar(50) NOT NULL,
      userID int NOT NULL,
      PRIMARY KEY (manufacturerID),
@@ -50,7 +50,7 @@ CREATE TABLE manufacturers(
 
 
 CREATE TABLE materials(
-    materialID int NOT NULL,
+    materialID int NOT NULL AUTO_INCREMENT,
     quantity int NOT NULL,
     materialName varchar(50),
     description TEXT NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE materials(
 
 
 CREATE TABLE communities(
-    communityID int NOT NULL,
+    communityID int NOT NULL AUTO_INCREMENT,
     communityName varchar(50) NOT NULL,
     Description TEXT,
     communityRules TEXT NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE user_community(
 
 
 CREATE TABLE transactions(
-     transactionID int NOT NULL,
+     transactionID int NOT NULL AUTO_INCREMENT,
      transactionDate date NOT NULL,
      quantity int NOT NULL,
      status varchar(50),
