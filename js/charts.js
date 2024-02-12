@@ -1,3 +1,4 @@
+
 //HORIZONTAL BAR CHART
 export function createHorizontalBarChart(labels, dataset, chartspace) {
   // Set up data for the chart
@@ -77,7 +78,6 @@ export function createPieChart(quantity, materialName) {
 
 
 //LINE CHART
-
 export function createLine(quantity, labels){
 
 const dataForChart = {
