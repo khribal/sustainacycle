@@ -21,6 +21,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <?php
+            session_start(); // Start the session
             if (isset($_SESSION['username'])) {
               // User is logged in
               echo '<li class="nav-item"><a href="login-files/logout.php"><button>Logout</button></a></li>';
