@@ -53,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Password is incorrect
             echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
+            echo "Entered Password: $enteredPassword<br>";
+            echo "Stored Pass: $storedPassword<br>";
         }
     } else {
         // User with the entered email doesn't exist
