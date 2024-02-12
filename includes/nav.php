@@ -23,10 +23,10 @@
         <?php
             if (isset($_SESSION['username'])) {
               // User is logged in
-              echo '<li class="nav-item"><a href="../login-files/logout.php"><button>Logout</button></a></li>';
+              echo '<li class="nav-item"><a href="login-files/logout.php"><button>Logout</button></a></li>';
           } else {
               // User is not logged in
-              echo '<li class="nav-item"><a href="../login-files/login.php"><button>Log in</button></a></li>';
+              echo '<li class="nav-item"><a href="login-files/login.php"><button>Log in</button></a></li>';
           }
       ?>
       <li class="nav-item">
