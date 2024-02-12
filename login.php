@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //retrieve password
     $retrieveQuery = "SELECT pass FROM users WHERE username = '$user'";
 
-    echo $retrieveQuery;
-
     $result = mysqli_query($con, $retrieveQuery);
 
+    echo $result;
+    
     if (!$result) {
         echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
         exit();
