@@ -34,5 +34,47 @@
         </form>
     </div>
 
+    <?php
+    
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $fname = $_POST["first-name"];
+        $lname = $_POST["last-name"];
+        $email = $_POST["email"];
+        $username = $_POST["username"];
+        $pass = $_POST["password"];
+        $phone = $_POST["tele"];
+        $userType = $_POST["user_type"];
+
+        //!!! ADD PASSWORD ENCRYPTION HERE //
+
+        // Database connection code
+        $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+    
+        if (!$con) {
+            die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
+        }
+    
+    
+        $insertQuery = "INSERT INTO users (firstName, lastName, email, username, pass, contactNum, userType)
+        VALUES ('$fname', '$lname', '$email', '$username', '$pass', '$phone', '$userType')";
+    
+        $result = mysqli_query($con, $insertQuery);
+    
+        if (!$result) {
+            echo "Error: " . $insertQuery . "<br>" . mysqli_error($con);
+            exit();
+        } else {
+            session_start(); 
+            $_SESSION['username'] = $username;
+            //Redirect user back to home page
+            header('Location: ../index.php');
+            exit();
+        }
+    
+    
+        mysqli_close($con);
+    }
+?>
 </body>
 </html>
