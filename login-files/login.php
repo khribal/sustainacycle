@@ -45,17 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = mysqli_fetch_assoc($result)) {
         $storedPassword = $row['pass'];
 
-
-        echo "Entered Password: $enteredPassword<br>";
-        echo "Stored Password: $storedPassword<br>";
-
         //!!! USE THIS LINE ONCE PASSWORDS ARE HASHED!!!
         //password_verify($enteredPassword, $storedPassword
+        
         if ($enteredPassword == $storedPassword) {
             session_start(); 
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $user;
             //Redirect user back to home page
             header('Location: ../index.php');
+            exit();
         } else {
             echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
         }
