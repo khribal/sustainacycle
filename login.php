@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = mysqli_query($con, $retrieveQuery);
 
-    echo $result;
-    
+    // echo $result;
+
     if (!$result) {
         echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
         exit();
