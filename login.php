@@ -45,6 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = mysqli_fetch_assoc($result)) {
         $storedPassword = $row['pass'];
 
+
+        echo "Entered Password: $enteredPassword<br>";
+        echo "Stored Password: $storedPassword<br>";
+
+
         if (password_verify($enteredPassword, $storedPassword)) {
             session_start(); 
             $_SESSION['username'] = $username;
