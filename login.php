@@ -49,8 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Entered Password: $enteredPassword<br>";
         echo "Stored Password: $storedPassword<br>";
 
-
-        if (password_verify($enteredPassword, $storedPassword)) {
+        //!!! USE THIS LINE ONCE PASSWORDS ARE HASHED!!!
+        //password_verify($enteredPassword, $storedPassword
+        if ($enteredPassword == $storedPassword) {
             session_start(); 
             $_SESSION['username'] = $username;
             echo '<div style="text-align: center; font-size: 16px; font-weight: bold;">Login successful!</div>';
