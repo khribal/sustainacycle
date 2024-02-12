@@ -20,7 +20,16 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="login.php"><button>Log in</button></a>
+        <?php
+            if (isset($_SESSION['username'])) {
+              // User is logged in
+              echo '<li class="nav-item"><a href="../login-functionality/logout.php"><button>Logout</button></a></li>';
+          } else {
+              // User is not logged in
+              echo '<li class="nav-item"><a href="../login-functionality/login.php"><button>Log in</button></a></li>';
+          }
+      ?>
+          <button>Log in</button></a>
       </li>
       <li class="nav-item">
         <button class="btn btn-primary" id="googleSignInButton">Sign in with Google</button>

@@ -54,7 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($enteredPassword == $storedPassword) {
             session_start(); 
             $_SESSION['username'] = $username;
-            echo '<div style="text-align: center; font-size: 16px; font-weight: bold;">Login successful!</div>';
+            //Redirect user back to home page
+            header('Location: ../index.php');
         } else {
             echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
         }
