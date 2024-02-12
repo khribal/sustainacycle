@@ -37,15 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = mysqli_query($con, $retrieveQuery);
 
-    // echo $result;
-
     if (!$result) {
         echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
         exit();
     }
 
     if ($row = mysqli_fetch_assoc($result)) {
-        $storedPassword = $row['password'];
+        $storedPassword = $row['pass'];
 
         if (password_verify($enteredPassword, $storedPassword)) {
             session_start(); 
@@ -53,8 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div style="text-align: center; font-size: 16px; font-weight: bold;">Login successful!</div>';
         } else {
             echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
-            echo "Entered Password: $enteredPassword<br>";
-            echo "Stored Pass: $storedPassword<br>";
         }
     } else {
         echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">User not found. Please check your email or <a href="register.php">register</a> for an account.</div>';
