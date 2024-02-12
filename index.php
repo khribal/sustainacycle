@@ -25,6 +25,19 @@
 <?php include('includes/nav.php') ?>
 
 
+<!-- Registration Completed Notification-->
+<?php
+session_start();
+
+if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) {
+    echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Registration successful! Welcome, ' . $_SESSION['username'] . '!</div>';
+    
+    // Reset the flag to avoid showing the message on subsequent visits
+    $_SESSION['registration_success'] = false;
+}
+?>
+
+
 <main role="main">
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -85,17 +98,6 @@
 
 </main>
 
-<!-- TELL USERS THAT THEY SUCCESSFULLY REGISTERED -->
-<?php
-session_start();
-
-if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) {
-    echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Registration successful! Welcome, ' . $_SESSION['username'] . '!</div>';
-    
-    // Reset the flag to avoid showing the message on subsequent visits
-    $_SESSION['registration_success'] = false;
-}
-?>
 
 <!-- Footer --> 
 <footer class="container">

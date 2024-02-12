@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
+
+
+    <!-- Google login files -->
+    <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
 </head>
 <body>
 <div class="form-container">
@@ -16,7 +22,16 @@
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Submit">
     </form>
+
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<a href="#" onclick="signOut();">Sign out</a>
+
+<script src="../js/google-login.js"></script>
+
 </div>
+
 
 <?php 
 
@@ -45,9 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = mysqli_fetch_assoc($result)) {
         $storedPassword = $row['pass'];
 
-        //!!! USE THIS LINE ONCE PASSWORDS ARE HASHED!!!
+        //!!! USE THE LINE BELOW ONCE PASSWORDS ARE HASHED!!!
         //password_verify($enteredPassword, $storedPassword
-        
+
         if ($enteredPassword == $storedPassword) {
             session_start(); 
             $_SESSION['username'] = $user;
@@ -65,5 +80,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
+
 </body>
 </html>
