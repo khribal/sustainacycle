@@ -34,10 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //retrieve password
     $retrieveQuery = "SELECT pass FROM users WHERE username = '$user'";
+
+    echo $retrieveQuery;
+
     $result = mysqli_query($con, $retrieveQuery);
 
     if (!$result) {
-        // Display the MySQL error for debugging purposes
         echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
         exit();
     }
@@ -46,23 +48,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPassword = $row['password'];
 
         if (password_verify($enteredPassword, $storedPassword)) {
-            // Password is correct - user is logged in
-            session_start(); // Start the session
+            session_start(); 
             $_SESSION['username'] = $username;
             echo '<div style="text-align: center; font-size: 16px; font-weight: bold;">Login successful!</div>';
         } else {
-            // Password is incorrect
             echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
             echo "Entered Password: $enteredPassword<br>";
             echo "Stored Pass: $storedPassword<br>";
         }
     } else {
-        // User with the entered email doesn't exist
         echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">User not found. Please check your email or <a href="register.php">register</a> for an account.</div>';
     }
 
     mysqli_close($con);
 }
+
 ?>
 </body>
 </html>
