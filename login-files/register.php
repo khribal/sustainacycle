@@ -46,6 +46,16 @@
         $phone = $_POST["tele"];
         $userType = $_POST["user_type"];
 
+        //Adjust values for database 
+        if ($userType == 'Recycling company'){
+            $userType = 'recycler'
+        } elseif ($userType == 'Manufacturer'){
+            $userType = 'manufacturer'
+        }
+        else{
+            $userType = 'individual_user'
+        }
+
         //!!! ADD PASSWORD ENCRYPTION HERE //
 
         // Database connection code
