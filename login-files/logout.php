@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>test</p>
-</body>
-</html>
+<?php
+session_start(); // Start the session
+
+// Unset all session variables
+session_unset();
+
+// Destroy the session
+session_destroy();
+
+// Redirect to the home page or any other page after logout
+header('Location: ../index.php');
+exit();
+?>
