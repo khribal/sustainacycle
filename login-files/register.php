@@ -56,7 +56,9 @@
             $userType = 'individual_user';
         }
 
+
         //!!! ADD PASSWORD ENCRYPTION HERE //
+
 
         // Database connection code
         $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -77,6 +79,7 @@
         } else {
             session_start(); 
             $_SESSION['username'] = $username;
+            $_SESSION['registration_success'] = true; // Set a success flag
             //Redirect user back to home page
             header('Location: ../index.php');
             exit();
