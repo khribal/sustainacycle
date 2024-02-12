@@ -16,8 +16,9 @@
     <!-- <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
     <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
-    <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Google login attempt 2 -->
+    <!-- <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   </head>
 <body>
 
@@ -65,7 +66,7 @@
 </div> <!-- /container -->
 
 <!-- Google login -->
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 <a href="#" onclick="signOut();">Sign out</a>
 
@@ -78,7 +79,7 @@
       console.log('User signed out.');
     });
   }
-</script>
+</script> -->
 
 </main>
 

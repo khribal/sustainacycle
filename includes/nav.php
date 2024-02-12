@@ -20,6 +20,9 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a href="login.php"><button>Log in</button></a>
+      </li>
+      <li class="nav-item">
         <button class="btn btn-primary" id="googleSignInButton">Sign in with Google</button>
       </li>
     </ul>
