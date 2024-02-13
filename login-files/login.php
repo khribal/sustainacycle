@@ -46,20 +46,21 @@
         const payload = JSON.parse(jsonPayload);
         $.ajax({
             type: "POST",
-            url: "login.php", // process user info + put into SQL
-            data: {
-                id_token: encodedToken, // Add id_token to the data
+            url: "login.php",
+            data: JSON.stringify({
+                id_token: encodedToken,
                 name: payload.name,
                 email: payload.email,
-            },
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
             success: function (response) {
-                console.log("Success, google processing begun."); // Log the PHP response
-                // You can update the webpage with the response here
+                console.log("Success, google processing begun.");
             },
             error: function (error) {
                 console.error("Error:", error);
             }
-    });
+        });
 }
 
 function handleCredentialResponse(response) {
@@ -137,13 +138,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($con);
 } else {
     if (isset($_POST['id_token'])) {
-        // Get the ID token from the POST data
-            $id_token = $_POST['id_token'];
+        // Get the ID token from the POST data    
+        $id_token = $_POST['id_token'];
     
         // Decode the ID token to get user information using json_decode
-        $decoded_token = json_decode(base64_decode(str_replace(['-', '_'], ['+', '/'], explode('.', $id_token)[1])), true);
+        $request = json_decode($id_token);
+
+        // Extract information from the decoded JSON data
+        $id_token = $request->id_token;
+        $name = $request->name;
+        $email = $request->email;
+        // Decode the ID token to get user information using json_decode
+        // $decoded_token = json_decode(base64_decode(str_replace(['-', '_'], ['+', '/'], explode('.', $id_token)[1])), true);
         
-        $user_email = $decoded_token['email'];
+        // $user_email = $decoded_token['email'];
         
                 // Database connection code
                 $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -154,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             
                 //check if the user exists already
-                $user_email = $decoded_token['email'];
+                // $user_email = $decoded_token['email'];
     
             // Check if the user exists in the database
             $result = mysqli_query($con, "SELECT * FROM users WHERE email = '$user_email'");
