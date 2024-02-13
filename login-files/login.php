@@ -30,9 +30,11 @@
 
     <script>
     function decodeJwtResponse(encodedToken) {
-        // Use a library like jwt-decode to decode the JWT
-        const decodedToken = jwt_decode(encodedToken);
-        console.log('User Name:', decodedToken.name);
+        const base64Url = encodedToken.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+        const payload = JSON.parse(jsonPayload);
+        console.log('User Name:', payload.name);
     }
 
     function handleCredentialResponse(response) {
