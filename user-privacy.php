@@ -6,7 +6,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>See Available Waste</title>
+    <title>User Privacy</title>
 </head>
 <body>
 
@@ -53,3 +53,28 @@
         $message = "Logout Successful.";
     }
 
+    <h1>User Privacy Example</h1>
+
+    <?php if (isset($message)): ?>
+        <p><?php echo $message; ?></p>
+    <?php endif; ?>
+
+    <?php if ($logged_in): ?>
+        <p>Welcome, <?php echo $_SESSION['user_email';] ?>!</p>
+        <form method="post">
+            <button type="submit" name="logout">Logout</button>
+        </form>
+
+        <form method="post">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            <button type="submit" name="login">Login</button>
+        </form>
+        <?php if (isset($error)): ?>
+            <p><?php echo $error; ?></p>
+        <?php endif; ?>
+    <?php endif; ?>
+</body>
+</html>
