@@ -38,7 +38,13 @@
         if ($row = mysqli_fetch_assoc($result)) {
             // User exists, proceed with login
             // Use $user_role to customize the user's experience
-            $user_role = $row['userType'];
+            $userType = $row['userType'];
+            session_start(); 
+            $_SESSION['userType'] = $userType;
+            $_SESSION['username'] = $user;
+            //Redirect user back to home page
+            header('Location: ../index.php');
+            exit();
         } else {
             // User does not exist, redirect to registration page
             header('Location: register.php?email='.$user_email);
@@ -51,6 +57,8 @@
     // Handle the case where the POST data is not set
     echo "Error: POST data not received.";
 }
+
+
 
 ?>
 
