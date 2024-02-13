@@ -12,7 +12,7 @@
     <script src="https://accounts.google.com/gsi/client" async></script>
 
     <!--  library jwt-decode to handle JWT decoding -->
-    <script src="path/to/jwt-decode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/jwt-decode.min.js"></script>
 
 </head>
 <body>
