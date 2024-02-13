@@ -31,45 +31,46 @@
 
 
     <script>
-    function decodeJwtResponse(encodedToken) {
-        const base64Url = encodedToken.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-        const payload = JSON.parse(jsonPayload);
-        $.ajax({
-            type: "POST",
-            url: "process-google.php", //process user info + put into sql
-            data: {
-                name: payload.name,
-                email: payload.email,
-            },
-            success: function (response) {
-                console.log(response); // Log the PHP response
-                // You can update the webpage with the response here
-            },
-            error: function (error) {
-                console.error("Error:", error);
-            }
-        });
-    }
+function decodeJwtResponse(encodedToken) {
+    const base64Url = encodedToken.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    const payload = JSON.parse(jsonPayload);
+    $.ajax({
+        type: "POST",
+        url: "process-google.php", // process user info + put into SQL
+        data: {
+            id_token: encodedToken, // Add id_token to the data
+            name: payload.name,
+            email: payload.email,
+        },
+        success: function (response) {
+            console.log(response); // Log the PHP response
+            // You can update the webpage with the response here
+        },
+        error: function (error) {
+            console.error("Error:", error);
+        }
+    });
+}
 
-    function handleCredentialResponse(response) {
-        console.log("Encoded JWT ID token: " + response.credential);
-        // Decode the JWT after the response is received
-        decodeJwtResponse(response.credential);
-    }
+function handleCredentialResponse(response) {
+    // console.log("Encoded JWT ID token: " + response.credential);
+    // Decode the JWT after the response is received
+    decodeJwtResponse(response.credential);
+}
 
-    window.onload = function () {
-        google.accounts.id.initialize({
-            client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-        });
-        google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }  // customization attributes
-        );
-        google.accounts.id.prompt(); // also display the One Tap dialog
-    }
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+}
 </script>
 
     <div id="buttonDiv"></div>
