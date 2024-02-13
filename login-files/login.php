@@ -14,6 +14,9 @@
     <!--  library jwt-decode to handle JWT decoding -->
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script>
 
+    <!-- Jquery to pass google login info to php -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 <body>
 <div class="form-container">
