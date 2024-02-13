@@ -30,7 +30,10 @@
     </form>
 
 
-    <script>
+
+
+<!-- Pass information from google login to process-google.php -->
+<script>
     function decodeJwtResponse(encodedToken) {
     const base64Url = encodedToken.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -73,15 +76,16 @@ window.onload = function () {
 }
 </script>
 
+<!-- Sign in with google button -->
     <div id="buttonDiv"></div>
 
-    <script src="../js/google-login.js"></script>
+
+    <!-- <script src="../js/google-login.js"></script> -->
 
 </div>
 
 
 <?php 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["username"];
     $enteredPassword = $_POST["password"];

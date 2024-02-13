@@ -11,27 +11,26 @@
 </head>
 <body>
     <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
 // Check if the POST data is set
-if (isset($_POST['id_token'])) {
+    if (isset($_POST['id_token'])) {
     // Get the ID token from the POST data
-    $id_token = $_POST['id_token'];
+        $id_token = $_POST['id_token'];
 
     // Decode the ID token to get user information using json_decode
     $decoded_token = json_decode(base64_decode(str_replace(['-', '_'], ['+', '/'], explode('.', $id_token)[1])), true);
+    
+    //Extract information about the user
+    $full_name = $decoded_token['name'];
 
-    // Extract the desired user information
-    $user_name = $decoded_token['name'];
+    // Split the full name first and last names
+    $name_parts = explode(" ", $full_name);
+
+    $first_name = $name_parts[0];
+    $last_name = isset($name_parts[1]) ? $name_parts[1] : '';
+    
     $user_email = $decoded_token['email'];
-
-    // Now you can use $user_name and $user_email as needed
-    // For example, you can store them in a database or echo them
-    echo "User Name: " . $user_name . "<br>";
-    echo "User Email: " . $user_email;
+    
+    
 } else {
     // Handle the case where the POST data is not set
     echo "Error: POST data not received.";
