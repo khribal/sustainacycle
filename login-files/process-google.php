@@ -30,7 +30,7 @@
             }
         
             //check if the user exists already
-            $user_email = $decoded_token->email;
+            $user_email = $decoded_token['email'];
 
         // Check if the user exists in the database
         $result = mysqli_query($con, "SELECT * FROM users WHERE email = '$user_email'");
@@ -38,13 +38,13 @@
         if ($row = mysqli_fetch_assoc($result)) {
             // User exists, proceed with login
             // Use $user_role to customize the user's experience
-            $userType = $row['userType'];
             session_start(); 
-            $_SESSION['userType'] = $userType;
-            $_SESSION['username'] = $user;
+            $_SESSION['userType'] = $row['userType'];
+            $_SESSION['username'] = $row['username'];
             //Redirect user back to home page
             header('Location: ../index.php');
             exit();
+
         } else {
             // User does not exist, redirect to registration page
             header('Location: register.php?email='.$user_email);
