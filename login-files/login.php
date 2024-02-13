@@ -32,9 +32,10 @@
 
         function decodeJwtResponse(encodedToken) {
             // Use a library like jwt-decode to decode the JWT
-            return jwt_decode(encodedToken);
+            const decodedToken = jwt_decode(encodedToken);
+            console.log('User Name:', decodedToken.name);
         }
-
+      
       function handleCredentialResponse(response) {
         console.log("Encoded JWT ID token: " + response.credential);
       }
