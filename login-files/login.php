@@ -79,13 +79,11 @@ window.onload = function () {
 <!-- Sign in with google button -->
     <div id="buttonDiv"></div>
 
-
-    <!-- <script src="../js/google-login.js"></script> -->
-
 </div>
 
 
 <?php 
+//verify user credentials
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["username"];
     $enteredPassword = $_POST["password"];
@@ -100,7 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //retrieve password
     $retrieveQuery = "SELECT * FROM users WHERE username = '$user'";
-
     $result = mysqli_query($con, $retrieveQuery);
 
     if (!$result) {
@@ -111,11 +108,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = mysqli_fetch_assoc($result)) {
         $storedPassword = $row['pass'];
 
+        //get the userType for customized experience
+        $userType = $row['userType'];
+
         //!!! USE THE LINE BELOW ONCE PASSWORDS ARE HASHED!!!
         //password_verify($enteredPassword, $storedPassword
 
         if ($enteredPassword == $storedPassword) {
             session_start(); 
+            $_SESSION['userType'] = $userType;
             $_SESSION['username'] = $user;
             //Redirect user back to home page
             header('Location: ../index.php');
@@ -132,14 +133,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<script>
+<!-- <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
   }
-</script>
+</script> -->
 
 
 </body>
