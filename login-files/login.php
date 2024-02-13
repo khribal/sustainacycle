@@ -53,7 +53,7 @@
                 email: payload.email,
             },
             success: function (response) {
-                console.log(response); // Log the PHP response
+                // console.log(response); // Log the PHP response
                 // You can update the webpage with the response here
             },
             error: function (error) {
