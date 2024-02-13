@@ -7,7 +7,7 @@
 
     <!-- Jquery to pass google login info to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+
     <!-- Google login files -->
     <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
@@ -38,11 +38,10 @@
         const payload = JSON.parse(jsonPayload);
         $.ajax({
             type: "POST",
-            url: "process_google_login.php", // Replace with your PHP script URL
+            url: "process-google.php", //process user info + put into sql
             data: {
                 name: payload.name,
                 email: payload.email,
-                // Add other fields as needed
             },
             success: function (response) {
                 console.log(response); // Log the PHP response
