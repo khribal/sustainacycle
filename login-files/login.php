@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
 
-
+    <!-- Jquery to pass google login info to php -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
     <!-- Google login files -->
     <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
@@ -13,9 +15,6 @@
 
     <!--  library jwt-decode to handle JWT decoding -->
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script>
-
-    <!-- Jquery to pass google login info to php -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 <body>
