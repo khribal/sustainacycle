@@ -34,7 +34,22 @@
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
         const payload = JSON.parse(jsonPayload);
-        console.log('User Name:', payload.name);
+        $.ajax({
+            type: "POST",
+            url: "process_google_login.php", // Replace with your PHP script URL
+            data: {
+                name: payload.name,
+                email: payload.email,
+                // Add other fields as needed
+            },
+            success: function (response) {
+                console.log(response); // Log the PHP response
+                // You can update the webpage with the response here
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
     }
 
     function handleCredentialResponse(response) {
