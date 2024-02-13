@@ -8,7 +8,11 @@
 
     <!-- Google login files -->
     <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+    <script src="https://accounts.google.com/gsi/client" async></script>
+
+    <!--  library jwt-decode to handle JWT decoding -->
+    <script src="path/to/jwt-decode.min.js"></script>
 
 </head>
 <body>
@@ -24,11 +28,31 @@
     </form>
 
 
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
 
-<a href="#" onclick="signOut();">Sign out</a>
+        function decodeJwtResponse(encodedToken) {
+            // Use a library like jwt-decode to decode the JWT
+            return jwt_decode(encodedToken);
+        }
 
-<script src="../js/google-login.js"></script>
+      function handleCredentialResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <div id="buttonDiv"></div>
+
+    <script src="../js/google-login.js"></script>
 
 </div>
 
