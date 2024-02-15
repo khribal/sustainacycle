@@ -48,6 +48,7 @@ function initMap() {
     );
     // Function to add click event listener to a marker
     function addMarkerClickListener(marker, place) {
+        console.log('Marker Click Event Triggered');
         marker.addListener('click', () => {
             // Set content for the InfoWindow
             const content = `
