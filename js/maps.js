@@ -30,11 +30,11 @@ function initMap() {
                         position: place.geometry.location,
                         title: place.name,
                         icon: {
-                            url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png', // Bright red marker icon
-                            size: new google.maps.Size(64, 64),
+                            url: 'https://maps.google.com/mapfiles/ms/micons/red-dot.png', // Bright red marker icon
+                            size: new google.maps.Size(32, 32),
                             origin: new google.maps.Point(0, 0),
                             anchor: new google.maps.Point(16, 32),
-                            scaledSize: new google.maps.Size(64, 64),
+                            scaledSize: new google.maps.Size(32, 32),
                         },
                     });
 
