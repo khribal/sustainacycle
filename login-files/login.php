@@ -55,6 +55,7 @@
             dataType: "json",
             success: function (response) {
                 console.log("Success, google processing begun.");
+                console.log(id_token);
             },
             error: function (error) {
                 console.error("Error:", error);
@@ -68,6 +69,8 @@ function handleCredentialResponse(response) {
     decodeJwtResponse(response.credential);
 }
 
+//!!!!!!!!!!!!!!!!!!!!!!!!
+//executing everytime the page loads
 window.onload = function () {
     google.accounts.id.initialize({
         client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
