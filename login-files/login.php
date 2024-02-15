@@ -21,7 +21,6 @@
 
 </head>
 <body>
-<?php include("../includes/nav.php") ?>
 
 <div class="form-container">
     <h1 class="log-in">Log in to your account</h1>
