@@ -55,9 +55,10 @@
             dataType: "json",
             success: function (response) {
                 console.log("Success, google processing begun.");
-                console.log(id_token);
+                console.log(data);
             },
             error: function (error) {
+                console.log(data + "logging error");
                 console.error("Error:", error);
             }
         });
