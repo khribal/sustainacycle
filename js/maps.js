@@ -13,8 +13,9 @@ function initMap() {
     const service = new google.maps.places.PlacesService(map);
 
     // Create an InfoWindow
-    const infoWindow = new google.maps.InfoWindow();
-
+    // Do not redeclare infoWindow here
+    infoWindow = new google.maps.InfoWindow();
+    
     // Perform a text search
     service.textSearch(
         {
