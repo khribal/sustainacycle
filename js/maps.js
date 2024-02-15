@@ -1,3 +1,8 @@
+function googleMapsApiError() {
+    console.error('Error loading Google Maps API.');
+ }
+ 
+
 //Global var for info window
 let infoWindow;
 
