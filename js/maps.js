@@ -39,7 +39,7 @@ function initMap() {
                         },
                     });
 
-                    console.log('Marker created:', marker);
+                    // console.log('Marker created:', marker);
 
                     // Add a click event listener to the marker
                     addMarkerClickListener(marker, place);
