@@ -15,7 +15,7 @@ function initMap() {
     // Create an InfoWindow
     // Do not redeclare infoWindow here
     infoWindow = new google.maps.InfoWindow();
-    
+
     // Perform a text search
     service.textSearch(
         {
@@ -38,6 +38,8 @@ function initMap() {
                             scaledSize: new google.maps.Size(32, 32),
                         },
                     });
+
+                    console.log('Marker created:', marker);
 
                     // Add a click event listener to the marker
                     addMarkerClickListener(marker, place);
