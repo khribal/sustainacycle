@@ -57,6 +57,7 @@ function initMap() {
             Rating: ${place.rating || 'N/A'}
         </div>
     `;
+            console.log(content);
 
             // Set the content and open the InfoWindow
             infoWindow.setContent(content);
