@@ -31,7 +31,7 @@ async function initMap() {
           // Use a red marker
           const marker = new AdvancedMarkerElement({
             map,
-            position: place.geometry.location,
+            position: place.geometry.formatted_address,
             title: place.name,
           });
           console.log("Marker created.")
