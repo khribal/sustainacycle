@@ -16,7 +16,7 @@ async function initMap() {
   });
 
   // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
+  const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
     title: "Uluru",
