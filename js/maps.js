@@ -6,6 +6,9 @@ function googleMapsApiError() {
 let infoWindow;
 
 
+
+google.maps.event.addListenerOnce(map, 'tilesloaded', function () {
+    // Call initMap here
 function initMap() {
     // Create a map centered at a specific location
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -65,7 +68,7 @@ function initMap() {
             Rating: ${place.rating || 'N/A'}
         </div>
     `;
-            console.log(content);
+            // console.log(content);
 
             // Set the content and open the InfoWindow
             infoWindow.setContent(content);
@@ -73,3 +76,4 @@ function initMap() {
         });
     }
 }
+});
