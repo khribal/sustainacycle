@@ -6,9 +6,7 @@ function googleMapsApiError() {
 let infoWindow;
 
 
-
-google.maps.event.addListenerOnce(map, 'tilesloaded', function () {
-    // Call initMap here
+// Call initMap here
 function initMap() {
     // Create a map centered at a specific location
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -21,7 +19,7 @@ function initMap() {
 
     // Create an InfoWindow
     // Do not redeclare infoWindow here
-    infoWindow = new google.maps.InfoWindow();
+
 
     // Perform a text search
     service.textSearch(
@@ -69,11 +67,12 @@ function initMap() {
         </div>
     `;
             // console.log(content);
-
+            infoWindow = new google.maps.InfoWindow();
             // Set the content and open the InfoWindow
             infoWindow.setContent(content);
             infoWindow.open(map, marker);
         });
     }
 }
-});
+
+google.maps.event.addDomListener(window, 'load', initMap);
