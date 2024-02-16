@@ -67,10 +67,13 @@ function initMap() {
         </div>
     `;
             // console.log(content);
-            infoWindow = new google.maps.InfoWindow();
+
+            // infoWindow = new google.maps.InfoWindow();
+
             // Set the content and open the InfoWindow
-            infoWindow.setContent(content);
-            infoWindow.open(map, marker);
+
+            // infoWindow.setContent(content);
+            // infoWindow.open(map, marker);
         });
     }
 }
