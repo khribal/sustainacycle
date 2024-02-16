@@ -9,7 +9,7 @@ async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-  
+
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
     zoom: 15,
@@ -20,7 +20,7 @@ async function initMap() {
   // The marker, positioned at Uluru
   const marker = new AdvancedMarkerElement({
     map: map,
-    position: position,
+    position: user_position,
     title: "Uluru",
   });
 }
