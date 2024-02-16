@@ -34,13 +34,13 @@ function initMap() {
                         map,
                         position: place.geometry.location,
                         title: place.name,
-                        icon: {
-                            url: 'https://maps.google.com/mapfiles/ms/micons/red-dot.png', // Bright red marker icon
-                            size: new google.maps.Size(32, 32),
-                            origin: new google.maps.Point(0, 0),
-                            anchor: new google.maps.Point(16, 32),
-                            scaledSize: new google.maps.Size(32, 32),
-                        },
+                        // icon: {
+                        //     url: 'https://maps.google.com/mapfiles/ms/micons/red-dot.png', // Bright red marker icon
+                        //     size: new google.maps.Size(32, 32),
+                        //     origin: new google.maps.Point(0, 0),
+                        //     anchor: new google.maps.Point(16, 32),
+                        //     scaledSize: new google.maps.Size(32, 32),
+                        // },
                     });
 
                     console.log('Marker created:', marker);

@@ -53,9 +53,10 @@
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
+            //return the data instead of logging success
             success: function (response) {
                 console.log("Success, google processing begun.");
-                console.log(data);
+                // console.log(data);
             },
             error: function (error) {
                 console.log(data + "logging error");
@@ -64,6 +65,7 @@
         });
 }
 
+//use a variable to test this function, pass to php
 function handleCredentialResponse(response) {
     // console.log("Encoded JWT ID token: " + response.credential);
     // Decode the JWT after the response is received
@@ -182,8 +184,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
             } else {
                 // User does not exist, redirect to registration page
-                header('Location: register.php?email='.$user_email);
-                exit();
+                // header('Location: register.php?email='.$user_email);
+                // exit();
+                echo "User not in database";
             }
                 
                 mysqli_close($con);
