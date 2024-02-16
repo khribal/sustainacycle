@@ -34,7 +34,7 @@ async function initMap() {
             position: place.geometry.location,
             title: place.name,
           });
-
+          console.log("Marker created.")
           // Add a click event listener to the marker
           addMarkerClickListener(marker, place);
         }
