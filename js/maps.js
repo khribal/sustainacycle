@@ -1,19 +1,19 @@
 // Initialize and add the map
 let map;
 
-async function initMap() {
+function initMap() {
   // The location of the user
   const position_user = { lat: 39.172190, lng: -86.519410 };
   // Import map and marker
   //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+//   const { Map } = await google.maps.importLibrary("maps");
+//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // Create the map
   map = new Map(document.getElementById("map"), {
     zoom: 15,
     center: position_user,
-    mapId: "DEMO_MAP_ID",
+    // mapId: "DEMO_MAP_ID",
   });
 
   // Text search for recycling centers
@@ -29,7 +29,7 @@ async function initMap() {
         console.log('Before loop');
         for (const place of results) {
           // Create markers for each place
-          const marker = new AdvancedMarkerElement({
+          const marker = new google.maps.Marker({
             map,
             position: place.geometry.location,
             title: place.name,
