@@ -13,8 +13,11 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&loading=async&libraries=places&callback=initMap" async defer></script> -->
 
      <!-- Google Maps API -->
-     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&callback=initMap"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&callback=initMap" async defer></script>
 
+          <!-- JS -->
+          <script src="js/maps.js"></script>
+          
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -24,7 +27,5 @@
       <div id="map"></div>
 
     
-     <!-- JS -->
-     <script src="js/maps.js"></script>
 </body>
 </html>
