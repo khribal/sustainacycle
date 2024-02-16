@@ -61,4 +61,4 @@ function initMap() {
 }
 
 // Call the initMap function
-initMap();
+// initMap();
