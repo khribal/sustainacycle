@@ -31,11 +31,10 @@ async function initMap() {
           // Use a red marker
           const marker = new AdvancedMarkerElement({
             map,
-            position: place.formatted_address,
+            position: place.geometry.location,
             title: place.name,
           });
           console.log("Marker created.")
-          console.log(place.formatted_address)
           // Add a click event listener to the marker
           addMarkerClickListener(marker, place);
         }
