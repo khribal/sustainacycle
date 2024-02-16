@@ -29,6 +29,7 @@ function initMap() {
         },
         (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
+                console.log('Before loop');
                 for (const place of results) {
                     // Use a red marker
                     const marker = new google.maps.Marker({
@@ -45,6 +46,7 @@ function initMap() {
                     });
 
                     console.log('Marker created:', marker);
+                    console.log('After loop');
 
                     // Add a click event listener to the marker
                     addMarkerClickListener(marker, place);
