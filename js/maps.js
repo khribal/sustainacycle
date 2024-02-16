@@ -35,6 +35,7 @@ async function initMap() {
             title: place.name,
           });
           console.log("Marker created.")
+          console.log(place)
           // Add a click event listener to the marker
           addMarkerClickListener(marker, place);
         }
