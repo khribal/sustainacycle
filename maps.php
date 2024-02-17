@@ -34,7 +34,7 @@
 
 
 <!-- Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&loading=async&callback=initMap" async defer></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&loading=async&callback=initMap"></script>
 
 
 <script>
@@ -53,7 +53,6 @@ async function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
     center: user_position,
-    mapId: "DEMO_MAP_ID",
   });
 
   // Create a PlacesService instance
