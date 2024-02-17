@@ -43,7 +43,7 @@ async function initMap() {
             marker.setVisible(true);
             marker.setMap(map);
 
-          console.log("Marker created: " + place.geometry.location.lat() + "," + )
+          console.log("Marker created: " + place.geometry.location.lat())
 
 
 
