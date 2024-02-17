@@ -7,7 +7,7 @@ async function initMap() {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps", "places");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
@@ -28,11 +28,10 @@ async function initMap() {
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
-          // Use a red marker
             // The markers
             const marker = new google.maps.Marker({
-                map: map,
                 position: place.geometry.location,
+                map: map,
                 title: place.name,
             });
             marker.setVisible(true);
