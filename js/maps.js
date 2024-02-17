@@ -1,16 +1,16 @@
 // Initialize and add the map
 let map;
 
-function initMap() {
+async function initMap() {
   // The location of Uluru
   const user_position = { lat: 39.172192, lng: -86.519409 };
   // Request needed libraries.
-  //@ts-ignore
-//   const { Map } = await google.maps.importLibrary("maps");
-//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+//   @ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // The map, centered at Uluru
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new Map(document.getElementById("map"), {
     zoom: 15,
     center: user_position,
     mapId: "DEMO_MAP_ID",
@@ -29,7 +29,7 @@ function initMap() {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
           // Use a red marker
-          const marker = new google.maps.Marker({
+          const marker = new AdvancedMarkerElement({
             map,
             position: place.geometry.location,
             title: place.name,
