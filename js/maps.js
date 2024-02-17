@@ -31,11 +31,12 @@ async function initMap() {
           // Use a red marker
             // The markers
             const marker = new google.maps.Marker({
-                map,
+                map: map,
                 position: place.geometry.location,
                 title: place.name,
             });
-
+            marker.setVisible(true);
+            
           console.log("Marker created: " + place.geometry.location)
           // Add a click event listener to the marker
         //   addMarkerClickListener(marker, place);
@@ -45,4 +46,4 @@ async function initMap() {
   );
 }
 
-initMap();
+google.maps.event.addDomListener(window, 'load', initMap);
