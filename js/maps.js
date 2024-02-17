@@ -36,7 +36,7 @@ async function initMap() {
                 title: place.name,
             });
             marker.setVisible(true);
-            
+
           console.log("Marker created: " + place.geometry.location)
           // Add a click event listener to the marker
         //   addMarkerClickListener(marker, place);
@@ -46,4 +46,5 @@ async function initMap() {
   );
 }
 
-google.maps.event.addDomListener(window, 'load', initMap);
+// google.maps.event.addDomListener(window, 'load', initMap);
+initMap();
