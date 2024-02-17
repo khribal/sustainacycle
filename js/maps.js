@@ -26,32 +26,32 @@ async function initMap() {
   // Perform a text search
 
 
-//   service.textSearch(
-//     {
-//       query: "recycling center",
-//     },
-//     (results, status) => {
-//       if (status === google.maps.places.PlacesServiceStatus.OK) {
-//         for (let place of results) {
-//             var marker = new google.maps.Marker({
-//                 position: new google.maps.LatLng(place.geometry.location),
-//                 map: map,
-//                 title: place.name,
-//             });
+  service.textSearch(
+    {
+      query: "recycling center",
+    },
+    (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (const place of results) {
+            const marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: map,
+                title: place.name,
+            });
 
-//             marker.setVisible(true);
-//             marker.setMap(map);
+            marker.setVisible(true);
+            marker.setMap(map);
 
-        //   console.log("Marker created: " + place.geometry.location)
+          console.log("Marker created: " + place.geometry.location)
 
 
 
           // Add a click event listener to the marker
         //   addMarkerClickListener(marker, place);
-//         }
-//       }
-//     }
-//   );
+        }
+      }
+    }
+  );
 }
 
 window.addEventListener('load', initMap);
