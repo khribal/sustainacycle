@@ -45,5 +45,4 @@ async function initMap() {
   );
 }
 
-// google.maps.event.addDomListener(window, 'load', initMap);
-initMap();
+google.maps.event.addDomListener(window, 'load', initMap);
