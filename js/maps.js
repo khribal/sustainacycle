@@ -29,10 +29,13 @@ async function initMap() {
             // The markers
             const marker = new google.maps.Marker({
                 position: place.geometry.location,
+                map: map,
                 title: place.name,
             });
+
             marker.setVisible(true);
             marker.setMap(map);
+            
           console.log("Marker created: " + place.geometry.location)
           // Add a click event listener to the marker
         //   addMarkerClickListener(marker, place);
