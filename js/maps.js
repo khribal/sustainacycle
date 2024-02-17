@@ -29,8 +29,8 @@ async function initMap() {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
           // Use a red marker
-            // The marker, positioned at Uluru
-            const marker = new AdvancedMarkerElement({
+            // The markers
+            const marker = new google.maps.Marker({
                 map,
                 position: place.geometry.location,
                 title: place.name,
