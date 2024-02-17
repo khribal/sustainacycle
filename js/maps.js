@@ -26,9 +26,9 @@ async function initMap() {
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let place of results) {
-            // The markers
-            const marker = new google.maps.Marker({
-                //test, probably dog shit
+            // The markers (REMOVED CONST FROM LINE 30)
+            marker = new google.maps.Marker({
+                //test new google.maps.latlng
                 position: new google.maps.LatLng(place.geometry.location),
                 map: map,
                 title: place.name,
