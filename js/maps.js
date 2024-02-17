@@ -34,7 +34,7 @@ async function initMap() {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
             const marker = new google.maps.Marker({
-                position: place.geometry.location,
+                position: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() },
                 map: map,
                 title: place.name,
             });
