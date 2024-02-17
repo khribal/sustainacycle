@@ -60,3 +60,6 @@ function addMarkerClickListener(marker, place) {
   }
 }
 
+
+// Call the initMap function when the DOM is ready
+document.addEventListener("DOMContentLoaded", initMap);
