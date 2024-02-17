@@ -11,17 +11,38 @@ async function initMap() {
 
   // The map, centered at Uluru
   map = new Map(document.getElementById("map"), {
-    zoom: 4,
+    zoom: 15,
     center: position,
     mapId: "DEMO_MAP_ID",
   });
 
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerElement({
-    map: map,
-    position: position,
-    title: "Uluru",
-  });
+  // Create a PlacesService instance
+  const service = new google.maps.places.PlacesService(map);
+
+  // Perform a text search
+  service.textSearch(
+    {
+      query: "recycling center",
+      // You can add more parameters if needed
+    },
+    (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (const place of results) {
+          // Use a red marker
+            // The marker, positioned at Uluru
+            const marker = new AdvancedMarkerElement({
+                map,
+                position: place.geometry.location,
+                title: place.name,
+            });
+
+          console.log("Marker created: " + place.geometry.location)
+          // Add a click event listener to the marker
+        //   addMarkerClickListener(marker, place);
+        }
+      }
+    }
+  );
 }
 
 initMap();
