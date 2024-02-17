@@ -15,6 +15,9 @@
     <!-- JS -->
     <!-- <script src="js/maps.js"></script> -->
 
+    <!-- from trial map -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
   </head>
@@ -37,7 +40,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&loading=async&callback=initMap"></script>
 
 
-<script>
+<script type="module">
 // Initialize and add the map
 let map;
 
