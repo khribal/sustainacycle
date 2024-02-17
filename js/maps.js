@@ -17,8 +17,10 @@ async function initMap() {
   });
 
   // Create a PlacesService instance
-  const service = new google.maps.places.PlacesService(map);
+//   const service = new google.maps.places.PlacesService(map);
 
+//trying a new method
+  const {service} = await google.maps.importLibrary("places")
   // Perform a text search
   service.textSearch(
     {
