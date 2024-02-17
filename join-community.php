@@ -6,14 +6,14 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Join Community</title>
+    <title>Join A Community</title>
 </head>
 
 <body>
 <?php include('includes/nav.php'); ?>
 
 <div class="container mt-4">
-    <h4>Communities</h4>
+    <h1>Communities</h1>
     <?php
     // Database connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
