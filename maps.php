@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/styles.css"> -->
 
      <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&loading=async&callback=initMap" defer></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&callback=initMap" async defer></script>
           
     <!-- JS -->
     <!-- <script src="js/maps.js"></script> -->
