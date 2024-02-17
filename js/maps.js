@@ -1,7 +1,24 @@
 // Initialize and add the map
 let map;
 
-async function initMap() {
+// Function to add click event listener to a marker
+function addMarkerClickListener(marker, place) {
+    console.log('Marker Click Event Triggered');
+    marker.addListener('click', () => {
+      // Set content for the InfoWindow
+      const content = `
+        <div>
+          <strong>${place.name}</strong><br>
+          Address: ${place.formatted_address || 'N/A'}<br>
+          Rating: ${place.rating || 'N/A'}
+        </div>
+      `;
+
+      // TODO: Open InfoWindow or do something with the content
+    });
+  }
+
+function initMap() {
   // The location of Uluru
   const user_position = { lat: 39.172192, lng: -86.519409 };
   // Request needed libraries.
@@ -42,22 +59,6 @@ async function initMap() {
     }
   );
 
-  // Function to add click event listener to a marker
-  function addMarkerClickListener(marker, place) {
-    console.log('Marker Click Event Triggered');
-    marker.addListener('click', () => {
-      // Set content for the InfoWindow
-      const content = `
-        <div>
-          <strong>${place.name}</strong><br>
-          Address: ${place.formatted_address || 'N/A'}<br>
-          Rating: ${place.rating || 'N/A'}
-        </div>
-      `;
 
-      // TODO: Open InfoWindow or do something with the content
-    });
-  }
 }
 
-initMap();
