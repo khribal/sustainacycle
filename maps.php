@@ -41,7 +41,7 @@ async function initMap() {
   // Request needed libraries.
 //   @ts-ignore
 //   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  // const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // The map, centered at Uluru
   map = new google.maps.Map(document.getElementById("map"), {
