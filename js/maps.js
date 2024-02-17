@@ -33,8 +33,9 @@ async function initMap() {
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
+            const placePosition = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
             const marker = new google.maps.Marker({
-                position: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() },
+                position: placePosition,
                 map: map,
                 title: place.name,
             });
@@ -42,7 +43,7 @@ async function initMap() {
             marker.setVisible(true);
             marker.setMap(map);
 
-          console.log("Marker created: " + place.geometry.location.lat())
+          console.log("Marker created: " + place.geometry.location.lat() + "," + )
 
 
 
