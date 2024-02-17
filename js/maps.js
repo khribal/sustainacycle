@@ -61,5 +61,9 @@ function addMarkerClickListener(marker, place) {
 }
 
 
+const script = document.createElement('script');
+script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places&callback=initMap`;
+document.head.appendChild(script);
+
 // Call the initMap function when the DOM is ready
 document.addEventListener("DOMContentLoaded", initMap);
