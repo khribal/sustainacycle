@@ -25,17 +25,18 @@ async function initMap() {
     },
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (const place of results) {
+        for (let place of results) {
             // The markers
             const marker = new google.maps.Marker({
-                position: place.geometry.location,
+                //test, probably dog shit
+                position: new google.maps.LatLng(place.geometry.location),
                 map: map,
                 title: place.name,
             });
 
             marker.setVisible(true);
             marker.setMap(map);
-            
+
           console.log("Marker created: " + place.geometry.location)
           // Add a click event listener to the marker
         //   addMarkerClickListener(marker, place);
