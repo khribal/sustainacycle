@@ -8,20 +8,17 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>User Privacy</title>
 </head>
+
 <body>
+<?php include('includes/nav.php'); ?>
 
-<?php include('includes/nav.php') ?>
-
-<div class="jumbotron">
-  <div class="container">
-    <h4>See what materials manufacturers have available to be recycled right now!</h4>
-  </div>
-</div>
-
-<?php
+<div class="container mt-4">
+    <h1>Communities</h1>
+    <?php
+    // Database connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
     if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
+        die("Connection failed: " . mysqli_connect_error());
     }
 
 
@@ -53,6 +50,7 @@
         $message = "Logout Successful.";
     }
 
+    ?>
     <h1>User Privacy Example</h1>
 
     <?php if (isset($message)): ?>
