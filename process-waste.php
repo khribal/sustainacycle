@@ -11,7 +11,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$conn) {
           die("Connection failed: " . mysqli_connect_error());
         }
-    }
-}
 
+        $sql = "INSERT INTO materials (manufacturerID, materialName, quantity) VALUES (?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", $manufacturerID, $materialName, $quantity);
+
+        if ($stmt->execute()) {
+            echo "Waste added successfully.";
+        } else {
+            echo "Error: " . $sql . "<br> . $conn->error;"
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
+} else {
+    header("Location: add-waste.php");
+    exit();
+}
 ?>
