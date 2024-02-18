@@ -100,7 +100,7 @@ label {
 input[type="text"],
 input[type="number"],
 select {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;
