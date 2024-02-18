@@ -42,6 +42,9 @@ $result = mysqli_query($conn, $sql);
         <?php if (mysqli_num_rows($result) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <div class="article mb-5">
+                    <?php if (!empty($row['img'])): ?>
+                        <img src="<?php echo htmlspecialchars($row['img']); ?>" alt="Article Image" class="img-fluid mb-3">
+                    <?php endif; ?>
                     <h2><?php echo htmlspecialchars($row['title']); ?></h2>
                     <p class="text-muted"><?php echo htmlspecialchars($row['author']); ?> | <?php echo htmlspecialchars($row['date']); ?></p>
                     <p>Tags: <?php echo htmlspecialchars($row['tags']); ?></p>
