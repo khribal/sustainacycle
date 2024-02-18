@@ -17,12 +17,6 @@
       <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'video.php'){echo 'active';} ?>">
         <a class="nav-link" href="video.php">Promotional Video</a>
       </li>
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'education.php'){echo 'active';} ?>">
-        <a class="nav-link" href="education.php">Learn About Sustainability</a>
-      </li>
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'join-community.php'){echo 'active';} ?>">
-        <a class="nav-link" href="join-community.php">Join A Community</a>
-      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <?php

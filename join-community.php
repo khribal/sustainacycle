@@ -6,37 +6,41 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Join Community</title>
+    <title>Join A Community</title>
 </head>
 
 <body>
-<!-- nav bar -->
-<?php include('includes/nav.php') ?>
+<?php include('includes/nav.php'); ?>
 
+<div class="container mt-4">
+    <h1>Communities</h1>
+    <?php
+    // Database connection
+    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-    <div class="container mt-4">
-        <h4>Communities</h4>
-        <?php
-        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-        if (!$conn) {
-          die("Connection failed: " . mysqli_connect_error());
+    // Fetch and display communities
+    $sql = "SELECT communityID, communityName, Description, communityRules, tags FROM communities";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='community-box'>";
+            echo "<h3>" . htmlspecialchars($row["communityName"]) . "</h3>";
+            echo "<p><strong>Description:</strong> " . nl2br(htmlspecialchars($row["Description"])) . "</p>";
+            echo "<p><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
+            echo "<p><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
+            echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='btn btn-primary'>Join</a>";
+            echo "</div>";
         }
+    } else {
+        echo "No communities available.";
+    }
 
-    
-    // display available communities//
-        $sqlcommunities = "SELECT communityID, communityName FROM communities";
-        $resultcommunities = $conn->query($sqlcommunities);
-
-        if ($resultcommunities->num_rows > 0) {
-            echo "<ul>";
-            while ($rowcommunity = $resultcommunities->fetch_assoc()) {
-                echo "<li>{$rowcommunity['name']} - <a href='join-community.php?community_id={$rowcommunity['id']}'>Join</a></li>";
-            }
-            echo "</ul>";
-        } else {
-            echo "No communities available.";
-        }
-        ?>
+    $conn->close();
+    ?>
 
     <!-- posts -->
         <?php
