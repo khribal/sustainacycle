@@ -38,6 +38,7 @@ $result = mysqli_query($conn, $sql);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<?php include('includes/nav.php') ?>
     <div class="container mt-5">
         <?php if (mysqli_num_rows($result) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
