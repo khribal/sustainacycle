@@ -41,6 +41,19 @@
 
 ?>
 
+  <h2>Add Waste</h2>
+  <form action="process-waste.php" method="POST">
+    <label for="manufacturerID">Manufacturer ID:</label><br>
+    <input type="text" id="manufacturerID" name="manufacturerID"><br><br>
+
+    <label for="materialName">Material Name:</label><br>
+    <input><br><br>
+
+    <label for="quantity">Quantity:</label><br>
+    <input type="number" id="quantity" name="quantity"><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
 
 </body>
 </html>
