@@ -68,13 +68,6 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     </div>
   </div>
 
-  <div>
-    <div class="container">
-    <h4>See what materials manufacturers have available to recycle right now!</h4>
-    <p><a class="btn btn-primary btn-lg" href="waste.php" role="button">See Available Waste &raquo;</a></p>
-    </div>
-  </div>
-
 
   <hr>
 </div> <!-- /container -->
