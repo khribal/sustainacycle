@@ -18,6 +18,9 @@
         <a class="nav-link" href="video.php">Promotional Video</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="waste.php">See Available Waste</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="join-community.php">Join A Community</a>
       </li>
     </ul>
