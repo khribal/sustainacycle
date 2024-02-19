@@ -43,11 +43,34 @@ async function initMap() {
 
 
           // Add a click event listener to the marker
-        //   addMarkerClickListener(marker, place);
+          addMarkerClickListener(marker, place);
         }
       }
     }
   );
 }
+
+function addMarkerClickListener(marker, place) {
+    console.log('Marker Click Event Triggered');
+    marker.addListener('click', () => {
+        // Set content for the InfoWindow
+        const content = `
+    <div>
+        <strong>${place.name}</strong><br>
+        Address: ${place.formatted_address || 'N/A'}<br>
+        Rating: ${place.rating || 'N/A'}
+    </div>
+`;
+        // console.log(content);
+
+        infoWindow = new google.maps.InfoWindow();
+
+        // Set the content and open the InfoWindow
+
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+    });
+}
+
 
 window.addEventListener('load', initMap);
