@@ -43,6 +43,14 @@
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
         const payload = JSON.parse(jsonPayload);
+
+        // Use response.credential to access the actual data
+        const response = {
+            credential: encodedToken,
+            name: payload.name,
+            email: payload.email,
+        };
+
         $.ajax({
             type: "POST",
             url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
@@ -53,7 +61,6 @@
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            //return the data instead of logging success
             success: function (response) {
                 console.log("Success, google processing begun.");
                 // console.log(data);
