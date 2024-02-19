@@ -63,7 +63,7 @@
             dataType: "json",
             success: function (response) {
                 console.log("Success, google processing begun.");
-                // console.log(data);
+                console.log(response);
             },
             error: function (error) {
                 console.error("Error:", error);
