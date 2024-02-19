@@ -34,53 +34,35 @@
     </form>
 
 
-
-
-<!-- Pass information from google login to process-google.php -->
 <script>
-    function decodeJwtResponse(encodedToken) {
-        const base64Url = encodedToken.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-        const payload = JSON.parse(jsonPayload);
+    function handleCredentialResponse(response) {
+        console.log("handleCredentialResponse called");
+        const encodedToken = response.credential;
+        console.log("Encoded Token:", encodedToken);
 
-        // Use response.credential to access the actual data
-        const response = {
-            credential: encodedToken,
-            name: payload.name,
-            email: payload.email,
-        };
+        // Simplify the data payload
+        const postData = { id_token: encodedToken };
 
         $.ajax({
             type: "POST",
             url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
-            data: JSON.stringify({
-                id_token: encodedToken,
-                name: payload.name,
-                email: payload.email,
-            }),
+            data: JSON.stringify(postData),
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
+            dataType: "text",
+            success: function (responseData) {
                 console.log("Success, google processing begun.");
-                console.log(response);
+                console.log(responseData);
             },
             error: function (error) {
                 console.error("Error:", error);
             }
         });
-}
+    }
+</script>
 
 
-//use a variable to test this function, pass to php
-
-function handleCredentialResponse(response) {
-    // Decode the JWT after the response is received
-    decodeJwtResponse(response.credential);
-    // return(data);
-}
-
-
+<!--Render button-->
+<script>
 //!!!!!!!!!!!!!!!!!!!!!!!!
 //executing everytime the page loads
 window.onload = function () {

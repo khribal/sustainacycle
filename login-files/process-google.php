@@ -4,6 +4,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true); 
     
+    file_put_contents('debug.txt', $content);  // Log the raw data to debug.txt
+
+    $decoded = json_decode($content, true); 
     // Check if decoding was successful 
     if(is_array($decoded)) { 
         $id_token = $decoded['id_token']; 
