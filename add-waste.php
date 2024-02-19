@@ -58,9 +58,9 @@
       var materialName = this.value;
       var descriptionField = document.getElementById('description');
 
-      if (materialName === 'cotton') {
+      if (materialName === 'Cotton') {
         descriptionField.value = 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.';
-      } else if (materialName === 'silk') {
+      } else if (materialName === 'Silk') {
         descriptionField.value = 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.';
       } else if (materialName === 'Polyester') {
         descriptionField.value = 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.';
