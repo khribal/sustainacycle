@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             echo "Waste added successfully.";
+            header("Location: waste.php");
+            exit();
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
