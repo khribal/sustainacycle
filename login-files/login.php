@@ -37,7 +37,7 @@
 
 
 <!-- Pass information from google login to process-google.php -->
-<script type="text/javascript">
+<script>
     function decodeJwtResponse(encodedToken) {
         const base64Url = encodedToken.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -53,7 +53,7 @@
 
         $.ajax({
             type: "POST",
-            url: "https://cgi.luddy.indiana.edu/~team20/login-files/login.php",
+            url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
             data: JSON.stringify({
                 id_token: encodedToken,
                 name: payload.name,
