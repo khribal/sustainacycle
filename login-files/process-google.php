@@ -20,5 +20,4 @@ else {
         echo json_encode(['error' => 'POST data not received.']); 
 }
 
-$json_error = json_last_error(); if ($json_error != JSON_ERROR_NONE) { echo json_encode(['error' => 'JSON decode error: ' . $json_error]); }
 ?>
