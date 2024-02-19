@@ -123,31 +123,33 @@ $conn->close();
 ?>
 
 <div>
-<div class="heading">
-    <h1>Textile Recycling Logistics Overview</h1>
-    <p>Welcome to our Textile Recycling Logistics Overview page, where we provide a comprehensive view of the journey your textile donations take within our recycling ecosystem. Explore detailed graphs and insightful data visualizations showcasing manufacturers' generous contributions, recyclers' acceptance of various textile quantities, the evolving pattern of donations over time, and a breakdown of the types of textiles generously given by our community. Gain valuable insights into the impact of textile recycling on sustainability and contribute to a greener, more eco-friendly future. Join us on this visual journey through the logistics of textile recycling, illustrating the positive influence each donation makes in our collective effort to promote environmental responsibility.</p>
-</div class="container-charts">
+<div class="container px-4 mx-auto p-1 container-charts">
+    <h1 class="log">Textile Recycling Logistics Overview</h1>
+    <p class="log-lead">Welcome to our Textile Recycling Logistics Overview page, where we provide a comprehensive view of the journey your textile donations take within our recycling ecosystem. Explore detailed graphs and insightful data visualizations showcasing manufacturers' generous contributions, recyclers' acceptance of various textile quantities, the evolving pattern of donations over time, and a breakdown of the types of textiles generously given by our community. Gain valuable insights into the impact of textile recycling on sustainability and contribute to a greener, more eco-friendly future. Join us on this visual journey through the logistics of textile recycling, illustrating the positive influence each donation makes in our collective effort to promote environmental responsibility.</p>
+
 
         <!-- Horizontal bar chart -->
         
             <div class=horiz-parent>
                     <!--Manufacturer-->
                 <div class="horiz-chart">
-                    <h2>Manufacturer Donated Textiles</h2>
-                    <p>Here you will find some of the manufacturers who have donated textiles, ranked by those who donated the most according to our database.</p>
+                    <h2 class="log">Manufacturer Donated Textiles</h2>
+                    <p class="log">Here you will find some of the manufacturers who have donated textiles, ranked by those who donated the most according to our database.</p>
                     <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
                 </div>
                     <!--Recycler-->
-                    <div class="horiz-chart">
-                    <h2>Recycler Accepted Textiles</h2>
-                    <p>Here you will find some of the recyclers who have accepted textiles, ranked by those who accepted the most according to our database.</p>
+            </div>
+            <div class=horiz-parent>
+                <div class="horiz-chart">
+                    <h2 class="log">Recycler Accepted Textiles</h2>
+                    <p class="log">Here you will find some of the recyclers who have accepted textiles, ranked by those who accepted the most according to our database.</p>
                     <div style="width: 800px;"><canvas id="chart-space1"></canvas></div>
-                    </div>
+                </div>
             </div>
         <!--Line chart -->
         <div class="line-parent">
-            <h2>Textiles recycled over time</h2>
-            <p>Below is a graph of the quantities of textiles recycled, per the data we have kept historically.</p>
+            <h2 class="log">Textiles recycled over time</h2>
+            <p class="log">Below is a graph of the quantities of textiles recycled, per the data we have kept historically.</p>
             <div class="chart-view">
                 <canvas id="lineChartCanvas" width="573" height="286"
                 style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
@@ -156,10 +158,11 @@ $conn->close();
 
         <!-- Pie chart -->
         <div class="pie-parent">
-            <h2>Types of textiles recycled</h2>
-            <p>In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each type of material. The quantity is the amount in lbs that have been recycled since the creation of our platform.</p>
+            <h2 class="log">Types of textiles recycled</h2>
+            <p class="log">In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each type of material. The quantity is the amount in lbs that have been recycled since the creation of our platform.</p>
             <div style="width: 800px;"><canvas id="chart-pie"></canvas></div>
         </div>
+</div>
 </div>
         <!-- Link to charts.js extension -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
