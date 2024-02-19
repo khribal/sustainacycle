@@ -186,6 +186,22 @@ li.project {
 }
 
 /*
+video.php
+*/
+
+h1.video {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.video {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--green);
+}
+/*
 waste.php
 */
 

@@ -14,10 +14,16 @@
 <body>
 <?php include('includes/nav.php') ?>
 
-<video class="w-75 p-3 text-center" autoplay loop muted>
+<div class="container px-4 mx-auto p-2">
+  <h1 class="video">Proposal Video</h1>
+  <p class="video">Watch the video below to see our team's project proposal, which includes our ABT Statement, our UX research which included interviews and a survey, the development process, and the solution.</p>
+</div>
+
+<div class="container mx-auto p-2">
+  <video class="w-75 p-3 text-center" loop muted controls>
   <source src="img/promotion.mp4" type="video/mp4" />
 </video>
-<p> Watch the video above to see our team's project proposal, which includes our ABT Statement, our UX research which included interviews and a survey, the development process, and the solution. </p>
+</div>
     
 <!-- Footer --> 
 <footer class="container mx-auto p-2">
