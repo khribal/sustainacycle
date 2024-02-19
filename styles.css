@@ -10,6 +10,11 @@ footer {
     color: var(--blue);
 }
 
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 /*
 index.php
 */
@@ -152,7 +157,7 @@ h1.project {
 
 p.project-lead {
     font-family: "DM Sans", sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 300;
     color: var(--green);
 }
@@ -197,10 +202,63 @@ h1.video {
 
 p.video {
     font-family: "DM Sans", sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 300;
     color: var(--green);
 }
+
+/*
+education.php
+*/
+
+h1.edu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.edu-auth {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+p.edu-tag {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--lightblue);
+}
+
+h5.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--green);
+}
+
+p.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
 /*
 waste.php
 */
@@ -223,9 +281,49 @@ waste.php
     padding: 30px;
 }
 
-h2 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+h2.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
+}
+
+/*
+join-community.php
+*/
+
+h1.com {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--green);
 }
 
 
@@ -290,5 +388,32 @@ input[type="submit"]:hover {
 .success {
     color: green;
     margin-top: 10px;
+}
+
+h1.add {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+label.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
 }
 

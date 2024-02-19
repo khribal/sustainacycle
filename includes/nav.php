@@ -24,8 +24,12 @@
         <a class="nav-link" href="waste.php">See Available Waste</a>
       </li>   
       <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'join-community.php'){echo 'active';} ?>">
-        <a class="nav-link" href="join-community.php">Join A Community</a>
-      </li>     
+        <a class=
+        "nav-link" href="join-community.php">Join A Community</a>
+      </li>
+      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'maps.php'){echo 'active';} ?>">
+        <a class="nav-link" href="maps.php">Find nearby recycling</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <?php

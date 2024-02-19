@@ -16,8 +16,11 @@
 <body>
 <?php include('includes/nav.php'); ?>
 
-<div class="container mt-4">
-    <h1>Communities</h1>
+<div class="container px-4 mx-auto p-2">
+  <h1 class="com">Communities</h1>
+  <h2 class="com">Join one of our many communities to help make a difference in preventing fast fashion.</p>
+
+
     <?php
     // Database connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -31,12 +34,12 @@
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='community-box'>";
-            echo "<h3>" . htmlspecialchars($row["communityName"]) . "</h3>";
-            echo "<p><strong>Description:</strong> " . nl2br(htmlspecialchars($row["Description"])) . "</p>";
-            echo "<p><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
-            echo "<p><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
-            echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='btn btn-primary'>Join</a>";
+            echo "<div class='community-box mx-auto p-5'>";
+            echo "<h3 class='com'>" . htmlspecialchars($row["communityName"]) . "</h3>";
+            echo "<p class='com'><strong>Description:</strong> " . nl2br(htmlspecialchars($row["Description"])) . "</p>";
+            echo "<p class='com'><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
+            echo "<p class='com'><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
+            echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='button mt-2'>Join &raquo;</a>";
             echo "</div>";
         }
     } else {
@@ -45,7 +48,7 @@
 
     $conn->close();
     ?>
-
+</div>
     <!-- posts -->
         <?php
         $sqlPosts = "SELECT posts.*, communites.name AS community_name
