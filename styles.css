@@ -141,6 +141,16 @@ p.team {
 }
 
 /*
+project.php
+*/
+
+h1.project {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+/*
 waste.php
 */
 

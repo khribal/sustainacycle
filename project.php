@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>About the Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 <?php include('includes/nav.php') ?>
@@ -13,18 +17,19 @@
 <main>
     <!--Bootstrap template -->
   <!-- Header-->
+
+
+
   <div class="project-header">
-  <header class="bg-primary bg-gradient text-white">
-            <div class="container px-4 text-center">
-                <h1 class="fw-bolder">Our Solution</h1>
+            <div class="container px-4 mx-auto p-2">
+                <h1 class="project">Our Solution</h1>
                 <p class="lead">Read more about our approach to reducing the environmental impacts of the fast fashion industry.</p>
             </div>
-        </header>
 </div>
 
         <!-- About section-->
         <section id="about">
-            <div class="container px-4">
+            <div class="container px-4 mx-auto p-2">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>What is it?</h2>
@@ -39,7 +44,7 @@
         </section>
         <!-- Services section-->
         <section class="bg-light" id="services">
-            <div class="container px-4">
+            <div class="container px-4 mx-auto p-2">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Who is our audience?</h2>
@@ -56,7 +61,7 @@
         </section>
         <!-- Contact section-->
         <section id="contact">
-            <div class="container px-4">
+            <div class="container px-4 mx-auto p-2">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Features and benefits</h2>
@@ -79,6 +84,7 @@
                 </div>
             </div>
         </section>
+
 </main>
     
 <!-- Footer --> 
