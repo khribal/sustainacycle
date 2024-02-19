@@ -2,11 +2,16 @@
   <head>
     <title>Locator</title>
 
-  <!-- Bootstrap --> 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  <!-- Google maps api code-->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  
+  <!-- google maps functions -->
   <script type="module" src="js/maps.js"></script>
+
+  <!-- Css -->
   <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
@@ -16,6 +21,12 @@
     <!--The div element for the map -->
     <div id="map"></div>
 
+
+
+<!-- Footer --> 
+<footer class="container mx-auto p-2 index">
+<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
+</footer>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

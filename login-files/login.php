@@ -45,7 +45,7 @@
         const payload = JSON.parse(jsonPayload);
         $.ajax({
             type: "POST",
-            url: "login.php",
+            url: "https://cgi.luddy.indiana.edu/~team20/login-files/login.php",
             data: JSON.stringify({
                 id_token: encodedToken,
                 name: payload.name,
