@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $sql);
 </head>
 <body>
 <?php include('includes/nav.php') ?>
-    <div class="container mt-5">
+    <div class="container mt-5 mx-auto p-2">
         <?php if (mysqli_num_rows($result) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <div class="article mb-5">
