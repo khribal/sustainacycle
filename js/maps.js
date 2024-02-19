@@ -63,7 +63,7 @@ function addMarkerClickListener(marker, place) {
 `;
         // console.log(content);
 
-        infoWindow = new google.maps.InfoWindow();
+        const infoWindow = new google.maps.InfoWindow();
 
         // Set the content and open the InfoWindow
 
