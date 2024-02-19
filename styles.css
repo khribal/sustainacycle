@@ -390,3 +390,30 @@ input[type="submit"]:hover {
     margin-top: 10px;
 }
 
+h1.add {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+label.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
+}
+
