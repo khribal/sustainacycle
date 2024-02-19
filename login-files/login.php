@@ -37,7 +37,7 @@
 
 
 <!-- Pass information from google login to process-google.php -->
-<script>
+<script type="text/javascript">
     function decodeJwtResponse(encodedToken) {
         const base64Url = encodedToken.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
