@@ -45,18 +45,20 @@ $result = mysqli_query($conn, $sql);
 <body>
 <?php include('includes/nav.php') ?>
     <div class="container mt-5 mx-auto p-2">
+        <h1 class="edu">Learn About Sustainability</h1>
+        <h2 class="edu">Check out educational articles from our textile waste and sustainability professionals.</h2>
         <?php if (mysqli_num_rows($result) > 0): ?>
             <?php while($row = mysqli_fetch_assoc($result)): ?>
-                <div class="article mb-5">
+                <div class="article mb-5 mt-5">
                     <?php if (!empty($row['img'])): ?>
                         <img src="<?php echo htmlspecialchars($row['img']); ?>" alt="Article Image" class="img-fluid mb-3">
                     <?php endif; ?>
-                    <h2><?php echo htmlspecialchars($row['title']); ?></h2>
-                    <p class="text-muted"><?php echo htmlspecialchars($row['author']); ?> | <?php echo htmlspecialchars($row['date']); ?></p>
-                    <p>Tags: <?php echo htmlspecialchars($row['tags']); ?></p>
-                    <h5><?php echo htmlspecialchars($row['description']); ?></h5>
+                    <h3 class="edu"><?php echo htmlspecialchars($row['title']); ?></h3>
+                    <p class="edu-auth"><?php echo htmlspecialchars($row['author']); ?> | <?php echo htmlspecialchars($row['date']); ?></p>
+                    <p class="edu-tag">Tags: <?php echo htmlspecialchars($row['tags']); ?></p>
+                    <h5 class="edu"><?php echo htmlspecialchars($row['description']); ?></h5>
                     <!-- First apply htmlspecialchars, then convert to bold, and finally convert to underline -->
-                    <p><?php echo nl2br(convertToUnderline(convertToBold(htmlspecialchars($row['article_text'])))); ?></p>
+                    <p class="edu"><?php echo nl2br(convertToUnderline(convertToBold(htmlspecialchars($row['article_text'])))); ?></p>
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
