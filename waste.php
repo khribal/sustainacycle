@@ -22,6 +22,8 @@
   </div>
 </div>
 
+<a href="add-waste.php" class="btn">Add Waste</a>
+
 <?php
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
     if (!$conn) {
