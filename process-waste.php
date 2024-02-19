@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             echo "Waste added successfully.";
         } else {
-            echo "Error: " . $sql . "<br> . $conn->error;"
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
         $stmt->close();
