@@ -16,10 +16,9 @@
 
 <?php include('includes/nav.php') ?>
 
-<div class="jumbotron">
-  <div class="container">
-    <h4>See what materials manufacturers have available to be recycled right now!</h4>
-  </div>
+<div class="container px-4 mx-auto p-2">
+  <h1 class="video">Available Waste</h1>
+  <p class="video">See what materials manufacturers have available to be recycled right now!</p>
 </div>
 
 <?php
@@ -35,7 +34,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-      echo "<div class='container'>";
+      echo "<div class='container mx-auto p-2'>";
       $currentManufacturer = null;
         while($row = $result->fetch_assoc()) {
           if ($row["companyName"] !== $currentManufacturer) {
@@ -44,15 +43,15 @@
               echo "</div>";
             }
 
-            echo "<h2 class='mt-4'>" . $row["companyName"] . "</h2>";
+            echo "<h2 class='mt-4 waste'>" . $row["companyName"] . "</h2>";
             echo "<div class='grid-container'>";
             $currentManufacturer = $row["companyName"];
           }
           
           echo "<div class='grid-item'>";
-          echo "<p><strong>Material Name: </strong>" . $row["materialName"]. "</p>";
-          echo "<p><strong>Quantity: </strong>" . $row["quantity"]. "</p>";
-          echo "<p><strong>Description: </strong>" . $row["description"]. "</p>";
+          echo "<p class='waste'><strong>Material Name: </strong>" . $row["materialName"]. "</p>";
+          echo "<p class='waste'><strong>Quantity: </strong>" . $row["quantity"]. "</p>";
+          echo "<p class='waste'><strong>Description: </strong>" . $row["description"]. "</p>";
           echo "</div>";
         }
         echo "</div>";
