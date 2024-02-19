@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,400;0,9..40,600;1,9..40,200;1,9..40,400;1,9..40,600&family=DM+Serif+Display:ital@0;1&display=swap"
-    rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>SustainaCycle</title>
     <!-- Google API Client -->
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>  -->
      <!-- Javascript file for Google Login -->
@@ -46,12 +44,12 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 <main role="main" class="index">
 
-<article class="container index mx-auto p-2">
+<article class="container index mx-auto p-2 mt-3">
     <section class="index">
       <img src="logo.png" alt="logo" height="300px" width="300px">
-      <h1 class="display-3 index">Sustainable Fashion</h1>
-      <h4>Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
-      <p><a class="btn btn-primary btn-lg" href="project.php" role="button">Learn more &raquo;</a></p>
+      <h1 class="index">SustainaCycle</h1>
+      <h4 class="index">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
+      <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
   </section>
 </article>
 
@@ -60,16 +58,16 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
   <!-- Example row of columns -->
   <section class="row">
     <div class="col-md-4">
-      <h2>Sustainability</h2>
-      <p>The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
+      <h2 class="index">Sustainability</h2>
+      <p class="index">The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
     </div>
     <div class="col-md-4">
-      <h2>Circular Fashion Solution</h2>
-      <p>Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
+      <h2 class="index">Circular Fashion Solution</h2>
+      <p class="index">Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
     </div>
     <div class="col-md-4">
-      <h2>Aligning Style with the Environment</h2>
-      <p>The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
+      <h2 class="index">Aligning Style with the Environment</h2>
+      <p class="index">The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
     </div>
 </section>
 </article>
@@ -78,8 +76,6 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
   <hr>
 </div> <!-- /container -->
 
-
-<a href="login-files/login.php"><h1>TEST</h1></a>
 <!-- Google login -->
 <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
@@ -100,8 +96,8 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 
 <!-- Footer --> 
-<footer class="container  mx-auto p-2">
-<p>&copy; Team 20, 2023-2024</p>
+<footer class="container mx-auto p-2 index">
+<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
 </footer>
 
 <!-- JS folder --> 

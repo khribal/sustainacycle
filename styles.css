@@ -1,12 +1,16 @@
+:root {
+    --limegreen: #bbdc48;
+    --green: #76b83b;
+    --blue: #0c3f47;
+    --neonblue: #87e4de;
+    --lightblue: #c6e5df;
+}
+
+
 /*
 index.php
 */
 
-/* .jumbotron {
-    background-image: url(/img/landfill.png);
-    background-size: cover;
-    background-position: center;
-} */
 
 body.index {
     margin: 0 auto;
@@ -35,8 +39,52 @@ section.index {
 h1.index {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
+    color: var(--blue);
 }
 
+h4.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+.button {
+    border: 2px solid var(--neonblue);
+    color: var(--blue);
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 400;
+}
+
+.button:hover {
+    text-decoration: none;
+    color: var(--green);
+}
+
+h2.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+footer.index {
+    color: var(--blue);
+}
 
 /*
 team.php
@@ -162,3 +210,4 @@ input[type="submit"]:hover {
     color: green;
     margin-top: 10px;
 }
+
