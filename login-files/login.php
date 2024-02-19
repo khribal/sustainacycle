@@ -64,12 +64,14 @@
         });
 }
 
+
 //use a variable to test this function, pass to php
-function handleCredentialResponse(response) {
-    // console.log("Encoded JWT ID token: " + response.credential);
+
+
+// function handleCredentialResponse(response) {
     // Decode the JWT after the response is received
-    decodeJwtResponse(response.credential);
-}
+    // decodeJwtResponse(response.credential);
+// }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!
 //executing everytime the page loads
