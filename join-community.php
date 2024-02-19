@@ -29,7 +29,7 @@
     }
 
     // Fetch and display communities
-    $sql = "SELECT communityID, communityName, Description, communityRules, tags FROM communities";
+    $sql = "SELECT communityID, communityName, communityDescription, communityRules, tags FROM communities";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
