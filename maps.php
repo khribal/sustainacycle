@@ -38,7 +38,7 @@
     e = new URLSearchParams,
     u = () => h || (h = new Promise(async (f, n) => {
     await (a = m.createElement("script"));
-    e.set("libraries", [...r, "places"] + ""); // Add "places" to the libraries
+    e.set("libraries", [...r, "places", "infowindow"] + ""); // Add "places" to the libraries
     for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
     e.set("callback", c + ".maps." + q);
     a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
