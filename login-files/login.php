@@ -45,7 +45,7 @@
         const payload = JSON.parse(jsonPayload);
         $.ajax({
             type: "POST",
-            url: "https://cgi.luddy.indiana.edu/~team20/login-files/login.php",
+            url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
             data: JSON.stringify({
                 id_token: encodedToken,
                 name: payload.name,
@@ -56,7 +56,6 @@
             //return the data instead of logging success
             success: function (response) {
                 console.log("Success, google processing begun.");
-                console.log(data);
                 // console.log(data);
             },
             error: function (error) {
