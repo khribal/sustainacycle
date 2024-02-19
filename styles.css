@@ -10,6 +10,11 @@ footer {
     color: var(--blue);
 }
 
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 /*
 index.php
 */
@@ -276,10 +281,21 @@ waste.php
     padding: 30px;
 }
 
-h2 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+h2.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
 }
+
+p.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
+}
+
+
 
 
 /************* Maps **********************/
