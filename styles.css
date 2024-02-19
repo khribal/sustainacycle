@@ -247,16 +247,16 @@ p.edu-tag {
 
 h5.edu {
     font-family: "DM Sans", sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--blue);
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--green);
 }
 
 p.edu {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
-    /* font-weight: 300; */
-    color: var(--green);
+    font-weight: 400;
+    color: var(--blue);
 }
 
 /*
