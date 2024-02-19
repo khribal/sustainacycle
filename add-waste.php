@@ -15,8 +15,6 @@
   <h1 class="video">Add Waste</h1>
   <p class="video">Enter the information below to add available waste to our site.</p>
 
-
-  <h2>Add Waste</h2>
   <form id="wasteForm" action="process-waste.php" method="POST">
     <label for="manufacturerID">Manufacturer ID:</label><br>
     <input type="text" id="manufacturerID" name="manufacturerID"><br><br>
