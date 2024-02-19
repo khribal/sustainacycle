@@ -73,7 +73,7 @@ h4.index {
 
 h2.index {
     font-family: "DM Sans", sans-serif;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
     color: var(--blue);
 }
@@ -147,6 +147,41 @@ project.php
 h1.project {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
+    color: var(--blue);
+}
+
+p.project-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.project-lead-small {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+p.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+li.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
     color: var(--blue);
 }
 
