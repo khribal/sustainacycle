@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Promotional Video</title>
 </head>
 <body>
@@ -15,7 +15,10 @@
 </video>
 <p> Watch the video above to see our team's project proposal, which includes our ABT Statement, our UX research which included interviews and a survey, the development process, and the solution. </p>
     
-
+<!-- Footer --> 
+<footer class="container mx-auto p-2">
+<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
+</footer>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

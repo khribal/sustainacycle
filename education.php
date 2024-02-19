@@ -36,6 +36,7 @@ $result = mysqli_query($conn, $sql);
     <title>Educational Articles on Sustainability</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <?php include('includes/nav.php') ?>
@@ -58,7 +59,10 @@ $result = mysqli_query($conn, $sql);
             <p>No articles found.</p>
         <?php endif; ?>
     </div>
-
+    <!-- Footer --> 
+    <footer class="container mx-auto p-2">
+    <p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
+    </footer>
     <!-- Bootstrap and jQuery libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

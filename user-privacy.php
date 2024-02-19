@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>User Privacy</title>
 </head>
 
@@ -58,7 +58,7 @@
     <?php endif; ?>
 
     <?php if ($logged_in): ?>
-        <p>Welcome, <?php echo $_SESSION['user_email';] ?>!</p>
+        <p>Welcome, <?php echo $_SESSION['user_email']; ?>!</p>
         <form method="post">
             <button type="submit" name="logout">Logout</button>
         </form>

@@ -6,6 +6,9 @@
     --lightblue: #c6e5df;
 }
 
+footer {
+    color: var(--blue);
+}
 
 /*
 index.php
@@ -82,9 +85,6 @@ p.index {
     color: var(--green);
 }
 
-footer.index {
-    color: var(--blue);
-}
 
 /*
 team.php
@@ -118,6 +118,26 @@ team.php
         margin: 0;
         margin-bottom: 10px;
     }
+}
+
+h1.team {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.team {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.team {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
 }
 
 /*

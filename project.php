@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>About the Project</title>
 </head>
 <body>
@@ -82,8 +82,8 @@
 </main>
     
 <!-- Footer --> 
-<footer class="container">
-<p>&copy; Team 20 2023-2024</p>
+<footer class="container mx-auto p-2">
+<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
 </footer>
 
 
