@@ -9,16 +9,11 @@ async function initMap() {
 //   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   map = new Map(document.getElementById("map"), {
-    zoom: 15,
+    zoom: 6,
     center: position,
     mapId: "DEMO_MAP_ID",
   });
 
-  const marker = new google.maps.Marker({
-    position: position,
-    map: map,
-    title: 'Marker Title'
-  });
   
   // Create a PlacesService instance
   const service = new google.maps.places.PlacesService(map);
@@ -43,7 +38,7 @@ async function initMap() {
             marker.setVisible(true);
             marker.setMap(map);
 
-          console.log("Marker created: " + place.geometry.location.lat())
+        //   console.log("Marker created: " + place.geometry.location.lat())
 
 
 
