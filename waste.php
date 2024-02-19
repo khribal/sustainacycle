@@ -19,9 +19,10 @@
 <div class="container px-4 mx-auto p-2">
   <h1 class="video">Available Waste</h1>
   <p class="video">See what materials manufacturers have available to be recycled right now!</p>
+  <a href="add-waste.php" class="button mt-2">Add Waste</a>
 </div>
 
-<a href="add-waste.php" class="btn">Add Waste</a>
+
 
 <?php
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");

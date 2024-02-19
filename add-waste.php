@@ -11,6 +11,10 @@
 <body>
 <?php include('includes/nav.php'); ?>
 
+<div class="container px-4 mx-auto p-2">
+  <h1 class="video">Add Waste</h1>
+  <p class="video">Enter the information below to add available waste to our site.</p>
+
 
   <h2>Add Waste</h2>
   <form id="wasteForm" action="process-waste.php" method="POST">
@@ -46,6 +50,8 @@
 
     <input type="submit" value="Submit">
   </form>
+</div>
+
   <!-- Footer --> 
 <footer class="container mx-auto p-2">
 <p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
