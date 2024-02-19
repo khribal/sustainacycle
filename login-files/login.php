@@ -53,7 +53,7 @@
 
         $.ajax({
             type: "POST",
-            url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
+            url: "https://cgi.luddy.indiana.edu/~team20/login-files/login.php",
             data: JSON.stringify({
                 id_token: encodedToken,
                 name: payload.name,
@@ -74,11 +74,12 @@
 
 //use a variable to test this function, pass to php
 
-
 function handleCredentialResponse(response) {
     // Decode the JWT after the response is received
     decodeJwtResponse(response.credential);
+    // return(data);
 }
+
 
 //!!!!!!!!!!!!!!!!!!!!!!!!
 //executing everytime the page loads
@@ -103,7 +104,7 @@ window.onload = function () {
 
 
 <?php 
-//verify user credentials
+//VERIFY USER CREDENTIALS - CUSTOM LOGIN
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["username"];
     $enteredPassword = $_POST["password"];
@@ -151,6 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($con);
 } else {
     if (isset($_POST['id_token'])) {
+        //HANDLE GOOGLE LOGIN
         // Get the ID token from the POST data    
         $id_token = $_POST['id_token'];
     
