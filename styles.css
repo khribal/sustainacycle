@@ -152,7 +152,7 @@ h1.project {
 
 p.project-lead {
     font-family: "DM Sans", sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 300;
     color: var(--green);
 }
@@ -197,10 +197,63 @@ h1.video {
 
 p.video {
     font-family: "DM Sans", sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 300;
     color: var(--green);
 }
+
+/*
+education.php
+*/
+
+h1.edu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.edu-auth {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+p.edu-tag {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--lightblue);
+}
+
+h5.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
+}
+
 /*
 waste.php
 */
