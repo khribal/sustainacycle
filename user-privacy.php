@@ -17,7 +17,7 @@
 <?php include('includes/nav.php'); ?>
 
 <div class="container mt-4">
-    <h1>Communities</h1>
+    <h1>User Privacy</h1>
     <?php
     // Database connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -50,6 +50,7 @@
 
     //check if user logged out //
     if (isset($_POST['logout'])) {
+        session_start();
         session_destroy();
         $message = "Logout Successful.";
     }
