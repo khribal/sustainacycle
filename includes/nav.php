@@ -27,9 +27,6 @@
         <a class=
         "nav-link" href="join-community.php">Join A Community</a>
       </li>
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'logistics.php'){echo 'active';} ?>">
-        <a class="nav-link" href="logistics.php">Our Impact</a>
-      </li>
       <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'maps.php'){echo 'active';} ?>">
         <a class="nav-link" href="maps.php">Find nearby recycling</a>
       </li>
