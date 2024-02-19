@@ -56,10 +56,10 @@
             //return the data instead of logging success
             success: function (response) {
                 console.log("Success, google processing begun.");
+                console.log(data);
                 // console.log(data);
             },
             error: function (error) {
-                console.log(data + "logging error");
                 console.error("Error:", error);
             }
         });
