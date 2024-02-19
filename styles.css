@@ -295,7 +295,36 @@ p.waste {
     color: var(--green);
 }
 
+/*
+join-community.php
+*/
 
+h1.com {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--green);
+}
 
 
 /************* Maps **********************/
