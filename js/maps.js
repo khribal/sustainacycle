@@ -9,16 +9,11 @@ async function initMap() {
 //   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   map = new Map(document.getElementById("map"), {
-    zoom: 15,
+    zoom: 12,
     center: position,
     mapId: "DEMO_MAP_ID",
   });
 
-  const marker = new google.maps.Marker({
-    position: position,
-    map: map,
-    title: 'Marker Title'
-  });
   
   // Create a PlacesService instance
   const service = new google.maps.places.PlacesService(map);
@@ -43,16 +38,39 @@ async function initMap() {
             marker.setVisible(true);
             marker.setMap(map);
 
-          console.log("Marker created: " + place.geometry.location.lat())
+        //   console.log("Marker created: " + place.geometry.location.lat())
 
 
 
           // Add a click event listener to the marker
-        //   addMarkerClickListener(marker, place);
+          addMarkerClickListener(marker, place);
         }
       }
     }
   );
 }
+
+function addMarkerClickListener(marker, place) {
+    console.log('Marker Click Event Triggered');
+    marker.addListener('click', () => {
+        // Set content for the InfoWindow
+        const content = `
+    <div>
+        <strong>${place.name}</strong><br>
+        Address: ${place.formatted_address || 'N/A'}<br>
+        Rating: ${place.rating || 'N/A'}
+    </div>
+`;
+        // console.log(content);
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        // Set the content and open the InfoWindow
+
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+    });
+}
+
 
 window.addEventListener('load', initMap);
