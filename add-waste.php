@@ -22,7 +22,8 @@
     <input type="text" id="manufacturerID" name="manufacturerID"><br><br>
 
     <label for="materialName">Material Name:</label><br>
-    <select id="materialName" name="materialName">
+    <select id="materialName" name="materialName">  
+      <option value="">Select Material</option>
       <?php
         $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
         if (!$conn) {
