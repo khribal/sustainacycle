@@ -49,7 +49,7 @@
 
 
   <script>
-    document.getElementById('materialname').addEventListener('change', function() {
+    document.getElementById('materialName').addEventListener('change', function() {
       var materialName = this.value;
       var descriptionField = document.getElementById('description');
 
@@ -58,7 +58,7 @@
       } else if (materialName === 'silk') {
         descriptionField.value = 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.';
       } else if (materialName === 'Polyester') {
-        descriptionField.value === 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.';
+        descriptionField.value = 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.';
       } else if (materialName === 'Linen') {
         descriptionField.value = 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.';
       } else if (materialName === 'Wool') {
