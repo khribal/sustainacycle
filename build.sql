@@ -1,3 +1,4 @@
+drop table if exists articles;
 drop table if exists user_transaction;
 drop table if exists transactions;
 drop table if exists user_community;
@@ -7,7 +8,6 @@ drop table if exists manufacturers;
 drop table if exists recycler_materials;
 drop table if exists recyclers;
 drop table if exists users;
-drop table if exists articles;
 
 CREATE TABLE users(
     userID int NOT NULL AUTO_INCREMENT,
@@ -66,6 +66,7 @@ CREATE TABLE communities(
     communityName varchar(50) NOT NULL,
     Description TEXT,
     communityRules TEXT NOT NULL,
+    communityDescription TEXT not null,
     tags varchar(50) NOT NULL,
     PRIMARY KEY (communityID)
 ) engine=innodb;
