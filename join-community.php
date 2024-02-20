@@ -36,7 +36,7 @@
         while ($row = $result->fetch_assoc()) {
             echo "<div class='community-box mx-auto p-5'>";
             echo "<h3 class='com'>" . htmlspecialchars($row["communityName"]) . "</h3>";
-            echo "<p class='com'><strong>Description:</strong> " . nl2br(htmlspecialchars($row["Description"])) . "</p>";
+            echo "<p class='com'><strong>Description:</strong> " . nl2br(htmlspecialchars($row["communityDescription"])) . "</p>";
             echo "<p class='com'><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
             echo "<p class='com'><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
             echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='button mt-2'>Join &raquo;</a>";

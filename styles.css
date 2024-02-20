@@ -341,6 +341,33 @@ p.com {
     justify-content: space-between;
 }
 
+h1.log {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.log-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.log {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.log {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--green);
+}
+
 
 /*
 add-waste.php

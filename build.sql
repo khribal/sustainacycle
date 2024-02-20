@@ -64,13 +64,12 @@ CREATE TABLE materials(
 CREATE TABLE communities(
     communityID int NOT NULL AUTO_INCREMENT,
     communityName varchar(50) NOT NULL,
-    Description TEXT,
+    communityDescription TEXT NOT NULL,
     communityRules TEXT NOT NULL,
     communityDescription TEXT not null,
     tags varchar(50) NOT NULL,
     PRIMARY KEY (communityID)
 ) engine=innodb;
-
 
 CREATE TABLE user_community(
      userID int NOT NULL,
