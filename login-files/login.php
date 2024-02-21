@@ -34,37 +34,8 @@
     </form>
 
 
-<script>
-    function handleCredentialResponse(response) {
-        console.log("handleCredentialResponse called");
-        const encodedToken = response.credential;
-        console.log("Encoded Token:", encodedToken);
-
-        // Simplify the data payload
-        const postData = { id_token: encodedToken };
-
-        $.ajax({
-            type: "POST",
-            url: "https://cgi.luddy.indiana.edu/~team20/login-files/process-google.php",
-            data: JSON.stringify(postData),
-            contentType: "application/json; charset=utf-8",
-            dataType: "text",
-            success: function (responseData) {
-                console.log("Success, google processing begun.");
-                console.log(responseData);
-            },
-            error: function (error) {
-                console.error("Error:", error);
-            }
-        });
-    }
-</script>
-
-
 <!--Render button-->
 <script>
-//!!!!!!!!!!!!!!!!!!!!!!!!
-//executing everytime the page loads
 window.onload = function () {
     google.accounts.id.initialize({
         client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
@@ -81,9 +52,7 @@ window.onload = function () {
 
 <!-- Sign in with google button -->
     <div id="buttonDiv"></div>
-
 </div>
-
 
 <?php 
 //VERIFY USER CREDENTIALS - CUSTOM LOGIN
@@ -110,17 +79,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($row = mysqli_fetch_assoc($result)) {
         $storedPassword = $row['pass'];
+        $userType = $row['usertype'];
+        $name = $row['firstName'];
+        $userID = $row['userID'];
 
-        //get the userType for customized experience
-        $userType = $row['userType'];
-
-        //!!! USE THE LINE BELOW ONCE PASSWORDS ARE HASHED!!!
-        //password_verify($enteredPassword, $storedPassword
-
-        if ($enteredPassword == $storedPassword) {
+        if (password_verify($enteredPassword, $storedPassword)) {
             session_start(); 
-            $_SESSION['userType'] = $userType;
+
+            //Store session variables to customize user experience
+            $_SESSION['usertype'] = $userType;
             $_SESSION['username'] = $user;
+            $_SESSION['name'] = $name;
+            $_SESSION['userID'] = $userID;
+
             //Redirect user back to home page
             header('Location: ../index.php');
             exit();
@@ -132,63 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     mysqli_close($con);
-}else {
-    if (isset($_POST['id_token'])) {
-        //HANDLE GOOGLE LOGIN
-        // Get the ID token from the POST data    
-        $id_token = $_POST['id_token'];
-    
-        // Decode the ID token to get user information using json_decode
-        $request = json_decode($id_token);
-
-        // Extract information from the decoded JSON data
-        $id_token = $request->id_token;
-        $name = $request->name;
-        $email = $request->email;
-        // Decode the ID token to get user information using json_decode
-        // $decoded_token = json_decode(base64_decode(str_replace(['-', '_'], ['+', '/'], explode('.', $id_token)[1])), true);
-        
-        // $user_email = $decoded_token['email'];
-        
-                // Database connection code
-                $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-    
-                //in case it fails
-                if (!$con) {
-                    die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
-                }
-            
-                //check if the user exists already
-                // $user_email = $decoded_token['email'];
-    
-            // Check if the user exists in the database
-            $result = mysqli_query($con, "SELECT * FROM users WHERE email = '$user_email'");
-    
-            if ($row = mysqli_fetch_assoc($result)) {
-                // User exists, proceed with login
-                // Use $user_role to customize the user's experience
-                session_start(); 
-                $_SESSION['userType'] = $row['userType'];
-                $_SESSION['username'] = $row['username'];
-                //Redirect user back to home page
-                header('Location: ../index.php');
-                exit();
-    
-            } else {
-                // User does not exist, redirect to registration page
-                // header('Location: register.php?email='.$user_email);
-                // exit();
-                echo "User not in database";
-            }
-                
-                mysqli_close($con);
-            
-    } else {
-        // Handle the case where the POST data is not set
-        echo "Error: POST data not received.";
-    }
 }
-
 
 ?>
 

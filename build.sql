@@ -15,20 +15,24 @@ CREATE TABLE users(
     lastName varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     username varchar(50) NOT NULL,
-    pass varchar(50) NOT NULL,
+    pass varchar(250) NOT NULL,
     contactNum VARCHAR(13),
     user_location varchar(50),
     usertype varchar(20) CHECK (usertype IN ('recycler', 'manufacturer', 'individual_user')),
-    lat decimal(9,7),
-    lng decimal(10,7),
     PRIMARY KEY (userID)
 ) ENGINE=INNODB;
 
 
 CREATE TABLE recyclers(
     companyID int NOT NULL AUTO_INCREMENT,
-    companyName varchar(50) NOT NULL,
     userID int NOT NULL,
+    companyName varchar(50) NOT NULL,
+    cAddress varchar(50),
+    city varchar(50),
+    cState varchar(50),
+    zip int,
+    lat decimal(9,7),
+    lng decimal(10,7),
     PRIMARY KEY (companyID),
     FOREIGN KEY (userID) REFERENCES users(userID)
 ) engine=innodb;
@@ -45,6 +49,10 @@ CREATE TABLE manufacturers(
      manufacturerID int NOT NULL AUTO_INCREMENT,
      companyName varchar(50) NOT NULL,
      userID int NOT NULL,
+     cAddress varchar(50),
+     city varchar(50),
+     cState varchar(50),
+     zip int,
      PRIMARY KEY (manufacturerID),
      FOREIGN KEY (userID) REFERENCES users(userID)
 ) engine=innodb;
@@ -70,6 +78,7 @@ CREATE TABLE communities(
     tags varchar(50) NOT NULL,
     PRIMARY KEY (communityID)
 ) engine=innodb;
+
 
 CREATE TABLE user_community(
      userID int NOT NULL,
@@ -137,6 +146,18 @@ VALUES
   (24,"Keaton","Vincent","lectus@google.ca","kvincent","SQT44HKR6TP","(769)749-5611","P.O. Box 570, 6358 Et Street","recycler"),
   (25,"Kaye","Lawrence","ac.mi@protonmail.com","klawrence","UMW49GIH8MJ","(119)945-3846","P.O. Box 685, 1976 Placerat Av.","recycler");
 
+--Values for local manufacturers --
+  (26,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
+  (27,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
+  (28,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
+  (29,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
+  (30,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler"),
+  (31,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","(482)316-3347","Ap #526-5108 Facilisis. St.","recycler"),
+  (32,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
+  (33,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
+  (34,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
+  (35,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
+  (36,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler");
 
 INSERT INTO recyclers (companyID, companyName, userID)
 VALUES
@@ -222,6 +243,22 @@ VALUES
   (23,"Gravida Molestie Associates",23),
   (24,"Velit Limited",24),
   (25,"Ante LLC",25);
+
+
+-- Local Bloomington Residents -- 
+INSERT INTO manufacturers (manufacturerID, companyName, cAddress, city, cState, zip, userID)
+VALUES
+(26, 'Bloomington Iron & Metal Inc', '503 N Rogers St, Bloomington', 'Bloomington', 'Indiana', 47404, 26),
+(27, 'Bloomington Recycling Center South', '400 W Dillman Rd, Bloomington', 'Bloomington', 'Indiana', 47403, 27),
+(28, 'Ellettsville Recycling Center', '6200 Mathews Dr, Ellettsville', 'Ellettsville', 'Indiana', 47429, 28),
+(29, 'Hoosier Disposal', '6660 S Old State Rd 37, Bloomington', 'Bloomington', 'Indiana', 47401, 29),
+(30, "JB\'s Salvage, Inc", '1803 Fountain Dr, Bloomington', 'Bloomington', 'Indiana', 47404, 30),
+(31, 'MCSWMD - Westside Recycling Center', '341 N Oard Rd, Bloomington', 'Bloomington', 'Indiana', 47404, 31),
+(32, 'Monroe County Solid Waste - The District', '3400 S Walnut St, Bloomington', 'Bloomington', 'Indiana', 47401, 32),
+(33, 'Northeast Recycling Center', '6015 E State Rd 45, Bloomington', 'Bloomington', 'Indiana', 47408, 33),
+(34, 'Republic Services', '6660 IN-37, Bloomington', 'Bloomington', 'Indiana', 47404, 34),
+(35, 'Rumpke - Monroe County Resource Recovery Facility', '5220 S Production Dr, Bloomington', 'Bloomington', 'Indiana', 47403, 35),
+(36, 'ecoATM', '3313 IN-45, Bloomington', 'Bloomington', 'Indiana', 47408, 36);
 
 
 INSERT INTO materials (materialID, quantity, materialName, description, manufacturerID)

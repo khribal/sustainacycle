@@ -26,20 +26,26 @@
   </head>
 <body class="index">
 
-<?php include('includes/nav.php') ?>
-
-
-<!-- Registration Completed Notification-->
-<?php
+<?php 
+//Start the session so user has customized nav bar
 session_start();
+include('includes/nav.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+//Registration completed for new user
 if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) {
-    echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Registration successful! Welcome, ' . $_SESSION['username'] . '!</div>';
-    
+    echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Registration successful! Welcome, ' . $_SESSION['name'] . '!</div>';
     // Reset the flag to avoid showing the message on subsequent visits
     $_SESSION['registration_success'] = false;
+
+  //Add material sucessfully completed
+}elseif (isset($_SESSION['add_success'])){
+  echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;"> Material successfully added!</div>';
+  $_SESSION['add_success'] = false;
 }
 ?>
+
 
 
 <main role="main" class="index">
@@ -74,7 +80,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 
   <hr>
-</div> <!-- /container -->
+</div> 
 
 <!-- Google login -->
 <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -96,9 +102,9 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 
 <!-- Footer --> 
-<footer class="container mx-auto p-2 index">
-<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
-</footer>
+<?php 
+include('includes/footer.php');
+?>
 
 <!-- JS folder --> 
 <script src="js/confirm-logout.js"></script>

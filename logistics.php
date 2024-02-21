@@ -7,11 +7,11 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- stacked bar cdn links -->
+    <!-- <script src=”https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js”>   </script>
+    <script src=”https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js”>   </script>  -->
 
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
@@ -123,33 +123,31 @@ $conn->close();
 ?>
 
 <div>
-<div class="container px-4 mx-auto p-1 container-charts">
-    <h1 class="log">Textile Recycling Logistics Overview</h1>
-    <p class="log-lead">Welcome to our Textile Recycling Logistics Overview page, where we provide a comprehensive view of the journey your textile donations take within our recycling ecosystem. Explore detailed graphs and insightful data visualizations showcasing manufacturers' generous contributions, recyclers' acceptance of various textile quantities, the evolving pattern of donations over time, and a breakdown of the types of textiles generously given by our community. Gain valuable insights into the impact of textile recycling on sustainability and contribute to a greener, more eco-friendly future. Join us on this visual journey through the logistics of textile recycling, illustrating the positive influence each donation makes in our collective effort to promote environmental responsibility.</p>
-
+<div class="heading">
+    <h1>Textile Recycling Logistics Overview</h1>
+    <p>Welcome to our Textile Recycling Logistics Overview page, where we provide a comprehensive view of the journey your textile donations take within our recycling ecosystem. Explore detailed graphs and insightful data visualizations showcasing manufacturers' generous contributions, recyclers' acceptance of various textile quantities, the evolving pattern of donations over time, and a breakdown of the types of textiles generously given by our community. Gain valuable insights into the impact of textile recycling on sustainability and contribute to a greener, more eco-friendly future. Join us on this visual journey through the logistics of textile recycling, illustrating the positive influence each donation makes in our collective effort to promote environmental responsibility.</p>
+</div class="container-charts">
 
         <!-- Horizontal bar chart -->
         
             <div class=horiz-parent>
                     <!--Manufacturer-->
                 <div class="horiz-chart">
-                    <h2 class="log">Manufacturer Donated Textiles</h2>
-                    <p class="log">Here you will find some of the manufacturers who have donated textiles, ranked by those who donated the most according to our database.</p>
+                    <h2>Manufacturer Donated Textiles</h2>
+                    <p>Here you will find some of the manufacturers who have donated textiles, ranked by those who donated the most according to our database.</p>
                     <div style="width: 800px;"><canvas id="chart-space"></canvas></div>
                 </div>
                     <!--Recycler-->
-            </div>
-            <div class=horiz-parent>
-                <div class="horiz-chart">
-                    <h2 class="log">Recycler Accepted Textiles</h2>
-                    <p class="log">Here you will find some of the recyclers who have accepted textiles, ranked by those who accepted the most according to our database.</p>
+                    <div class="horiz-chart">
+                    <h2>Recycler Accepted Textiles</h2>
+                    <p>Here you will find some of the recyclers who have accepted textiles, ranked by those who accepted the most according to our database.</p>
                     <div style="width: 800px;"><canvas id="chart-space1"></canvas></div>
-                </div>
+                    </div>
             </div>
         <!--Line chart -->
         <div class="line-parent">
-            <h2 class="log">Textiles recycled over time</h2>
-            <p class="log">Below is a graph of the quantities of textiles recycled, per the data we have kept historically.</p>
+            <h2>Textiles recycled over time</h2>
+            <p>Below is a graph of the quantities of textiles recycled, per the data we have kept historically.</p>
             <div class="chart-view">
                 <canvas id="lineChartCanvas" width="573" height="286"
                 style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
@@ -158,12 +156,61 @@ $conn->close();
 
         <!-- Pie chart -->
         <div class="pie-parent">
-            <h2 class="log">Types of textiles recycled</h2>
-            <p class="log">In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each type of material. The quantity is the amount in lbs that have been recycled since the creation of our platform.</p>
+            <h2>Types of textiles recycled</h2>
+            <p>In the pie chart below, we have tracked all the different types of textiles that have been recycled, so you can see the proportions of each type of material. The quantity is the amount in lbs that have been recycled since the creation of our platform.</p>
             <div style="width: 800px;"><canvas id="chart-pie"></canvas></div>
         </div>
+
+      
+    <div> 
+        <canvas id="matCanv"></canvas> 
+    </div> 
+
+
+<!--   
+ Stacked bar 
+    <script> 
+        var myContext = document.getElementById( 
+            "stackedChartID").getContext('2d'); 
+        var myChart = new Chart(myContext, { 
+            type: 'bar', 
+            data: { 
+                labels: ["bike", "car", "scooter",  
+                    "truck", "auto", "Bus"], 
+                datasets: [{ 
+                    label: 'worst', 
+                    backgroundColor: "blue", 
+                    data: [17, 16, 4, 11, 8, 9], 
+                }, { 
+                    label: 'Okay', 
+                    backgroundColor: "green", 
+                    data: [14, 2, 10, 6, 12, 16], 
+                }, { 
+                    label: 'bad', 
+                    backgroundColor: "red", 
+                    data: [2, 21, 13, 3, 24, 7], 
+                }], 
+            }, 
+            options: { 
+                plugins: { 
+                    title: { 
+                        display: true, 
+                        text: 'Stacked Bar chart for pollution status' 
+                    }, 
+                }, 
+                scales: { 
+                    x: { 
+                        stacked: true, 
+                    }, 
+                    y: { 
+                        stacked: true 
+                    } 
+                } 
+            } 
+        }); 
+    </script>  -->
 </div>
-</div>
+  
         <!-- Link to charts.js extension -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
@@ -190,8 +237,53 @@ $conn->close();
     import { createPieChart } from './js/charts.js';
     var dataFromPHP3 = <?php echo $jsonResult3; ?>;
     createPieChart(dataFromPHP3.map(entry => entry.quantity), dataFromPHP3.map(entry => entry.materialName));
-</script>
 
+    //Material bar
+    import { materialBar } from './js/charts.js';
+    var dataFromPHPMATERIAL = <?php echo $jsonResult3; ?>;
+    materialBar(dataFromPHPMATERIAL.map(entry => entry.quantity), dataFromPHPMATERIAL.map(entry => entry.materialName));
+
+</script>
+<!-- 
+<script>
+    var myContext = document.getElementById( 
+            "stackedChartID").getContext('2d'); 
+        var myChart = new Chart(myContext, { 
+            type: 'bar', 
+            data: { 
+                labels: ["bike", "car", "scooter",  
+                    "truck", "auto", "Bus"], 
+                datasets: [{ 
+                    label: 'worst', 
+                    backgroundColor: "blue", 
+                    data: [17, 16, 4, 11, 8, 9], 
+                }, { 
+                    label: 'Okay', 
+                    backgroundColor: "green", 
+                    data: [14, 2, 10, 6, 12, 16], 
+                }, { 
+                    label: 'bad', 
+                    backgroundColor: "red", 
+                    data: [2, 21, 13, 3, 24, 7], 
+                }], 
+            }, 
+            options: { 
+                plugins: { 
+                    title: { 
+                        display: true, 
+                        text: 'Stacked Bar chart for pollution status' 
+                    }, 
+                }, 
+                scales: { 
+                    x: { 
+                        stacked: true, 
+                    }, 
+                    y: { 
+                        stacked: true 
+                    } 
+                } 
+            } 
+        }); 
+</script> -->
 </body>
 </html>
-

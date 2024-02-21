@@ -1,4 +1,3 @@
-
 //HORIZONTAL BAR CHART
 export function createHorizontalBarChart(labels, dataset, chartspace) {
   // Set up data for the chart
@@ -78,6 +77,7 @@ export function createPieChart(quantity, materialName) {
 
 
 //LINE CHART
+
 export function createLine(quantity, labels){
 
 const dataForChart = {
@@ -99,5 +99,39 @@ const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2
 
 // Create the line chart
 new Chart(lineChartCanvas, lineChartConfig);
+}
 
+
+
+
+//BAR for material types
+export function materialBar(user_data, user_labels){
+ 
+  const matData = {
+    labels: user_labels,
+    datasets: [{
+      label: 'Material',
+      data: user_data,
+    }]
+  };
+ 
+ 
+  const configuringBar = {
+    type: 'bar',
+    data: matData,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+  
+
+  
+const materialCanvas = document.getElementById('matCanv').getContext('2d');
+
+// Create the line chart
+new Chart(materialCanvas, configuringBar);
 }

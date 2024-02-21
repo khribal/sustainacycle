@@ -46,19 +46,18 @@
         $phone = $_POST["tele"];
         $userType = $_POST["user_type"];
 
-        //Adjust values for database 
-        if ($userType == 'Recycling company'){
+        //Adjust value format for database 
+        if ($userType == 'recycler'){
             $userType = 'recycler';
-        } elseif ($userType == 'Manufacturer'){
+        } elseif ($userType == 'manu'){
             $userType = 'manufacturer';
         }
         else{
             $userType = 'individual_user';
         }
 
-
-        //!!! ADD PASSWORD ENCRYPTION HERE //
-
+        //HASH USER PASSWORD
+        $pass_hashed = password_hash($pass, PASSWORD_BCRYPT);
 
         // Database connection code
         $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -69,7 +68,7 @@
     
     
         $insertQuery = "INSERT INTO users (firstName, lastName, email, username, pass, contactNum, userType)
-        VALUES ('$fname', '$lname', '$email', '$username', '$pass', '$phone', '$userType')";
+        VALUES ('$fname', '$lname', '$email', '$username', '$pass_hashed', '$phone', '$userType')";
     
         $result = mysqli_query($con, $insertQuery);
     
@@ -78,16 +77,35 @@
             exit();
         } else {
             session_start(); 
+            //Grab the newly created user ID
+            $userID = mysqli_insert_id($con);
+
+            //set session vars for customized experience, same as login.php
             $_SESSION['username'] = $username;
+            $_SESSION['usertype'] = $userType;
+            $_SESSION['name'] = $fname;
+            $_SESSION['userID'] = $userID;
+            
+            if($_SESSION['usertype'] == 'recycler'){
+                header('Location: recycler.php');
+                exit();
+            }
+            elseif($_SESSION['usertype'] == 'manufacturer'){
+                header('Location: manu.php');
+                exit();
+            }
+            else{
             $_SESSION['registration_success'] = true; // Set a success flag
             //Redirect user back to home page
             header('Location: ../index.php');
             exit();
+            }
         }
     
     
         mysqli_close($con);
     }
 ?>
+
 </body>
 </html>

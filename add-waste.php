@@ -1,3 +1,6 @@
+<?php 
+ob_start(); // Start output buffering
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,17 +16,16 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<?php include('includes/nav.php'); ?>
+<?php 
+include('includes/nav.php'); 
+?>
 
 <div class="container px-4 mx-auto p-2">
   <h1 class="video">Add Waste</h1>
   <p class="video">Enter the information below to add available waste to our site.</p>
 
 
-  <form id="wasteForm" action="process-waste.php" method="POST">
-    <label for="manufacturerID" class="add">Manufacturer ID:</label><br>
-    <input type="text" id="manufacturerID" name="manufacturerID"><br><br>
-
+  <form id="wasteForm" action="add-waste.php" method="POST">
     <label for="materialName" class="add">Material Name:</label><br>
     <select id="materialName" name="materialName">  
       <option value="" class="add">Select Material</option>
@@ -42,7 +44,6 @@
           }
         }
         $conn->close();
-
         ?>
     </select><br><br>
 
@@ -84,5 +85,56 @@
       }
     });
   </script>
+
+
+<!-- PROCESS FORM FOR ADDING WASTE -->
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $materialName = $_POST["materialName"];
+    $quantity = $_POST["quantity"];
+    $description = $_POST["description"];
+
+    if (empty($materialName) || empty($quantity) || empty($description)) {
+        echo "All fields must be filled.";
+    } else {
+        // Grab the user ID from the session
+        $userID = $_SESSION['userID'];
+
+        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        // Use the user ID to find the manufacturer ID
+        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID='$userID'";
+        $manuIDResult = mysqli_query($conn, $manuIDQuery);
+
+        if ($manuIDResult) {
+            $row = mysqli_fetch_assoc($manuIDResult);
+            
+            $manufacturerID = $row['manufacturerID'];
+
+            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ('$manufacturerID', '$materialName', '$quantity', '$description')";
+            
+            // Insert form results into the database
+            $result = mysqli_query($conn, $sql);
+            
+            mysqli_close($conn); // Close the database connection
+
+            if ($result) {
+                $_SESSION['add_success'] = true; // Set a success flag
+                header("Location: index.php");
+                exit();
+            }
+        } else {
+            echo "Error: " . $manuIDQuery . "<br>" . $conn->error;
+        }
+    }
+}
+?>
+
+<?php ob_end_flush(); // Flush the output buffer and send it to the browser ?>
+
 </body>
 </html>
