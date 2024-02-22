@@ -74,7 +74,7 @@
               // User is logged in
               echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="u_profile.php">Profile</a>';
               if ($_SESSION['usertype'] == 'individual_user'){
-                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./communities/user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               else{
                 echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';

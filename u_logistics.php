@@ -18,7 +18,9 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
+//get session vars
 $userID = $_SESSION['userID'];
+$usertype = $_SESSION['usertype'];
 
 $userDonations = "SELECT m.materialName, SUM(t.quantity) AS totalQuantity
 FROM materials AS m
@@ -26,7 +28,7 @@ JOIN manufacturers AS ma ON ma.manufacturerID = m.manufacturerID
 JOIN transactions AS t ON t.materialID = m.materialID
 JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
 JOIN users AS u ON u.userID = ut.userID
-WHERE u.userID = $userID
+WHERE u.userID = $userID AND t.status='Completed'
 GROUP BY m.materialName
 ORDER BY totalQuantity DESC";
 
@@ -50,7 +52,7 @@ JOIN manufacturers AS ma ON ma.manufacturerID = m.manufacturerID
 JOIN transactions AS t ON t.materialID = m.materialID
 JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
 JOIN users AS u ON u.userID = ut.userID
-WHERE u.userID = $userID
+WHERE u.userID = $userID AND t.status='Completed'
 order by t.transactionDate";
 
 $resultUser = $conn->query($userDonationsOverTime);
@@ -71,6 +73,7 @@ $jsonUserDon = json_encode($userDon);
 //all donations, so you can compare yourself
 $allDonations = "SELECT sum(quantity) as quantity, transactionDate
 FROM transactions
+where status = 'Completed'
 GROUP BY transactionDate
 order by transactionDate";
 
@@ -93,7 +96,7 @@ from materials as m
 join transactions as t on t.materialID=m.materialID
 join user_transaction as ut on ut.transactionID=t.transactionID
 join users as u on ut.userID=u.userID
-where u.userID=$userID";
+where u.userID=$userID AND t.status='Completed'";
 
 
 $resultAvg = $conn->query($yourDonations);
@@ -115,7 +118,7 @@ FROM (
     FROM transactions AS t
     JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
     JOIN users AS u ON u.userID = ut.userID
-    WHERE u.usertype = 'individual_user'
+    WHERE u.usertype= '$usertype' AND t.status='Completed'
     GROUP BY u.userID
 ) AS userAverages";
 
@@ -132,43 +135,75 @@ while($row = $resultAllAvg->fetch_assoc()){
 //convert to json
 $jsonAllAvg = json_encode($allAvg);
 
+//find sum of total donations completed!
+$totalDonations = "SELECT sum(quantity) as quantity from transactions where status='Completed'";
+$totalDonResult = $conn -> query($totalDonations);
+
+$totalDon = array();
+while ($row = $totalDonResult->fetch_assoc()){
+    $totalDon[] = array(
+        'allDonations' => $row['quantity']
+    );
+}
+
+//convert to json
+$jsonTotalDonations = json_encode($totalDon);
 
 //close conn
 $conn->close();
 ?>
 
+<!--Chart container -->
+<div class="container">
+  <h4>Our Impact</h4>
+  <p>Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability.
+</p>
 
 <div class="container">
-<!-- total materials recycled -->
-<div style="width: 800px;"><canvas id="chart-space"></canvas></div>
-
-<!-- mixed line/bar chart -->
-<div style="width: 800px;"><canvas id="mixed-chart"></canvas></div>
-
-
-<select id="yearSelector">
-    <option value="">Select Year</option>
-<?php 
-//connect to db
-$conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-//select each year 
-$getYear = "SELECT DISTINCT Year(t.transactionDate) as transYear from transactions as t join user_transaction as ut on ut.transactionID=t.transactionID join users as u on u.userID=ut.userID where u.userID=$userID order by transYear";
-$yearResult = $conn->query($getYear);
-//add results to dropdown
-while($row = $yearResult->fetch_assoc()){
-    echo '<option value=' . $row['transYear'] . '>' . $row['transYear'] . '</option>';
-}
-//close conn
-$conn->close();
-?>
-
-</select>
-
-<div><canvas id="compare-bar"></canvas></div>
-
+  <div class="row align-items-start">
+    <div class="col">
+    <!-- total materials -->
+        <h5>Total Textiles Recycled</h5>
+        <p>This horizontal bar chart illustrates the pounds of textiles recycled for each material category, showcasing your overall impact.</p>
+    <canvas id="chart-space"></canvas>
+    </div>
+    <div class="col">
+        <h5>Textile Donations Over Time</h5>
+        <p>Track the progression of your textile donations alongside the overall donations over time. The chart combines a bar graph for each donation and a line graph for the cumulative total, providing a comprehensive view.</p>
+    <canvas id="mixed-chart"></canvas>
+        <select id="yearSelector">
+            <option value="">Select Year</option>
+        <?php 
+        //connect to db
+        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+        if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+        }
+        //select each year 
+        $getYear = "SELECT DISTINCT Year(t.transactionDate) as transYear from transactions as t join user_transaction as ut on ut.transactionID=t.transactionID join users as u on u.userID=ut.userID where u.userID=$userID order by transYear";
+        $yearResult = $conn->query($getYear);
+        //add results to dropdown
+        while($row = $yearResult->fetch_assoc()){
+            echo '<option value=' . $row['transYear'] . '>' . $row['transYear'] . '</option>';
+        }
+        //close conn
+        $conn->close();
+        ?>
+        </select>
+    </div>
+  </div>
+  <div class="row align-items-start">
+    <div class="col">
+        <h5>Comparison of Your Donations</h5>
+        <p>Compare your individual textile donations with the average donations made by other users. This vertical bar chart helps you understand how your efforts align with the broader community.</p>
+    <canvas id="compare-bar"></canvas>
+    </div>
+    <div class="col">
+        <h5>Distribution of Textile Donations</h5>
+        <p>Explore the composition of textile donations with this pie chart. It illustrates the proportion of your contributions compared to the total donations, offering a visual representation of your impact within the larger context.</p>
+    <canvas id="pie-canvas"></canvas>
+    </div>
+  </div>
 </div>
 
 
@@ -183,18 +218,45 @@ $conn->close();
 
 <!-- render charts -->
 <script type="module">
-    //amt of materials donated
-    import { createHorizontalBarChart } from './js/charts.js';
-    var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space');
+    //import necessary charts
+    import { createHorizontalBarChart, mixedChart, vertBarSpecific, createPieChart } from './js/charts.js';
 
-    
-    import {mixedChart} from './js/charts.js';
-        //get chart values
+
+    //Your Amount Donated Chart
+    var dataFromPHP = <?php echo $jsonResult; ?>;
+    // Check if dataFromPHP is null
+    if (dataFromPHP === null || dataFromPHP.length === 0) {
+        // If null, display a message on the chart canvas
+        const chartCanvas1 = document.getElementById('chart-space');
+        const messageDiv1 = document.createElement('div');
+        messageDiv1.innerHTML = '<p>No information to display yet.</p>';
+        chartCanvas1.parentNode.replaceChild(messageDiv1, chartCanvas1);
+
+    } else {
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space');
+    }
+    //Mixed Chart
     var mixedUser = <?php echo $jsonUserDon; ?>;
     var mixedAll = <?php echo $jsonAllDon; ?>;
     
-    mixedChart(mixedAll.map(entry => entry.transactionDate), mixedUser.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
+    console.log(mixedUser);
+    if (mixedUser === null || mixedUser.length === 0) {
+        var yearBut = document.getElementById('yearSelector');
+        // Hide the year selector button
+        yearBut.style.display = 'none';
+
+        // If null, display a message on the chart canvas
+        const chartCanvas = document.getElementById('mixed-chart');
+        const messageDiv = document.createElement('div');
+        messageDiv.innerHTML = '<p>No information to display yet.</p>';
+        chartCanvas.parentNode.replaceChild(messageDiv, chartCanvas);
+
+    } else {
+            var yearBut = document.getElementById('yearSelector');
+            // Show the year selector button
+            yearBut.style.display = 'block';
+            
+            mixedChart(mixedAll.map(entry => entry.transactionDate), mixedUser.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
             mixedAll.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
             "Your donations", "All donations");
 
@@ -217,21 +279,31 @@ $conn->close();
             mixedAll.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
             "Your donations", "All donations");
         }
-});
+    });
+}
 
 
-
-//COMPARE USERS TO OTHER USERS
-import { regBar } from './js/charts.js';
+//COMPARE USERS TO OTHER USERS, bar chart
 var yourAvg = <?php echo $jsonYourAvg; ?>;
 var allAvg = <?php echo $jsonAllAvg; ?>;
 
+var userType
+if ('<?php echo $usertype ?>' === 'individual_user'){
+    userType = 'individual users';
+}
+else{
+    userType = 'manufacturers';
+}
 
-regBar(yourAvg.map(entry => entry.uQuantity), allAvg.map(entry => entry.allQuantity));
+vertBarSpecific("Your donations", "Avg donations by other " + userType, yourAvg.map(entry => entry.uQuantity), allAvg.map(entry => entry.allQuantity), 'compare-bar');
 
 
-
+//Pie chart, your total compared to whole total
+var allTotal = <?php echo $jsonTotalDonations; ?>;
+createPieChart(yourAvg.map(entry => entry.uQuantity), allTotal.map(entry => entry.allDonations), "pie-canvas");
 </script>
+
+
 
 <!-- Footer and bootstrap documentation -->
 <?php 

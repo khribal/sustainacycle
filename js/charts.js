@@ -1,4 +1,4 @@
-//HORIZONTAL BAR CHART
+///////////////HORIZONTAL BAR CHART
 export function createHorizontalBarChart(labels, dataset, chartspace) {
   // Set up data for the chart
   const data = {
@@ -23,7 +23,7 @@ export function createHorizontalBarChart(labels, dataset, chartspace) {
           responsive: true,
           plugins: {
               legend: {
-                  position: 'right',
+                  display: false,
               },
               title: {
                   display: false,
@@ -38,17 +38,102 @@ export function createHorizontalBarChart(labels, dataset, chartspace) {
 }
 
 
-// PIE CHART
+////////////////////VERTICAL BAR
+export function vertBar(vertLabels, vertPHPData, vertChartSpot){  
+  const vertData = {
+    labels: vertLabels,
+    datasets: [{
+      label: 'lbs Donated',
+      data: vertPHPData,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)'
+      ],
+      borderWidth: 1
+    }]
+  };
 
+  const vertConfig = {
+    type: 'bar',
+    data: vertData,
+    options: {
+      plugins: {
+        legend: {
+            display: false,
+        },
+        title: {
+            display: false,
+        }
+    },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+    // Create the chart instance
+    const vertNewChart = document.getElementById(vertChartSpot).getContext('2d');
+    new Chart(vertNewChart, vertConfig);
+}
+
+
+//another version of vertical bar (two different value sources)
+////////////////////VERTICAL BAR
+export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPData22, vertChartSpot2){  
+  const vertData2 = {
+    labels: [vertLabels1, vertLabels2],
+    datasets: [{
+      label: 'lbs Donated',
+      data: [vertPHPData2, vertPHPData22],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  const vertConfig2 = {
+    type: 'bar',
+    data: vertData2,
+    options: {
+      plugins: {
+        legend: {
+            display: false,
+        },
+        title: {
+            display: false,
+        }
+    },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+    // Create the chart instance
+    const vertNewChart2 = document.getElementById(vertChartSpot2).getContext('2d');
+    new Chart(vertNewChart2, vertConfig2);
+}
+
+
+///////////////// PIE CHART
 // Define a function to create a pie chart
-export function createPieChart(quantity, materialName) {
+export function createPieChart(userVal, allVal, pieCanvas) {
   const data = {
-    labels: materialName,
+    labels: ["Your textile donations (lbs)", "All textile donations (lbs)"],
     datasets: [
       {
-        label: 'Quantity (lbs)',
-        data: quantity,
-        backgroundColor: ['#FF6347', '#FFD700', '#ADFF2F', '#87CEEB', '#8A2BE2'],
+        data: [userVal, allVal],
+        backgroundColor: ['#FF6347', '#FFD700'],
       },
     ],
   };
@@ -63,28 +148,27 @@ export function createPieChart(quantity, materialName) {
           position: 'top',
         },
         title: {
-          display: true,
-          text: 'Donated Textiles by Type',
+          display: false,
         },
       },
     },
   };
 
   // Create the chart instance
-  const chartCanvas = document.getElementById('chart-pie').getContext('2d');
+  const chartCanvas = document.getElementById(pieCanvas).getContext('2d');
   new Chart(chartCanvas, config);
 }
 
 
-//LINE CHART
+////////////LINE CHART
 
-export function createLine(quantity, labels){
+export function createLine(quantityLine, labels, lineChartLocation){
 
 const dataForChart = {
     labels: labels,
     datasets: [{
     label: 'lbs of materials donated',
-    data: quantity,
+    data: quantityLine,
     fill: false,
     borderColor: 'rgb(75, 192, 192)',
     tension: 0.1
@@ -95,7 +179,7 @@ type: 'line',
 data: dataForChart,
 };
 
-const lineChartCanvas = document.getElementById('lineChartCanvas').getContext('2d');
+const lineChartCanvas = document.getElementById(lineChartLocation).getContext('2d');
 
 // Create the line chart
 new Chart(lineChartCanvas, lineChartConfig);
@@ -104,39 +188,7 @@ new Chart(lineChartCanvas, lineChartConfig);
 
 
 
-//BAR CHART for material types
-export function materialBar(user_data, user_labels){
- 
-  const matData = {
-    labels: user_labels,
-    datasets: [{
-      label: 'Material',
-      data: user_data,
-    }]
-  };
- 
- 
-  const configuringBar = {
-    type: 'bar',
-    data: matData,
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    },
-  };
-  
-const materialCanvas = document.getElementById('matCanv').getContext('2d');
-
-// Create the bar chart
-new Chart(materialCanvas, configuringBar);
-}
-
-
-
-//MIXED CHART  
+//////////MIXED CHART  
 let chartInstance = null;
 export function mixedChart(mixedLabels, mixedData, mixLineData, barLabel, lineLabel){
 

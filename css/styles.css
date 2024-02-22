@@ -8,6 +8,10 @@ index.php
     background-position: center;
 }
 
+.section2{
+    padding-top: 15em;
+}
+
 /*
 team.php
 */
@@ -83,3 +87,4 @@ h2 {
     flex-wrap: nowrap;
     justify-content: space-between;
 }
+

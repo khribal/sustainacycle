@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <?php include('./includes/boot-head.php');?>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +29,7 @@
 
 <?php 
 include('includes/nav.php');
+include('./includes/chart-data.php');
 
 //Registration completed for new user
 if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) {
@@ -53,19 +55,19 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 
 <main role="main" class="index">
 
-<article class="container index mx-auto p-2 mt-3">
-    <section class="index">
+<div class="container">
+<section class="index">
       <img src="logo.png" alt="logo" height="300px" width="300px">
       <h1 class="index">SustainaCycle</h1>
       <h4 class="index">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
       <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
   </section>
-</article>
+</div>
 
 
-<article class="container  mx-auto p-2">
-  <!-- Example row of columns -->
-  <section class="row">
+<div class="container">
+<h2>Our Sustainable Fashion Initiative</h2>
+<section class="row">
     <div class="col-md-4">
       <h2 class="index">Sustainability</h2>
       <p class="index">The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
@@ -79,11 +81,49 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
       <p class="index">The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
     </div>
 </section>
-</article>
+</div>
 
-
-  <hr>
-</div> 
+<!-- Sneak peek at logistics -->
+<div class="container">
+  <h4>Our Impact</h4>
+  <p>Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability. Check out our recycling logistics page in the navigation for more charts and information about the impact we have made since the launch of our site.
+</p>
+<!-- Container for graphs -->
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col">
+      <div>
+        <h4>Top Manufacturers' Impact</h4>
+        <p>Discover the leading manufacturers contributing to our sustainable fashion ecosystem. See who's making a significant impact through textile donations.</p>
+        <canvas id="manu-chart" class="chart-container"></canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <h4>Recycler Rankings</h4>
+        <p>Explore recyclers who embrace sustainability by accepting various textile quantities. Find out who leads in recycling efforts.</p>
+        <canvas id="recy-chart" class="chart-container"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row align-items-end">
+    <div class="col">
+    <div>
+      <h4>Textiles Recycled Timeline</h4>
+      <p>Track the evolving pattern of textile donations over time. Gain insights into the historical impact of your contributions.</p>
+      <canvas id="lineSpot" class="chart-container"></canvas>
+    </div>
+    </div>
+    <div class="col">
+      <div>
+        <h4>Diverse Textile Recycling</h4>
+        <p>Dive into the pie chart showcasing the variety of textiles recycled. Understand the proportions of each material, contributing to a more eco-friendly future.</p>
+        <canvas id="materialSpot" class="chart-container"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <!-- Google login -->
 <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -109,14 +149,37 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 include('includes/footer.php');
 ?>
 
-<!-- JS folder --> 
+<!-- JS files --> 
 <script src="js/confirm-logout.js"></script>
+    <!-- Link to charts.js extension -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/charts.js" type="module"></script>
+
+
+<!-- Call chart functions -->
+<script type="module">
+    //manufacturer
+    import { createHorizontalBarChart, createLine, vertBar } from './js/charts.js';
+    var dataFromPHP = <?php echo $jsonResult; ?>;
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.manufacturer), dataFromPHP.map(entry => entry.quantity), 'manu-chart');
+
+    //recycler
+    var dataFromPHP1 = <?php echo $jsonResult1; ?>;
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP1.map(entry => entry.quantity), 'recy-chart');
+
+    //textiles recycled over time
+    var dataFromPHP2 = <?php echo $jsonResult2; ?>;
+    createLine(dataFromPHP2.map(entry => entry.quantity), dataFromPHP2.map(entry => entry.transationDate), 'lineSpot');
+    
+    //materials chart
+    var dataFromPHP3 = <?php echo $jsonResult3; ?>;
+    vertBar(dataFromPHP3.map(entry => entry.materialName), dataFromPHP3.map(entry => entry.quantity), 'materialSpot');
+
+</script>
 
 
 <!-- Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<?php include('./includes/boot-script.php');?>
 
 <!-- Additional documentation for <main> portion of body -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

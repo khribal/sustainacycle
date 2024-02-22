@@ -17,7 +17,7 @@
 <?php 
 include('./includes/nav.php'); ?>
 
-<!-- Add user & communityID to db, redirect to community page they joined -->
+<!-- Add user & communityID to db, redirect to community page they join -->
 <?php
     // if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["community_id"])) {
         if (isset($_GET["community_id"])) {
