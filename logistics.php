@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- stacked bar cdn links -->
-    <!-- <script src=”https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js”>   </script>
-    <script src=”https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js”>   </script>  -->
-
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -64,11 +60,12 @@ order by t.transactionDate";
 $sql3 = "SELECT m.materialName, sum(m.quantity) as quantity
 from materials as m
 join manufacturers as ma on ma.manufacturerID=m.manufacturerID
-join users as u on u.userID=ma.userID
-join user_transaction as ut on u.userID=ut.userID
+JOIN transactions AS t ON t.materialID = m.materialID
+join user_transaction as ut on t.transactionID=ut.transactionID
+join users as u on u.userID=ut.userID
 where u.userID in (select userID from user_transaction)
 group by m.materialName
-order by (m.quantity)";
+order by sum(m.quantity) desc";
 
 $result = $conn->query($sql);
 $resultt = $conn->query($sqll);
@@ -166,49 +163,6 @@ $conn->close();
         <canvas id="matCanv"></canvas> 
     </div> 
 
-
-<!--   
- Stacked bar 
-    <script> 
-        var myContext = document.getElementById( 
-            "stackedChartID").getContext('2d'); 
-        var myChart = new Chart(myContext, { 
-            type: 'bar', 
-            data: { 
-                labels: ["bike", "car", "scooter",  
-                    "truck", "auto", "Bus"], 
-                datasets: [{ 
-                    label: 'worst', 
-                    backgroundColor: "blue", 
-                    data: [17, 16, 4, 11, 8, 9], 
-                }, { 
-                    label: 'Okay', 
-                    backgroundColor: "green", 
-                    data: [14, 2, 10, 6, 12, 16], 
-                }, { 
-                    label: 'bad', 
-                    backgroundColor: "red", 
-                    data: [2, 21, 13, 3, 24, 7], 
-                }], 
-            }, 
-            options: { 
-                plugins: { 
-                    title: { 
-                        display: true, 
-                        text: 'Stacked Bar chart for pollution status' 
-                    }, 
-                }, 
-                scales: { 
-                    x: { 
-                        stacked: true, 
-                    }, 
-                    y: { 
-                        stacked: true 
-                    } 
-                } 
-            } 
-        }); 
-    </script>  -->
 </div>
   
         <!-- Link to charts.js extension -->
@@ -239,51 +193,10 @@ $conn->close();
     createPieChart(dataFromPHP3.map(entry => entry.quantity), dataFromPHP3.map(entry => entry.materialName));
 
     //Material bar
-    import { materialBar } from './js/charts.js';
-    var dataFromPHPMATERIAL = <?php echo $jsonResult3; ?>;
-    materialBar(dataFromPHPMATERIAL.map(entry => entry.quantity), dataFromPHPMATERIAL.map(entry => entry.materialName));
+    // import { materialBar } from './js/charts.js';
+    // var dataFromPHPMATERIAL = <?php echo $jsonResult3; ?>;
+    // materialBar(dataFromPHPMATERIAL.map(entry => entry.quantity), dataFromPHPMATERIAL.map(entry => entry.materialName));
 
 </script>
-<!-- 
-<script>
-    var myContext = document.getElementById( 
-            "stackedChartID").getContext('2d'); 
-        var myChart = new Chart(myContext, { 
-            type: 'bar', 
-            data: { 
-                labels: ["bike", "car", "scooter",  
-                    "truck", "auto", "Bus"], 
-                datasets: [{ 
-                    label: 'worst', 
-                    backgroundColor: "blue", 
-                    data: [17, 16, 4, 11, 8, 9], 
-                }, { 
-                    label: 'Okay', 
-                    backgroundColor: "green", 
-                    data: [14, 2, 10, 6, 12, 16], 
-                }, { 
-                    label: 'bad', 
-                    backgroundColor: "red", 
-                    data: [2, 21, 13, 3, 24, 7], 
-                }], 
-            }, 
-            options: { 
-                plugins: { 
-                    title: { 
-                        display: true, 
-                        text: 'Stacked Bar chart for pollution status' 
-                    }, 
-                }, 
-                scales: { 
-                    x: { 
-                        stacked: true, 
-                    }, 
-                    y: { 
-                        stacked: true 
-                    } 
-                } 
-            } 
-        }); 
-</script> -->
 </body>
 </html>

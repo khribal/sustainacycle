@@ -1,3 +1,4 @@
+drop table if exists posts;
 drop table if exists articles;
 drop table if exists user_transaction;
 drop table if exists transactions;
@@ -74,7 +75,6 @@ CREATE TABLE communities(
     communityName varchar(50) NOT NULL,
     communityDescription TEXT NOT NULL,
     communityRules TEXT NOT NULL,
-    communityDescription TEXT not null,
     tags varchar(50) NOT NULL,
     PRIMARY KEY (communityID)
 ) engine=innodb;
@@ -86,7 +86,6 @@ CREATE TABLE user_community(
      FOREIGN KEY (userID) REFERENCES users(userID),
      FOREIGN KEY (communityID) REFERENCES communities(communityID)
 ) engine=innodb;
-
 
 
 CREATE TABLE transactions(
@@ -103,8 +102,10 @@ CREATE TABLE transactions(
 CREATE TABLE user_transaction(
      userID int NOT NULL,
      transactionID int NOT NULL,
+     recyclerID int NOT NULL,
      FOREIGN KEY (userID) REFERENCES users(userID),
-     FOREIGN KEY (transactionID) REFERENCES transactions(transactionID)
+     FOREIGN KEY (transactionID) REFERENCES transactions(transactionID),
+     foreign key (recyclerID) REFERENCES recyclers(companyID)
 ) engine=innodb;
 
 CREATE TABLE articles (
@@ -118,80 +119,100 @@ CREATE TABLE articles (
     article_text TEXT
 ) engine=innodb;
 
+
+CREATE TABLE posts (
+  postID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  title varchar(250),
+  content varchar(250),
+  like_count INT,
+  userID INT NOT NULL,
+  communityID INT NOT NULL,
+  FOREIGN KEY (userID) references users(userID),
+  FOREIGN KEY (communityID) references communities(communityID)
+);
+
+
+--individual users -- 
 INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, user_location, userType)
 VALUES
   (1,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
-  (2,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
+  (2,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","individual_user"),
   (3,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
   (4,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
-  (5,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler"),
-  (6,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","(482)316-3347","Ap #526-5108 Facilisis. St.","recycler"),
-  (7,"Micah","Rosales","risus.donec@hotmail.net","yrivera","HVG61QFO7AN","(624)731-4078","Ap #259-4007 Odio Street","recycler"),
-  (8,"Yoko","Rivera","libero.mauris@outlook.org","yrivera","VPJ56SKE4TY","(436)152-4706","Ap #904-491 Quisque Avenue","recycler"),
-  (9,"Alan","Butler","sed@hotmail.org","abutler","ZDI77INO1TS","(601)883-0795","1691 Curae Ave","manufacturer"),
+  (5,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","individual_user"),
+  (6,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","(482)316-3347","Ap #526-5108 Facilisis. St.","individual_user"),
+  (7,"Micah","Rosales","risus.donec@hotmail.net","yrivera","HVG61QFO7AN","(624)731-4078","Ap #259-4007 Odio Street","individual_user"),
+  (8,"Yoko","Rivera","libero.mauris@outlook.org","yrivera","VPJ56SKE4TY","(436)152-4706","Ap #904-491 Quisque Avenue","individual_user"),
+  (9,"Alan","Butler","sed@hotmail.org","abutler","ZDI77INO1TS","(601)883-0795","1691 Curae Ave","individual_user"),
   (10,"Gabriel","Moody","donec.fringilla.donec@outlook.edu","gmoody","HHB41VYL8HB","(285)187-7761","656-6317 Nisi. Street","individual_user"),
-  (11,"Anthony","Hobbs","placerat.velit.quisque@google.org","ahobbs","NRL47EWL5OY","(879)342-5716","684-588 Eget Street","recycler"),
-  (12,"Hamish","English","vitae.erat.vel@icloud.net","henglish","NBD27UKW6JI","(341)665-6067","Ap #551-8562 Fusce Ave","manufacturer"),
-  (13,"Fitzgerald","Gordon","ultricies@hotmail.com","fgordon","YAA14CEN9XC","(466)782-4882","2043 Ullamcorper Ave","recycler"),
+  (11,"Anthony","Hobbs","placerat.velit.quisque@google.org","ahobbs","NRL47EWL5OY","(879)342-5716","684-588 Eget Street","individual_user"),
+  (12,"Hamish","English","vitae.erat.vel@icloud.net","henglish","NBD27UKW6JI","(341)665-6067","Ap #551-8562 Fusce Ave","individual_user"),
+  (13,"Fitzgerald","Gordon","ultricies@hotmail.com","fgordon","YAA14CEN9XC","(466)782-4882","2043 Ullamcorper Ave","individual_user"),
   (14,"Wallace","Bean","vitae@hotmail.ca","wbean","VXW23LPP3SE","(948)681-6175","335-6999 Consequat, Ave","individual_user"),
-  (15,"Joy","Gentry","imperdiet.ullamcorper@google.couk","jgentry","IEE63UPS8KD","(516)510-5548","Ap #680-2485 Vel St.","recycler"),
+  (15,"Joy","Gentry","imperdiet.ullamcorper@google.couk","jgentry","IEE63UPS8KD","(516)510-5548","Ap #680-2485 Vel St.","individual_user"),
   (16,"Igor","Chen","tortor.nunc.commodo@outlook.net","ichen","YLY05PRE2HP","(744)351-2703","7691 Adipiscing St.","individual_user"),
-  (17,"Riley","Pittman","tincidunt.dui.augue@outlook.net","rpittman","ELF30HQA9VF","(828)961-6516","855-840 Dictum Rd.","manufacturer"),
-  (18,"Shad","Underwood","sodales.at.velit@aol.org","sunderwood","XYK94XOH3JK","(736)253-4713","Ap #773-7387 Magnis Street","manufacturer"),
-  (19,"Nayda","Rodriquez","praesent@google.com","nrodriquez","LOP32FTB3OC","(503)265-2037","396-1225 Donec Ave","manufacturer"),
-  (20,"Nadine","Hopper","odio.phasellus@icloud.com","nhopper","GRH47MXV3JN","(256)787-7639","5332 Ultrices Avenue","recycler"),
-  (21,"Maggie","Sanchez","orci.ut@icloud.com","msanchez","HBU33ABK5XY","(386)493-9187","P.O. Box 636, 9618 Vitae Rd.","recycler"),
-  (22,"Aiko","Douglas","aliquet.magna.a@icloud.org","adouglas","HGX69LCK7GH","(287)914-2946","Ap #814-4525 Pharetra Rd.","recycler"),
+  (17,"Riley","Pittman","tincidunt.dui.augue@outlook.net","rpittman","ELF30HQA9VF","(828)961-6516","855-840 Dictum Rd.","individual_user"),
+  (18,"Shad","Underwood","sodales.at.velit@aol.org","sunderwood","XYK94XOH3JK","(736)253-4713","Ap #773-7387 Magnis Street","individual_user"),
+  (19,"Nayda","Rodriquez","praesent@google.com","nrodriquez","LOP32FTB3OC","(503)265-2037","396-1225 Donec Ave","individual_user"),
+  (20,"Nadine","Hopper","odio.phasellus@icloud.com","nhopper","GRH47MXV3JN","(256)787-7639","5332 Ultrices Avenue","individual_user"),
+  (21,"Maggie","Sanchez","orci.ut@icloud.com","msanchez","HBU33ABK5XY","(386)493-9187","P.O. Box 636, 9618 Vitae Rd.","individual_user"),
+  (22,"Aiko","Douglas","aliquet.magna.a@icloud.org","adouglas","HGX69LCK7GH","(287)914-2946","Ap #814-4525 Pharetra Rd.","individual_user"),
   (23,"Anthony","Stevens","sed.pede@aol.ca","astevens","FOB75AKX5UR","(471)377-2276","Ap #548-3698 Donec Road","individual_user"),
-  (24,"Keaton","Vincent","lectus@google.ca","kvincent","SQT44HKR6TP","(769)749-5611","P.O. Box 570, 6358 Et Street","recycler"),
-  (25,"Kaye","Lawrence","ac.mi@protonmail.com","klawrence","UMW49GIH8MJ","(119)945-3846","P.O. Box 685, 1976 Placerat Av.","recycler");
+  (24,"Keaton","Vincent","lectus@google.ca","kvincent","SQT44HKR6TP","(769)749-5611","P.O. Box 570, 6358 Et Street","individual_user"),
+  (25,"Kaye","Lawrence","ac.mi@protonmail.com","klawrence","UMW49GIH8MJ","(119)945-3846","P.O. Box 685, 1976 Placerat Av.","individual_user");
 
---Values for local manufacturers --
-  (26,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
+--userID for local recyclers --
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, user_location, usertype)
+VALUES
+  (26,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","recycler"),
   (27,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
-  (28,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
-  (29,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
+  (28,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","recycler"),
+  (29,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","recycler"),
   (30,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler"),
   (31,"Erich","Gentry","lorem.ipsum.sodales@outlook.ca","egentry","OOC21PBP6EV","(482)316-3347","Ap #526-5108 Facilisis. St.","recycler"),
-  (32,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","individual_user"),
+  (32,"Branden","Rich","nulla.vulputate@outlook.net","rbranden","SVR50RYU0KN","(747)579-2386","P.O. Box 858, 7187 Integer Road","recycler"),
   (33,"Laura","Mann","enim@google.ca","lmann","WPV18GNV4MN","(660)389-8798","Ap #985-7507 Lectus. Avenue","recycler"),
-  (34,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","individual_user"),
-  (35,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","individual_user"),
+  (34,"Shelley","Love","morbi.tristique@yahoo.edu","slove","OZU75RYK9OU","(574)423-0552","994-8803 Faucibus Avenue","recycler"),
+  (35,"Illana","Wheeler","dapibus.quam.quis@icloud.edu","iwheeler","ICN85EBC3JP","(426)548-1815","P.O. Box 672, 6233 Ante. Ave","recycler"),
   (36,"Juliet","Mcleod","est@hotmail.com","jmcleod","UNB38WIP5DH","(445)818-5484","124-3288 Sollicitudin St.","recycler");
 
-INSERT INTO recyclers (companyID, companyName, userID)
+--userID for manufacturers --
+
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, user_location, usertype)
 VALUES
-  (1,"Mi Incorporated",1),
-  (2,"Purus Ac LLC",2),
-  (3,"Mus Proin Vel Ltd",3),
-  (4,"Eget Venenatis Ltd",4),
-  (5,"Risus Quisque Libero Incorporated",5),
-  (6,"Netus Et Corporation",6),
-  (7,"Duis Volutpat LLC",7),
-  (8,"Leo Elementum PC",8),
-  (9,"Consectetuer Adipiscing LLC",9),
-  (10,"Vestibulum Lorem PC",10),
-  (11,"Vulputate Risus LLC",11),
-  (12,"Vestibulum Mauris Industries",12),
-  (13,"Diam Inc.",13),
-  (14,"Amet PC",14),
-  (15,"Parturient Montes Nascetur PC",15),
-  (16,"Amet Nulla Donec Institute",16),
-  (17,"Cras PC",17),
-  (18,"Fermentum Metus Ltd",18),
-  (19,"Erat Eget Consulting",19),
-  (20,"Metus Facilisis LLP",20),
-  (21,"Egestas Aliquam Nec Associates",21),
-  (22,"Nunc LLP",22),
-  (23,"Sem Consequat PC",23),
-  (24,"Ante Vivamus Inc.",24),
-  (25,"Iaculis Nec Eleifend Corp.",25);
+(37, 'John', 'Doe', 'john.doe@example.com', 'john_doe_manufacturer', '$2y$10$7yp.JxC8DopO7l0iF5T3fehZbomg2MSBCe3mGkRY3AotbJiJ0WZaG', '(123)456-7890', 'Bloomington', 'manufacturer'),
+(38, 'Jane', 'Smith', 'jane.smith@example.com', 'jane_smith_manufacturer', '$2y$10$Q0CkWUowTdtByYwTS.r4Y.a13K1VZg.7LvcvTOS98rdaYr6pBDxMm', '(987)654-3210', 'Ellettsville', 'manufacturer'),
+(39, 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson_manufacturer', '$2y$10$Pfjs.Y2kOsDP7EEl0Y/JkebyjhwJpFdDn2Nf9BLtHTgk8eJn.TnIq', '(555)123-4567', 'Bloomington', 'manufacturer'),
+(40, 'Alice', 'Williams', 'alice.williams@example.com', 'alice_williams_manufacturer', '$2y$10$ABD/1WkUd.gdNvw1WVomT.GZY8Gcb3rWbfZG21cVJSJ5On8D5Hkty', '(123)987-6543', 'Ellettsville', 'manufacturer'),
+(41, 'Charlie', 'Brown', 'charlie.brown@example.com', 'charlie_brown_manufacturer', '$2y$10$1hoh6PKvQlFCBr05jHBR6OB/bL8GTqQrD/xOCO9x0NkLt3Wpg5qZa', '(555)567-8901', 'Bloomington', 'manufacturer'),
+(42, 'Eva', 'Davis', 'eva.davis@example.com', 'eva_davis_manufacturer', '$2y$10$2J8tVsBm2U7/siowvdkCfO48vUquDV1XGYd24tJADYeq5FQtdFY8W', '(123)456-7890', 'Ellettsville', 'manufacturer'),
+(43, 'Frank', 'Evans', 'frank.evans@example.com', 'frank_evans_manufacturer', '$2y$10$CTWc8U7t3TTTShYDX5qI/ezR1jQRj5/CoFY.KSRF2Xv6z8aM4qDlO', '(555)123-4567', 'Bloomington', 'manufacturer'),
+(44, 'Grace', 'Hall', 'grace.hall@example.com', 'grace_hall_manufacturer', '$2y$10$HXEmsJktmSC9G07eECp2QegddIitWlSOEwUxEH6.lIe0h7Hl3G2Ie', '(123)987-6543', 'Ellettsville', 'manufacturer'),
+(45, 'Henry', 'Irwin', 'henry.irwin@example.com', 'henry_irwin_manufacturer', '$2y$10$wGyKp3PSQK0OzpPRarVtIeDv6I90k2tuCvygqT6Xbz5GXv1nyfCte', '(555)567-8901', 'Bloomington', 'manufacturer'),
+(46, 'Ivy', 'Jones', 'ivy.jones@example.com', 'ivy_jones_manufacturer', '$2y$10$kAXeReVQjFd.dAT8PSm/1ehN8SYZG7YtTc8DysA4gKfRV1wMum2Hy', '(123)456-7890', 'Ellettsville', 'manufacturer');
+
+
+-- recyclers -- 
+INSERT INTO recyclers (companyID, companyName, cAddress, city, cState, zip, userID)
+VALUES
+(1, 'Bloomington Iron & Metal Inc', '503 N Rogers St, Bloomington', 'Bloomington', 'Indiana', 47404, 26),
+(2, 'Bloomington Recycling Center South', '400 W Dillman Rd, Bloomington', 'Bloomington', 'Indiana', 47403, 27),
+(3, 'Ellettsville Recycling Center', '6200 Mathews Dr, Ellettsville', 'Ellettsville', 'Indiana', 47429, 28),
+(4, 'Hoosier Disposal', '6660 S Old State Rd 37, Bloomington', 'Bloomington', 'Indiana', 47401, 29),
+(5, "JB\'s Salvage, Inc", '1803 Fountain Dr, Bloomington', 'Bloomington', 'Indiana', 47404, 30),
+(6, 'MCSWMD - Westside Recycling Center', '341 N Oard Rd, Bloomington', 'Bloomington', 'Indiana', 47404, 31),
+(7, 'Monroe County Solid Waste - The District', '3400 S Walnut St, Bloomington', 'Bloomington', 'Indiana', 47401, 32),
+(8, 'Northeast Recycling Center', '6015 E State Rd 45, Bloomington', 'Bloomington', 'Indiana', 47408, 33),
+(9, 'Republic Services', '6660 IN-37, Bloomington', 'Bloomington', 'Indiana', 47404, 34),
+(10, 'Rumpke - Monroe County Resource Recovery Facility', '5220 S Production Dr, Bloomington', 'Bloomington', 'Indiana', 47403, 35),
+(11, 'ecoATM', '3313 IN-45, Bloomington', 'Bloomington', 'Indiana', 47408, 36);
+
 
 INSERT INTO recycler_materials (companyID, acceptedMaterial)
 VALUES
   (1,"Silk"),
   (2,"Cotton"),
-  (8,"Polyester"),
+  (3,"Polyester"),
   (3,"Leather"),
   (5,"Cotton"),
   (6,"Wool"),
@@ -201,64 +222,35 @@ VALUES
   (10,"Cotton"),
   (11,"Linen"),
   (5,"Cotton"),
-  (13,"Satin"),
+  (3,"Satin"),
   (1,"Wool"),
-  (15,"Linen"),
-  (16,"Cotton"),
+  (5,"Linen"),
+  (6,"Cotton"),
   (6,"Linen"),
-  (18,"Cotton"),
-  (19,"Polyester"),
-  (20,"Cotton"),
-  (21,"Silk"),
-  (2,"Leather"),
-  (23,"Linen"),
+  (8,"Cotton"),
+  (9,"Polyester"),
+  (2,"Cotton"),
+  (1,"Silk"),
+  (8,"Leather"),
+  (3,"Linen"),
   (1,"Cotton"),
-  (25,"Silk");
+  (5,"Silk");
 
 
-INSERT INTO manufacturers (manufacturerID, companyName, userID)
-VALUES
-  (1,"Non Hendrerit Corporation",1),
-  (2,"Duis Risus Inc.",2),
-  (3,"Tincidunt Tempus Limited",3),
-  (4,"Placerat LLP",4),
-  (5,"Dolor Fusce Ltd",5),
-  (6,"Sed Sem Egestas Associates",6),
-  (7,"Arcu Vestibulum Foundation",7),
-  (8,"Orci Lacus Vestibulum Ltd",8),
-  (9,"Venenatis A Ltd",9),
-  (10,"Non Limited",10),
-  (11,"Est Ac Foundation",11),
-  (12,"Turpis LLP",12),
-  (13,"Egestas Hendrerit Associates",13),
-  (14,"Pellentesque LLC",14),
-  (15,"Diam Associates",15),
-  (16,"Sollicitudin Commodo Ipsum Foundation",16),
-  (17,"Lacus Associates",17),
-  (18,"Faucibus Orci Luctus Corp.",18),
-  (19,"Erat Eget PC",19),
-  (20,"Ornare Lectus LLC",20),
-  (21,"Quisque Industries",21),
-  (22,"Vel Institute",22),
-  (23,"Gravida Molestie Associates",23),
-  (24,"Velit Limited",24),
-  (25,"Ante LLC",25);
-
-
--- Local Bloomington Residents -- 
+--mock manufacturer values that correspond with users table -- 
 INSERT INTO manufacturers (manufacturerID, companyName, cAddress, city, cState, zip, userID)
 VALUES
-(26, 'Bloomington Iron & Metal Inc', '503 N Rogers St, Bloomington', 'Bloomington', 'Indiana', 47404, 26),
-(27, 'Bloomington Recycling Center South', '400 W Dillman Rd, Bloomington', 'Bloomington', 'Indiana', 47403, 27),
-(28, 'Ellettsville Recycling Center', '6200 Mathews Dr, Ellettsville', 'Ellettsville', 'Indiana', 47429, 28),
-(29, 'Hoosier Disposal', '6660 S Old State Rd 37, Bloomington', 'Bloomington', 'Indiana', 47401, 29),
-(30, "JB\'s Salvage, Inc", '1803 Fountain Dr, Bloomington', 'Bloomington', 'Indiana', 47404, 30),
-(31, 'MCSWMD - Westside Recycling Center', '341 N Oard Rd, Bloomington', 'Bloomington', 'Indiana', 47404, 31),
-(32, 'Monroe County Solid Waste - The District', '3400 S Walnut St, Bloomington', 'Bloomington', 'Indiana', 47401, 32),
-(33, 'Northeast Recycling Center', '6015 E State Rd 45, Bloomington', 'Bloomington', 'Indiana', 47408, 33),
-(34, 'Republic Services', '6660 IN-37, Bloomington', 'Bloomington', 'Indiana', 47404, 34),
-(35, 'Rumpke - Monroe County Resource Recovery Facility', '5220 S Production Dr, Bloomington', 'Bloomington', 'Indiana', 47403, 35),
-(36, 'ecoATM', '3313 IN-45, Bloomington', 'Bloomington', 'Indiana', 47408, 36);
+(1, 'ThreadStyle Boutique', '123 Main St, Bloomington', 'Bloomington', 'Indiana', 47401, 37),
+(2, 'VelvetVogue Creations', '456 Oak St, Ellettsville', 'Ellettsville', 'Indiana', 47429, 38),
+(3, 'UrbanChic Apparel', '789 Pine St, Bloomington', 'Bloomington', 'Indiana', 47403, 39),
+(4, 'DenimDreams Workshop', '101 Elm St, Bloomington', 'Bloomington', 'Indiana', 47404, 40),
+(5, 'EcoFashion Emporium', '202 Maple St, Ellettsville', 'Ellettsville', 'Indiana', 47404, 41),
+(6, 'SleekSilhouette Studios', '303 Cedar St, Bloomington', 'Bloomington', 'Indiana', 47401, 42),
+(7, 'BirchBoutique & Co.', '404 Birch St, Bloomington', 'Bloomington', 'Indiana', 47404, 43),
+(8, 'RedwoodRunway Creations', '505 Redwood St, Bloomington', 'Bloomington', 'Indiana', 47408, 44),
+(9, 'SpruceStyle Collections', '606 Spruce St, Bloomington', 'Bloomington', 'Indiana', 47401, 45),
+(10, 'WalnutWardrobe Workshop', '707 Walnut St, Bloomington', 'Bloomington', 'Indiana', 47404, 46)
+;
 
 
 INSERT INTO materials (materialID, quantity, materialName, description, manufacturerID)
@@ -266,28 +258,28 @@ VALUES
   (1, 752, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 9),
   (2, 436, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
   (3, 67, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 8),
-  (4, 840, 'Linen', 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.', 15),
-  (5, 95, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 15),
-  (6, 903, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 24),
+  (4, 840, 'Linen', 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.', 1),
+  (5, 95, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 5),
+  (6, 903, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 4),
   (7, 954, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 5),
   (8, 546, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 9),
-  (9, 22, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 13),
-  (10, 690, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 14),
+  (9, 22, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 3),
+  (10, 690, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 4),
   (11, 295, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
-  (12, 434, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 20),
+  (12, 434, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 2),
   (13, 682, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 3),
-  (14, 155, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 16),
-  (15, 239, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 19),
-  (16, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 10),
+  (14, 155, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 6),
+  (15, 239, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 9),
+  (16, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 1),
   (17, 523, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.',  5),
-  (18, 365, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 23),
-  (19, 990, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 25),
-  (20, 332, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 13),
-  (21, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 19),
-  (22, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 14),
+  (18, 365, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 3),
+  (19, 990, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 5),
+  (20, 332, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 3),
+  (21, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 9),
+  (22, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 4),
   (23, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 3),
-  (24, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 18),
-  (25, 1, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 20);
+  (24, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 8),
+  (25, 1, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 2);
 
 
 INSERT INTO communities (communityID, communityName, communityDescription, communityRules, tags)
@@ -318,7 +310,8 @@ VALUES
 (24, 'Waste Not', 'Take action against waste by promoting waste management strategies and eco-friendly practices in this community.', 'Follow community guidelines. Respect all members. No spam.', 'climate-action, waste-management, eco-friendly'),
 (25, 'Clean & Green', 'Join hands with sustainability enthusiasts to promote renewable energy, sustainability, and waste management.', 'Follow community guidelines. Respect all members. No spam.', 'renewable, sustainability, waste-management');
 
-  INSERT INTO user_community (userID, communityID) VALUES
+
+INSERT INTO user_community (userID, communityID) VALUES
   (12, 16),
   (10, 25),
   (10, 4),
@@ -372,32 +365,32 @@ INSERT INTO transactions (transactionID, transactionDate, quantity, status, mate
   (24, '2023-08-08', 39, 'In Progress', 19),
   (25, '2023-06-16', 89, 'Cancelled', 24);
 
-INSERT INTO user_transaction (userID, transactionID) VALUES
-  (19, 3),
-  (13, 13),
-  (4, 5),
-  (15, 21),
-  (9, 7),
-  (24, 22),
-  (15, 4),
-  (16, 21),
-  (7, 10),
-  (25, 25),
-  (18, 12),
-  (6, 6),
-  (5, 16),
-  (15, 11),
-  (6, 20),
-  (24, 19),
-  (2, 7),
-  (13, 9),
-  (7, 6),
-  (2, 17),
-  (14, 11),
-  (7, 3),
-  (13, 2),
-  (10, 20),
-  (18, 2);
+INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES
+  (19, 3, 1),
+  (13, 13, 2),
+  (4, 5, 3),
+  (15, 21, 4),
+  (9, 7, 5),
+  (24, 22, 6),
+  (15, 4, 7),
+  (16, 21, 8),
+  (7, 10, 9),
+  (25, 25, 10),
+  (18, 12, 11),
+  (6, 6, 2),
+  (5, 16, 1),
+  (15, 11, 4),
+  (6, 20, 5),
+  (24, 19, 6),
+  (2, 7, 7),
+  (13, 9, 7),
+  (7, 6, 8),
+  (2, 17, 9),
+  (14, 11, 2),
+  (7, 3, 2),
+  (13, 2, 2),
+  (10, 20, 3),
+  (18, 2, 4);
 
 INSERT INTO articles (title, author, date, tags, description, img, article_text) VALUES
 ("10 Tips for Sustainable Shopping", "Alex Green", "2024-02-01", "sustainable,shopping", 
@@ -430,3 +423,29 @@ INSERT INTO articles (title, author, date, tags, description, img, article_text)
 ("The Impact of Your Wardrobe Choices", "Alexa Dawn", "2024-03-15", "impact,wardrobe", 
 "Every choice in your wardrobe has an impact. Learn how to make choices that are better for the planet.", "img/the_impact_of_your_wardrobe_choices.jpeg",
 "The clothes we choose to buy and wear have far-reaching effects on our planet, from the water used in their production to the waste created when they're no longer wanted. Making conscious wardrobe choices can significantly reduce our environmental footprint. Here's how to make choices that are better for the planet:\n\n**1. Opt for Quality Over Quantity**: Investing in high-quality garments that last longer means you'll buy less over time, reducing waste and consumption.\n\n**2. Choose Sustainable Fabrics**: Look for clothing made from eco-friendly materials such as organic cotton, hemp, bamboo, or recycled fabrics. These materials have a lower environmental impact compared to conventional ones.\n\n**3. Support Ethical Brands**: Choose brands that are transparent about their manufacturing processes and committed to ethical practices, ensuring workers are treated fairly and environmental standards are met.\n\n**4. Embrace Second-Hand and Vintage**: Buying second-hand or vintage clothing not only saves pieces from ending up in landfill but also reduces the demand for new clothing production.\n\n**5. Care for Your Clothes**: Properly caring for your garments (washing in cold water, air drying, repairing instead of discarding) can extend their life, significantly reducing their environmental impact.\n\n**6. Recycle or Donate Unwanted Items**: Instead of throwing away clothes, consider donating them to charity or recycling them through textile recycling programs.\n\n**7. Educate Yourself and Others**: Stay informed about the impact of the fashion industry on the environment and share this knowledge with friends and family to encourage more sustainable habits.\n\n**8. Reduce, Reuse, Upcycle**: Before buying new, see if you can reuse or upcycle items you already own to meet your needs, reducing the need for new resources.\n\nEvery action counts, and by making informed, conscious decisions about our wardrobe choices, we can all contribute to a more sustainable and ethical fashion industry. It's not just about the clothes we wear but the legacy we leave behind for future generations.");
+
+
+--posts --
+
+INSERT INTO posts (title, content, like_count, userID, communityID) VALUES
+('The Environmental Impact of Fast Fashion', 'Fast fashion contributes to pollution and waste. Explore how our clothing choices affect the planet.', 0, 1, 1),
+('Recycling Textiles for a Greener Tomorrow', 'Learn about the benefits of recycling textiles and how it can lead to a more sustainable future. Join us in the recycling movement!', 0, 2, 2),
+('Sustainable Fashion Brands Making a Difference', 'Discover fashion brands that prioritize sustainability. Support ethical practices in the fashion industry.', 0, 3, 3),
+('Reducing Waste Through Clothing Upcycling', "Explore creative ways to upcycle old clothing. Let's turn fashion waste into unique and eco-friendly pieces!", 0, 4, 4),
+('The True Cost of Cheap Fashion', "Unravel the hidden costs behind cheap fashion. From exploitation to environmental damage, it's time to rethink our choices.", 0, 5, 5),
+('Tips for Eco-Friendly Wardrobes', 'Create an eco-friendly wardrobe with simple tips. Small changes in our clothing habits can lead to a big impact on the environment.', 0, 6, 6),
+('Empowering Sustainable Fashion Movements', 'Join the global movement for sustainable fashion. Learn about initiatives and individuals making a positive change.', 0, 7, 7),
+('Innovations in Textile Recycling', 'Explore the latest innovations in textile recycling. From advanced technologies to community-driven initiatives, discover the future of recycling.', 0, 8, 8),
+('Fashion Revolution: Changing Industry Norms', 'Be part of the fashion revolution. Advocate for transparency, ethical practices, and environmental responsibility in the fashion industry.', 0, 9, 9),
+('Upcycling Challenges: Transforming Textile Waste', 'Take on upcycling challenges to transform textile waste. Share your projects and inspire others to repurpose old clothing.', 0, 10, 10),
+('Circular Fashion: Redefining the Apparel Lifecycle', 'Discover the concept of circular fashion. Explore how a circular economy can reshape the apparel lifecycle for a more sustainable future.', 0, 11, 11),
+('Mindful Clothing Consumption Habits', "Practice mindful clothing consumption. From minimalism to conscious shopping, let's explore habits that promote a sustainable wardrobe.", 0, 12, 12),
+('Community Spotlight: Sustainable Fashion Enthusiasts', 'Highlighting individuals and communities dedicated to sustainable fashion. Share your stories and inspire others to join the movement.', 0, 13, 13),
+('Fashion and Climate Change: Connecting the Dots', 'Explore the link between fashion choices and climate change. Understand how our clothing decisions impact the global climate crisis.', 0, 14, 14),
+('Revolutionizing Fashion Events for Sustainability', 'Rethinking fashion events for a sustainable future. From eco-friendly runways to conscious exhibitions, discover ways to revolutionize the industry.', 0, 15, 15),
+('Art of Repair: Extending the Life of Clothing', 'Embrace the art of repair to extend the life of your clothing. Join the repair revolution and reduce fashion waste.', 0, 16, 16),
+('Fashion Education for Sustainable Choices', 'Empower yourself with fashion education for sustainable choices. Learn about materials, production processes, and ethical brands.', 0, 17, 17),
+('Textile Waste Challenges: Collaborative Solutions', 'Addressing textile waste challenges through collaboration. Join discussions on community-driven solutions and innovative approaches.', 0, 18, 18),
+('Fashion Industry Transparency Initiatives', 'Explore transparency initiatives in the fashion industry. Support brands committed to openness and ethical practices.', 0, 19, 19),
+('Local Efforts: Building Sustainable Fashion Communities', 'Celebrate local efforts in building sustainable fashion communities. Connect with like-minded individuals and organizations in your area.', 0, 20, 20);
+

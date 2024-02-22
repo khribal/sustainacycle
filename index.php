@@ -27,11 +27,7 @@
 <body class="index">
 
 <?php 
-//Start the session so user has customized nav bar
-session_start();
 include('includes/nav.php');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 //Registration completed for new user
 if (isset($_SESSION['registration_success']) && $_SESSION['registration_success']) {
@@ -40,9 +36,16 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     $_SESSION['registration_success'] = false;
 
   //Add material sucessfully completed
-}elseif (isset($_SESSION['add_success'])){
+}elseif (isset($_SESSION['add_success']) && $_SESSION['add_success']){
   echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;"> Material successfully added!</div>';
   $_SESSION['add_success'] = false;
+}
+
+//Login successful
+if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
+  echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Login successful! Welcome, ' . $_SESSION['name'] . '!</div>';
+  // Reset the flag to avoid showing the message on subsequent visits
+  $_SESSION['login_success'] = false;
 }
 ?>
 

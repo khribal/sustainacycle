@@ -91,6 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $user;
             $_SESSION['name'] = $name;
             $_SESSION['userID'] = $userID;
+            //set login success flag
+            $_SESSION['login_success'] = true; // Set a success flag
 
             //Redirect user back to home page
             header('Location: ../index.php');

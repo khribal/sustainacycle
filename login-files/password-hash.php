@@ -16,6 +16,8 @@ if ($result->num_rows > 0) {
         // Hash the password
         $hashedPassword = password_hash($row['pass'], PASSWORD_BCRYPT);
 
+        echo "User ID: " . $row['userID'] . ", Hashed Password: " . $hashedPassword . "<br>";
+
         // Update the database with the hashed password
         $updateSql = "UPDATE users SET pass = '$hashedPassword' WHERE userID = " . $row['userID'];
         $conn->query($updateSql);

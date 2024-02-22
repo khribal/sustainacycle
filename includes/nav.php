@@ -11,6 +11,9 @@
 
       <!-- Logged out and individual users have access to education tab -->
       <?php 
+      //get access to session vars
+      session_start();
+
         if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] == 'individual_user') {
             echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'education.php' ? ' active' : '') . '"><a class="nav-link" href="education.php">Learn About Sustainability</a></li>';
         }
@@ -22,14 +25,13 @@
             echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'waste.php' ? 'active' : '') . '"><a class="nav-link" href="waste.php">See Available Waste</a></li>';
         }
       ?> 
-  
 
-      <!-- Only allow individual users to join a community -->
-      <?php 
-        if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {
-            echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'join-community.php' ? 'active' : '') . '"><a class="nav-link" href="join-community.php">Join A Community</a></li>';
-        }
-      ?> 
+      <!-- Only allow individual users to see their impact -->
+        <?php 
+            if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {
+                echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'u_logistics.php' ? 'active' : '') . '"><a class="nav-link" href="u_logistics.php">Your Impact</a></li>';
+            }
+          ?> 
       
         <!-- Only show "Find Nearby Recycling" to users not logged in, individuals, or manufacturers -->
       <?php 
@@ -48,14 +50,35 @@
         echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'add-waste.php' ? 'active' : '') . '"><a class="nav-link" href="add-waste.php">Add textile waste</a></li>';
       }
     ?>
+
+          <!-- Only allow individual users to join a community -->
+          <?php 
+        if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {
+            echo '<div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Communities
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="./join-community.php">Join a Community</a>
+              <a class="dropdown-item" href="./user_communities.php">Your Communities</a>
+            </div>
+          </div>';
+        }
+      ?> 
     </ul>
+
     <!-- Login/logout buttons -->
     <ul class="navbar-nav ml-auto">
       <?php
-        session_start();
           if (isset($_SESSION['username'])) {
               // User is logged in
-              echo '<li class="nav-item"><a class="nav-link" href="login-files/logout.php">Logout</a></li>';
+              echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="u_profile.php">Profile</a>';
+              if ($_SESSION['usertype'] == 'individual_user'){
+                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./communities/user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+              }
+              else{
+                echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+              }
           } else {
               // User is not logged in
               echo '<li class="nav-item"><a class="nav-link" href="login-files/login.php">Log in</a></li>';

@@ -104,7 +104,7 @@ new Chart(lineChartCanvas, lineChartConfig);
 
 
 
-//BAR for material types
+//BAR CHART for material types
 export function materialBar(user_data, user_labels){
  
   const matData = {
@@ -128,10 +128,103 @@ export function materialBar(user_data, user_labels){
     },
   };
   
-
-  
 const materialCanvas = document.getElementById('matCanv').getContext('2d');
 
-// Create the line chart
+// Create the bar chart
 new Chart(materialCanvas, configuringBar);
+}
+
+
+
+//MIXED CHART  
+let chartInstance = null;
+export function mixedChart(mixedLabels, mixedData, mixLineData, barLabel, lineLabel){
+
+  //destroy and recreate chart when date filter is used
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+const mixData = {
+  labels: mixedLabels,
+  datasets: [{
+    type: 'bar',
+    label: barLabel,
+    data: mixedData,
+    borderColor: 'rgb(255, 99, 132)',
+    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+  }, {
+    type: 'line',
+    label: lineLabel,
+    data: mixLineData,
+    fill: false,
+    borderColor: 'rgb(54, 162, 235)'
+  }]
+};
+
+
+const configMixed = {
+  type: 'scatter',
+  data: mixData,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+};
+
+const chartSpot = document.getElementById('mixed-chart').getContext('2d');
+
+chartInstance = new Chart(chartSpot, configMixed);
+
+}
+
+
+export function regBar(compareUser1, compareUser2){
+
+  const compareData = {
+    labels: "label", // Only one set of labels for the entire chart
+    datasets: [{
+      label: 'Your lbs of textile recycled',
+      data: compareUser1,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgb(255, 99, 132)',
+      borderWidth: 1
+    }, {
+      label: 'Average lbs of recycled by other users',
+      data: compareUser2,
+      backgroundColor: 'rgba(255, 159, 64, 0.2)',
+      borderColor: 'rgb(255, 159, 64)',
+      borderWidth: 1
+    }]
+  };
+
+  const compareConfig = {
+    type: 'bar',
+    data: compareData,
+    options: {
+      scales: {
+        x: {
+          type: 'category', // Use a category scale for the x-axis
+          barThickness: 'flex',
+          barPercentage: 0.5, // Adjust the bar width (0.5 means 50% of the available space)
+          offset: true, // Set offset to true to center the bars
+          ticks: {
+            display: false,  // Set display to false to hide x-axis labels
+          }
+        },
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+
+
+const chartRegBar = document.getElementById('compare-bar').getContext('2d');
+
+new Chart(chartRegBar, compareConfig);
 }
