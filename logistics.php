@@ -6,12 +6,11 @@
     <title>Charts</title>
     <!-- Google fonts, bootstrap -->
     <?php 
-        include('./includes/google-fonts.php');
+        // include('./includes/google-fonts.php');
         include('./includes/boot-head.php');
     ?>
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
-
 
 </head>
 <body>
@@ -22,7 +21,6 @@
 
 
 <div class="container px-4 mx-auto p-1 container-charts">
-
 <div class="heading">
     <h1 class="log">Recycling Logistics Overview: Making an Impact on Sustainability</h1>
     <p class="log-lead">Welcome to our Recycling Logistics Overview, a visual representation of the impactful journey your textile donations take within our circular fashion ecosystem. At SustainaCycle, we are committed to transforming the fashion industry by bridging the gap between manufacturers, individual users, and recycling centers for textiles. Explore the insightful data visualizations below to witness the positive impact we've collectively made on sustainability.</p>
@@ -91,5 +89,10 @@
     createBubble(dataBubble, 'bubble-chart');
 
 </script>
+
+<?php 
+    include('./includes/footer.php');
+    include('./includes/boot-script.php');
+?>
 </body>
 </html>
