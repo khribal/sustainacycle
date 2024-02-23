@@ -229,11 +229,11 @@ $conn->close();
         // If null, display a message on the chart canvas
         const chartCanvas1 = document.getElementById('chart-space');
         const messageDiv1 = document.createElement('div');
-        messageDiv1.innerHTML = '<p>No information to display yet.</p>';
+        messageDiv1.innerHTML = '<p><strong>No information to display yet.</strong></p>';
         chartCanvas1.parentNode.replaceChild(messageDiv1, chartCanvas1);
 
     } else {
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space');
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space', 'chart-space1', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
     }
     //Mixed Chart
     var mixedUser = <?php echo $jsonUserDon; ?>;
@@ -248,7 +248,7 @@ $conn->close();
         // If null, display a message on the chart canvas
         const chartCanvas = document.getElementById('mixed-chart');
         const messageDiv = document.createElement('div');
-        messageDiv.innerHTML = '<p>No information to display yet.</p>';
+        messageDiv.innerHTML = '<p><strong>No information to display yet.</strong></p>';
         chartCanvas.parentNode.replaceChild(messageDiv, chartCanvas);
 
     } else {

@@ -28,7 +28,6 @@
 <body class="index">
 
 <?php 
-include('includes/nav.php');
 include('./includes/chart-data.php');
 
 //Registration completed for new user
@@ -51,13 +50,13 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 }
 ?>
 
-
-
+<!-- container around body to prevent dropdowns from appearing off the page -->
+<?php include('includes/nav.php'); ?>
 <main role="main" class="index">
 
 <div class="container">
 <section class="index">
-      <img src="logo.png" alt="logo" height="300px" width="300px">
+      <img src="./img/logo.png" alt="logo" height="300px" width="300px">
       <h1 class="index">SustainaCycle</h1>
       <h4 class="index">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
       <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
@@ -123,7 +122,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     </div>
   </div>
 </div>
-</div>
+
 
 <!-- Google login -->
 <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -148,7 +147,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 <?php 
 include('includes/footer.php');
 ?>
-
+</div>
 <!-- JS files --> 
 <script src="js/confirm-logout.js"></script>
     <!-- Link to charts.js extension -->
@@ -161,11 +160,11 @@ include('includes/footer.php');
     //manufacturer
     import { createHorizontalBarChart, createLine, vertBar } from './js/charts.js';
     var dataFromPHP = <?php echo $jsonResult; ?>;
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.manufacturer), dataFromPHP.map(entry => entry.quantity), 'manu-chart');
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.manufacturer), dataFromPHP.map(entry => entry.quantity), 'manu-chart', 'rgba(72, 143, 132, 0.2)', 'rgba(72, 143, 132, 1)');
 
     //recycler
     var dataFromPHP1 = <?php echo $jsonResult1; ?>;
-    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP1.map(entry => entry.quantity), 'recy-chart');
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP1.map(entry => entry.quantity), 'recy-chart', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
 
     //textiles recycled over time
     var dataFromPHP2 = <?php echo $jsonResult2; ?>;
@@ -173,7 +172,7 @@ include('includes/footer.php');
     
     //materials chart
     var dataFromPHP3 = <?php echo $jsonResult3; ?>;
-    vertBar(dataFromPHP3.map(entry => entry.materialName), dataFromPHP3.map(entry => entry.quantity), 'materialSpot');
+    vertBar(dataFromPHP3.map(entry => entry.materialName), dataFromPHP3.map(entry => entry.quantity), 'materialSpot', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
 
 </script>
 

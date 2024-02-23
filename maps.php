@@ -3,13 +3,112 @@
     <title>Locator</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  
+  <?php include('./includes/boot-head.php'); ?>
+
   <!-- Google maps api code-->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   
   <!-- google maps functions -->
-  <script type="module" src="js/maps.js"></script>
+  <!-- <script type="module" src="js/maps.js"></script> -->
+  
+  <!-- PHP recycler locations -->
+  <?php include('./includes/maps-data.php'); ?>
+
+<script>
+// Initialize and add the map
+let map;
+let position;
+
+// Check if the Geolocation API is available and get user location
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      position = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude
+      };
+    }
+  );
+}
+else{
+  //default in case of error
+  position = { lat: 39.172192, lng: -86.519409 };
+  console.log("Position not found, default used.")
+}
+
+async function initMap() {
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps", "places");
+//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  map = new Map(document.getElementById("map"), {
+    zoom: 12,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  
+  // Create a PlacesService instance
+  const service = new google.maps.places.PlacesService(map);
+
+  //set up variable with recycler addresses from the database
+  var concatenatedAddresses = <?php echo $jsonConcatenatedAddresses; ?>;
+
+  // Perform a text search
+  service.textSearch(
+    {
+      query: "recycling center",
+    },
+    (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (const place of results) {
+          //only display the results that we have in our database
+          if(concatenatedAddresses.includes(place.formatted_address)){
+            const placePosition = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
+            const marker = new google.maps.Marker({
+                position: placePosition,
+                map: map,
+                title: place.name,
+            });
+
+            marker.setVisible(true);
+            marker.setMap(map);
+
+
+          // Add a click event listener to the marker
+          addMarkerClickListener(marker, place);
+        }
+      }
+    }
+  }
+);
+}
+
+function addMarkerClickListener(marker, place) {
+    console.log('Marker Click Event Triggered');
+    marker.addListener('click', () => {
+        // Set content for the InfoWindow
+        const content = `
+    <div>
+        <strong>${place.name}</strong><br>
+        Address: ${place.formatted_address || 'N/A'}<br>
+        Rating: ${place.rating || 'N/A'}
+    </div>
+`;
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        // Set the content and open the InfoWindow
+
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+    });
+}
+
+
+window.addEventListener('load', initMap);
+</script>
 
   <!-- Css -->
   <link rel="stylesheet" type="text/css" href="styles.css" />
@@ -21,22 +120,19 @@
   <body>
 
     <?php include('includes/nav.php') ?>
-
+<div class="container">
+    <h1>Textile Recyclers Near You</h1>
+    <p>Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div id="map"></div>
-
+</div>
 
 
 <!-- Footer --> 
-<footer class="container mx-auto p-2 index">
-<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
-</footer>
+<?php include('./includes/footer.php'); ?>
 
 <!-- Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-   
+<?php include('./includes/boot-script.php'); ?>
 
 <!-- prettier-ignore -->
     <script>
@@ -68,7 +164,6 @@
   v: "weekly",
 });
 </script>
-
 
   </body>
 </html>
