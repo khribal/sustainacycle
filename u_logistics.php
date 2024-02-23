@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Impact</title>
     <?php include('./includes/boot-head.php')?>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 <?php 

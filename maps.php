@@ -28,9 +28,9 @@
 
 
 <!-- Footer --> 
-<footer class="container mx-auto p-2 index">
-<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
-</footer>
+<?php 
+include('includes/footer.php');
+?>
 
 <!-- Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

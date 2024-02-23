@@ -55,53 +55,53 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 
 <main role="main" class="index">
 
-<div class="container">
+<div class="container mx-auto p-2">
 <section class="index">
       <img src="logo.png" alt="logo" height="300px" width="300px">
       <h1 class="index">SustainaCycle</h1>
-      <h4 class="index">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h4>
+      <h2 class="index-lead">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h2>
       <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
   </section>
 </div>
 
 
-<div class="container">
-<h2>Our Sustainable Fashion Initiative</h2>
+<div class="container mx-auto p-2">
+<h2 class="index">Our Sustainable Fashion Initiative</h2>
 <section class="row">
     <div class="col-md-4">
-      <h2 class="index">Sustainability</h2>
+      <h3 class="index">Sustainability</h3>
       <p class="index">The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
     </div>
     <div class="col-md-4">
-      <h2 class="index">Circular Fashion Solution</h2>
+      <h3 class="index">Circular Fashion Solution</h3>
       <p class="index">Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
     </div>
     <div class="col-md-4">
-      <h2 class="index">Aligning Style with the Environment</h2>
+      <h3 class="index">Aligning Style with the Environment</h3>
       <p class="index">The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
     </div>
 </section>
 </div>
 
 <!-- Sneak peek at logistics -->
-<div class="container">
-  <h4>Our Impact</h4>
-  <p>Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability. Check out our recycling logistics page in the navigation for more charts and information about the impact we have made since the launch of our site.
+<div class="container mx-auto p-2">
+  <h2 class="index">Our Impact</h2>
+  <p class="index">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability. Check out our recycling logistics page in the navigation for more charts and information about the impact we have made since the launch of our site.
 </p>
 <!-- Container for graphs -->
-<div class="container">
+<div class="container mx-auto p-2">
   <div class="row align-items-center">
     <div class="col">
       <div>
-        <h4>Top Manufacturers' Impact</h4>
-        <p>Discover the leading manufacturers contributing to our sustainable fashion ecosystem. See who's making a significant impact through textile donations.</p>
+        <h3 class="index">Top Manufacturers' Impact</h3>
+        <p class="index">Discover the leading manufacturers contributing to our sustainable fashion ecosystem. See who's making a significant impact through textile donations.</p>
         <canvas id="manu-chart" class="chart-container"></canvas>
       </div>
     </div>
     <div class="col">
       <div>
-        <h4>Recycler Rankings</h4>
-        <p>Explore recyclers who embrace sustainability by accepting various textile quantities. Find out who leads in recycling efforts.</p>
+        <h3 class="index">Recycler Rankings</h3>
+        <p class="index">Explore recyclers who embrace sustainability by accepting various textile quantities. Find out who leads in recycling efforts.</p>
         <canvas id="recy-chart" class="chart-container"></canvas>
       </div>
     </div>
@@ -109,15 +109,15 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
   <div class="row align-items-end">
     <div class="col">
     <div>
-      <h4>Textiles Recycled Timeline</h4>
-      <p>Track the evolving pattern of textile donations over time. Gain insights into the historical impact of your contributions.</p>
+      <h3 class="index">Textiles Recycled Timeline</h3>
+      <p class="index">Track the evolving pattern of textile donations over time. Gain insights into the historical impact of your contributions.</p>
       <canvas id="lineSpot" class="chart-container"></canvas>
     </div>
     </div>
     <div class="col">
       <div>
-        <h4>Diverse Textile Recycling</h4>
-        <p>Dive into the pie chart showcasing the variety of textiles recycled. Understand the proportions of each material, contributing to a more eco-friendly future.</p>
+        <h3 class="index">Diverse Textile Recycling</h3>
+        <p class="index">Dive into the pie chart showcasing the variety of textiles recycled. Understand the proportions of each material, contributing to a more eco-friendly future.</p>
         <canvas id="materialSpot" class="chart-container"></canvas>
       </div>
     </div>

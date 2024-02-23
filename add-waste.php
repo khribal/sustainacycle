@@ -58,9 +58,9 @@ include('includes/nav.php');
 </div>
 
   <!-- Footer --> 
-<footer class="container mx-auto p-2">
-<p>&copy;IU INFO-I495 F23 Team 20, 2023-2024</p>
-</footer>
+<?php 
+include('includes/footer.php');
+?>
 
 
   <script>

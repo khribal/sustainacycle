@@ -50,7 +50,7 @@ h1.index {
     color: var(--blue);
 }
 
-h4.index {
+h2.index-lead {
     font-family: "DM Sans", sans-serif;
     font-size: 25px;
     font-weight: 300;
@@ -83,12 +83,29 @@ h2.index {
     color: var(--blue);
 }
 
-p.index {
+h3.index {
     font-family: "DM Sans", sans-serif;
-    font-size: 19px;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--green);
+}
+
+p.index-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 22px;
     font-weight: 300;
     color: var(--green);
 }
+
+
+p.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+
 
 
 /*

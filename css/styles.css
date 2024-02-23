@@ -1,16 +1,112 @@
+:root {
+    --limegreen: #bbdc48;
+    --green: #76b83b;
+    --blue: #0c3f47;
+    --neonblue: #87e4de;
+    --lightblue: #c6e5df;
+}
+
+footer {
+    color: var(--blue);
+}
+
+h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 /*
 index.php
 */
 
-.jumbotron {
-    background-image: url('/img/landfill.png');
-    background-size: cover;
-    background-position: center;
+
+body.index {
+    margin: 0 auto;
 }
 
-.section2{
-    padding-top: 15em;
+article.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
 }
+
+section.index {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+h1.index {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.index-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+.button {
+    border: 2px solid var(--neonblue);
+    color: var(--blue);
+    padding: 15px 32px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 400;
+}
+
+.button:hover {
+    text-decoration: none;
+    color: var(--green);
+}
+
+h2.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+h3.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--green);
+}
+
+p.index-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+
+p.index {
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+
+
 
 /*
 team.php
@@ -46,6 +142,140 @@ team.php
     }
 }
 
+h1.team {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.team {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.team {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+/*
+project.php
+*/
+
+h1.project {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.project-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.project-lead-small {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+p.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+li.project {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+/*
+video.php
+*/
+
+h1.video {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.video {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+/*
+education.php
+*/
+
+h1.edu {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.edu-auth {
+    font-family: "DM Sans", sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+p.edu-tag {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--lightblue);
+}
+
+h5.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--green);
+}
+
+p.edu {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
 /*
 waste.php
 */
@@ -68,9 +298,49 @@ waste.php
     padding: 30px;
 }
 
-h2 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+h2.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.waste {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
+}
+
+/*
+join-community.php
+*/
+
+h1.com {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+h2.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h3.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.com {
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--green);
 }
 
 
@@ -86,5 +356,108 @@ h2 {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+h1.log {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.log-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.log {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.log {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+
+/*
+add-waste.php
+*/
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 70%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius:5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.success {
+    color: green;
+    margin-top: 10px;
+}
+
+h1.add {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 33px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+label.add {
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    /* font-weight: 300; */
+    color: var(--green);
 }
 

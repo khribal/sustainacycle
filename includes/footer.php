@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mx-auto p-2">
 <footer class="py-3 my-4">
 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
     <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'team.php'){echo 'active';} ?>">
