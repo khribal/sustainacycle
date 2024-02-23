@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <?php include('../includes/boot-head.php'); ?>
 
     <!-- Google login files -->
     <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
@@ -21,18 +21,20 @@
 
 </head>
 <body>
+<!-- Nav -->
+<?php include('../includes/login-nav.php'); ?>
 
-<div class="form-container">
+<div class="container">
+<div class="mb-3">
     <h1 class="log-in">Log in to your account</h1>
 
     <form id="login-form" action="login.php" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Submit">
+        <label class="form-label" for="username">Username:</label>
+        <input class="form-control" type="text" id="username" name="username" required><br><br>
+        <label class="form-label" for="password">Password:</label>
+        <input class="form-control" type="password" id="password" name="password" required><br><br>
+        <input class="btn btn-primary mb-3" type="submit" value="Submit">
     </form>
-
 
 <!--Render button-->
 <script>
@@ -53,7 +55,7 @@ window.onload = function () {
 <!-- Sign in with google button -->
     <div id="buttonDiv"></div>
 </div>
-
+</div>
 <?php 
 //VERIFY USER CREDENTIALS - CUSTOM LOGIN
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -119,10 +121,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 </script> -->
 
-<!-- Bootstrap -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+<!-- Bootstrap and footer -->
+<?php 
+include('../includes/login-foot.php');
+include('../includes/boot-script.php'); ?>
 
 </body>
 </html>

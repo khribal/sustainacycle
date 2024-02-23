@@ -1,5 +1,5 @@
 ///////////////HORIZONTAL BAR CHART
-export function createHorizontalBarChart(labels, dataset, chartspace) {
+export function createHorizontalBarChart(labels, dataset, chartspace, colorChoice, borderChoice) {
   // Set up data for the chart
   const data = {
       labels: labels,
@@ -7,8 +7,8 @@ export function createHorizontalBarChart(labels, dataset, chartspace) {
           {
               label: `Lbs of textiles:`,
               data: dataset,
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: colorChoice,
+              borderColor: borderChoice,
               borderWidth: 1,
           }
       ]
@@ -39,18 +39,14 @@ export function createHorizontalBarChart(labels, dataset, chartspace) {
 
 
 ////////////////////VERTICAL BAR
-export function vertBar(vertLabels, vertPHPData, vertChartSpot){  
+export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertBorder){  
   const vertData = {
     labels: vertLabels,
     datasets: [{
       label: 'lbs Donated',
       data: vertPHPData,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
-      ],
-      borderColor: [
-        'rgb(255, 99, 132)'
-      ],
+      backgroundColor: vertColor,
+      borderColor: vertBorder,
       borderWidth: 1
     }]
   };
@@ -279,4 +275,59 @@ export function regBar(compareUser1, compareUser2){
 const chartRegBar = document.getElementById('compare-bar').getContext('2d');
 
 new Chart(chartRegBar, compareConfig);
+}
+
+
+
+// BUBBLE CHART
+export function createBubble(bubble1, bubbleChartSpace) {
+  //convert into array with correct data types
+  const parsedData = bubble1.map(entry => ({
+    x: new Date(entry.x),
+    y: parseInt(entry.y),
+    r: parseInt(entry.r),
+  }));
+  
+  const bubbleData = {
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: parsedData,
+        borderColor: 'rgba(255, 99, 132, 1)', // Red color
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ],
+  };
+
+  const bubbleConfig = {
+    type: 'bubble',
+    data: bubbleData,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Chart.js Bubble Chart',
+        },
+      },
+      scales: {
+        x: {
+          type: 'time', // Specify the x-axis type as time
+          time: {
+            unit: 'month', // Adjust time unit as needed (day, month, year, etc.)
+          },
+          title: {
+            display: true,
+            text: 'Date',
+          },
+        },
+      },
+    },
+  };
+
+  const chartBubble = document.getElementById(bubbleChartSpace).getContext('2d');
+  new Chart(chartBubble, bubbleConfig);
 }

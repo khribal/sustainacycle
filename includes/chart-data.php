@@ -39,11 +39,20 @@ JOIN transactions AS t ON t.materialID = m.materialID
 group by m.materialName
 order by sum(t.quantity) desc";
 
+$bubbleQuery = "SELECT t.transactionDate, count(ut.userID) as users, sum(t.quantity) as quantity
+from transactions as t 
+join user_transaction as ut on ut.transactionID=t.transactionID
+group by t.transactionDate
+order by t.transactionDate";
+
+
 //get results
 $result = $conn->query($sql);
 $resultt = $conn->query($sqll);
 $result2 = $conn->query($sql2);
 $result3 = $conn->query($sql3);
+$resultBubble = $conn->query($bubbleQuery);
+
 
 $data = array();
 while($row = $result->fetch_assoc()){
@@ -86,5 +95,20 @@ while($row = $result3->fetch_assoc()){
 
 $jsonResult3 = json_encode($data3);
 
+
+$dataBubble = array();
+while($row = $resultBubble->fetch_assoc()){
+    $dataBubble[] = array(
+        'x' => $row['transactionDate'],
+        'y'=> $row['quantity'],
+        'r' => $row['users']
+    );
+}
+
+$jsonBubble = json_encode($dataBubble);
+
 $conn->close();
+
+
+
 ?>

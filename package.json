@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "chart.js": "^3.9.1"
+    "chart.js": "^3.9.1",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^3.3.1"
   }
 }

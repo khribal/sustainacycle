@@ -4,35 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an account</title>
+    <?php 
+    include('../includes/boot-head.php');
+    include('../includes/google-fonts.php');
+    ?>
 </head>
 <body>
-<div class="form-container">
+<?php 
+    include('../includes/login-nav.php');
+?>
+
+<div class="container">
         <h1>Create an account</h1>
         <form id="register-form" action="register.php" method="post">
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name">
-            <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" name="last-name">
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            <label class="form-label" for="first-name">First Name:</label>
+            <input class="form-control" type="text" id="first-name" name="first-name">
+            <label class="form-label" for="last-name">Last Name:</label>
+            <input class="form-control" type="text" id="last-name" name="last-name">
+            <label class="form-label" for="email">Email Address:</label>
+            <input class="form-control" type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 title="Enter a valid email address" required><br><br>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" title="Choose your username" required><br><br>
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" required><br><br>
-            <label for="tele">Phone:</label>
-            <input type="text" id="tele" name="tele">
-            <p>Please specify what type of user you are:</p>
-                <input type="radio" id="recycler" name="user_type" value="recycler">
-                <label for="recycler">Recycling Company</label><br>
-                <input type="radio" id="manu" name="user_type" value="manu">
-                <label for="manu">Manufacturer</label><br>
-                <input type="radio" id="individual" name="user_type" value="individual">
-                <label for="individual">Individual User</label>
-
-            <input type="submit" value="Submit">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" title="Choose your username" required><br><br>
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control" type="text" id="password" name="password" required><br><br>
+            <label class="form-label" for="tele">Phone:</label>
+            <input class="form-control" type="text" id="tele" name="tele">
+            <div class="container">
+                <p>Please specify what type of user you are:</p>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="recycler" name="user_type" value="recycler">
+                    <label class="custom-control-label" for="recycler">Recycling Company</label><br>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="manu" name="user_type" value="manu">
+                    <label class="custom-control-label" for="manu">Manufacturer</label><br>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="individual" name="user_type" value="individual">
+                    <label class="custom-control-label" for="individual">Individual User</label>
+                </div>
+            </div>
+            <div class="container">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
         </form>
-    </div>
+</div>
 
     <?php
     
@@ -107,5 +124,9 @@
     }
 ?>
 
+<?php 
+    include('../includes/login-foot.php');
+    include('../includes/boot-script.php');
+    ?>
 </body>
 </html>

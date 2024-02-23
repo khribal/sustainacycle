@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manufacturer Information</title>
+    <?php 
+        include('../includes/boot-head.php');
+    ?>
 </head>
 <body>
-<div class="form-container">
-        <h1>Please enter your address to complete your registration!</h1>
-        <p>We want to ensure that recyclers are easily able to find your manufacturing location if necessary, and by providing the name of your center and address we are able to send more users to your location and increase textile recycling.</p>
-        
+<?php 
+    include('../includes/login-nav.php');
+?>
+<div class="container">
+    <h1>Please enter your address to complete your registration!</h1>
+    <p>We want to ensure that recyclers are easily able to find your manufacturing location if necessary, and by providing the name of your center and address we are able to send more users to your location and increase textile recycling.</p>
+    
+    <div class="container">
         <form id="manu-form" action="manu.php" method="post">
-            <label for="companyName">Name of your business:</label>
-            <input type="text" id="companyName" name="companyName">
-            <label for="street">Street:</label>
-            <input type="text" id="street" name="street">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city">
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" title="Enter your state" required><br><br>
-            <label for="zip">Zipcode:</label>
-            <input type="text" id="zip" name="zip" required><br><br>
-
-            <input type="submit" value="Submit">
+            <label class="form-label" for="companyName">Name of your business:</label>
+            <input class="form-control" type="text" id="companyName" name="companyName">
+            <label class="form-label" for="street">Street:</label>
+            <input class="form-control" type="text" id="street" name="street">
+            <label class="form-label" for="city">City:</label>
+            <input class="form-control" type="text" id="city" name="city">
+            <label class="form-label" for="state">State:</label>
+            <input class="form-control" type="text" id="state" name="state" title="Enter your state" required><br><br>
+            <label class="form-label" for="zip">Zipcode:</label>
+            <input class="form-control" type="text" id="zip" name="zip" required><br><br>
+            <div class="container">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
         </form>
     </div>
+</div>
 
 
 <?php
@@ -68,9 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     mysqli_close($con);
 }
-
 ?>
 
+<?php 
+    include('../includes/login-foot.php');
+    include('../includes/boot-script.php');
+?>
 
 </body>
 </html>

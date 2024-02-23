@@ -32,8 +32,7 @@ CREATE TABLE recyclers(
     city varchar(50),
     cState varchar(50),
     zip int,
-    lat decimal(9,7),
-    lng decimal(10,7),
+    country varchar(50),
     PRIMARY KEY (companyID),
     FOREIGN KEY (userID) REFERENCES users(userID)
 ) engine=innodb;
@@ -194,19 +193,19 @@ VALUES
 
 
 -- recyclers -- 
-INSERT INTO recyclers (companyID, companyName, cAddress, city, cState, zip, userID)
+INSERT INTO recyclers (companyID, companyName, cAddress, city, cState, zip, userID, country)
 VALUES
-(1, 'Bloomington Iron & Metal Inc', '503 N Rogers St, Bloomington', 'Bloomington', 'Indiana', 47404, 26),
-(2, 'Bloomington Recycling Center South', '400 W Dillman Rd, Bloomington', 'Bloomington', 'Indiana', 47403, 27),
-(3, 'Ellettsville Recycling Center', '6200 Mathews Dr, Ellettsville', 'Ellettsville', 'Indiana', 47429, 28),
-(4, 'Hoosier Disposal', '6660 S Old State Rd 37, Bloomington', 'Bloomington', 'Indiana', 47401, 29),
-(5, "JB\'s Salvage, Inc", '1803 Fountain Dr, Bloomington', 'Bloomington', 'Indiana', 47404, 30),
-(6, 'MCSWMD - Westside Recycling Center', '341 N Oard Rd, Bloomington', 'Bloomington', 'Indiana', 47404, 31),
-(7, 'Monroe County Solid Waste - The District', '3400 S Walnut St, Bloomington', 'Bloomington', 'Indiana', 47401, 32),
-(8, 'Northeast Recycling Center', '6015 E State Rd 45, Bloomington', 'Bloomington', 'Indiana', 47408, 33),
-(9, 'Republic Services', '6660 IN-37, Bloomington', 'Bloomington', 'Indiana', 47404, 34),
-(10, 'Rumpke - Monroe County Resource Recovery Facility', '5220 S Production Dr, Bloomington', 'Bloomington', 'Indiana', 47403, 35),
-(11, 'ecoATM', '3313 IN-45, Bloomington', 'Bloomington', 'Indiana', 47408, 36);
+(1, 'Bloomington Iron & Metal Inc', '503 N Rogers St', 'Bloomington', 'IN', 47404, 26, 'United States'),
+(2, 'Bloomington Recycling Center South', '400 W Dillman Rd', 'Bloomington', 'IN', 47403, 27, 'United States'),
+(3, 'Ellettsville Recycling Center', '6200 Mathews Dr', 'Ellettsville', 'IN', 47429, 28, 'United States'),
+(4, 'Hoosier Disposal', '6660 S Old State Rd 37', 'Bloomington', 'IN', 47401, 29, 'United States'),
+(5, "JB\'s Salvage, Inc", '1803 Fountain Dr', 'Bloomington', 'IN', 47404, 30, 'United States'),
+(6, 'MCSWMD - Westside Recycling Center', '341 N Oard Rd', 'Bloomington', 'IN', 47404, 31, 'United States'),
+(7, 'Monroe County Solid Waste - The District', '3400 S Walnut St', 'Bloomington', 'IN', 47401, 32, 'United States'),
+(8, 'Northeast Recycling Center', '6015 E State Rd 45', 'Bloomington', 'IN', 47408, 33, 'United States'),
+(9, 'Republic Services', '6660 IN-37', 'Bloomington', 'IN', 47404, 34, 'United States'),
+(10, 'Rumpke - Monroe County Resource Recovery Facility', '5220 S Production Dr', 'Bloomington', 'IN', 47403, 35, 'United States'),
+(11, 'ecoATM', '3313 IN-45', 'Bloomington', 'IN', 47408, 36, 'United States');
 
 
 INSERT INTO recycler_materials (companyID, acceptedMaterial)
