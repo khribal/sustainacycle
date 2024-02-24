@@ -15,7 +15,7 @@
 
 
 <?php
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Get $id_token via HTTPS POST.
 // if ($_SERVER['REQUEST_METHOD'] == "POST") {
