@@ -28,6 +28,7 @@ async function initMap() {
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
+            
             const placePosition = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
             const marker = new google.maps.Marker({
                 position: placePosition,

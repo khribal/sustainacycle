@@ -240,7 +240,6 @@ $conn->close();
     var mixedUser = <?php echo $jsonUserDon; ?>;
     var mixedAll = <?php echo $jsonAllDon; ?>;
     
-    console.log(mixedUser);
     if (mixedUser === null || mixedUser.length === 0) {
         var yearBut = document.getElementById('yearSelector');
         // Hide the year selector button
