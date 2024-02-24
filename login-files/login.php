@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
 
-    <!-- Jquery to pass google login info to php -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <!-- Bootstrap -->
-    <?php include('../includes/boot-head.php'); ?>
+    <?php include('../includes/boot-head.php');
+    ?>
 
-    <!-- Google login client ID -->
-    <!-- <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com"> -->
+    <!-- Google Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
+
+    <!-- Google login -->
     <script src="https://accounts.google.com/gsi/client" async></script>
-
-    <!--  library jwt-decode to handle JWT decoding -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script> -->
 
 </head>
 <body>
@@ -56,8 +55,7 @@
     </div>
 
 
-
-
+<p>Don't have an account yet? <a href="register.php">Register here.</a></p>
 
 </div>
 </div>

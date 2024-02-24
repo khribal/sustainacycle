@@ -50,7 +50,14 @@
         echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'add-waste.php' ? 'active' : '') . '"><a class="nav-link" href="add-waste.php">Add textile waste</a></li>';
       }
     ?>
-
+ 
+ <!-- Only allow recyclers to see available waste -->
+  <?php 
+      if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler') {
+        echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'waste.php' ? 'active' : '') . '"><a class="nav-link" href="waste.php">Available waste</a></li>';
+      }
+    ?>
+  
           <!-- Only allow individual users to join a community -->
           <?php 
         if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {

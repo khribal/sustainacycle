@@ -16,7 +16,7 @@ CREATE TABLE users(
     lastName varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     username varchar(50) NOT NULL,
-    pass varchar(250) NOT NULL,
+    pass varchar(250),
     contactNum VARCHAR(13),
     usertype varchar(20) CHECK (usertype IN ('recycler', 'manufacturer', 'individual_user')),
     PRIMARY KEY (userID)

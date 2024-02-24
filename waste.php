@@ -19,7 +19,6 @@
 <div class="container px-4 mx-auto p-2">
   <h1 class="video">Available Waste</h1>
   <p class="video">See what materials manufacturers have available to be recycled right now!</p>
-  <a href="add-waste.php" class="button mt-2">Add Waste</a>
 </div>
 
 

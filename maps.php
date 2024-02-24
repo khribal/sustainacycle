@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>Locator</title>
-
+    
   <!-- Bootstrap, google fonts-->
   <?php 
     include('./includes/boot-head.php'); 
@@ -13,6 +13,7 @@
   
   <!-- PHP recycler locations -->
   <?php include('./includes/maps-data.php'); ?>
+
 
 <script>
 // Initialize and add the map
@@ -117,8 +118,6 @@ function addMarkerClickListener(marker, place) {
 window.addEventListener('load', initMap);
 </script>
 
-  <!-- google fonts --> 
-  <?php include('./includes/google-fonts.php'); ?>
   
   <!-- Css -->
   <link rel="stylesheet" type="text/css" href="styles.css" />
