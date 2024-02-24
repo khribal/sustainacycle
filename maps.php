@@ -2,14 +2,14 @@
   <head>
     <title>Locator</title>
 
-  <!-- Bootstrap -->
-  <?php include('./includes/boot-head.php'); ?>
+  <!-- Bootstrap, google fonts-->
+  <?php 
+    include('./includes/boot-head.php'); 
+    // include('./includes/google-fonts.php');
+  ?>
 
   <!-- Google maps api code-->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  
-  <!-- google maps functions -->
-  <!-- <script type="module" src="js/maps.js"></script> -->
   
   <!-- PHP recycler locations -->
   <?php include('./includes/maps-data.php'); ?>
@@ -117,12 +117,13 @@ function addMarkerClickListener(marker, place) {
 window.addEventListener('load', initMap);
 </script>
 
+  <!-- google fonts --> 
+  <?php include('./includes/google-fonts.php'); ?>
+  
   <!-- Css -->
   <link rel="stylesheet" type="text/css" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
   <body>
 

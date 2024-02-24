@@ -6,9 +6,10 @@
     <title>Logistics Charts</title>
     <!-- Google fonts, bootstrap -->
     <?php 
-        // include('./includes/google-fonts.php');
         include('./includes/boot-head.php');
+        // include('./includes/google-fonts.php');
     ?>
+
     <!--CSS -->
     <link rel="stylesheet" href="css/styles.css">
 

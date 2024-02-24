@@ -11,13 +11,14 @@
     <!-- Bootstrap -->
     <?php include('../includes/boot-head.php'); ?>
 
-    <!-- Google login files -->
-    <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
+    <!-- Google login client ID -->
+    <!-- <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com"> -->
+
     <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
     <script src="https://accounts.google.com/gsi/client" async></script>
 
     <!--  library jwt-decode to handle JWT decoding -->
-    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script> -->
 
 </head>
 <body>
@@ -36,26 +37,32 @@
         <input class="btn btn-primary mb-3" type="submit" value="Submit">
     </form>
 
-<!--Render button-->
-<script>
-window.onload = function () {
-    google.accounts.id.initialize({
-        client_id: "605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-    });
-    google.accounts.id.renderButton(
-        document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large" }  // customization attributes
-    );
-    google.accounts.id.prompt(); // also display the One Tap dialog
-}
-</script>
+
 
 
 <!-- Sign in with google button -->
-    <div id="buttonDiv"></div>
+<div id="g_id_onload"
+        data-client_id="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com"
+        data-login_uri="https://cgi.luddy.indiana.edu/~klhribal/team20/login-files/handleGoogle.php"
+        data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left">
+    </div>
+
+
+
+
+
 </div>
 </div>
+
+
 <?php 
 //VERIFY USER CREDENTIALS - CUSTOM LOGIN
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
