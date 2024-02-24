@@ -38,6 +38,7 @@ export function createHorizontalBarChart(labels, dataset, chartspace, colorChoic
 }
 
 
+
 ////////////////////VERTICAL BAR
 export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertBorder){  
   const vertData = {
@@ -121,6 +122,7 @@ export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPD
 }
 
 
+
 ///////////////// PIE CHART
 // Define a function to create a pie chart
 export function createPieChart(userVal, allVal, pieCanvas) {
@@ -156,12 +158,11 @@ export function createPieChart(userVal, allVal, pieCanvas) {
 }
 
 
-////////////LINE CHART
 
-export function createLine(quantityLine, labels, lineChartLocation){
-
+////////LINE CHART
+export function createLine(quantityLine, lineLabels, lineChartLocation){
 const dataForChart = {
-    labels: labels,
+    labels: lineLabels,
     datasets: [{
     label: 'lbs of materials donated',
     data: quantityLine,
@@ -177,11 +178,9 @@ data: dataForChart,
 
 const lineChartCanvas = document.getElementById(lineChartLocation).getContext('2d');
 
-// Create the line chart
+  // Create the line chart
 new Chart(lineChartCanvas, lineChartConfig);
 }
-
-
 
 
 //////////MIXED CHART  
@@ -230,6 +229,7 @@ chartInstance = new Chart(chartSpot, configMixed);
 }
 
 
+//Regular Bar Chart
 export function regBar(compareUser1, compareUser2){
 
   const compareData = {

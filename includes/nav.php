@@ -76,6 +76,9 @@
               if ($_SESSION['usertype'] == 'individual_user'){
                 echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
+              elseif($_SESSION['usertype'] == 'manufacturer'){
+                echo '<a class="dropdown-item" href="./manu_waste.php">Your Materials</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+              }
               else{
                 echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }

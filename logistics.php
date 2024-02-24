@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charts</title>
+    <title>Logistics Charts</title>
     <!-- Google fonts, bootstrap -->
     <?php 
         // include('./includes/google-fonts.php');
@@ -19,12 +19,12 @@
     include('./includes/chart-data.php');
 ?>
 
-
 <div class="container px-4 mx-auto p-1 container-charts">
 <div class="heading">
     <h1 class="log">Recycling Logistics Overview: Making an Impact on Sustainability</h1>
     <p class="log-lead">Welcome to our Recycling Logistics Overview, a visual representation of the impactful journey your textile donations take within our circular fashion ecosystem. At SustainaCycle, we are committed to transforming the fashion industry by bridging the gap between manufacturers, individual users, and recycling centers for textiles. Explore the insightful data visualizations below to witness the positive impact we've collectively made on sustainability.</p>
 </div>
+
         <div class="container">
             <!--Manufacturer-->
             <h2 class="log">Manufacturer Contributions: A Stitch in Sustainable Fashion</h2>
@@ -42,18 +42,15 @@
             <p class="log-lead">Our line chart illustrates the evolving pattern of textile donations over time. Witness the growth of our community's commitment to sustainability, as reflected in the quantities of textiles recycled. Each data point represents a step towards reducing environmental impact, making a lasting mark on the fashion industry's approach to responsible production and consumption.</p>
             <canvas id="lineSpot" width="573" height="286" style="display: block; box-sizing: border-box; height: 191px; width: 382px;"></canvas>
 
-
-
-        <!-- Materials chart -->
-
+            <!--Materials chart -->
             <h2 class="log">Types of Textiles Recycled: Diverse Contributions for a Colorful Impact</h2>
             <p class="log-lead">The pie chart reveals the diverse types of textiles recycled on our platform. Explore the proportions of each material recycled, measured in pounds. From cotton and polyester to innovative eco-friendly fabrics, our community's contributions paint a colorful picture of sustainability in fashion.</p>
             <div style="width: 800px;"><canvas id="matCanv"></canvas></div>
 
-
-        <h2 class="log">Monthly User Transaction Overview</h2>
-        <p class="log-lead">Discover the monthly overview of user transactions, highlighting the count of unique users involved and the total quantity of items processed each month. The bubble chart visually represents the dynamics and patterns in user transaction activities over time.</p>
-        <canvas id="bubble-chart"></canvas>
+            <!-- -->
+            <h2 class="log">Monthly User Transaction Overview</h2>
+            <p class="log-lead">Discover the monthly overview of user transactions, highlighting the count of unique users involved and the total quantity of items processed each month. The bubble chart visually represents the dynamics and patterns in user transaction activities over time.</p>
+            <canvas id="bubble-chart"></canvas>
         </div>
 
         <!-- Link to charts.js extension -->
@@ -87,6 +84,8 @@
     //bubble chart
     var dataBubble = <?php echo $jsonBubble; ?>;
     createBubble(dataBubble, 'bubble-chart');
+
+
 
 </script>
 

@@ -17,13 +17,13 @@
 <script>
 // Initialize and add the map
 let map;
-let position;
+let userPosition;
 
 // Check if the Geolocation API is available and get user location
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(
     (pos) => {
-      position = {
+      userPosition = {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
       };
@@ -36,6 +36,9 @@ else{
   console.log("Position not found, default used.")
 }
 
+//flag to see if map loaded
+let mapLoaded = false;
+
 async function initMap() {
   // Request needed libraries.
   //@ts-ignore
@@ -44,7 +47,7 @@ async function initMap() {
 
   map = new Map(document.getElementById("map"), {
     zoom: 12,
-    center: position,
+    center: userPosition,
     mapId: "DEMO_MAP_ID",
   });
 
@@ -54,11 +57,14 @@ async function initMap() {
 
   //set up variable with recycler addresses from the database
   var concatenatedAddresses = <?php echo $jsonConcatenatedAddresses; ?>;
-
+  console.log(concatenatedAddresses);
+  
   // Perform a text search
   service.textSearch(
     {
       query: "recycling center",
+      location: userPosition,
+      radius: 20000, // Adjust the radius as needed (in meters)
     },
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -84,6 +90,7 @@ async function initMap() {
   }
 );
 }
+
 
 function addMarkerClickListener(marker, place) {
     console.log('Marker Click Event Triggered');
@@ -163,6 +170,10 @@ window.addEventListener('load', initMap);
   key: "AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM",
   v: "weekly",
 });
+
+//force the page to reload, for some reason the map wont load otherwise
+
+
 </script>
 
   </body>

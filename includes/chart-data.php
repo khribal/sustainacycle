@@ -27,10 +27,10 @@ order by quantity desc
 limit 10";
 
 //transactions and quantities over time
-$sql2 = "SELECT transactionDate, sum(quantity) as quantity
-from transactions
-group by transactionDate
-order by transactionDate";
+$sql2 = "SELECT DATE_FORMAT(transactionDate, '%M %Y') AS monthYear, SUM(quantity) AS quantity
+FROM transactions
+GROUP BY monthYear
+ORDER BY transactionDate";
 
 //sum of each type of material in transactions
 $sql3 = "SELECT m.materialName, sum(t.quantity) as quantity
@@ -78,7 +78,7 @@ $jsonResult1 = json_encode($data1);
 $data2 = array();
 while($row = $result2->fetch_assoc()){
     $data2[] = array(
-        'transationDate' => $row['transactionDate'],
+        'transationDate' => $row['monthYear'],
         'quantity'=> $row['quantity']
     );
 }
