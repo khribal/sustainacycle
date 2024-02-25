@@ -47,7 +47,7 @@ include('includes/nav.php');
         ?>
     </select><br><br>
 
-    <label for="quantity" class="add">Quantity:</label><br>
+    <label for="quantity" class="add">Quantity (lbs):</label><br>
     <input type="number" id="quantity" name="quantity"><br><br>
 
     <label for="description" class="add">Description:</label><br>

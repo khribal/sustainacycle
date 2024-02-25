@@ -12,6 +12,7 @@
 //nav bar
 include('../includes/login-nav.php');
 
+
 //Get the google info for this user
 if ($_SERVER["REQUEST_METHOD"] == "GET"){
     $googleEmail = $_GET['email'];
@@ -20,47 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
 }
 ?>
 
-<div class="container">
-    <h2>Complete Registration</h2>
-    <p>Fill out the following form to complete your registration.</p>
-   <div class="container">
-    <form action="google-reg.php" method="post">
-    <label class="form-label" for="first-name">First Name:</label>
-            <input class="form-control" type="text" id="first-name" name="first-name" value="<?php echo htmlspecialchars($googleFirst); ?>">
-            <label class="form-label" for="last-name">Last Name:</label>
-            <input class="form-control" type="text" id="last-name" name="last-name" value="<?php echo htmlspecialchars($googleLast); ?>">
-            <label class="form-label" for="tele">Phone:</label>
-            <input class="form-control" type="text" id="tele" name="tele">
-            <label class="form-label" for="username">Username</label>
-            <input class="form-control" type="text" id="username" name="username" title="Choose your username" required><br><br>
-
-    <div class="container">
-                <p>Please specify what type of user you are:</p>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="recycler" name="user_type" value="recycler">
-                    <label class="custom-control-label" for="recycler">Recycling Company</label><br>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="manu" name="user_type" value="manu">
-                    <label class="custom-control-label" for="manu">Manufacturer</label><br>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" type="radio" id="individual" name="user_type" value="individual">
-                    <label class="custom-control-label" for="individual">Individual User</label>
-                </div>
-            </div>
-
-    <input class="btn btn-success" type="submit" value="Submit">
-    </form>
-   </div>
-</div>
-
-
 
 
 <?php
-    
-
+//add this user to the database, return to form if they chose the same username as someone else
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fname = $_POST["first-name"];
         $lname = $_POST["last-name"];
@@ -85,7 +49,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
         }
     
+        $checkQuery = "SELECT * FROM users WHERE username = '$username'";
+        $checkResult = mysqli_query($con, $checkQuery);
     
+        if (mysqli_num_rows($checkResult) > 0) {
+            // Username already exists, handle accordingly (e.g., show an error message)
+            echo "<div class='container'><p style='color: red;'><strong>Username already exists. Please choose a different username.</strong></p></div>";
+        }
+        else{
+
+        
+
         $insertQuery = "INSERT INTO users (firstName, lastName, email, username, contactNum, userType)
         VALUES ('$fname', '$lname', '$googleEmail', '$username', '$phone', '$userType')";
     
@@ -123,8 +97,44 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
     
         mysqli_close($con);
     }
+}
 ?>
 
+
+<div class="container">
+    <h2>Complete Registration</h2>
+    <p>Fill out the following form to complete your registration.</p>
+   <div class="container">
+    <form action="google-reg.php" method="post">
+    <label class="form-label" for="first-name">First Name:</label>
+            <input class="form-control" type="text" id="first-name" name="first-name" value="<?php echo htmlspecialchars($googleFirst); ?>">
+            <label class="form-label" for="last-name">Last Name:</label>
+            <input class="form-control" type="text" id="last-name" name="last-name" value="<?php echo htmlspecialchars($googleLast); ?>">
+            <label class="form-label" for="tele">Phone:</label>
+            <input class="form-control" value="<?php echo $phone; ?>"  type="text" id="tele" name="tele">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" value="<?php echo $username; ?>" type="text" id="username" name="username" title="Choose your username" required><br><br>
+
+    <div class="container">
+                <p>Please specify what type of user you are:</p>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="recycler" name="user_type" value="recycler" required>
+                    <label class="custom-control-label" for="recycler">Recycling Company</label><br>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="manu" name="user_type" value="manu" required>
+                    <label class="custom-control-label" for="manu">Manufacturer</label><br>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="individual" name="user_type" value="individual" required>
+                    <label class="custom-control-label" for="individual">Individual User</label>
+                </div>
+            </div>
+
+    <input class="btn btn-success" type="submit" value="Submit">
+    </form>
+   </div>
+</div>
 
 
 <?php //bootstrap 

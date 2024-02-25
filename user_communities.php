@@ -104,6 +104,10 @@ include('./includes/nav.php');
                     </div>';
                 }
             }
+            //user isn't in any communities
+            else{
+                echo "<div class=container mx-auto p-2><h4>You haven't joined any communities yet!</h4><a href='join-community.php'><p>Click here</a> to browse our communities.</p></div>";
+            }
     }
     else{
         echo "oops";

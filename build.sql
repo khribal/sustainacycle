@@ -1,3 +1,4 @@
+drop table if exists comments;
 drop table if exists posts;
 drop table if exists articles;
 drop table if exists user_transaction;
@@ -130,6 +131,14 @@ CREATE TABLE posts (
   FOREIGN KEY (communityID) references communities(communityID)
 );
 
+CREATE TABLE comments (
+  commentID INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  comment_content varchar(250),
+  userID INT NOT NULL,
+  postID INT NOT NULL,
+  FOREIGN KEY (userID) references users(userID),
+  FOREIGN KEY (postID) references posts(postID)
+);
 
 --individual users -- 
 INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, userType)
@@ -448,3 +457,15 @@ INSERT INTO posts (title, content, like_count, userID, communityID) VALUES
 ('Fashion Industry Transparency Initiatives', 'Explore transparency initiatives in the fashion industry. Support brands committed to openness and ethical practices.', 0, 19, 19),
 ('Local Efforts: Building Sustainable Fashion Communities', 'Celebrate local efforts in building sustainable fashion communities. Connect with like-minded individuals and organizations in your area.', 0, 20, 20);
 
+INSERT INTO comments (comment_content, userID, postID) VALUES 
+('Example Comment', 1, 1),
+('Example Comment', 2, 2),
+('Example Comment', 3, 3),
+('Example Comment', 4, 4),
+('Example Comment', 5, 5),
+('Example Comment', 6, 6),
+('Example Comment', 7, 7),
+('Example Comment', 8, 8),
+('Example Comment', 9, 9),
+('Example Comment', 10, 10),
+('Example Comment', 11, 11);
