@@ -27,8 +27,7 @@ include('includes/nav.php');
 
   <form id="wasteForm" action="add-waste.php" method="POST">
     <label for="materialName" class="add">Material Name:</label><br>
-    <select id="materialName" name="materialName">  
-      <option value="" class="add">Select Material</option>
+  <!--    <option value="" class="add">Select Material</option> -->
       <?php
         $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
         if (!$conn) {
@@ -40,8 +39,14 @@ include('includes/nav.php');
 
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
-            echo "<option value=\"" . $row["materialName"] . "\">" . $row["materialName"] . "</option>";
-          }
+  //          echo "<option value=\"" . $row["materialName"] . "\">" . $row["materialName"] . "</option>";
+              echo '<label>';
+              echo '<input type="radio" name="materialName" value"' . $row["materialName"] . '">';
+              echo $row["materialName"];
+              echo '</label><br>';
+}
+        } else {
+          echo "No materials found";
         }
         $conn->close();
         ?>
@@ -64,9 +69,13 @@ include('includes/nav.php');
 
 
   <script>
-    document.getElementById('materialName').addEventListener('change', function() {
-      var materialName = this.value;
+    document.addEventListener('DOMContentLoaded', function() {
+      var radioButtons = document.querySelectorAll('input[name="materialName"]');
       var descriptionField = document.getElementById('description');
+
+      radioButtons.forEach(function(radioButton) {
+        radioButton.addEventListener('change', function() {
+          var materialName = this.value;
 
       if (materialName === 'Cotton') {
         descriptionField.value = 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.';
@@ -84,6 +93,8 @@ include('includes/nav.php');
         descriptionField.value = 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.';
       }
     });
+  });
+  });
   </script>
 
 
