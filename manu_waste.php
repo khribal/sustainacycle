@@ -44,6 +44,7 @@
             <h5 class="card-title">' . $row['materialName'] . '</h5>
             <h6 class="card-subtitle mb-2 text-muted"> Quanity: ' . $row['quantity'] . '</h6>
             <p class="card-text">'. $row['description'] . '</p>
+            <a href="edit-material.php' . $row['materialID'] . '" class="btn btn primary">Edit Waste</a>
         </div>
         </div>';
     }
