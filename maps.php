@@ -133,7 +133,13 @@ window.addEventListener('load', initMap);
     <h1>Textile Recyclers Near You</h1>
     <p>Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
-    <div id="map"></div>
+    <div class="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <p>Test</p>
+        <hr>
+      </div>
+    </div>
 </div>
 
 

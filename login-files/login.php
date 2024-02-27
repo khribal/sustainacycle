@@ -1,3 +1,57 @@
+<?php 
+session_start(); 
+//VERIFY USER CREDENTIALS - CUSTOM LOGIN
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST["username"];
+    $enteredPassword = $_POST["password"];
+
+    // Database connection code
+    $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+
+    if (!$con) {
+        die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
+    }
+
+
+    //retrieve password
+    $retrieveQuery = "SELECT * FROM users WHERE username = '$user'";
+    $result = mysqli_query($con, $retrieveQuery);
+
+    if (!$result) {
+        echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
+        exit();
+    }
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $storedPassword = $row['pass'];
+        $userType = $row['usertype'];
+        $name = $row['firstName'];
+        $userID = $row['userID'];
+
+        if (password_verify($enteredPassword, $storedPassword)) {
+
+            //Store session variables to customize user experience
+            $_SESSION['usertype'] = $userType;
+            $_SESSION['username'] = $user;
+            $_SESSION['name'] = $name;
+            $_SESSION['userID'] = $userID;
+            //set login success flag
+            $_SESSION['login_success'] = true; // Set a success flag
+
+            //Redirect user back to home page
+            header('Location: ../index.php');
+            exit();
+        } else {
+            echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
+        }
+    } else {
+        echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">User not found. Please check your email or <a href="register.php">register</a> for an account.</div>';
+    }
+
+    mysqli_close($con);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,60 +115,6 @@
 </div>
 
 
-<?php 
-//VERIFY USER CREDENTIALS - CUSTOM LOGIN
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST["username"];
-    $enteredPassword = $_POST["password"];
-
-    // Database connection code
-    $con = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-
-    if (!$con) {
-        die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
-    }
-
-
-    //retrieve password
-    $retrieveQuery = "SELECT * FROM users WHERE username = '$user'";
-    $result = mysqli_query($con, $retrieveQuery);
-
-    if (!$result) {
-        echo "Error: " . $retrieveQuery . "<br>" . mysqli_error($con);
-        exit();
-    }
-
-    if ($row = mysqli_fetch_assoc($result)) {
-        $storedPassword = $row['pass'];
-        $userType = $row['usertype'];
-        $name = $row['firstName'];
-        $userID = $row['userID'];
-
-        if (password_verify($enteredPassword, $storedPassword)) {
-            session_start(); 
-
-            //Store session variables to customize user experience
-            $_SESSION['usertype'] = $userType;
-            $_SESSION['username'] = $user;
-            $_SESSION['name'] = $name;
-            $_SESSION['userID'] = $userID;
-            //set login success flag
-            $_SESSION['login_success'] = true; // Set a success flag
-
-            //Redirect user back to home page
-            header('Location: ../index.php');
-            exit();
-        } else {
-            echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">Incorrect password. Please try again.</div>';
-        }
-    } else {
-        echo '<div style="text-align: center; color: red; font-size: 16px; font-weight: bold;">User not found. Please check your email or <a href="register.php">register</a> for an account.</div>';
-    }
-
-    mysqli_close($con);
-}
-
-?>
 
 
 <!-- <script>

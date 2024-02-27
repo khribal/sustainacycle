@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Include jwt-decode -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/dist/jwt-decode.min.js"></script> -->
-</head>
-<body>
-
 <?php
 // require_once __DIR__ . '/../vendor/autoload.php';
+session_start(); 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id_token = $_POST['credential'];
     // echo "Token: " . $id_token . "<br>";
 
-    
     $payload = 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' . $id_token;
         $json = file_get_contents($payload);
         $userInfoArray = json_decode($json,true);
@@ -39,25 +24,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         die("Failed to connect to MySQL: " . mysqli_connect_error() . "<br><br>");
     }
 
-// Find their username by their google email
 
-$findUsername = "SELECT * from users where email=$googleEmail"; 
+// Find the user by their google email
+$findUsername = "SELECT * from users where email='$googleEmail'"; 
 $resultUser = mysqli_query($con, $findUsername);
 
-if($resultUser){
+//user exists in our databases
+if(mysqli_num_rows($resultUser) == 1){
     if($row = mysqli_fetch_assoc($resultUser)){
         $username = $row['username'];
         $usertype = $row['usertype'];
         $userID = $row['userID'];
         $name = $row['firstName'];
-            //start the session, and assign user vars
-            session_start(); 
+
+        //set session vars
             $_SESSION['userID'] = $userID;
             $_SESSION['usertype'] = $usertype;
             $_SESSION['username'] = $username;
             $_SESSION['name'] = $name;
-
-            //set login success flag
+            // set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 
             //redirect to index
@@ -65,8 +50,8 @@ if($resultUser){
             exit();
     }
 }
-//User is not yet in the database, take them to a page to complete registration
-else{
+// User is not yet in the database, take them to a page to complete registration
+else {
     //send the googleEmail to registration page
     header('Location: google-reg.php?email=' . urlencode($googleEmail) . '&firstName=' . urlencode($googlefName) . '&lastName=' . urlencode($googleLname));
     exit();
@@ -100,6 +85,3 @@ else{
 mysqli_close($con);
 ?>
 
-
-</body>
-</html>
