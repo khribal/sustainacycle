@@ -346,9 +346,16 @@ p.com {
 
 /************* Maps **********************/
 #map{
-    height: 100vh;
+    height: 400px;
+    width: 70%;
+    float: left;
 }
 
+#sidebar{
+    width: 30%;
+    float: right;
+    padding: 10px;
+}
 
 /************* Logistics **********************/
 .horiz-parent{

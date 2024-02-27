@@ -19,11 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
     $googleFirst = $_GET['firstName'];
     $googleLast = $_GET['lastName'];
 }
-?>
 
-
-
-<?php
 //add this user to the database, return to form if they chose the same username as someone else
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fname = $_POST["first-name"];
@@ -31,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
         $username = $_POST["username"];
         $phone = $_POST["tele"];
         $userType = $_POST["user_type"];
-
+        $googleEmail = $_POST['googleEmail'];
         //Adjust value format for database 
         if ($userType == 'recycler'){
             $userType = 'recycler';
@@ -57,8 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             echo "<div class='container'><p style='color: red;'><strong>Username already exists. Please choose a different username.</strong></p></div>";
         }
         else{
-
-        
 
         $insertQuery = "INSERT INTO users (firstName, lastName, email, username, contactNum, userType)
         VALUES ('$fname', '$lname', '$googleEmail', '$username', '$phone', '$userType')";
@@ -114,6 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             <input class="form-control" value="<?php echo $phone; ?>"  type="text" id="tele" name="tele">
             <label class="form-label" for="username">Username</label>
             <input class="form-control" value="<?php echo $username; ?>" type="text" id="username" name="username" title="Choose your username" required><br><br>
+            <!-- hidden field for email so it gets passed with the post data -->
+            <input type="hidden" name="googleEmail" value="<?php echo htmlspecialchars($googleEmail); ?>">
 
     <div class="container">
                 <p>Please specify what type of user you are:</p>

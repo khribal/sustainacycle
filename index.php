@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>SustainaCycle</title>
-    <!-- Google API Client -->
-    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>  -->
-     <!-- Javascript file for Google Login -->
-    <!-- <script src="js/login.js"></script> -->
-
-    <!-- Google verification oauth-->
-    <!-- <meta name="google-site-verification" content="V5zeazYMAdNXYes51Fa5-pHgIBwW86BP6LbgHnVT98Y" />
-    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
-
-    <!-- Google login attempt 2 -->
-    <!-- <meta name="google-signin-client_id" content="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   </head>
 <body class="index">
 
 <?php 
+include('includes/nav.php'); 
 include('./includes/chart-data.php');
 
 //Registration completed for new user
@@ -51,7 +41,6 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 ?>
 
 <!-- container around body to prevent dropdowns from appearing off the page -->
-<?php include('includes/nav.php'); ?>
 <main role="main" class="index">
 
 <div class="container mx-auto p-2">
