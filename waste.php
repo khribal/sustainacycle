@@ -54,6 +54,9 @@
           echo "<p class='waste'><strong>Material Name: </strong>" . $row["materialName"]. "</p>";
           echo "<p class='waste'><strong>Quantity: </strong>" . $row["quantity"]. "</p>";
           echo "<p class='waste'><strong>Description: </strong>" . $row["description"]. "</p>";
+          if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler'){
+            echo '<button type="button" class="btn btn-success">Request waste</button>';
+          }
           echo "</div>";
         }
         echo "</div>";
