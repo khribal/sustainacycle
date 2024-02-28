@@ -74,7 +74,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
 <!-- Sneak peek at logistics -->
 <div class="container mx-auto p-2">
   <h2 class="index">Our Impact</h2>
-  <p class="index">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability. Check out our recycling logistics page in the navigation for more charts and information about the impact we have made since the launch of our site.
+  <p class="index">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability. Check out our <a href="./tableau.php">recycling logistics page</a> in the navigation for more charts and information about the impact we have made since the launch of our site.
 </p>
 <!-- Container for graphs -->
 <div class="container mx-auto p-2">
@@ -82,14 +82,14 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <div class="col">
       <div>
         <h3 class="index">Top Manufacturers' Impact</h3>
-        <p class="index">Discover the leading manufacturers contributing to our sustainable fashion ecosystem. See who's making a significant impact through textile donations.</p>
+        <p class="index">See who's making a significant impact through textile donations.</p>
         <canvas id="manu-chart" class="chart-container"></canvas>
       </div>
     </div>
     <div class="col">
       <div>
         <h3 class="index">Recycler Rankings</h3>
-        <p class="index">Explore recyclers who embrace sustainability by accepting various textile quantities. Find out who leads in recycling efforts.</p>
+        <p class="index">Find out who leads in recycling efforts.</p>
         <canvas id="recy-chart" class="chart-container"></canvas>
       </div>
     </div>
@@ -98,14 +98,14 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
     <div class="col">
     <div>
       <h3 class="index">Textiles Recycled Timeline</h3>
-      <p class="index">Track the evolving pattern of textile donations over time. Gain insights into the historical impact of your contributions.</p>
+      <p class="index">Track the evolving pattern of textile donations over time.</p>
       <canvas id="lineSpot" class="chart-container"></canvas>
     </div>
     </div>
     <div class="col">
       <div>
         <h3 class="index">Diverse Textile Recycling</h3>
-        <p class="index">Dive into the pie chart showcasing the variety of textiles recycled. Understand the proportions of each material, contributing to a more eco-friendly future.</p>
+        <p class="index">Dive into the bar chart showcasing the variety of textiles recycled.</p>
         <canvas id="materialSpot" class="chart-container"></canvas>
       </div>
     </div>

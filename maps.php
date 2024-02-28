@@ -86,6 +86,9 @@ async function initMap() {
 
           // Add a click event listener to the marker
           addMarkerClickListener(marker, place);
+          
+          //Add location to the sidebar
+          addLocationToSidebar(place, document.getElementById('sidebar'));
         }
       }
     }
@@ -95,7 +98,6 @@ async function initMap() {
 
 
 function addMarkerClickListener(marker, place) {
-    console.log('Marker Click Event Triggered');
     marker.addListener('click', () => {
         // Set content for the InfoWindow
         const content = `
@@ -114,6 +116,16 @@ function addMarkerClickListener(marker, place) {
         infoWindow.open(map, marker);
     });
 }
+
+//add each place to sidebar
+function addLocationToSidebar(place, sidebar) {
+    var placeDetails = '<h6>' + place.name + '</h6>' +
+                        '<p>' + place.formatted_address + '</p>' +
+                        '<hr>';
+
+    sidebar.innerHTML += placeDetails;
+}
+    
 
 
 window.addEventListener('load', initMap);
@@ -134,10 +146,15 @@ window.addEventListener('load', initMap);
     <p>Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div class="container">
-      <div id="map"></div>
-      <div id="sidebar">
-        <p>Test</p>
-        <hr>
+        <div class="row">
+          <div class="col-9">
+            <div id="map"></div>
+          </div>
+          <div class="col">
+            <div id="sidebar">
+              <h5>Recycling Centers Near You</h5>
+          </div>
+        </div>
       </div>
     </div>
 </div>

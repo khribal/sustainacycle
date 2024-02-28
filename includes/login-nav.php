@@ -26,8 +26,8 @@
         }
       ?>
       
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'logistics.php'){echo 'active';} ?>">
-        <a class="nav-link" href="../logistics.php">Recycling Logistics</a>
+      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
+        <a class="nav-link" href="../tableau.php">Recycling Logistics</a>
       </li>
     
     </ul>

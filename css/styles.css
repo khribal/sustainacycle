@@ -347,14 +347,6 @@ p.com {
 /************* Maps **********************/
 #map{
     height: 400px;
-    width: 70%;
-    float: left;
-}
-
-#sidebar{
-    width: 30%;
-    float: right;
-    padding: 10px;
 }
 
 /************* Logistics **********************/
@@ -467,4 +459,47 @@ label.add {
     /* font-weight: 300; */
     color: var(--green);
 }
+
+/*tableau (starter) */
+
+.row-tabl{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+
+/* profile (starter) */
+#profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+#profileImage{
+    height: 250px;
+    width: 250px;
+}
+
+#profileImage:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#profile-container:hover .profile-hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.profile-hover{
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(63, 63, 63);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+}
+
 

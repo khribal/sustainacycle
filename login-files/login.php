@@ -26,7 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $storedPassword = $row['pass'];
         $userType = $row['usertype'];
         $name = $row['firstName'];
+        $lastName = $row['lastName'];
         $userID = $row['userID'];
+        $email = $row['email'];
+        $profilePic = $row['profilePic'];
+
 
         if (password_verify($enteredPassword, $storedPassword)) {
 
@@ -34,7 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usertype'] = $userType;
             $_SESSION['username'] = $user;
             $_SESSION['name'] = $name;
+            $_SESSION['lastName'] = $lastName;
             $_SESSION['userID'] = $userID;
+            $_SESSION['email'] = $email;
+            $_SESSION['profilePic'] = $profilePic;
             //set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 

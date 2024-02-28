@@ -19,6 +19,8 @@ CREATE TABLE users(
     username varchar(50) NOT NULL,
     pass varchar(250),
     contactNum VARCHAR(13),
+    joinDate date,
+    profilePic varchar(250),
     usertype varchar(20) CHECK (usertype IN ('recycler', 'manufacturer', 'individual_user')),
     PRIMARY KEY (userID)
 ) ENGINE=INNODB;
@@ -141,63 +143,63 @@ CREATE TABLE comments (
 );
 
 --individual users -- 
-INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, userType)
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, userType, joinDate)
 VALUES
-  (1, "Branden", "Rich", "nulla.vulputate@outlook.net", "rbranden", "SVR50RYU0KN", "(747)579-2386", "individual_user"),
-  (2, "Laura", "Mann", "enim@google.ca", "lmann", "WPV18GNV4MN", "(660)389-8798", "individual_user"),
-  (3, "Shelley", "Love", "morbi.tristique@yahoo.edu", "slove", "OZU75RYK9OU", "(574)423-0552", "individual_user"),
-  (4, "Illana", "Wheeler", "dapibus.quam.quis@icloud.edu", "iwheeler", "ICN85EBC3JP", "(426)548-1815", "individual_user"),
-  (5, "Juliet", "Mcleod", "est@hotmail.com", "jmcleod", "UNB38WIP5DH", "(445)818-5484", "individual_user"),
-  (6, "Erich", "Gentry", "lorem.ipsum.sodales@outlook.ca", "egentry", "OOC21PBP6EV", "(482)316-3347", "individual_user"),
-  (7, "Micah", "Rosales", "risus.donec@hotmail.net", "yrivera", "HVG61QFO7AN", "(624)731-4078", "individual_user"),
-  (8, "Yoko", "Rivera", "libero.mauris@outlook.org", "yrivera", "VPJ56SKE4TY", "(436)152-4706", "individual_user"),
-  (9, "Alan", "Butler", "sed@hotmail.org", "abutler", "ZDI77INO1TS", "(601)883-0795", "individual_user"),
-  (10, "Gabriel", "Moody", "donec.fringilla.donec@outlook.edu", "gmoody", "HHB41VYL8HB", "(285)187-7761", "individual_user"),
-  (11, "Anthony", "Hobbs", "placerat.velit.quisque@google.org", "ahobbs", "NRL47EWL5OY", "(879)342-5716", "individual_user"),
-  (12, "Hamish", "English", "vitae.erat.vel@icloud.net", "henglish", "NBD27UKW6JI", "(341)665-6067", "individual_user"),
-  (13, "Fitzgerald", "Gordon", "ultricies@hotmail.com", "fgordon", "YAA14CEN9XC", "(466)782-4882", "individual_user"),
-  (14, "Wallace", "Bean", "vitae@hotmail.ca", "wbean", "VXW23LPP3SE", "(948)681-6175", "individual_user"),
-  (15, "Joy", "Gentry", "imperdiet.ullamcorper@google.couk", "jgentry", "IEE63UPS8KD", "(516)510-5548", "individual_user"),
-  (16, "Igor", "Chen", "tortor.nunc.commodo@outlook.net", "ichen", "YLY05PRE2HP", "(744)351-2703", "individual_user"),
-  (17, "Riley", "Pittman", "tincidunt.dui.augue@outlook.net", "rpittman", "ELF30HQA9VF", "(828)961-6516", "individual_user"),
-  (18, "Shad", "Underwood", "sodales.at.velit@aol.org", "sunderwood", "XYK94XOH3JK", "(736)253-4713", "individual_user"),
-  (19, "Nayda", "Rodriquez", "praesent@google.com", "nrodriquez", "LOP32FTB3OC", "(503)265-2037", "individual_user"),
-  (20, "Nadine", "Hopper", "odio.phasellus@icloud.com", "nhopper", "GRH47MXV3JN", "(256)787-7639", "individual_user"),
-  (21, "Maggie", "Sanchez", "orci.ut@icloud.com", "msanchez", "HBU33ABK5XY", "(386)493-9187", "individual_user"),
-  (22, "Aiko", "Douglas", "aliquet.magna.a@icloud.org", "adouglas", "HGX69LCK7GH", "(287)914-2946", "individual_user"),
-  (23, "Anthony", "Stevens", "sed.pede@aol.ca", "astevens", "FOB75AKX5UR", "(471)377-2276", "individual_user"),
-  (24, "Keaton", "Vincent", "lectus@google.ca", "kvincent", "SQT44HKR6TP", "(769)749-5611", "individual_user"),
-  (25, "Kaye", "Lawrence", "ac.mi@protonmail.com", "klawrence", "UMW49GIH8MJ", "(119)945-3846", "individual_user");
+  (1, "Branden", "Rich", "nulla.vulputate@outlook.net", "rbranden", "SVR50RYU0KN", "(747)579-2386", "individual_user", "2023-07-03"),
+  (2, "Laura", "Mann", "enim@google.ca", "lmann", "WPV18GNV4MN", "(660)389-8798", "individual_user", '2023-02-15'),
+  (3, "Shelley", "Love", "morbi.tristique@yahoo.edu", "slove", "OZU75RYK9OU", "(574)423-0552", "individual_user", "2023-02-06"),
+  (4, "Illana", "Wheeler", "dapibus.quam.quis@icloud.edu", "iwheeler", "ICN85EBC3JP", "(426)548-1815", "individual_user", '2023-02-15'),
+  (5, "Juliet", "Mcleod", "est@hotmail.com", "jmcleod", "UNB38WIP5DH", "(445)818-5484", "individual_user", '2023-02-15'),
+  (6, "Erich", "Gentry", "lorem.ipsum.sodales@outlook.ca", "egentry", "OOC21PBP6EV", "(482)316-3347", "individual_user", '2023-02-15'),
+  (7, "Micah", "Rosales", "risus.donec@hotmail.net", "yrivera", "HVG61QFO7AN", "(624)731-4078", "individual_user", '2023-07-03'),
+  (8, "Yoko", "Rivera", "libero.mauris@outlook.org", "yrivera", "VPJ56SKE4TY", "(436)152-4706", "individual_user", '2023-07-03'),
+  (9, "Alan", "Butler", "sed@hotmail.org", "abutler", "ZDI77INO1TS", "(601)883-0795", "individual_user", '2023-07-03'),
+  (10, "Gabriel", "Moody", "donec.fringilla.donec@outlook.edu", "gmoody", "HHB41VYL8HB", "(285)187-7761", "individual_user", "2023-05-20"),
+  (11, "Anthony", "Hobbs", "placerat.velit.quisque@google.org", "ahobbs", "NRL47EWL5OY", "(879)342-5716", "individual_user", "2023-02-07"),
+  (12, "Hamish", "English", "vitae.erat.vel@icloud.net", "henglish", "NBD27UKW6JI", "(341)665-6067", "individual_user", "2023-05-20"),
+  (13, "Fitzgerald", "Gordon", "ultricies@hotmail.com", "fgordon", "YAA14CEN9XC", "(466)782-4882", "individual_user", "2023-05-20"),
+  (14, "Wallace", "Bean", "vitae@hotmail.ca", "wbean", "VXW23LPP3SE", "(948)681-6175", "individual_user", "2023-05-20"),
+  (15, "Joy", "Gentry", "imperdiet.ullamcorper@google.couk", "jgentry", "IEE63UPS8KD", "(516)510-5548", "individual_user", "2023-05-20"),
+  (16, "Igor", "Chen", "tortor.nunc.commodo@outlook.net", "ichen", "YLY05PRE2HP", "(744)351-2703", "individual_user", "2023-03-07"),
+  (17, "Riley", "Pittman", "tincidunt.dui.augue@outlook.net", "rpittman", "ELF30HQA9VF", "(828)961-6516", "individual_user", "2023-02-06"),
+  (18, "Shad", "Underwood", "sodales.at.velit@aol.org", "sunderwood", "XYK94XOH3JK", "(736)253-4713", "individual_user", "2023-03-07"),
+  (19, "Nayda", "Rodriquez", "praesent@google.com", "nrodriquez", "LOP32FTB3OC", "(503)265-2037", "individual_user", "2023-02-06"),
+  (20, "Nadine", "Hopper", "odio.phasellus@icloud.com", "nhopper", "GRH47MXV3JN", "(256)787-7639", "individual_user", "2023-03-07"),
+  (21, "Maggie", "Sanchez", "orci.ut@icloud.com", "msanchez", "HBU33ABK5XY", "(386)493-9187", "individual_user", "2023-02-07"),
+  (22, "Aiko", "Douglas", "aliquet.magna.a@icloud.org", "adouglas", "HGX69LCK7GH", "(287)914-2946", "individual_user", "2023-02-06"),
+  (23, "Anthony", "Stevens", "sed.pede@aol.ca", "astevens", "FOB75AKX5UR", "(471)377-2276", "individual_user", "2023-02-06"),
+  (24, "Keaton", "Vincent", "lectus@google.ca", "kvincent", "SQT44HKR6TP", "(769)749-5611", "individual_user", "2023-02-07"),
+  (25, "Kaye", "Lawrence", "ac.mi@protonmail.com", "klawrence", "UMW49GIH8MJ", "(119)945-3846", "individual_user", "2023-02-07");
 
 --userID for local recyclers --
-INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, usertype)
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, usertype, joinDate)
 VALUES
-  (26, 'John', 'Doe', 'john.doe@example.com', 'johndoe', 'FDJASLFJKLA', '(123)456-7890', 'recycler'),
-  (27, 'Alice', 'Smith', 'alice.smith@example.com', 'alicesmith', 'HFDASFJKAL', '(987)654-3210', 'recycler'),
-  (28, 'Bob', 'Johnson', 'bob.johnson@example.com', 'bobjohnson', 'FDSAJLVDAS', '(555)123-4567', 'recycler'),
-  (29, 'Emma', 'Davis', 'emma.davis@example.com', 'emmadavis', 'JFDASLADSL', '(111)222-3333', 'recycler'),
-  (30, 'Charlie', 'Miller', 'charlie.miller@example.com', 'charliemiller', 'DJAKLVDSAVD', '(999)888-7777', 'recycler'),
-  (31, 'Eva', 'Clark', 'eva.clark@example.com', 'evaclark', 'DASVDAFDSA', '(777)666-5555', 'recycler'),
-  (32, 'David', 'Johnson', 'david.johnson@example.com', 'davidjohnson', 'VJKCVUE', '(555)123-4567', 'recycler'),
-  (33, 'Sophie', 'Miller', 'sophie.miller@example.com', 'sophiemiller', 'JVLDSAEIRO', '(999)888-7777', 'recycler'),
-  (34, 'Adam', 'Clark', 'adam.clark@example.com', 'adamclark', 'VDASJCM', '(777)666-5555', 'recycler'),
-  (35, 'Olivia', 'Davis', 'olivia.davis@example.com', 'oliviadavis', 'FDASJKLVDSA', '(111)222-3333', 'recycler'),
-  (36, 'Noah', 'Smith', 'noah.smith@example.com', 'noahsmith', 'FDSAJLDVSAJL', '(987)654-3210', 'recycler');
+  (26, 'John', 'Doe', 'john.doe@example.com', 'johndoe', 'FDJASLFJKLA', '(123)456-7890', 'recycler', '2023-02-15'),
+  (27, 'Alice', 'Smith', 'alice.smith@example.com', 'alicesmith', 'HFDASFJKAL', '(987)654-3210', 'recycler', '2023-06-18'),
+  (28, 'Bob', 'Johnson', 'bob.johnson@example.com', 'bobjohnson', 'FDSAJLVDAS', '(555)123-4567', 'recycler', '2023-11-27'),
+  (29, 'Emma', 'Davis', 'emma.davis@example.com', 'emmadavis', 'JFDASLADSL', '(111)222-3333', 'recycler', '2023-11-27'),
+  (30, 'Charlie', 'Miller', 'charlie.miller@example.com', 'charliemiller', 'DJAKLVDSAVD', '(999)888-7777', 'recycler', '2023-11-27'),
+  (31, 'Eva', 'Clark', 'eva.clark@example.com', 'evaclark', 'DASVDAFDSA', '(777)666-5555', 'recycler', '2023-06-18'),
+  (32, 'David', 'Johnson', 'david.johnson@example.com', 'davidjohnson', 'VJKCVUE', '(555)123-4567', 'recycler', '2023-06-18'),
+  (33, 'Sophie', 'Miller', 'sophie.miller@example.com', 'sophiemiller', 'JVLDSAEIRO', '(999)888-7777', 'recycler', '2023-06-18'),
+  (34, 'Adam', 'Clark', 'adam.clark@example.com', 'adamclark', 'VDASJCM', '(777)666-5555', 'recycler', '2023-06-18'),
+  (35, 'Olivia', 'Davis', 'olivia.davis@example.com', 'oliviadavis', 'FDASJKLVDSA', '(111)222-3333', 'recycler', '2023-06-18'),
+  (36, 'Noah', 'Smith', 'noah.smith@example.com', 'noahsmith', 'FDSAJLDVSAJL', '(987)654-3210', 'recycler', '2023-06-18');
 
 --userID for manufacturers --
 
-INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, usertype)
+INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, usertype, joinDate)
 VALUES
-(37, 'John', 'Doe', 'john.doe@example.com', 'john_doe_manufacturer', 'ADVLKVDSALJK', '(123)456-7890', 'manufacturer'),
-(38, 'Jane', 'Smith', 'jane.smith@example.com', 'jane_smith_manufacturer', 'DAJVAKLSVJDKALS', '(987)654-3210', 'manufacturer'),
-(39, 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson_manufacturer', 'DFSAJVU9OEO', '(555)123-4567', 'manufacturer'),
-(40, 'Alice', 'Williams', 'alice.williams@example.com', 'alice_williams_manufacturer', 'CVJKOUEIOR', '(123)987-6543', 'manufacturer'),
-(41, 'Charlie', 'Brown', 'charlie.brown@example.com', 'charlie_brown_manufacturer', 'CXVNMCIERSO', '(555)567-8901', 'manufacturer'),
-(42, 'Eva', 'Davis', 'eva.davis@example.com', 'eva_davis_manufacturer', 'FDASLVASJKLJ', '(123)456-7890', 'manufacturer'),
-(43, 'Frank', 'Evans', 'frank.evans@example.com', 'frank_evans_manufacturer', 'FDJLAKLAFJKLDSA', '(555)123-4567', 'manufacturer'),
-(44, 'Grace', 'Hall', 'grace.hall@example.com', 'grace_hall_manufacturer', 'FDJSAKLVCJAKL', '(123)987-6543', 'manufacturer'),
-(45, 'Henry', 'Irwin', 'henry.irwin@example.com', 'henry_irwin_manufacturer', 'CMNVERUUIUFO', '(555)567-8901', 'manufacturer'),
-(46, 'Ivy', 'Jones', 'ivy.jones@example.com', 'ivy_jones_manufacturer', 'CXMVKLJDEI', '(123)456-7890', 'manufacturer');
+(37, 'John', 'Doe', 'john.doe@example.com', 'john_doe_manufacturer', 'ADVLKVDSALJK', '(123)456-7890', 'manufacturer', '2023-06-18'),
+(38, 'Jane', 'Smith', 'jane.smith@example.com', 'jane_smith_manufacturer', 'DAJVAKLSVJDKALS', '(987)654-3210', 'manufacturer', '2023-09-26'),
+(39, 'Bob', 'Johnson', 'bob.johnson@example.com', 'bob_johnson_manufacturer', 'DFSAJVU9OEO', '(555)123-4567', 'manufacturer', '2023-01-11'),
+(40, 'Alice', 'Williams', 'alice.williams@example.com', 'alice_williams_manufacturer', 'CVJKOUEIOR', '(123)987-6543', 'manufacturer', '2023-09-26'),
+(41, 'Charlie', 'Brown', 'charlie.brown@example.com', 'charlie_brown_manufacturer', 'CXVNMCIERSO', '(555)567-8901', 'manufacturer', '2023-06-18'),
+(42, 'Eva', 'Davis', 'eva.davis@example.com', 'eva_davis_manufacturer', 'FDASLVASJKLJ', '(123)456-7890', 'manufacturer', '2023-06-18'),
+(43, 'Frank', 'Evans', 'frank.evans@example.com', 'frank_evans_manufacturer', 'FDJLAKLAFJKLDSA', '(555)123-4567', 'manufacturer', '2023-06-18'),
+(44, 'Grace', 'Hall', 'grace.hall@example.com', 'grace_hall_manufacturer', 'FDJSAKLVCJAKL', '(123)987-6543', 'manufacturer', '2023-03-25'),
+(45, 'Henry', 'Irwin', 'henry.irwin@example.com', 'henry_irwin_manufacturer', 'CMNVERUUIUFO', '(555)567-8901', 'manufacturer', '2023-03-25'),
+(46, 'Ivy', 'Jones', 'ivy.jones@example.com', 'ivy_jones_manufacturer', 'CXMVKLJDEI', '(123)456-7890', 'manufacturer', '2023-03-25');
 
 
 -- recyclers -- 
@@ -346,6 +348,7 @@ INSERT INTO user_community (userID, communityID) VALUES
   (6, 21),
   (1, 22);
 
+
 INSERT INTO transactions (transactionID, transactionDate, quantity, status, materialID) VALUES
   (1, '2023-03-29', 91, 'Completed', 11),
   (2, '2023-11-13', 14, 'Completed', 17),
@@ -372,6 +375,7 @@ INSERT INTO transactions (transactionID, transactionDate, quantity, status, mate
   (23, '2023-11-14', 73, 'Pending', 14),
   (24, '2023-08-08', 39, 'In Progress', 19),
   (25, '2023-06-16', 89, 'Cancelled', 24);
+
 
 INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES
   (19, 3, 1),
