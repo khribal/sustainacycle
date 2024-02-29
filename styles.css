@@ -349,14 +349,6 @@ p.com {
     height: 400px;
 }
 
-.custom-scroll-container{
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-#sidebar > div:active {
-    background-color: lightgrey;
-}
 /************* Logistics **********************/
 .horiz-parent{
     display: flex;
@@ -509,5 +501,4 @@ label.add {
   visibility: hidden;
   opacity: 0;
 }
-
 

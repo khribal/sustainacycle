@@ -15,7 +15,7 @@ session_start(); ?>
 </head>
 <body>
 <?php 
-include('../includes/nav.php'); 
+include('../includes/waste-nav.php'); 
 ?>
 
 <div class="container px-4 mx-auto p-2">

@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<?php include('../includes/nav.php') ?>
+<?php include('../includes/waste-nav.php') ?>
 
 <div class="container px-4 mx-auto p-2">
   <h1 class="video">Available Waste</h1>

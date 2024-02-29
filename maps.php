@@ -83,6 +83,8 @@ async function initMap() {
             marker.setVisible(true);
             marker.setMap(map);
 
+          // Store the marker reference in the place object
+          place.marker = marker;
 
           // Add a click event listener to the marker
           addMarkerClickListener(marker, place);
@@ -119,11 +121,22 @@ function addMarkerClickListener(marker, place) {
 
 //add each place to sidebar
 function addLocationToSidebar(place, sidebar) {
-    var placeDetails = '<h6>' + place.name + '</h6>' +
-                        '<p>' + place.formatted_address + '</p>' +
-                        '<hr>';
+  var locationDiv = document.createElement('div');
+    locationDiv.innerHTML = '<h6>' + place.name + '</h6>' +
+                            '<p>' + place.formatted_address + '</p>' +
+                            '<hr>';
+    
+                            // Add a click event listener to the sidebar element
+    locationDiv.addEventListener('click', () => {
+            // Trigger click event for the corresponding marker
+            google.maps.event.trigger(place.marker, 'click');
 
-    sidebar.innerHTML += placeDetails;
+            // Toggle 'active' class for the clicked sidebar element
+            locationDiv.classList.toggle('active');
+        });
+    
+    // Append the new div to the sidebar
+    sidebar.appendChild(locationDiv);
 }
     
 
@@ -131,10 +144,22 @@ function addLocationToSidebar(place, sidebar) {
 window.addEventListener('load', initMap);
 </script>
 
-  
+<!-- STYLE FOR SIDEBAR (for some reason it will only work if i manually put this style here) 
+pls modify as needed-->
+<style>
+  .custom-scroll-container {
+    max-height: 400px; /* Set the maximum height as needed */
+    overflow-y: auto;
+  }
+
+  #sidebar > div:hover {
+    background-color: var(--lightblue);
+}
+
+</style>
+
   <!-- Css -->
-  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
-  
+  <link rel="stylesheet" href="./css/styles.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
   <body>
@@ -151,13 +176,14 @@ window.addEventListener('load', initMap);
             <div id="map"></div>
           </div>
           <div class="col">
-            <div id="sidebar">
+            <div id="sidebar" class="custom-scroll-container">
               <h5>Recycling Centers Near You</h5>
           </div>
         </div>
       </div>
     </div>
 </div>
+
 
 
 <!-- Footer --> 

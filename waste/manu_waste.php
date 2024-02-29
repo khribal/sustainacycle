@@ -76,7 +76,7 @@ $conn->close();
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-<?php include('../includes/nav.php'); 
+<?php include('../includes/waste-nav.php'); 
 //success message if waste added
 if (isset($_SESSION['add_success']) && $_SESSION['add_success']){
     echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;"> Material successfully added!</div>';
