@@ -133,7 +133,7 @@ window.addEventListener('load', initMap);
 
   
   <!-- Css -->
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
