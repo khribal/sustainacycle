@@ -25,11 +25,6 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Registration successful! Welcome, ' . $_SESSION['name'] . '!</div>';
     // Reset the flag to avoid showing the message on subsequent visits
     $_SESSION['registration_success'] = false;
-
-  //Add material sucessfully completed
-}elseif (isset($_SESSION['add_success']) && $_SESSION['add_success']){
-  echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;"> Material successfully added!</div>';
-  $_SESSION['add_success'] = false;
 }
 
 //Login successful

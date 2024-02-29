@@ -7,17 +7,15 @@ session_start(); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <?php include('../includes/boot-head.php'); 
+    include('../includes/google-fonts.php');?>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Add Waste</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 <?php 
-include('includes/nav.php'); 
+include('../includes/nav.php'); 
 ?>
 
 <div class="container px-4 mx-auto p-2">
@@ -47,7 +45,7 @@ include('includes/nav.php');
         ?>
     </select><br><br>
 
-    <label for="quantity" class="add">Quantity (lbs):</label><br>
+    <label for="quantity" class="add">Quantity:</label><br>
     <input type="number" id="quantity" name="quantity"><br><br>
 
     <label for="description" class="add">Description:</label><br>
@@ -57,11 +55,11 @@ include('includes/nav.php');
   </form>
 </div>
 
-  <!-- Footer --> 
+<!-- Footer, bootstrap --> 
 <?php 
-include('includes/footer.php');
+    include('../includes/boot-script.php'); 
+    include('../includes/footer.php');
 ?>
-
 
   <script>
     document.getElementById('materialName').addEventListener('change', function() {
@@ -89,7 +87,6 @@ include('includes/footer.php');
 
 <!-- PROCESS FORM FOR ADDING WASTE -->
 <?php
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $materialName = $_POST["materialName"];
     $quantity = $_POST["quantity"];
@@ -109,22 +106,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Use the user ID to find the manufacturer ID
         $manuIDQuery = "SELECT * FROM manufacturers WHERE userID='$userID'";
         $manuIDResult = mysqli_query($conn, $manuIDQuery);
-
+        
         if ($manuIDResult) {
             $row = mysqli_fetch_assoc($manuIDResult);
-            
-            $manufacturerID = $row['manufacturerID'];
 
+            $manufacturerID = $row['manufacturerID']; 
+            
+            $checkMaterials = "SELECT DISTINCT materialName from materials where manufacturerID=$manufacturerID";
+            $checkMatResult = $conn->query($checkMaterials);
+
+            //check if manufacturer already has that material in database
+            if ($checkMatResult) {
+              while ($row = $checkMatResult->fetch_assoc()) {
+                  // Access the materialName column in the current row
+                  $existingMaterialName = $row['materialName'];
+                  // Compare with the materialName you want to check
+                  if ($materialName == $existingMaterialName) {
+                      // Material name already exists, update that record
+                      $updateMat = "UPDATE materials SET quantity=$quantity, description='$description'
+                      where manufacturerID=$manufacturerID AND materialName='$materialName'";
+
+                      $conn->query($updateMat);
+                  }
+              }
+          }else{
+            //create new record for that material
             $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ('$manufacturerID', '$materialName', '$quantity', '$description')";
             
             // Insert form results into the database
             $result = mysqli_query($conn, $sql);
             
+          }
             mysqli_close($conn); // Close the database connection
 
             if ($result) {
                 $_SESSION['add_success'] = true; // Set a success flag
-                header("Location: index.php");
+                header("Location: ./manu_waste.php");
                 exit();
             }
         } else {
