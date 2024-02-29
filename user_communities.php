@@ -9,6 +9,10 @@
 
     <!-- icons link -->
     <script src="https://kit.fontawesome.com/9a3fe9bd1f.js" crossorigin="anonymous"></script>
+
+    <!-- CSS --> 
+    <link rel="stylesheet" href="./css/styles.css">
+    
 </head>
 <body>
 <?php 
