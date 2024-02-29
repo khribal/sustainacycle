@@ -36,12 +36,18 @@ if(mysqli_num_rows($resultUser) == 1){
         $usertype = $row['usertype'];
         $userID = $row['userID'];
         $name = $row['firstName'];
+        $lastName = $row['lastName'];
+        $profilePic = $row['profilePic'];
 
         //set session vars
             $_SESSION['userID'] = $userID;
             $_SESSION['usertype'] = $usertype;
             $_SESSION['username'] = $username;
             $_SESSION['name'] = $name;
+            $_SESSION['lastName'] = $lastName;
+            $_SESSION['email'] = $googleEmail;
+            $_SESSION['profilePic'] = $profilePic;
+
             // set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 

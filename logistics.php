@@ -32,7 +32,6 @@
             <p class="log-lead">In the horizontal bar chart, we showcase the generous contributions from manufacturers who have embraced the circular fashion revolution. Discover the top contributors, ranked by the quantity of textiles donated. Each donation represents a commitment to sustainable practices and a step towards a greener, eco-friendly future.</p>
             <div><canvas id="chart-space"></canvas></div>
 
-
             <!--Recycler-->
             <h2 class="log">Recycler Acceptance: Weaving a Greener Tomorrow</h2>
             <p class="log-lead">Delve into the Recycler Accepted Textiles chart to see the vital role recycling centers play in accepting and repurposing textiles. Recognize the recyclers who have embraced our mission, ranked by the quantity of textiles accepted. Together, we weave a tapestry of positive change, diverting textiles from landfills and contributing to a circular fashion economy.</p>

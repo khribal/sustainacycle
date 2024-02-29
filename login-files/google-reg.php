@@ -71,8 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
             $_SESSION['username'] = $username;
             $_SESSION['usertype'] = $userType;
             $_SESSION['name'] = $fname;
+            $_SESSION['lastName'] = $lname;
             $_SESSION['userID'] = $userID;
-            
+            $_SESSION['email'] = $googleEmail;
+
             if($_SESSION['usertype'] == 'recycler'){
                 header('Location: recycler.php');
                 exit();

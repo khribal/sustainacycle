@@ -8,7 +8,6 @@
       <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){echo 'active';} ?>">
         <a class="nav-link" href="index.php">Home</a>
       </li>
-
       <!-- Logged out and individual users have access to education tab -->
       <?php 
       //get access to session vars
@@ -40,8 +39,8 @@
         }
       ?>
       
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'logistics.php'){echo 'active';} ?>">
-        <a class="nav-link" href="logistics.php">Recycling Logistics</a>
+      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
+        <a class="nav-link" href="tableau.php">Recycling Logistics</a>
       </li>
     
       <!-- Only allow manufacturer to add waste -->
@@ -79,12 +78,18 @@
       <?php
           if (isset($_SESSION['username'])) {
               // User is logged in
-              echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+              echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+              if (isset($_SESSION['profilePic']) && $_SESSION['profilePic'] != ""){
+                echo '<img src="' . $_SESSION['profilePic'] . '" style="width: 20px; height: 20px; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+              }
+              else{
+                echo '<img src="../img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+              }
               if ($_SESSION['usertype'] == 'individual_user'){
                 echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'manufacturer'){
-                echo '<a class="dropdown-item" href="./manu_waste.php">Your Materials</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="./manu_waste.php">Your Materials</a><a class="dropdown-item" href="./requests.php">Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'recycler'){
                 echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
