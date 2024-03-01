@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+$userID = $_SESSION['userID'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

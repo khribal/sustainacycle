@@ -6,7 +6,7 @@
   <!-- Bootstrap, google fonts-->
   <?php 
     include('./includes/boot-head.php'); 
-    // include('./includes/google-fonts.php');
+    include('./includes/google-fonts.php');
   ?>
 
   <!-- Google maps api code-->
@@ -14,8 +14,8 @@
   
   <!-- PHP recycler locations -->
   <?php include('./includes/maps-data.php'); ?>
-
-
+  <!-- CSS --> 
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
 <script>
 // Initialize and add the map
 let map;
@@ -184,7 +184,40 @@ pls modify as needed-->
     </div>
 </div>
 
+<div class="container">
+  <h1 class="comm">Request dropoff</h1>
+  <p>Request one of your local recyclers to drop off any of your textile waste.</p>
+<div class="container">
+  <form action="maps.php" method="POST">
+  <input type="text" name="material" id="material" placeholder="Material type" required>
+  <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>
+  <?php 
+   //db connection
+   $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+   if (!$conn) {
+     die("Connection failed: " . mysqli_connect_error());
+   }
 
+   $recyclerSQL= "SELECT companyName from recyclers";
+   $result = $conn->query($recyclerSQL);
+   echo '<select name="recyclerDropdown" id="recyclerDropdown">';
+
+    // Loop through the results
+    while ($row = $result->fetch_assoc()) {
+        // Output an option for each result
+        echo '<option value="' . $row['companyName'] . '">' . $row['companyName'] . '</option>';
+    }
+    // Close the select element
+    echo '</select>';
+    // Free the result set
+    $result->free();
+  //close db
+  $conn->close();
+  ?>
+  <div><button type="submit" class="btn btn-success" name="submitRequest">Submit request</button></div>
+  </form>
+  </div>
+</div>
 
 <!-- Footer --> 
 <?php include('./includes/footer.php'); ?>

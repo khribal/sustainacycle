@@ -98,7 +98,7 @@ $conn->close();
         </div>
 
         <div class="col rounded border">
-            smaller
+            "Badge Section"
         </div>
     </div>
 </div>
