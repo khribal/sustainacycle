@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+
+    <!-- Bootstrap -->
+    <?php include('../includes/boot-head.php');
+    ?>
+
+    <!-- Google Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+
+    <!-- Google login -->
+    <script src="https://accounts.google.com/gsi/client" async></script>
+
+</head>
+<body>
+<!-- Nav -->
+<?php include('../includes/login-nav.php'); ?>
 <?php 
 session_start(); 
 //VERIFY USER CREDENTIALS - CUSTOM LOGIN
@@ -30,10 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userID = $row['userID'];
         $email = $row['email'];
         $profilePic = $row['profilePic'];
-
+        $tele = $row['contactNum'];
 
         if (password_verify($enteredPassword, $storedPassword)) {
-
             //Store session variables to customize user experience
             $_SESSION['usertype'] = $userType;
             $_SESSION['username'] = $user;
@@ -42,6 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['userID'] = $userID;
             $_SESSION['email'] = $email;
             $_SESSION['profilePic'] = $profilePic;
+            $_SESSION['tele'] = $tele;
+
             //set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 
@@ -59,31 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
-
-    <!-- Bootstrap -->
-    <?php include('../includes/boot-head.php');
-    ?>
-
-    <!-- Google Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-
-
-
-    <!-- Google login -->
-    <script src="https://accounts.google.com/gsi/client" async></script>
-
-</head>
-<body>
-<!-- Nav -->
-<?php include('../includes/login-nav.php'); ?>
 
 <div class="container">
 <div class="mb-3">
@@ -96,8 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input class="form-control" type="password" id="password" name="password" required><br><br>
         <input class="btn btn-primary mb-3" type="submit" value="Submit">
     </form>
-
-
 
 
 <!-- Sign in with google button -->

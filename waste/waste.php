@@ -1,4 +1,44 @@
-<?php session_start(); ?>
+<?php session_start(); 
+  //db connection
+  $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+
+  //get userID of recycler making request
+  $recUserID = $_SESSION['userID'];
+
+  //find the recycler's id
+  $findRecID = "SELECT r.companyID from recyclers as r join users as u on u.userID=r.userID WHERE u.userID=$recUserID";
+  $recIDResult = $conn->query($findRecID);
+  if ($recIDResult) {
+    // Fetch the array
+    $resultRow = $recIDResult->fetch_assoc();
+    // Access the value
+    $recyclerID = $resultRow['companyID'];
+  }
+  
+//recycler clicked request btn
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['requestBtn'])) {
+
+  //get manufacturer and material ID
+  $materialID = $_POST['materialID'];
+  $quantity = $_POST['quantity'];
+
+  //insert the request into the table
+  $insertRequest="INSERT INTO requests (materialID, recyclerID, quantity, reqStatus) VALUES ($materialID, $recyclerID, $quantity, 'Pending')";
+  $conn->query($insertRequest);
+
+  // set success flag for user
+  $_SESSION['request-success'] = true;
+  //redirect so the page reloads
+  header('Location: waste.php');
+  exit();
+}
+
+//close db
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +55,13 @@
 </head>
 <body>
 
-<?php include('../includes/waste-nav.php') ?>
+<?php include('../includes/waste-nav.php');
+if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
+  echo '<div style="text-align: center; color: green; font-size: 20px; font-weight: bold;">Request Successful.</div>';
+  // Reset the flag to avoid showing the message on subsequent visits
+  $_SESSION['registration_success'] = false;
+}
+?>
 
 <div class="container px-4 mx-auto p-2">
   <h1 class="video">Available Waste</h1>
@@ -46,12 +92,18 @@
             echo "<h2 class='mt-4 waste'>" . $materialName . "</h2>";
             echo "<p>" . $description . "</p>";
 
-            //GET EACH MANUFACTURER QUANTITY
-            $manufactWithMaterial="SELECT sum(m.quantity) as quantity, ma.companyName, m.description
-            FROM materials as m
-            JOIN manufacturers as ma ON m.manufacturerID=ma.manufacturerID
-            where m.materialName='$materialName'
-            group by ma.companyName, m.materialName";
+            //GET EACH MANUFACTURER QUANTITY which doesn't have a request
+            $manufactWithMaterial = "SELECT 
+              sum(m.quantity) as quantity,
+              ma.companyName,
+              m.description,
+              ma.manufacturerID,
+              m.materialID
+              FROM materials as m
+              JOIN manufacturers as ma ON m.manufacturerID = ma.manufacturerID
+              LEFT JOIN requests as r ON m.materialID = r.materialID
+              WHERE m.materialName = '$materialName' AND r.materialID IS NULL
+              GROUP BY ma.companyName, m.materialName";
 
             $manuResult = $conn->query($manufactWithMaterial);
             
@@ -62,14 +114,17 @@
               //store the name and quantity
               $companyName = $row_manufacturer['companyName'];
               $totalQuantity = $row_manufacturer['quantity'];
-              
+              $manuID = $row_manufacturer['manufacturerID'];
+              $matID = $row_manufacturer['materialID'];
+
               //echo grid item
               echo "<div class='grid-item'>";
-              echo "<p class='waste'><strong>Manufacturer:</strong>" . $companyName . "</p>";
+              echo "<p class='waste'><strong>Manufacturer: </strong>" . $companyName . "</p>";
               echo "<p class='waste'><strong>Quantity: </strong>" . $totalQuantity . " lbs</p>";
-              if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler'){
-                echo '<button type="button" class="btn btn-success">Request waste</button>';
-              }
+              echo '<div class="row"><div class="col-sm">';
+              echo '<form method="post" action="waste.php"><input type="hidden" name="materialID" value="' . $matID . '"><input type="hidden" name="quantity" value="' . $totalQuantity . '">';
+              echo '<button type="submit" class="btn btn-success" name="requestBtn">Request waste</button></form>';
+              echo '</div></div>';
               echo "</div>";
             }
             echo "</div>";

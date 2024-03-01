@@ -510,4 +510,8 @@ label.add {
   opacity: 0;
 }
 
+#profile-form{
+    display: flex;
+    flex-direction: column;
+}
 
