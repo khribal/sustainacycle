@@ -1,6 +1,3 @@
-<?php session_start(); 
-$userID = $_SESSION['userID'];
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +5,7 @@ $userID = $_SESSION['userID'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include('./includes/boot-head.php')?>
 
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Join A Community</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +37,8 @@ include('./includes/nav.php'); ?>
         //redirect to that community page, pass the community ID 
         header('Location: user_communities.php?community_id=' . $community_id);
         exit();
+
+        $conn->close();
     }
 ?>
 
@@ -53,6 +52,11 @@ include('./includes/nav.php'); ?>
 <?php
     //set user ID to locate communities they are not in
     $userID = $_SESSION['userID'];
+    // Database connection
+    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
     // Fetch and display communities user is not a part of
     $sql = "SELECT c.communityID, c.communityName, c.communityDescription, c.communityRules, c.tags
