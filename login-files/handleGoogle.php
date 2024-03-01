@@ -50,6 +50,7 @@ if(mysqli_num_rows($resultUser) == 1){
             $_SESSION['profilePic'] = $profilePic;
             $_SESSION['tele'] = $tele;
 
+            
             // set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 

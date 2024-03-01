@@ -15,7 +15,6 @@
     <title>SustainaCycle</title>
   </head>
 <body class="index">
-
 <?php 
 include('includes/nav.php'); 
 include('./includes/chart-data.php');
