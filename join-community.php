@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +38,6 @@ include('./includes/nav.php'); ?>
         //redirect to that community page, pass the community ID 
         header('Location: user_communities.php?community_id=' . $community_id);
         exit();
-
-        $conn->close();
     }
 ?>
 
@@ -52,11 +51,6 @@ include('./includes/nav.php'); ?>
 <?php
     //set user ID to locate communities they are not in
     $userID = $_SESSION['userID'];
-    // Database connection
-    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
 
     // Fetch and display communities user is not a part of
     $sql = "SELECT c.communityID, c.communityName, c.communityDescription, c.communityRules, c.tags
