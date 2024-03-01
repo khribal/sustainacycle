@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         //!!!!!!!!!!FIX URL FOR TEAM!!!!!!!!!!!!//
         //create url for the image
-        $image_url = "https://cgi.luddy.indiana.edu/~klhribal/team20/uploads/" . $file_name;
+        $image_url = "https://cgi.luddy.indiana.edu/~team20/uploads/" . $file_name;
 
         //set the new session profile pic
         $_SESSION['profilePic'] = $image_url;
