@@ -1,9 +1,22 @@
 <?php session_start(); 
-//grab user id
+//grab session vars
 $userID=$_SESSION['userID'];
+$email=$_SESSION['email'];
+$name=$_SESSION['name'];
+$lastName=$_SESSION['lastName'];
+$tele=$_SESSION['tele'];
+
+//connect to the database
+$conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+
+//set edit mode as false for user details form
+$editMode = false;
 //form was submitted (image upload)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_FILES["uploadImage"]) && $_FILES["uploadImage"]["error"] == 0) {
+    if (isset($_FILES["uploadImage"]) && $_FILES["uploadImage"]["error"] == 0){
         //get the photo information
         $file_name = $_FILES["uploadImage"]["name"];
         $file_temp = $_FILES["uploadImage"]["tmp_name"];
@@ -14,31 +27,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(move_uploaded_file($file_temp, $upload_directory . $file_name)){
             
         }
-
-
-        //!!!!!!!!!!FIX URL FOR TEAM!!!!!!!!!!!!!!!!//
+        //!!!!!!!!!!FIX URL FOR TEAM!!!!!!!!!!!!//
         //create url for the image
-        $image_url = "https://cgi.luddy.indiana.edu/~klhribal/team20/uploads/" . $file_name;
+        $image_url = "https://cgi.luddy.indiana.edu/~team20/uploads/" . $file_name;
 
         //set the new session profile pic
         $_SESSION['profilePic'] = $image_url;
-
-        // //connect to the database
-        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-        if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-        }
         
         //update their profile pic in the database
         $updateQuery = "UPDATE users SET profilePic='$image_url' WHERE userID='$userID'";
-
+        
         $updateResult = $conn->query($updateQuery);
-
-        //close conn
-        $conn->close();
+    } elseif(isset($_POST['userDetailsForm'])){
+        
     }
 }
-
+//close conn
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,8 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Your Profile</title>
     <?php include('./includes/boot-head.php'); ?>
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
-
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body class="profile-body">
 <?php include('./includes/nav.php'); ?>
@@ -70,14 +74,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p><?php echo $_SESSION['email']; ?></p>
         </div>
 
+        <!--  -->
         <div class="col-6 rounded border">
-            <form action="profile.php" method="post">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-                <input type="text">
-            </form>
+        <?php 
+            // Enable edit mode to show save button if necessary
+            $isEditMode = isset($_POST['editBtn']);
+
+            // Display user details in read-only or editable mode
+            echo '<div data-user-id=' . $userID . '>
+                    <form method="post" action="profile.php" id="profile-form">
+                        <h5>First Name: ' . ($isEditMode ? '<input type="text" name="editFirstName" value="' . $name . '">' : $name) . '</h5>
+                        <h5>Last Name: ' . ($isEditMode ? '<input type="text" name="editLastName" value="' . $lastName . '">' : $lastName) . '</h5>
+                        <h5>Phone: ' . ($isEditMode ? '<input type="text" name="editPass" value="' . $tele . '">' : $tele) . '</h5>
+                        <div class="row">
+                            <div class="col-sm">
+                                <input type="hidden" name="userID" value="' . $userID . '">
+                                ' . ($isEditMode ? '<button type="submit" class="btn btn-success" name="saveBtn">Save Changes</button>' : '<button type="submit" class="btn btn-primary" name="editBtn">Edit</button>') . '
+                            </div>
+                        </div>
+                    </form>
+                </div>';
+            ?>
         </div>
+
         <div class="col rounded border">
             smaller
         </div>
@@ -85,8 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 
-
 <script>
+    //change profile pic script
     document.getElementById('profileImage').addEventListener('click', function() {
         document.getElementById('uploadImage').click();
     });
@@ -113,7 +132,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         reader.readAsDataURL(fileInput.files[0]);
     });
+
 </script>
+
 
 <?php 
 include('./includes/footer.php');

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,9 +11,6 @@
       </li>
       <!-- Logged out and individual users, manufacturers have access to education tab -->
       <?php 
-      //get access to session vars
-      session_start();
-
         if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] == 'individual_user' || $_SESSION['usertype'] == 'manufacturer') {
             echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'education.php' ? ' active' : '') . '"><a class="nav-link" href="education.php">Learn About Sustainability</a></li>';
         }
@@ -83,7 +81,7 @@
                 echo '<img src="' . $_SESSION['profilePic'] . '" style="width: 20px; height: 20px; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               else{
-                echo '<img src="../img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+                echo '<img src="./img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               if ($_SESSION['usertype'] == 'individual_user'){
                 echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
@@ -92,7 +90,7 @@
                 echo '<a class="dropdown-item" href="./waste/manu_waste.php">Your Materials</a><a class="dropdown-item" href="./waste/requests.php">Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'recycler'){
-                echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="./waste/recyrequests.php">Your requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
           } else {
               // User is not logged in

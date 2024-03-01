@@ -6,13 +6,11 @@
     <title>Your Communities</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <?php include('./includes/boot-head.php')?>
-
+    <!-- CSS --> 
+    <link rel="stylesheet" href="css/styles.css">
     <!-- icons link -->
     <script src="https://kit.fontawesome.com/9a3fe9bd1f.js" crossorigin="anonymous"></script>
 
-    <!-- CSS --> 
-    <link rel="stylesheet" href="./css/styles.css">
-    
 </head>
 <body>
 <?php 
@@ -58,7 +56,7 @@ include('./includes/nav.php');
         //loop through posts and put them on cards
         if ($resultPosts->num_rows > 0) {
             while ($rowPost = $resultPosts->fetch_assoc()) {
-                echo '<div class="card" style="width: 18rem;"><div class="card-body">
+                echo '<div><div class="card-body">
                 <h5 class="card-title">' . $rowPost['title'] . '</h5>
                 <p class="card-text">' . $rowPost['content'] . '</p>
                 <a href="user_communities.php?postID=' . $rowPost['postID'] .  '&communityID=' . $communityID . '" class="card-link">Comment</a>
@@ -85,7 +83,7 @@ include('./includes/nav.php');
         header('Location: user_communities.php?community_id=' . $communityID);
         exit();
     }
-    //User hasn't chosen a community to view, still browsing
+    //User hasn't chosen a community to view, still browsing THEIR COMMUNITIES
     elseif(!isset($_GET["communityID"])){
         //find the user's communities
         $findCommunities = "SELECT c.communityID, c.communityName, c.communityDescription
@@ -97,16 +95,23 @@ include('./includes/nav.php');
     
             //get the communityID's that the user is a part of, display those communities and allow them to "enter" each one by passing community_id var
             if ($resultFind->num_rows > 0) {
-                echo "<h1> Your Communities </h1>";
+                echo '<div class="container px-4 mx-auto p-2">';
+                echo '<h1 class="com"> Your Communities </h1>';
+                echo '<p class="com">View and enter the communities you have joined.</p>';
+                echo '</div>';
+                echo '<div class="container px-4 mx-auto p-2">';
+                echo '<div class="grid-container">';
                 while ($rowComm = $resultFind->fetch_assoc()) {
-                    echo '<div class="card">
-                    <div class="card-header">' . $rowComm['communityName'] . '</div>
-                    <div class="card-body">
-                        <p class="card-text">' . $rowComm['communityDescription'] . '</p>
-                        <a href="user_communities.php?community_id=' .  $rowComm['communityID'] . '" class="btn btn-primary">Go to community</a>
+                    echo '<div class="grid-item">
+                    <h2>' . $rowComm['communityName'] . '</h2>
+                    <div>
+                        <p>' . $rowComm['communityDescription'] . '</p>
+                        <a href="user_communities.php?community_id=' .  $rowComm['communityID'] . '" class="btn btn-success">Go to community</a>
                     </div>
                     </div>';
                 }
+                echo '</div>';
+                echo '</div>';
             }
             //user isn't in any communities
             else{

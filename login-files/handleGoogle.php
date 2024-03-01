@@ -38,6 +38,7 @@ if(mysqli_num_rows($resultUser) == 1){
         $name = $row['firstName'];
         $lastName = $row['lastName'];
         $profilePic = $row['profilePic'];
+        $tele = $row['contactNum'];
 
         //set session vars
             $_SESSION['userID'] = $userID;
@@ -47,11 +48,12 @@ if(mysqli_num_rows($resultUser) == 1){
             $_SESSION['lastName'] = $lastName;
             $_SESSION['email'] = $googleEmail;
             $_SESSION['profilePic'] = $profilePic;
+            $_SESSION['tele'] = $tele;
 
             // set login success flag
             $_SESSION['login_success'] = true; // Set a success flag
 
-            //redirect to index
+            // redirect to index
             header('Location: ../index.php');
             exit();
     }

@@ -142,6 +142,19 @@ CREATE TABLE comments (
   FOREIGN KEY (postID) references posts(postID)
 );
 
+
+create table requests (
+  requestID int not null AUTO_INCREMENT,
+  materialID int not null,
+  recyclerID int NOT NULL,
+  quantity int,
+  reqStatus ENUM('Completed', 'Pending', 'Rejected') NOT NULL,
+  PRIMARY KEY (requestID),
+  FOREIGN KEY (materialID) references materials(materialID),
+  FOREIGN KEY (recyclerID) references recyclers(companyID)
+);
+
+
 --individual users -- 
 INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, userType, joinDate)
 VALUES
