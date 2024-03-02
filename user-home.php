@@ -18,7 +18,7 @@
     <h1 class="landing">Welcome to SustainaCycle!</h1>
     <div class="options">
         <a href="maps.php" class="option-button">
-            <img src="img/textile-waste.png" alt="Waste Icon" class="option-icon">
+            <img src="img/location.png" alt="Location Icon" class="option-icon">
             <div class="option-content">
                 <span>See nearby recycling centers to donate waste.</span>
 </div></a>
