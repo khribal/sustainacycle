@@ -15,7 +15,7 @@
 <?php include('includes/nav.php'); ?>
 
 <div class="container mx-auto p-2">
-    <h1 class="landing">Welcome to SustainaCycle!</h1>
+    <h1 class="index">Welcome to SustainaCycle!</h1>
     <div class="options">
         <a href="maps.php" class="option-button">
             <img src="img/location.png" alt="Location Icon" class="option-icon">
