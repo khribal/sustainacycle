@@ -15,10 +15,10 @@
 <?php include('includes/nav.php'); ?>
 
 <div class="container mx-auto p-2">
-    <h1 class="landing">Welcome to SustainaCycle!</h1>
+    <h1 class="index">Welcome to SustainaCycle!</h1>
     <div class="options">
         <a href="add-waste.php" class="option-button">
-            <img src="img/textile-waste.png" alt="Waste Icon" class="option-icon">
+            <img src="img/clothes.png" alt="Waste Icon" class="option-icon">
             <div class="option-content">
                 <span>Have more available waste? Log it here!</span>
 </div></a>
