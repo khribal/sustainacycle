@@ -15,15 +15,16 @@
 <?php include('includes/nav.php'); ?>
 
 <div class="container mx-auto p-2">
-    <h1 class="landing">Welcome to SustainaCycle!</h1>
+<img src="./img/logo.png" alt="logo" height="250px" width="250px">
+    <h1 class="index">Welcome to SustainaCycle!</h1>
     <div class="options">
         <a href="waste.php" class="option-button">
-            <img src="img/textile-waste.png" alt="Waste Icon" class="option-icon">
+            <img src="img/clothes.png" alt="Waste Icon" class="option-icon">
             <div class="option-content">
                 <span>See waste that is available now!</span>
 </div></a>
         <a href="project.php" class="option-button">
-            <img src="img/project-management.png" alt="Project Icon" class="option-icon">
+            <img src="img/project-icon.jpg" alt="Project Icon" class="option-icon">
             <div class="option-content">
                 <span>Learn more about the project.</span>
 </div></a>
