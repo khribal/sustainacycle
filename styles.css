@@ -502,6 +502,11 @@ label.add {
   opacity: 0;
 }
 
+#profile-form{
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* landing-pages */
 h1.landing {
@@ -524,24 +529,27 @@ h1.landing {
     align-items: center;
     padding: 15px 30px;
     border-radius: 5px; 
-    border: 2px solid black;
+    border: 2px solid var(--neonblue);
+    color: var(--blue);
     background-color: white;
-    color: black;
     text-decoration: none;
     text-align: center;
-    font-size: 16px;
     transition: background-color 0.3s;
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 400;
 }
 
 .option-button:hover {
-    background-color: #549293;
-    border-color: #549293;
+    text-decoration: none;
+    color: var(--green);
 }
 
 .option-icon {
-    width: 200px;
     align-items: center;
 }
 

@@ -515,3 +515,51 @@ label.add {
     flex-direction: column;
 }
 
+/* landing-pages */
+h1.landing {
+    font-family: 'DM Serif Display', serif;
+    font-size: 60px;
+    color: black;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.option-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 5px; 
+    border: 2px solid var(--neonblue);
+    color: var(--blue);
+    background-color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 20px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: 400;
+}
+
+.option-button:hover {
+    text-decoration: none;
+    color: var(--green);
+}
+
+.option-icon {
+    align-items: center;
+}
+
+.option-content {
+    flex-grow: 1;
+}
