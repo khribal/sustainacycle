@@ -23,7 +23,7 @@
                 <span>Have more available waste? Log it here!</span>
 </div></a>
         <a href="project.php" class="option-button">
-            <img src="img/project-management.png" alt="Project Icon" class="option-icon">
+            <img src="img/project-icon.jpg" alt="Project Icon" class="option-icon">
             <div class="option-content">
                 <span>Learn more about the project.</span>
 </div></a>
