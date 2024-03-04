@@ -666,3 +666,19 @@ h1.log-in {
     font-size: 70px;
     color: var(--darkblue);
 }
+
+input.login {
+    width: 100%;
+}
+
+input.login-button{
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+p.login{
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+}

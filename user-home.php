@@ -19,12 +19,12 @@
     <h1 class="index">Welcome to SustainaCycle!</h1>
     <div class="options">
         <a href="maps.php" class="option-button">
-            <img src="img/location.png" alt="Location Icon" class="option-icon">
+            <img src="img/map.png" alt="Location Icon" class="option-icon" height="96px" width="96px">
             <div class="option-content">
                 <span>See nearby recycling centers to donate waste.</span>
 </div></a>
         <a href="project.php" class="option-button">
-            <img src="img/project-icon.jpg" alt="Project Icon" class="option-icon">
+            <img src="img/tree.png" alt="Project Icon" class="option-icon" height="96px" width="96px">
             <div class="option-content">
                 <span>Learn more about the project.</span>
 </div></a>

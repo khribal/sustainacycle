@@ -8,13 +8,13 @@
     <!-- Bootstrap -->
     <?php include('../includes/boot-head.php');
     ?>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <!-- Google Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <!-- Google login -->
     <script src="https://accounts.google.com/gsi/client" async></script>
 
@@ -85,16 +85,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 
-<div class="container">
+<div class="container mx-auto">
 <div class="mb-3">
     <h1 class="log-in">Log in to your account</h1>
 
     <form id="login-form" action="login.php" method="post">
         <label class="form-label" for="username">Username:</label>
-        <input class="form-control" type="text" id="username" name="username" required><br><br>
+        <input class="form-control login" type="text" id="username" name="username" required><br><br>
         <label class="form-label" for="password">Password:</label>
-        <input class="form-control" type="password" id="password" name="password" required><br><br>
-        <input class="btn btn-primary mb-3" type="submit" value="Submit">
+        <input class="form-control login" type="password" id="password" name="password" required><br><br>
+        <input class="btn btn-primary mb-3 login-button" type="submit" value="Submit">
     </form>
 
 
@@ -114,10 +114,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-<p>Don't have an account yet? <a href="register.php">Register here.</a></p>
+<p class="login mt-5">Don't have an account yet? <a href="register.php">Register here.</a></p>
 
 </div>
-</div>
+
 
 
 
@@ -135,6 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php 
 include('../includes/login-foot.php');
 include('../includes/boot-script.php'); ?>
+</div>
 
 </body>
 </html>
