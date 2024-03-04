@@ -10,10 +10,26 @@ footer {
     color: var(--darkblue);
 }
 
+h1 {
+    margin-top: 20px;
+}
+
 h2 {
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+input, select, label{
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--darkblue);
+}
+
+.nav-link,.dropdown-menu,.dropdown-item,.dropdown-toggle{
+    font-family: "DM Sans", sans-serif;
+}
+
 
 /*
 index.php
@@ -366,7 +382,7 @@ h1.map {
 
 p.map-lead {
     font-family: "DM Sans", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
     color: var(--green);
 }
@@ -412,6 +428,13 @@ p.map-mini{
     font-weight: 400;
     color: var(--darkblue);
 }
+
+button.map{
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
 
 /************* Logistics/Tableau **********************/
 .horiz-parent{

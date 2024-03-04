@@ -51,7 +51,7 @@ $result = mysqli_query($conn, $sql);
             <?php while($row = mysqli_fetch_assoc($result)): ?>
                 <div class="article mb-5 mt-5">
                     <?php if (!empty($row['img'])): ?>
-                        <img src="<?php echo htmlspecialchars($row['img']); ?>" alt="Article Image" class="img-fluid mb-3">
+                        <img src="<?php echo htmlspecialchars($row['img']); ?>" alt="Article Image" class="img-fluid mb-3" height="999.75px" width="1499.75px">
                     <?php endif; ?>
                     <h3 class="edu"><?php echo htmlspecialchars($row['title']); ?></h3>
                     <p class="edu-auth"><?php echo htmlspecialchars($row['author']); ?> | <?php echo htmlspecialchars($row['date']); ?></p>

@@ -228,7 +228,7 @@ include('includes/nav.php');
 
 <div class="container px-4 mx-auto p-1">
     <h1 class="map">Textile Recyclers Near You</h1>
-    <p class="map">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
+    <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div class="container">
         <div class="row">
@@ -256,7 +256,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
 
   echo '<div class="container px-4 mx-auto p-1"">
   <h1 class="comm map">Request Drop-Off</h1>
-  <p class="map">Request one of your local recyclers to drop off any of your textile waste.</p>
+  <p class="map-lead">Request one of your local recyclers to drop off any of your textile waste.</p>
   <div class="container pt-0">
   <form action="maps.php" method="POST">
   <input type="text" name="material" id="material" placeholder="Material type" required>
@@ -280,7 +280,7 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
   
   echo '<div><label for="datechosen">Date and time for drop off:</label>
   <input name="datechosen" type="datetime-local" id="Test_DatetimeLocal"></div>
-  <div><button type="submit" class="btn btn-success" name="submitRequest">Submit request</button></div>
+  <div><button type="submit" class="btn btn-success map" name="submitRequest">Submit request</button></div>
     </form>
     </div>
   </div>';
