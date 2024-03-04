@@ -681,4 +681,41 @@ p.login{
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
+    color: var(--darkblue);
+}
+
+/* u_logistics */
+
+h4.impact{
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--darkblue);
+}
+
+p.impact-lead{
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h5.impact{
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--darkblue);
+}
+
+p.impact{
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--darkblue);
+}
+
+p.impact-no{
+    font-family: "DM Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--green);
 }

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Impact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <?php 
         include('./includes/boot-head.php');
         include('./includes/google-fonts.php');
@@ -156,22 +159,22 @@ $conn->close();
 ?>
 
 <!--Chart container -->
-<div class="container">
-  <h4>Our Impact</h4>
-  <p>Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability.
+<div class="container mx-auto">
+  <h4 class="impact">Our Impact</h4>
+  <p class="impact-lead">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability.
 </p>
 
 <div class="container">
   <div class="row align-items-start">
     <div class="col">
     <!-- total materials -->
-        <h5>Total Textiles Recycled</h5>
-        <p>This horizontal bar chart illustrates the pounds of textiles recycled for each material category, showcasing your overall impact.</p>
+        <h5 class="impact">Total Textiles Recycled</h5>
+        <p class="impact">This horizontal bar chart illustrates the pounds of textiles recycled for each material category, showcasing your overall impact.</p>
     <canvas id="chart-space"></canvas>
     </div>
     <div class="col">
-        <h5>Textile Donations Over Time</h5>
-        <p>Track the progression of your textile donations alongside the overall donations over time. The chart combines a bar graph for each donation and a line graph for the cumulative total, providing a comprehensive view.</p>
+        <h5 class="impact">Textile Donations Over Time</h5>
+        <p class="impact">Track the progression of your textile donations alongside the overall donations over time. The chart combines a bar graph for each donation and a line graph for the cumulative total, providing a comprehensive view.</p>
     <canvas id="mixed-chart"></canvas>
         <select id="yearSelector">
             <option value="">Select Year</option>
@@ -196,13 +199,13 @@ $conn->close();
   </div>
   <div class="row align-items-start">
     <div class="col">
-        <h5>Comparison of Your Donations</h5>
-        <p>Compare your individual textile donations with the average donations made by other users. This vertical bar chart helps you understand how your efforts align with the broader community.</p>
+        <h5 class="impact">Comparison of Your Donations</h5>
+        <p class="impact">Compare your individual textile donations with the average donations made by other users. This vertical bar chart helps you understand how your efforts align with the broader community.</p>
     <canvas id="compare-bar"></canvas>
     </div>
     <div class="col">
-        <h5>Distribution of Textile Donations</h5>
-        <p>Explore the composition of textile donations with this pie chart. It illustrates the proportion of your contributions compared to the total donations, offering a visual representation of your impact within the larger context.</p>
+        <h5 class="impact">Distribution of Textile Donations</h5>
+        <p class="impact">Explore the composition of textile donations with this pie chart. It illustrates the proportion of your contributions compared to the total donations, offering a visual representation of your impact within the larger context.</p>
     <canvas id="pie-canvas"></canvas>
     </div>
   </div>
@@ -231,7 +234,7 @@ $conn->close();
         // If null, display a message on the chart canvas
         const chartCanvas1 = document.getElementById('chart-space');
         const messageDiv1 = document.createElement('div');
-        messageDiv1.innerHTML = '<p><strong>No information to display yet.</strong></p>';
+        messageDiv1.innerHTML = '<p class="impact-no"><strong>No information to display yet.</strong></p>';
         chartCanvas1.parentNode.replaceChild(messageDiv1, chartCanvas1);
 
     } else {
@@ -249,7 +252,7 @@ $conn->close();
         // If null, display a message on the chart canvas
         const chartCanvas = document.getElementById('mixed-chart');
         const messageDiv = document.createElement('div');
-        messageDiv.innerHTML = '<p><strong>No information to display yet.</strong></p>';
+        messageDiv.innerHTML = '<p class="impact-no"><strong>No information to display yet.</strong></p>';
         chartCanvas.parentNode.replaceChild(messageDiv, chartCanvas);
 
     } else {
