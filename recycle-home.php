@@ -17,14 +17,14 @@
 <div class="container mx-auto p-2">
 <img src="./img/logo.png" alt="logo" height="250px" width="250px">
     <h1 class="index">Welcome to SustainaCycle!</h1>
-    <div class="options">
+    <div class="options mt-5">
         <a href="waste.php" class="option-button">
-            <img src="img/clothes.png" alt="Waste Icon" class="option-icon">
+            <img src="img/shirt.png" alt="Waste Icon" class="option-icon" height="96px" width="96px">
             <div class="option-content">
                 <span>See waste that is available now!</span>
 </div></a>
         <a href="project.php" class="option-button">
-            <img src="img/project-icon.jpg" alt="Project Icon" class="option-icon">
+            <img src="img/tree.png" alt="Project Icon" class="option-icon" height="96px" width="96px">
             <div class="option-content">
                 <span>Learn more about the project.</span>
 </div></a>
