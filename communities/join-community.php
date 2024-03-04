@@ -69,21 +69,27 @@ include('./includes/nav.php'); ?>
     WHERE uc.userID IS NULL";
     $result = $conn->query($sql);
 
+    echo "<div class='community-box mx-auto p-5'>";
+    echo "<div class='grid-container'>";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<div class='community-box mx-auto p-5'>";
+            echo '<div class="grid-item">';
             echo "<h3 class='com'>" . htmlspecialchars($row["communityName"]) . "</h3>";
             echo "<p class='com'><strong>Description:</strong> " . nl2br(htmlspecialchars($row["communityDescription"])) . "</p>";
             echo "<p class='com'><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
             echo "<p class='com'><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
             echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='button mt-2'>Join &raquo;</a>";
             echo "</div>";
+
+            //close db
+            $conn->close();
         }
     } else {
         echo "You have joined all of our communities!";
     }
 
-    $conn->close();
+    echo "</div>";
+
     ?>
 </div>
 

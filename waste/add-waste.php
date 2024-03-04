@@ -1,6 +1,7 @@
 <?php 
 ob_start(); // Start output buffering
-session_start(); ?>
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +50,7 @@ include('../includes/waste-nav.php');
     <input type="number" id="quantity" name="quantity"><br><br>
 
     <label for="description" class="add">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50" readonly></textarea><br>
+    <input type="text" id="quantity" name="quantity"><br><br>
 
     <input type="submit" value="Submit">
   </form>
@@ -58,31 +59,8 @@ include('../includes/waste-nav.php');
 <!-- Footer, bootstrap --> 
 <?php 
     include('../includes/boot-script.php'); 
-    include('../includes/footer.php');
+    include('../includes/waste-footer.php');
 ?>
-
-  <script>
-    document.getElementById('materialName').addEventListener('change', function() {
-      var materialName = this.value;
-      var descriptionField = document.getElementById('description');
-
-      if (materialName === 'Cotton') {
-        descriptionField.value = 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.';
-      } else if (materialName === 'Silk') {
-        descriptionField.value = 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.';
-      } else if (materialName === 'Polyester') {
-        descriptionField.value = 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.';
-      } else if (materialName === 'Linen') {
-        descriptionField.value = 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.';
-      } else if (materialName === 'Wool') {
-        descriptionField.value = 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.';
-      } else if (materialName === 'Leather') {
-        descriptionField.value = 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.';
-      } else if (materialName === 'Satin') {
-        descriptionField.value = 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.';
-      }
-    });
-  </script>
 
 
 <!-- PROCESS FORM FOR ADDING WASTE -->
@@ -111,8 +89,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = mysqli_fetch_assoc($manuIDResult);
 
             $manufacturerID = $row['manufacturerID']; 
-            
-            $checkMaterials = "SELECT DISTINCT materialName from materials where manufacturerID=$manufacturerID";
+  
+            $checkMaterials = "SELECT materialName from materials where manufacturerID=$manufacturerID";
             $checkMatResult = $conn->query($checkMaterials);
 
             //check if manufacturer already has that material in database
@@ -131,10 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               }
           }else{
             //create new record for that material
-            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ('$manufacturerID', '$materialName', '$quantity', '$description')";
+            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ($manufacturerID, '$materialName', $quantity, '$description')";
             
             // Insert form results into the database
-            $result = mysqli_query($conn, $sql);
+            $result = $conn->query($sql);
             
           }
             mysqli_close($conn); // Close the database connection

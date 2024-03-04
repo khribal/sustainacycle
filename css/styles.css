@@ -526,9 +526,8 @@ label.add {
 
 /*tableau (starter) */
 
-.row-tabl{
+.recymanu-row{
     display: flex;
-    flex-flow: row nowrap;
 }
 
 

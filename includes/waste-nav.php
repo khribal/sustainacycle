@@ -17,13 +17,7 @@
             echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'education.php' ? ' active' : '') . '"><a class="nav-link" href="../education.php">Learn About Sustainability</a></li>';
         }
       ?>
-      
-      <!-- Only allow recyclers to see available waste -->
-      <?php 
-        if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler') {
-            echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'waste.php' ? 'active' : '') . '"><a class="nav-link" href="waste.php">See Available Waste</a></li>';
-        }
-      ?> 
+
 
       <!-- Only allow individual users / manufacturers to see their impact -->
         <?php 

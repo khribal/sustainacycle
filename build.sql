@@ -1,3 +1,7 @@
+drop table if exists chat;
+drop table if exists chat_members;
+drop table if exists chat_content;
+drop table if exists requests;
 drop table if exists comments;
 drop table if exists posts;
 drop table if exists articles;
@@ -65,9 +69,9 @@ CREATE TABLE materials(
     quantity int NOT NULL,
     materialName varchar(50),
     description TEXT NOT NULL,
-    manufacturerID int NOT NULL,
+    userID int NOT NULL,
     PRIMARY KEY (materialID),
-    FOREIGN KEY (manufacturerID) REFERENCES manufacturers(manufacturerID)
+    FOREIGN KEY (userID) REFERENCES users(userID)
 ) engine=innodb;
 
 
@@ -91,7 +95,7 @@ CREATE TABLE user_community(
 
 CREATE TABLE transactions(
      transactionID int NOT NULL AUTO_INCREMENT,
-     transactionDate date NOT NULL,
+     transactionDate Datetime NOT NULL,
      quantity int NOT NULL,
      status varchar(50),
      materialID int NOT NULL,
@@ -143,17 +147,45 @@ CREATE TABLE comments (
 );
 
 
+create table chat (
+  chatID int not null AUTO_INCREMENT,
+  chatHead varchar(250),
+  PRIMARY KEY (chatID)
+);
+
+create table chat_content(
+  chatcontentID int not null AUTO_INCREMENT,
+  chatID int not null,
+  message_content varchar(250),
+  time_stamp time,
+  userID int not null,
+  PRIMARY KEY (chatcontentID),
+  FOREIGN KEY (chatID) references chat(chatID),
+  FOREIGN KEY (userID) references users(userID)
+);
+
+create table chat_members(
+  chatID int not null,
+  recyclerID int not null,
+  manufacturerID int not null,
+  FOREIGN KEY (chatID) references chat(chatID),
+  FOREIGN KEY (recyclerID) references recyclers(companyID),
+  FOREIGN KEY (manufacturerID) references manufacturers(manufacturerID)
+);
+
 create table requests (
   requestID int not null AUTO_INCREMENT,
   materialID int not null,
   recyclerID int NOT NULL,
   quantity int,
-  reqStatus ENUM('Completed', 'Pending', 'Rejected') NOT NULL,
+  completionDate date,
+  reqStatus ENUM('Completed', 'Pending', 'Accepted') NOT NULL,
+  chatID int,
   PRIMARY KEY (requestID),
   FOREIGN KEY (materialID) references materials(materialID),
-  FOREIGN KEY (recyclerID) references recyclers(companyID)
+  FOREIGN KEY (recyclerID) references recyclers(companyID),
+  FOREIGN KEY (chatID) references chat(chatID)
 );
-
 
 --individual users -- 
 INSERT INTO users (userID, firstName, lastName, email, username, pass, contactNum, userType, joinDate)
@@ -276,34 +308,39 @@ VALUES
 ;
 
 
-INSERT INTO materials (materialID, quantity, materialName, description, manufacturerID)
+INSERT INTO materials (materialID, quantity, materialName, description, userID)
 VALUES
-  (1, 752, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 9),
-  (2, 436, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
-  (3, 67, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 8),
-  (4, 840, 'Linen', 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.', 1),
-  (5, 95, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 5),
-  (6, 903, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 4),
-  (7, 954, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 5),
-  (8, 546, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 9),
-  (9, 22, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 3),
-  (10, 690, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 4),
-  (11, 295, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 5),
-  (12, 434, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 2),
-  (13, 682, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 3),
-  (14, 155, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 6),
-  (15, 239, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 9),
-  (16, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 1),
-  (17, 523, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.',  5),
-  (18, 365, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 3),
-  (19, 990, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 5),
-  (20, 332, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 3),
-  (21, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 9),
-  (22, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 4),
-  (23, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 3),
-  (24, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 8),
-  (25, 1, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 2);
-
+  (1, 752, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 41),
+  (2, 436, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 41),
+  (3, 67, 'Velvet', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 41),
+  (4, 840, 'Linen', 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.', 42),
+  (5, 95, 'Wool', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 42),
+  (6, 903, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 42),
+  (7, 954, 'Chiffon', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 43),
+  (8, 546, 'Satin', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 43),
+  (9, 22, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 43),
+  (10, 690, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 44),
+  (11, 295, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 44),
+  (12, 434, 'Spandex', 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.', 44),
+  (13, 682, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 45),
+  (14, 155, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 45),
+  (15, 239, 'Corduroy', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 45),
+  (16, 912, 'Nylon', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 46),
+  (17, 523, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.',  46),
+  (18, 365, 'Polyester', 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.', 46),
+  (19, 990, 'Lace', 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.', 37),
+  (20, 332, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 37),
+  (21, 912, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 37),
+  (22, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 38),
+  (23, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 38),
+  (24, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 38),
+  (25, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 39),
+  (26, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 39),
+  (27, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 39),
+  (28, 116, 'Silk', 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.', 40),
+  (29, 124, 'Cotton', 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.', 40),
+  (30, 120, 'Leather', 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.', 40)
+  ;
 
 INSERT INTO communities (communityID, communityName, communityDescription, communityRules, tags)
 VALUES
@@ -363,59 +400,17 @@ INSERT INTO user_community (userID, communityID) VALUES
 
 
 INSERT INTO transactions (transactionID, transactionDate, quantity, status, materialID) VALUES
-  (1, '2023-03-29', 91, 'Completed', 11),
-  (2, '2023-11-13', 14, 'Completed', 17),
-  (3, '2023-05-30', 74, 'Completed', 14),
-  (4, '2023-07-07', 65, 'Completed', 3),
-  (5, '2023-02-05', 12, 'Completed', 24),
-  (6, '2023-09-20', 87, 'Completed', 20),
-  (7, '2023-07-18', 93, 'Completed', 19),
-  (8, '2023-04-14', 46, 'Completed', 7),
-  (9, '2023-01-04', 48, 'Completed', 11),
-  (10, '2023-06-21', 72, 'Completed', 16),
-  (11, '2023-02-16', 68, 'Completed', 24),
-  (12, '2023-12-03', 7, 'Completed', 22),
-  (13, '2023-10-15', 70, 'Completed', 2),
-  (14, '2023-06-29', 90, 'Completed', 24),
-  (15, '2023-11-25', 32, 'Completed', 17),
-  (16, '2023-01-17', 17, 'In Progress', 7),
-  (17, '2023-06-04', 97, 'In Progress', 22),
-  (18, '2023-02-13', 11, 'Cancelled', 21),
-  (19, '2023-01-10', 97, 'Pending', 11),
-  (20, '2023-03-25', 43, 'Cancelled', 23),
-  (21, '2023-12-01', 47, 'In Progress', 9),
-  (22, '2023-02-02', 95, 'Completed', 3),
-  (23, '2023-11-14', 73, 'Pending', 14),
-  (24, '2023-08-08', 39, 'In Progress', 19),
-  (25, '2023-06-16', 89, 'Cancelled', 24);
+  (1, '2023-03-29 00:00:00', 91, 'Completed', 11),
+  (2, '2023-11-13 00:00:00', 14, 'Completed', 17),
+  (3, '2023-05-30 00:00:00', 74, 'Completed', 14)
+;
 
 
 INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES
   (19, 3, 1),
-  (13, 13, 2),
-  (4, 5, 3),
-  (15, 21, 4),
-  (9, 7, 5),
-  (24, 22, 6),
-  (15, 4, 7),
-  (37, 21, 8),
-  (7, 10, 9),
-  (38, 25, 10),
-  (18, 12, 1),
-  (39, 6, 1),
-  (5, 16, 2),
-  (15, 11, 3),
-  (40, 20, 4),
-  (24, 19, 5),
-  (2, 7, 6),
-  (13, 9, 7),
-  (41, 6, 8),
-  (2, 17, 9),
-  (14, 11, 10),
-  (7, 3, 11),
-  (13, 2, 1),
-  (42, 20, 2),
-  (18, 2, 3);
+  (13, 2, 2),
+  (15, 1, 4)
+  ;
 
 INSERT INTO articles (title, author, date, tags, description, img, article_text) VALUES
 ("10 Tips for Sustainable Shopping", "Alex Green", "2024-02-01", "sustainable,shopping", 
@@ -486,3 +481,8 @@ INSERT INTO comments (comment_content, userID, postID) VALUES
 ('Example Comment', 9, 9),
 ('Example Comment', 10, 10),
 ('Example Comment', 11, 11);
+
+
+insert into posts (title, content, like_count, userID, communityID) VALUES
+('Recycling Textiles for a Greener Tomorrow', 'Learn about the benefits of recycling textiles and how it can lead to a more sustainable future. Join us in the recycling movement!', 0, 2, 2)
+;

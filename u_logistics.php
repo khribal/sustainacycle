@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Impact</title>
-    <?php include('./includes/boot-head.php')?>
+    <?php 
+        include('./includes/boot-head.php');
+        include('./includes/google-fonts.php');
+    ?>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
@@ -25,7 +28,6 @@ $usertype = $_SESSION['usertype'];
 
 $userDonations = "SELECT m.materialName, SUM(t.quantity) AS totalQuantity
 FROM materials AS m
-JOIN manufacturers AS ma ON ma.manufacturerID = m.manufacturerID
 JOIN transactions AS t ON t.materialID = m.materialID
 JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
 JOIN users AS u ON u.userID = ut.userID
@@ -49,7 +51,6 @@ $jsonResult = json_encode($data);
 
 $userDonationsOverTime = "SELECT t.quantity, t.transactionDate
 FROM materials AS m
-JOIN manufacturers AS ma ON ma.manufacturerID = m.manufacturerID
 JOIN transactions AS t ON t.materialID = m.materialID
 JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
 JOIN users AS u ON u.userID = ut.userID
