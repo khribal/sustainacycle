@@ -1,5 +1,60 @@
 <?php session_start(); 
 $userID = $_SESSION['userID'];
+
+//db connection
+$conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitRequest'])){
+  //grab results of request
+  $recyclerName = $_POST['recyclerDropdown'];
+  $materialName = $_POST['material'];
+  $chosenQuantity = $_POST['quantity'];
+  $dateChosen = $_POST['datechosen'];
+  $description = $_POST['description'];
+
+  //format date chosen to date time
+  // Create a DateTime object from the string
+  $dateTime = new DateTime($dateChosen);
+  $formattedDateTime = $dateTime->format("Y-m-d H:i:s");
+
+  //find the corresponding recyclerID 
+  $recyclerIDQuery = "SELECT companyID from recyclers where companyName='$recyclerName'";
+  $recyclerIDResult = $conn->query($recyclerIDQuery);
+  $row = $recyclerIDResult->fetch_assoc();
+  $recyclerID = $row['companyID'];
+
+
+//   //insert the material into materials table
+  $insertMaterial = "INSERT INTO materials (materialName, quantity, description, userID) VALUES ('$materialName', $chosenQuantity, '$description', $userID)";
+  //get the id of the inserted material
+  $insertMaterialID = $conn->query($insertMaterial) ? $conn->insert_id : null;
+
+  //insert the transaction into the transaction table, get the transactionID
+  $insertTransaction = "INSERT INTO transactions (transactionDate, quantity, status, materialID) VALUES ('$formattedDateTime', $chosenQuantity, 'Pending', $insertMaterialID)";
+  $insertTransactionID = $conn->query($insertTransaction) ? $conn->insert_id : null;
+
+
+  // insert the user, recycler, and transaction id into user_transaction
+  $insertUserTransaction = "INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES ($userID, $insertTransactionID, $recyclerID)";
+  $conn->query($insertUserTransaction);
+
+  
+     // Check if the insertions were successful
+     if ($insertMaterialID && $insertTransactionID) {
+      // Display an alert message using PHP
+      echo '<script>alert("Request submitted successfully!");</script>';
+  } else {
+      // Display an alert for any errors
+      echo '<script>alert("Error submitting request. Please try again.");</script>';
+  }
+}
+
+//close db
+$conn->close();
+
 ?>
 <html>
   <head>
@@ -229,52 +284,6 @@ if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
     </form>
     </div>
   </div>';
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitRequest'])){
-  //grab results of request
-  $recyclerName = $_POST['recyclerDropdown'];
-  $materialName = $_POST['material'];
-  $chosenQuantity = $_POST['quantity'];
-  $dateChosen = $_POST['datechosen'];
-  $description = $_POST['description'];
-
-  //format date chosen to date time
-  // Create a DateTime object from the string
-  $dateTime = new DateTime($dateChosen);
-  $formattedDateTime = $dateTime->format("Y-m-d H:i:s");
-
-  //find the corresponding recyclerID 
-  $recyclerIDQuery = "SELECT companyID from recyclers where companyName='$recyclerName'";
-  $recyclerIDResult = $conn->query($recyclerIDQuery);
-  $row = $recyclerIDResult->fetch_assoc();
-  $recyclerID = $row['companyID'];
-
-
-//   //insert the material into materials table
-  $insertMaterial = "INSERT INTO materials (materialName, quantity, description, userID) VALUES ('$materialName', $chosenQuantity, '$description', $userID)";
-  //get the id of the inserted material
-  $insertMaterialID = $conn->query($insertMaterial) ? $conn->insert_id : null;
-
-  //insert the transaction into the transaction table, get the transactionID
-  $insertTransaction = "INSERT INTO transactions (transactionDate, quantity, status, materialID) VALUES ('$formattedDateTime', $chosenQuantity, 'Pending', $insertMaterialID)";
-  $insertTransactionID = $conn->query($insertTransaction) ? $conn->insert_id : null;
-
-
-  // insert the user, recycler, and transaction id into user_transaction
-  $insertUserTransaction = "INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES ($userID, $insertTransactionID, $recyclerID)";
-  $conn->query($insertUserTransaction);
-
-  
-     // Check if the insertions were successful
-     if ($insertMaterialID && $insertTransactionID) {
-      // Display an alert message using PHP
-      echo '<script>alert("Request submitted successfully!");</script>';
-  } else {
-      // Display an alert for any errors
-      echo '<script>alert("Error submitting request. Please try again.");</script>';
-  }
-}
 
 //close db
 $conn->close();
