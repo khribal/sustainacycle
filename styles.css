@@ -398,6 +398,21 @@ h6.map{
     font-weight: 600;
     color: var(--blue);
 }
+
+h3.map{
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green);
+}
+
+p.map-mini{
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
 /************* Logistics **********************/
 .horiz-parent{
     display: flex;
@@ -604,4 +619,13 @@ h1.landing {
 
 .option-content {
     flex-grow: 1;
+}
+
+/* profile.php */
+
+h2.map {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
 }

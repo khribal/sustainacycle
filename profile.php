@@ -58,7 +58,7 @@ $conn->close();
 <body class="profile-body">
 <?php include('./includes/nav.php'); ?>
 
-<div class="container">
+<div class="container mx-auto px-4">
     <div class="row">
         <div class="col rounded border text-center d-flex flex-column" style="height: fit-content;">
         <form action="profile.php" method="post" enctype="multipart/form-data" id="imageUploadForm">
@@ -83,9 +83,9 @@ $conn->close();
             // Display user details in read-only or editable mode
             echo '<div data-user-id=' . $userID . '>
                     <form method="post" action="profile.php" id="profile-form">
-                        <h5>First Name: ' . ($isEditMode ? '<input type="text" name="editFirstName" value="' . $name . '">' : $name) . '</h5>
-                        <h5>Last Name: ' . ($isEditMode ? '<input type="text" name="editLastName" value="' . $lastName . '">' : $lastName) . '</h5>
-                        <h5>Phone: ' . ($isEditMode ? '<input type="text" name="editPass" value="' . $tele . '">' : $tele) . '</h5>
+                        <h5 class="profile">First Name: ' . ($isEditMode ? '<input type="text" name="editFirstName" value="' . $name . '">' : $name) . '</h5>
+                        <h5 class="profile">Last Name: ' . ($isEditMode ? '<input type="text" name="editLastName" value="' . $lastName . '">' : $lastName) . '</h5>
+                        <h5 class="profile">Phone: ' . ($isEditMode ? '<input type="text" name="editPass" value="' . $tele . '">' : $tele) . '</h5>
                         <div class="row">
                             <div class="col-sm">
                                 <input type="hidden" name="userID" value="' . $userID . '">
