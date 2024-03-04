@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+$userID = $_SESSION['userID'];
 //connect to the database
 $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
 if (!$conn) {
@@ -8,25 +8,15 @@ die("Connection failed: " . mysqli_connect_error());
 }
 
 //user clicked edit or delete
-//USER CLICKED EDIT
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['deleteBtn'])){
     //get the materialID so we know what to delete
     $materialID = $_POST['materialID'];
-    $userID = $_SESSION['userID'];
 
     $delMaterial = "DELETE FROM materials WHERE materialID=$materialID";
 
     if($conn->query($delMaterial)){
-        // Check the affected rows
-    if ($conn->affected_rows > 0) {
-        // Material deleted successfully
-        // Refresh the page for the user so the changes load
         header("Location: manu_waste.php");
         exit();
-    } else {
-        // No rows were affected (perhaps the material with given ID doesn't exist)
-        echo "Material not found or not deleted.";
-    }
     }
 }//user clicked EDIT
 elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['saveBtn'])){
@@ -98,7 +88,7 @@ if (isset($_SESSION['add_success']) && $_SESSION['add_success']){
         die("Connection failed: " . mysqli_connect_error());
     }
     //grab the manufacturerID
-    $idQuery="SELECT manufacturerID FROM manufacturers where userID=$manufacturerUserID";
+    $idQuery="SELECT manufacturerID FROM manufacturers where userID=$userID";
     //get result 
     $idResult= $conn->query($idQuery);
     //store result
@@ -111,7 +101,7 @@ if (isset($_SESSION['add_success']) && $_SESSION['add_success']){
     }
 
     //grab materials
-    $yourMaterials = "SELECT materialName, quantity, description, materialID from materials where manufacturerID=$manuID";
+    $yourMaterials = "SELECT materialName, quantity, description, materialID from materials where userID=$userID";
 
     $mResult = $conn->query($yourMaterials);
 
@@ -147,8 +137,8 @@ if (isset($_SESSION['add_success']) && $_SESSION['add_success']){
 </div>
 
 <?php 
-include('../footer.php');
-include('../includes/boot-script.php'); 
+    include('../includes/waste-footer.php');
+    include('../includes/boot-script.php'); 
 ?>
 </body>
 </html>

@@ -77,40 +77,55 @@ include('./includes/nav.php');
         //display the name of the community, rules, etc.
         if ($resultComm->num_rows > 0) {
             while ($rowComm = $resultComm->fetch_assoc()) {
-                echo '<div class="container"><h1>' . $rowComm['communityName'] . '</h1><h4> Description: ' . $rowComm['communityDescription'] . '</h4><p>Rules: ' . $rowComm['communityRules'] . '</p><p> Tags: ' . $rowComm['tags'] . '</p>';
+                echo '<div class="container px-4 mx-auto p-2"><h1 class="comm">' . $rowComm['communityName'] . '</h1><h4 class="comm"> Description: ' . $rowComm['communityDescription'] . '</h4><p class="comm">Rules: ' . $rowComm['communityRules'] . '</p><p> Tags: ' . $rowComm['tags'] . '</p>';
             }
         }
-
+        echo '<div class="container px-4 mx-auto p-2"><div class="grid-container">';
         //loop through posts and put them on cards
         if ($resultPosts->num_rows > 0) {
             while ($rowPost = $resultPosts->fetch_assoc()) {
-                echo '<div><div class="card-body">
-                <h5 class="card-title">' . $rowPost['title'] . '</h5>
-                <p class="card-text">' . $rowPost['content'] . '</p>
-                <a href="user_communities.php?postID=' . $rowPost['postID'] .  '&communityID=' . $communityID . '" class="card-link">Comment</a>
-                <a href="user_communities.php?postID=' . $rowPost['postID'] . '&communityID=' . $communityID . '" class="card-link"><i class="fa-regular fa-thumbs-up"></i>' . $rowPost['like_count'] . '</a>
-              </div>';
+                $postID = $rowPost['postID'];
+                $isCommentMode = isset($_POST['commentBtn']) && $_POST['postID'] == $postID;
+
+                echo '<div class="grid-item"><h5>' . $rowPost['title'] . '</h5>
+                <p>' . $rowPost['content'] . '</p>';
+                echo '<form method="post" action="user_communities.php">
+                <input type="hidden" name="postID" value="' . $postID . '">';
+                echo $isCommentMode ? '<textarea name="commentField"></textarea><button type="submit" class="btn btn-success" name="submitComment">Submit Comment</button>' : '<button type="submit" class="btn btn-primary" name="commentBtn">Comment</button>';
+                echo '<a href="user_communities.php?postID=' . $rowPost['postID'] . '&communityID=' . $communityID . 'class="card-link"><i class="fa-regular fa-thumbs-up"></i>' . $rowPost['like_count'] . '</a><hr>';
+
+                //get the comments for this community
+                $getComments="SELECT comment_content, userID from comments where postID=$postID";
+                $resultComments = $conn->query($getComments);
+                while($rowComment=$resultComments->fetch_assoc()){
+                    echo '<div>' . $rowComment['comment_content'] . '</div>';
+                }
+                echo '</div>';
             }
         } 
         else {
             echo "No posts available in your community.";
         }
+        //close the grid
+        echo '</div>';
     }
 
     //UPDATE LIKE COUNT
     elseif (isset($_GET["postID"]) && isset($_GET["communityID"])) {
+            //user clicked like button
+            $postID = $_GET["postID"];
+            $communityID = $_GET['communityID'];
+    
+            //update the like count
+            $updateLikeCount = "UPDATE posts SET like_count = like_count + 1 WHERE postID = $postID";
+    
+            $resultLike = $conn->query($updateLikeCount);
+    
+            header('Location: user_communities.php?community_id=' . $communityID);
+            exit();
+        }
         
-        $postID = $_GET["postID"];
-        $communityID = $_GET['communityID'];
-
-        //update the like count
-        $updateLikeCount = "UPDATE posts SET like_count = like_count + 1 WHERE postID = $postID";
-
-        $resultLike = $conn->query($updateLikeCount);
-
-        header('Location: user_communities.php?community_id=' . $communityID);
-        exit();
-    }
+    
     //User hasn't chosen a community to view, still browsing THEIR COMMUNITIES
     elseif(!isset($_GET["communityID"])){
         //find the user's communities
@@ -146,6 +161,9 @@ include('./includes/nav.php');
                 echo "<div class=container mx-auto p-2><h4>You haven't joined any communities yet!</h4><a href='join-community.php'><p>Click here</a> to browse our communities.</p></div>";
             }
     }
+    elseif(isset($_POST['postID']) && isset($_POST['comment'])){
+        echo "they commented";
+    }
     else{
         echo "oops";
     }
@@ -153,6 +171,8 @@ include('./includes/nav.php');
 ?>
 
 <?php include('./includes/boot-script.php')?>
+
+
 
 </body>
 </html>

@@ -13,6 +13,12 @@
         include('./includes/boot-head.php');
         include('./includes/google-fonts.php');
     ?>
+
+    <link rel="stylesheet" href="./css/styles.css" type="text/css">
+    
+    <!-- Tableau script -->
+    <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+
 </head>
 <body>
 <?php include('./includes/nav.php'); ?>
@@ -22,6 +28,26 @@
     <h1 class="log">Recycling Logistics Overview: Making an Impact</h1>
     <p class="log-lead">Welcome to our Recycling Logistics Overview, a visual representation of the impactful journey your textile donations take within our circular fashion ecosystem. At SustainaCycle, we are committed to transforming the fashion industry by bridging the gap between manufacturers, individual users, and recycling centers for textiles. Explore the insightful data visualizations below to witness the positive impact we've collectively made on sustainability.</p>
 </div>
+
+<!-- recycler manufacturer row -->
+<div>
+      <tableau-viz id="tableauViz" style="width: 100%; height:500px;"      
+      src='https://public.tableau.com/views/ManuDash/RecyDash' hide-tabs>
+      </tableau-viz>
+</div>
+
+<div>
+  <tableau-viz id="tableauViz" style="width: 100%; height:500px;"      
+      src='https://public.tableau.com/views/ManuDash/ManuDash' hide-tabs>
+      </tableau-viz>
+</div>
+  
+
+
+
+
+
+
 
 <div class="container">
   <h2 class="log">Textile Waste Donation and Recycling Insights</h2>

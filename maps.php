@@ -1,4 +1,61 @@
-<?php session_start(); ?>
+<?php session_start(); 
+$userID = $_SESSION['userID'];
+
+//db connection
+$conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+if (!$conn) {
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitRequest'])){
+  //grab results of request
+  $recyclerName = $_POST['recyclerDropdown'];
+  $materialName = $_POST['material'];
+  $chosenQuantity = $_POST['quantity'];
+  $dateChosen = $_POST['datechosen'];
+  $description = $_POST['description'];
+
+  //format date chosen to date time
+  // Create a DateTime object from the string
+  $dateTime = new DateTime($dateChosen);
+  $formattedDateTime = $dateTime->format("Y-m-d H:i:s");
+
+  //find the corresponding recyclerID 
+  $recyclerIDQuery = "SELECT companyID from recyclers where companyName='$recyclerName'";
+  $recyclerIDResult = $conn->query($recyclerIDQuery);
+  $row = $recyclerIDResult->fetch_assoc();
+  $recyclerID = $row['companyID'];
+
+
+//   //insert the material into materials table
+  $insertMaterial = "INSERT INTO materials (materialName, quantity, description, userID) VALUES ('$materialName', $chosenQuantity, '$description', $userID)";
+  //get the id of the inserted material
+  $insertMaterialID = $conn->query($insertMaterial) ? $conn->insert_id : null;
+
+  //insert the transaction into the transaction table, get the transactionID
+  $insertTransaction = "INSERT INTO transactions (transactionDate, quantity, status, materialID) VALUES ('$formattedDateTime', $chosenQuantity, 'Pending', $insertMaterialID)";
+  $insertTransactionID = $conn->query($insertTransaction) ? $conn->insert_id : null;
+
+
+  // insert the user, recycler, and transaction id into user_transaction
+  $insertUserTransaction = "INSERT INTO user_transaction (userID, transactionID, recyclerID) VALUES ($userID, $insertTransactionID, $recyclerID)";
+  $conn->query($insertUserTransaction);
+
+  
+     // Check if the insertions were successful
+     if ($insertMaterialID && $insertTransactionID) {
+      // Display an alert message using PHP
+      echo '<script>alert("Request submitted successfully!");</script>';
+  } else {
+      // Display an alert for any errors
+      echo '<script>alert("Error submitting request. Please try again.");</script>';
+  }
+}
+
+//close db
+$conn->close();
+
+?>
 <html>
   <head>
     <title>Locator</title>
@@ -165,15 +222,12 @@ pls modify as needed-->
   </head>
   <body>
 
-    <?php include('includes/nav.php') ?>
-
-    <div class="container px-4 mx-auto p-1">
-      <h1 class="map">Recylcing Locations</h1>
-      <p class="map-lead">See the nearest textile recyclers in your area and request to drop off any of your textile waste.</p>
-    </div>
+<?php
+include('includes/nav.php');
+?>
 
 <div class="container px-4 mx-auto p-1">
-    <h2 class="map">Textile Recyclers Near You</h1>
+    <h1 class="map">Textile Recyclers Near You</h1>
     <p class="map">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div class="container">
@@ -190,19 +244,25 @@ pls modify as needed-->
     </div>
 </div>
 
-<div class="container px-4 mx-auto p-1">
-  <h2 class="comm map">Request Drop-Off</h1>
+
+<!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
+<?php 
+if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
+  //db connection
+  $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+
+  echo '<div class="container px-4 mx-auto p-1"">
+  <h1 class="comm map">Request Drop-Off</h1>
   <p class="map">Request one of your local recyclers to drop off any of your textile waste.</p>
-<div class="container pt-0">
+  <div class="container pt-0">
   <form action="maps.php" method="POST">
   <input type="text" name="material" id="material" placeholder="Material type" required>
-  <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>
-  <?php 
-   //db connection
-   $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-   if (!$conn) {
-     die("Connection failed: " . mysqli_connect_error());
-   }
+  <input type="text" name="description" id="description" placeholder="Description: ">
+  <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>';
+
 
    $recyclerSQL= "SELECT companyName from recyclers";
    $result = $conn->query($recyclerSQL);
@@ -217,13 +277,18 @@ pls modify as needed-->
     echo '</select>';
     // Free the result set
     $result->free();
-  //close db
-  $conn->close();
-  ?>
+  
+  echo '<div><label for="datechosen">Date and time for drop off:</label>
+  <input name="datechosen" type="datetime-local" id="Test_DatetimeLocal"></div>
   <div><button type="submit" class="btn btn-success" name="submitRequest">Submit request</button></div>
-  </form>
-  </div>
-</div>
+    </form>
+    </div>
+  </div>';
+
+//close db
+$conn->close();
+}
+?>
 
 <!-- Footer --> 
 <?php include('./includes/footer.php'); ?>
@@ -262,7 +327,6 @@ pls modify as needed-->
 });
 
 //force the page to reload, for some reason the map wont load otherwise
-
 
 </script>
 

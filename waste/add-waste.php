@@ -1,6 +1,8 @@
 <?php 
 ob_start(); // Start output buffering
-session_start(); ?>
+session_start(); 
+$userID = $_SESSION['userID'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,45 +51,22 @@ include('../includes/waste-nav.php');
     <input type="number" id="quantity" name="quantity"><br><br>
 
     <label for="description" class="add">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50" readonly></textarea><br>
+    <input type="text" id="description" name="description"><br><br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" name="submitMat" value="Submit">
   </form>
 </div>
 
 <!-- Footer, bootstrap --> 
 <?php 
     include('../includes/boot-script.php'); 
-    include('../includes/footer.php');
+    include('../includes/waste-footer.php');
 ?>
-
-  <script>
-    document.getElementById('materialName').addEventListener('change', function() {
-      var materialName = this.value;
-      var descriptionField = document.getElementById('description');
-
-      if (materialName === 'Cotton') {
-        descriptionField.value = 'Natural, soft, breathable fabric from cotton plant. Ideal for textiles, clothing, and linens due to its comfort and versatility.';
-      } else if (materialName === 'Silk') {
-        descriptionField.value = 'Luxurious, smooth silk: natural fiber from silkworms. Gleaming, lightweight fabric prized for elegance and comfort.';
-      } else if (materialName === 'Polyester') {
-        descriptionField.value = 'Synthetic, durable fabric. Wrinkle-resistant, quick-drying, and widely used for clothing and home furnishings.';
-      } else if (materialName === 'Linen') {
-        descriptionField.value = 'Natural, breathable fabric, crisp and lightweight. Ideal for comfortable, casual elegance in clothing and home textiles.';
-      } else if (materialName === 'Wool') {
-        descriptionField.value = 'Warm, insulating fiber from sheep. Cozy, versatile material for clothing and textiles.';
-      } else if (materialName === 'Leather') {
-        descriptionField.value = 'Durable, supple material from animal hides. Versatile and stylish for fashion, furniture, and accessories.';
-      } else if (materialName === 'Satin') {
-        descriptionField.value = 'Smooth, glossy fabric. Lustrous, luxurious sheen. Often used for elegant, high-quality garments and accessories.';
-      }
-    });
-  </script>
 
 
 <!-- PROCESS FORM FOR ADDING WASTE -->
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitMat'])) {
     $materialName = $_POST["materialName"];
     $quantity = $_POST["quantity"];
     $description = $_POST["description"];
@@ -95,24 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($materialName) || empty($quantity) || empty($description)) {
         echo "All fields must be filled.";
     } else {
-        // Grab the user ID from the session
-        $userID = $_SESSION['userID'];
-
         $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
         // Use the user ID to find the manufacturer ID
-        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID='$userID'";
+        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID=$userID";
         $manuIDResult = mysqli_query($conn, $manuIDQuery);
         
         if ($manuIDResult) {
             $row = mysqli_fetch_assoc($manuIDResult);
 
             $manufacturerID = $row['manufacturerID']; 
-            
-            $checkMaterials = "SELECT DISTINCT materialName from materials where manufacturerID=$manufacturerID";
+  
+            $checkMaterials = "SELECT materialName, quantity from materials where userID=$userID";
             $checkMatResult = $conn->query($checkMaterials);
 
             //check if manufacturer already has that material in database
@@ -120,21 +96,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               while ($row = $checkMatResult->fetch_assoc()) {
                   // Access the materialName column in the current row
                   $existingMaterialName = $row['materialName'];
+                  $existingQuantity = $row['quantity'];
+
                   // Compare with the materialName you want to check
                   if ($materialName == $existingMaterialName) {
-                      // Material name already exists, update that record
-                      $updateMat = "UPDATE materials SET quantity=$quantity, description='$description'
-                      where manufacturerID=$manufacturerID AND materialName='$materialName'";
+                      // Material name already exists, update that quantity
+                      $totalQuantity = $existingQuantity + $quantity;
+                      //update record
+                      $updateMat = "UPDATE materials SET quantity=$totalQuantity, description='$description'
+                      where userID=$userID AND materialName='$materialName'";
 
                       $conn->query($updateMat);
                   }
               }
           }else{
             //create new record for that material
-            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ('$manufacturerID', '$materialName', '$quantity', '$description')";
+            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ($manufacturerID, '$materialName', $quantity, '$description')";
             
             // Insert form results into the database
-            $result = mysqli_query($conn, $sql);
+            $result = $conn->query($sql);
             
           }
             mysqli_close($conn); // Close the database connection
