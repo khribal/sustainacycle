@@ -54,6 +54,10 @@ $conn->close();
     <?php include('./includes/boot-head.php'); ?>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body class="profile-body">
 <?php include('./includes/nav.php'); ?>
@@ -83,9 +87,9 @@ $conn->close();
             // Display user details in read-only or editable mode
             echo '<div data-user-id=' . $userID . '>
                     <form method="post" action="profile.php" id="profile-form">
-                        <h5 class="profile">First Name: ' . ($isEditMode ? '<input type="text" name="editFirstName" value="' . $name . '">' : $name) . '</h5>
-                        <h5 class="profile">Last Name: ' . ($isEditMode ? '<input type="text" name="editLastName" value="' . $lastName . '">' : $lastName) . '</h5>
-                        <h5 class="profile">Phone: ' . ($isEditMode ? '<input type="text" name="editPass" value="' . $tele . '">' : $tele) . '</h5>
+                        <h5 class="profile"><strong>First Name: </strong>' . ($isEditMode ? '<input type="text" name="editFirstName" value="' . $name . '">' : $name) . '</h5>
+                        <h5 class="profile"><strong>Last Name: </strong>' . ($isEditMode ? '<input type="text" name="editLastName" value="' . $lastName . '">' : $lastName) . '</h5>
+                        <h5 class="profile"><strong>Phone: </strong>' . ($isEditMode ? '<input type="text" name="editPass" value="' . $tele . '">' : $tele) . '</h5>
                         <div class="row">
                             <div class="col-sm">
                                 <input type="hidden" name="userID" value="' . $userID . '">
@@ -98,7 +102,7 @@ $conn->close();
         </div>
 
         <div class="col rounded border">
-            "Badge Section"
+            <p class="profile">"Badge Section"</p>
         </div>
     </div>
 </div>

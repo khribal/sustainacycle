@@ -623,9 +623,16 @@ h1.landing {
 
 /* profile.php */
 
-h2.map {
+h5.profile {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
-    font-weight: 600;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+p.profile{
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
     color: var(--blue);
 }
