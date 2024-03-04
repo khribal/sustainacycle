@@ -1,6 +1,7 @@
 <?php 
 ob_start(); // Start output buffering
 session_start(); 
+$userID = $_SESSION['userID'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ include('../includes/waste-nav.php');
     <label for="description" class="add">Description:</label><br>
     <input type="text" id="description" name="description"><br><br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" name="submitMat" value="Submit">
   </form>
 </div>
 
@@ -65,7 +66,7 @@ include('../includes/waste-nav.php');
 
 <!-- PROCESS FORM FOR ADDING WASTE -->
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitMat'])) {
     $materialName = $_POST["materialName"];
     $quantity = $_POST["quantity"];
     $description = $_POST["description"];
@@ -73,16 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($materialName) || empty($quantity) || empty($description)) {
         echo "All fields must be filled.";
     } else {
-        // Grab the user ID from the session
-        $userID = $_SESSION['userID'];
-
         $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
         // Use the user ID to find the manufacturer ID
-        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID='$userID'";
+        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID=$userID";
         $manuIDResult = mysqli_query($conn, $manuIDQuery);
         
         if ($manuIDResult) {
@@ -90,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $manufacturerID = $row['manufacturerID']; 
   
-            $checkMaterials = "SELECT materialName from materials where manufacturerID=$manufacturerID";
+            $checkMaterials = "SELECT materialName, quantity from materials where userID=$userID";
             $checkMatResult = $conn->query($checkMaterials);
 
             //check if manufacturer already has that material in database
@@ -98,11 +96,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               while ($row = $checkMatResult->fetch_assoc()) {
                   // Access the materialName column in the current row
                   $existingMaterialName = $row['materialName'];
+                  $existingQuantity = $row['quantity'];
+
                   // Compare with the materialName you want to check
                   if ($materialName == $existingMaterialName) {
-                      // Material name already exists, update that record
-                      $updateMat = "UPDATE materials SET quantity=$quantity, description='$description'
-                      where manufacturerID=$manufacturerID AND materialName='$materialName'";
+                      // Material name already exists, update that quantity
+                      $totalQuantity = $existingQuantity + $quantity;
+                      //update record
+                      $updateMat = "UPDATE materials SET quantity=$totalQuantity, description='$description'
+                      where userID=$userID AND materialName='$materialName'";
 
                       $conn->query($updateMat);
                   }
