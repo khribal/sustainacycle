@@ -7,7 +7,35 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <?php include('./includes/boot-head.php')?>
     <!-- CSS --> 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        h1.com {
+            font-family: 'DM Serif Display', serif;
+            font-size: 70px;
+            color: var(--darkblue);
+        }
+
+        h2.com {
+            font-family: "DM Sans", sans-serif;
+            font-size: 25px;
+            font-weight: 300;
+            color: var(--green);
+        }
+
+        h3.com {
+            font-family: "DM Sans", sans-serif;
+            font-size: 33px;
+            font-weight: 600;
+            color: var(--darkblue);
+        }
+
+        p.com {
+            font-family: "DM Sans", sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--green);
+        }
+    </style>
     <!-- icons link -->
     <script src="https://kit.fontawesome.com/9a3fe9bd1f.js" crossorigin="anonymous"></script>
 
