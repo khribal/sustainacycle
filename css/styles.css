@@ -1,13 +1,13 @@
 :root {
     --limegreen: #bbdc48;
     --green: #76b83b;
-    --blue: #0c3f47;
+    --darkblue: #0c3f47;
     --neonblue: #87e4de;
     --lightblue: #c6e5df;
 }
 
 footer {
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h2 {
@@ -47,7 +47,7 @@ section.index {
 h1.index {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h2.index-lead {
@@ -59,7 +59,7 @@ h2.index-lead {
 
 .button {
     border: 2px solid var(--neonblue);
-    color: var(--blue);
+    color: var(--darkblue);
     padding: 15px 32px; 
     text-align: center;
     text-decoration: none;
@@ -80,7 +80,7 @@ h2.index {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h3.index {
@@ -102,7 +102,7 @@ p.index {
     font-family: "DM Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 
@@ -145,14 +145,14 @@ team.php
 h1.team {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h2.team {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.team {
@@ -169,7 +169,7 @@ project.php
 h1.project {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.project-lead {
@@ -183,7 +183,7 @@ h2.project {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.project-lead-small {
@@ -197,14 +197,14 @@ p.project {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 li.project {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 /*
@@ -214,7 +214,7 @@ video.php
 h1.video {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.video {
@@ -231,7 +231,7 @@ education.php
 h1.edu {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h2.edu {
@@ -245,7 +245,7 @@ h3.edu {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.edu-auth {
@@ -273,7 +273,7 @@ p.edu {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 /*
@@ -302,7 +302,7 @@ h2.waste {
     font-family: "DM Sans", sans-serif;
     font-size: 33px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.waste {
@@ -319,7 +319,7 @@ join-community.php
 h1.com {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h2.com {
@@ -333,7 +333,7 @@ h3.com {
     font-family: "DM Sans", sans-serif;
     font-size: 33px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.com {
@@ -361,7 +361,7 @@ p.com {
 h1.map {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.map-lead {
@@ -375,14 +375,14 @@ h2.map {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.map {
     font-family: "DM Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h5.map{
@@ -396,7 +396,7 @@ h6.map{
     font-family: "DM Sans", sans-serif;
     font-size: 20px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 h3.map{
@@ -410,10 +410,10 @@ p.map-mini{
     font-family: "DM Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
-/************* Logistics **********************/
+/************* Logistics/Tableau **********************/
 .horiz-parent{
     display: flex;
     flex-direction: row;
@@ -424,12 +424,12 @@ p.map-mini{
 h1.log {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.log-lead {
     font-family: "DM Sans", sans-serif;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 300;
     color: var(--green);
 }
@@ -438,14 +438,14 @@ h2.log {
     font-family: "DM Sans", sans-serif;
     font-size: 33px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.log {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 300;
-    color: var(--green);
+    color: var(--darkblue);
 }
 
 
@@ -500,7 +500,7 @@ input[type="submit"]:hover {
 h1.add {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.add {
@@ -514,7 +514,7 @@ h2.add {
     font-family: "DM Sans", sans-serif;
     font-size: 33px;
     font-weight: 600;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 label.add {
@@ -594,7 +594,7 @@ h1.landing {
     padding: 15px 30px;
     border-radius: 5px; 
     border: 2px solid var(--neonblue);
-    color: var(--blue);
+    color: var(--darkblue);
     background-color: white;
     text-decoration: none;
     text-align: center;
@@ -627,12 +627,12 @@ h5.profile {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
 
 p.profile{
     font-family: "DM Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
-    color: var(--blue);
+    color: var(--darkblue);
 }
