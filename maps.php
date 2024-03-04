@@ -14,8 +14,6 @@
   
   <!-- PHP recycler locations -->
   <?php include('./includes/maps-data.php'); ?>
-  <!-- CSS --> 
-  <link rel="stylesheet" type="text/css" href="./css/styles.css">
 <script>
 // Initialize and add the map
 let map;
@@ -104,9 +102,9 @@ function addMarkerClickListener(marker, place) {
         // Set content for the InfoWindow
         const content = `
     <div>
-        <strong>${place.name}</strong><br>
-        Address: ${place.formatted_address || 'N/A'}<br>
-        Rating: ${place.rating || 'N/A'}
+        <h3 class="map">${place.name}</h3>
+        <p class="map-mini mb-0"><strong>Address:</strong> ${place.formatted_address || 'N/A'}<br>
+        <strong>Rating:</strong> ${place.rating ? place.rating + '&#9733;' : 'N/A'}<p>
     </div>
 `;
 
@@ -122,8 +120,8 @@ function addMarkerClickListener(marker, place) {
 //add each place to sidebar
 function addLocationToSidebar(place, sidebar) {
   var locationDiv = document.createElement('div');
-    locationDiv.innerHTML = '<h6>' + place.name + '</h6>' +
-                            '<p>' + place.formatted_address + '</p>' +
+    locationDiv.innerHTML = '<h6 class="map">' + place.name + '</h6>' +
+                            '<p class="map">' + place.formatted_address + '</p>' +
                             '<hr>';
     
                             // Add a click event listener to the sidebar element
@@ -159,16 +157,24 @@ pls modify as needed-->
 </style>
 
   <!-- Css -->
-  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   </head>
   <body>
 
     <?php include('includes/nav.php') ?>
 
-<div class="container">
-    <h1>Textile Recyclers Near You</h1>
-    <p>Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
+    <div class="container px-4 mx-auto p-1">
+      <h1 class="map">Recylcing Locations</h1>
+      <p class="map-lead">See the nearest textile recyclers in your area and request to drop off any of your textile waste.</p>
+    </div>
+
+<div class="container px-4 mx-auto p-1">
+    <h2 class="map">Textile Recyclers Near You</h1>
+    <p class="map">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div class="container">
         <div class="row">
@@ -177,17 +183,17 @@ pls modify as needed-->
           </div>
           <div class="col">
             <div id="sidebar" class="custom-scroll-container">
-              <h5>Recycling Centers Near You</h5>
+              <h5 class="map">Recycling Centers Near You</h5>
           </div>
         </div>
       </div>
     </div>
 </div>
 
-<div class="container">
-  <h1 class="comm">Request dropoff</h1>
-  <p>Request one of your local recyclers to drop off any of your textile waste.</p>
-<div class="container">
+<div class="container px-4 mx-auto p-1">
+  <h2 class="comm map">Request Drop-Off</h1>
+  <p class="map">Request one of your local recyclers to drop off any of your textile waste.</p>
+<div class="container pt-0">
   <form action="maps.php" method="POST">
   <input type="text" name="material" id="material" placeholder="Material type" required>
   <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>

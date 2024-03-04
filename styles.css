@@ -349,6 +349,55 @@ p.com {
     height: 400px;
 }
 
+.custom-scroll-container{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#sidebar > div:active {
+    background-color: lightgrey;
+}
+
+h1.map {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--blue);
+}
+
+p.map-lead {
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: var(--green);
+}
+
+h2.map {
+    font-family: "DM Sans", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+p.map {
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--blue);
+}
+
+h5.map{
+    font-family: "DM Sans", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: var(--green);
+}
+
+h6.map{
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--blue);
+}
 /************* Logistics **********************/
 .horiz-parent{
     display: flex;
