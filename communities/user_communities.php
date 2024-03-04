@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Communities</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <?php include('./includes/boot-head.php')?>
     <!-- CSS --> 
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
@@ -48,7 +51,7 @@ include('./includes/nav.php');
 //     $communityID = $_GET["community_id"];
 // }
 ?>    
-
+<div class="container mx-auto px-4">
 <?php 
     //db connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -169,7 +172,7 @@ include('./includes/nav.php');
     }
         $conn->close();
 ?>
-
+</div>
 <?php include('./includes/boot-script.php')?>
 
 

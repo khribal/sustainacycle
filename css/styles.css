@@ -659,4 +659,10 @@ p.profile{
     color: var(--darkblue);
 }
 
-/* user-communities */
+/* login.php */
+
+h1.log-in {
+    font-family: 'DM Serif Display', serif;
+    font-size: 70px;
+    color: var(--darkblue);
+}
