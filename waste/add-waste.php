@@ -50,7 +50,7 @@ include('../includes/waste-nav.php');
     <input type="number" id="quantity" name="quantity"><br><br>
 
     <label for="description" class="add">Description:</label><br>
-    <input type="text" id="quantity" name="quantity"><br><br>
+    <input type="text" id="description" name="description"><br><br>
 
     <input type="submit" value="Submit">
   </form>
