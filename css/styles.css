@@ -470,9 +470,8 @@ label.add {
 
 /*tableau (starter) */
 
-.row-tabl{
+.recymanu-row{
     display: flex;
-    flex-flow: row nowrap;
 }
 
 
@@ -515,3 +514,26 @@ label.add {
     flex-direction: column;
 }
 
+/* chat.php */
+.container-messages {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: #7ac5cd;
+    align-self: flex-end;
+}
+
+.other-user-message {
+    background-color: #d3d3d3;
+    align-self: flex-start;
+}

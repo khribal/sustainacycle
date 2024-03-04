@@ -6,38 +6,38 @@ $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23
     }
 
 //manufacturer historical donations accepted
-$sql = "SELECT sum(t.quantity) as quantity, ma.companyName as manufacturer
-from transactions as t
-join user_transaction as ut on ut.transactionID=t.transactionID
-join users as u on u.userID=ut.userID
+$sql = "SELECT sum(re.quantity) as quantity, ma.companyName as manufacturer
+from requests as re
+join materials as m on m.materialID=re.materialID
+join users as u on u.userID=m.userID
 join manufacturers as ma on ma.userID=u.userID
-WHERE u.usertype='manufacturer'
-GROUP BY ma.companyName
-order by sum(t.quantity) DESC
-limit 10";
+WHERE re.reqStatus='Completed'
+group by ma.companyName
+order by sum(re.quantity) DESC
+limit 10;
+";
 
 //recycler historical donations
-$sqll = "SELECT sum(t.quantity) as quantity, r.companyName as recycler
-from transactions as t
-join user_transaction as ut on t.transactionID=ut.transactionID
-join users as u on u.userID=ut.userID
-join recyclers as r on r.companyID=u.userID
-group by ut.recyclerID
-order by quantity desc
+$sqll = "SELECT sum(re.quantity) as quantity, r.companyName as recycler
+from requests as re
+join recyclers as r on r.companyID=re.recyclerID
+WHERE re.reqStatus='Completed'
+group by r.companyName
+order by sum(re.quantity) DESC
 limit 10";
 
 //transactions and quantities over time
-$sql2 = "SELECT DATE_FORMAT(transactionDate, '%M %Y') AS monthYear, SUM(quantity) AS quantity
-FROM transactions
+$sql2 = "SELECT DATE_FORMAT(completionDate, '%M %Y') AS monthYear, SUM(quantity) AS quantity
+FROM requests
 GROUP BY monthYear
-ORDER BY transactionDate";
+ORDER BY completionDate";
 
 //sum of each type of material in transactions
-$sql3 = "SELECT m.materialName, sum(t.quantity) as quantity
+$sql3 = "SELECT m.materialName, sum(re.quantity) as quantity
 from materials as m
-JOIN transactions AS t ON t.materialID = m.materialID
+JOIN requests AS re ON re.materialID = m.materialID
 group by m.materialName
-order by sum(t.quantity) desc";
+order by sum(re.quantity) desc";
 
 $bubbleQuery = "SELECT t.transactionDate, count(ut.userID) as users, sum(t.quantity) as quantity
 from transactions as t 

@@ -94,16 +94,26 @@ if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
 
             //GET EACH MANUFACTURER QUANTITY which doesn't have a request
             $manufactWithMaterial = "SELECT 
-              sum(m.quantity) as quantity,
-              ma.companyName,
-              m.description,
-              ma.manufacturerID,
-              m.materialID
-              FROM materials as m
-              JOIN manufacturers as ma ON m.manufacturerID = ma.manufacturerID
-              LEFT JOIN requests as r ON m.materialID = r.materialID
-              WHERE m.materialName = '$materialName' AND r.materialID IS NULL
-              GROUP BY ma.companyName, m.materialName";
+            SUM(m.quantity) AS quantity,
+            ma.companyName,
+            m.description,
+            ma.manufacturerID,
+            m.materialID
+        FROM
+            materials AS m
+        JOIN
+            users AS u ON u.userID = m.userID
+        JOIN
+            manufacturers AS ma ON ma.userID = u.userID
+        WHERE
+            m.materialName = '$materialName'
+            AND NOT EXISTS (
+                SELECT 1
+                FROM requests AS r
+                WHERE r.materialID = m.materialID
+            )
+        GROUP BY
+            ma.companyName, m.materialName;";
 
             $manuResult = $conn->query($manufactWithMaterial);
             
@@ -143,8 +153,8 @@ if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
 
 <!-- Bootstrap, footer -->
 <?php 
-include('../includes/footer.php');
-include('../includes/boot-script.php');
+    include('../includes/waste-footer.php');
+    include('../includes/boot-script.php');
 ?>
 
 </body>
