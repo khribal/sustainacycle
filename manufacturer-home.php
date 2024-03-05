@@ -12,7 +12,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<?php include('includes/nav.php'); 
+<?php include('./includes/nav.php'); 
   include('./includes/chart-data.php'); ?>
 
 <div class="container mx-auto p-2">

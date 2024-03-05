@@ -13,7 +13,7 @@
 </head>
 <body>
 <?php 
-  include('includes/nav.php');
+  include('./includes/nav.php');
   include('./includes/chart-data.php'); 
 ?>
 
