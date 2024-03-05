@@ -7,13 +7,14 @@ $userID = $_SESSION['userID'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include('./includes/boot-head.php')?>
+    <?php 
+        include('./includes/boot-head.php');
+        include('./includes/google-fonts.php');
+    ?>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <title>Join A Community</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -23,7 +24,7 @@ include('./includes/nav.php'); ?>
 
 <!-- Add user & communityID to db, redirect to community page they join -->
 <?php
-    // if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["community_id"])) {
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["community_id"])) {
         if (isset($_GET["community_id"])) {
             $community_id = $_GET["community_id"];
         
@@ -44,6 +45,7 @@ include('./includes/nav.php'); ?>
 
         $conn->close();
     }
+}
 ?>
 
 
@@ -70,16 +72,16 @@ include('./includes/nav.php'); ?>
     $result = $conn->query($sql);
 
     echo "<div class='community-box mx-auto p-5'>";
-    echo "<div class='grid-container'>";
+    // echo "<div class='grid-container'>";
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo '<div class="grid-item">';
-            echo "<h3 class='com'>" . htmlspecialchars($row["communityName"]) . "</h3>";
-            echo "<p class='com'><strong>Description:</strong> " . nl2br(htmlspecialchars($row["communityDescription"])) . "</p>";
-            echo "<p class='com'><strong>Rules:</strong> " . nl2br(htmlspecialchars($row["communityRules"])) . "</p>";
-            echo "<p class='com'><strong>Tags:</strong> " . htmlspecialchars($row["tags"]) . "</p>";
-            echo "<a href='join-community.php?community_id=" . $row["communityID"] . "' class='button mt-2'>Join &raquo;</a>";
-            echo "</div>";
+            echo '<div class="grid-item mb-3">';
+            echo '<h3 class="com">' . htmlspecialchars($row["communityName"]) . '</h3>';
+            echo '<p class="com"><strong>Description:</strong> ' . nl2br(htmlspecialchars($row["communityDescription"])) . '</p>';
+            echo '<p class="com"><strong>Rules: </strong>' . nl2br(htmlspecialchars($row["communityRules"])) . '</p>';
+            echo '<p class="com"><strong>Tags: </strong>' . htmlspecialchars($row["tags"]) . '</p>';
+            echo '<a class="button mt-2" href="join-community.php?community_id=' . $row["communityID"] . '">Join &raquo;</a>';
+            echo '</div>';
 
             //close db
             $conn->close();
@@ -88,7 +90,7 @@ include('./includes/nav.php'); ?>
         echo "You have joined all of our communities!";
     }
 
-    echo "</div>";
+    // echo "</div>";
 
     ?>
 </div>

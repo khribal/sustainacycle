@@ -3,6 +3,7 @@ drop table if exists chat_members;
 drop table if exists chat_content;
 drop table if exists requests;
 drop table if exists comments;
+drop table if exists user_likes;
 drop table if exists posts;
 drop table if exists articles;
 drop table if exists user_transaction;
@@ -131,10 +132,18 @@ CREATE TABLE posts (
   title varchar(250),
   content varchar(250),
   like_count INT,
+  time_stamp datetime, 
   userID INT NOT NULL,
   communityID INT NOT NULL,
   FOREIGN KEY (userID) references users(userID),
   FOREIGN KEY (communityID) references communities(communityID)
+);
+
+create table user_likes (
+  userID int not null, 
+  postID int not null,
+  FOREIGN KEY (userID) references users(userID),
+  FOREIGN KEY (postID) references posts(postID)
 );
 
 CREATE TABLE comments (

@@ -65,10 +65,6 @@ include('../includes/google-fonts.php');
 <body>
 <?php 
 include('../includes/waste-nav.php');
-if(isset($_SESSION['denied']) && $_SESSION['denied']){
-    echo '<p style="color:red;"><strong>Request deleted.</strong></p>';
-    $_SESSION['denied']=false;
-}
 ?>
 <div class="container px-4 mx-auto p-2">
     <h1 class="com">Your requests</h1>
@@ -92,9 +88,8 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
         //refresh the page to show changes
         $deleteResult = $conn->query($deleteRequest);
         if ($deleteResult){
-            $_SESSION['denied']=true;
-            header('Location: recyrequests.php');
-            exit();
+            echo '<script>alert("Request successfully deleted.");</script>';
+
         }
     }
   }
@@ -241,7 +236,7 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
             if ($transStatus === 'Accepted') {
                 echo '<div><button type="submit" class="btn btn-info" name="markComplete">Mark Transaction as Complete</button></div>';
             } elseif ($transStatus === 'Pending') {
-                echo '<div><button type="submit" class="btn btn-success" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
+                echo '<div><button type="submit" class="btn btn-success mr-3" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
             }
         echo '</div></form>';
 }
