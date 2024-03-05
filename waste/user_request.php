@@ -97,7 +97,7 @@ if ($userAcceptedResult->num_rows != 0){
                 <p>Recycler Name: ' . $recyclerName . '</p>
                 <p>Address: ' . $recyAddress . '</p>
                 <p>Drop off date and time: ' . $transDate . '</p>
-                </div>';
+                </div></div>';
         }     
 }
 }else{
@@ -156,7 +156,7 @@ if ($userPendingResult->num_rows != 0){
                 <input type="hidden" name="recyclerID" value="' . $recyclerID . '">
                 <input type="hidden" name="materialID" value="' . $materialID . '">
                 <button name="delReq" class="btn btn-danger">Delete request </button>
-                </div></form>';
+                </div></form></div>';
         }     
 }
 }
