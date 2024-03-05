@@ -20,21 +20,21 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
 
 
     // //db connection
-    // $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-    // if (!$conn) {
-    // die("Connection failed: " . mysqli_connect_error());}
+    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+    if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());}
     
         //get the current time
         $currentTime = time();
         $currentTimeFormatted = date('Y-m-d H:i:s', $currentTime);
 
         echo $currentTimeFormatted;
-        // //insert the post into the db
-        // $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID)";
-        // $conn->query($insertPost);
+        //insert the post into the db
+        $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID, $communityID)";
+        $conn->query($insertPost);
 
-        // //close db
-        // $conn->close();
+        //close db
+        $conn->close();
 }
 ?>
 
