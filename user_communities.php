@@ -83,7 +83,7 @@ include('./includes/nav.php');
     // USER CHOSE A COMMUNITY: DISPLAY THE COMMUNITY PAGE
     if (isset($communityID)){
         //get the posts for this community
-        $sqlPosts = "SELECT postID, title, content, like_count from posts where communityID= $communityID";
+        $sqlPosts = "SELECT p.postID, p.title, p.content, p.like_count, u.username from posts as p join users as u on u.userID=p.userID where communityID= $communityID";
         
         //get info about the community to display
         $communityInfo = "SELECT communityName, communityRules, communityDescription, tags from communities where communityID=$communityID";
@@ -117,7 +117,8 @@ include('./includes/nav.php');
                 
                 echo '<div class="grid-item">
                         <h5 class="com">' . $rowPost['title'] . '</h5>
-                        <p>' . $rowPost['content'] . '</p>';
+                        <p>' . $rowPost['content'] . '</p>
+                        <p class="com">by: ' . $rowPost['username'] . '</p>';
                         
                         // Add comment button
                 echo '<form method="post" action="user_communities.php">
