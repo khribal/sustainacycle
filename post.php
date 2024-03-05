@@ -29,7 +29,7 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
         $insertPost->bind_param("ssssi", $postTitle, $postBody, $currentTimeFormatted, $userID, $communityID);
         $insertPostResult = $insertPost->execute();
         $insertPost->close();
-        
+
         if($insertPostResult){
             header('Location: user_communities.php?community_id=' . $communityID);
             exit();
@@ -64,6 +64,7 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
 include('./includes/nav.php');
 ?>
 <div class="container px-4 mx-auto p-2">
+    <a href="user_communities.php?community_id=<?php echo $communityID; ?>"><p>Back to community</p></a>
     <h1 class="com">Create new post</h1>
     <p class="com">Create a new post in the community! Please fill out the following form.</p>
     <form action="post.php" method="post">
