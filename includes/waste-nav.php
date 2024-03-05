@@ -66,8 +66,8 @@
               Communities
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="./join-community.php">Join a Community</a>
-              <a class="dropdown-item" href="./user_communities.php">Your Communities</a>
+              <a class="dropdown-item" href="../join-community.php">Join a Community</a>
+              <a class="dropdown-item" href="../user_communities.php">Your Communities</a>
             </div>
           </div>';
         }
