@@ -10,20 +10,17 @@
       <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){echo 'active';} ?>">
         <a class="nav-link" href="index.php">Home</a>
       </li>
-      <!-- Logged out and individual users, manufacturers have access to education tab -->
+      <!-- Logged out and individual users, manufacturers have access to education, logistics tab -->
       <?php 
         if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] == 'individual_user' || $_SESSION['usertype'] == 'manufacturer') {
             echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'education.php' ? ' active' : '') . '"><a class="nav-link" href="education.php">Learn About Sustainability</a></li>';
         }
       ?>
 
-      <!-- Only allow individual users to see their impact -->
-        <?php 
-            if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {
-                echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'u_logistics.php' ? 'active' : '') . '"><a class="nav-link" href="u_logistics.php">Your Impact</a></li>';
-            }
-          ?> 
-      
+    <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
+        <a class="nav-link" href="tableau.php">Recycling Logistics</a>
+      </li>
+    
         <!-- Only show "Find Nearby Recycling" to users not logged in, individuals, or manufacturers -->
       <?php 
         if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] == 'individual_user' || $_SESSION['usertype'] == 'manufacturer') {
@@ -31,10 +28,6 @@
         }
       ?>
       
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
-        <a class="nav-link" href="tableau.php">Recycling Logistics</a>
-      </li>
-    
       <!-- Only allow manufacturer to add waste -->
     <?php 
       if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'manufacturer') {
@@ -78,7 +71,7 @@
                 echo '<img src="./img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               if ($_SESSION['usertype'] == 'individual_user'){
-                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="user_communities.php">Your Communities</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'manufacturer'){
                 echo '<a class="dropdown-item" href="./waste/manu_waste.php">Your Materials</a><a class="dropdown-item" href="./waste/requests.php">Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';

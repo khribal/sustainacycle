@@ -70,16 +70,6 @@ die("Connection failed: " . mysqli_connect_error());
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     if (isset($_GET['chatID'])){
-        if (isset($_GET['time_stamp'])){
-            //worry about the time stamps later!!!!!!!!!
-
-            // date_default_timezone_set('America/New_York');
-            // $timestamp = time();
-            // $formattedDateTime = date('Y-n-d h:i A', $timestamp);
-            // echo $formattedDateTime;
-
-        }
-
 
         $chatID = $_GET['chatID'];
         //grab the heading for this chat

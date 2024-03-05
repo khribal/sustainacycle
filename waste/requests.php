@@ -21,12 +21,6 @@ include('../includes/waste-nav.php');?>
     <p class="com">Approve and deny requests from recyclers to pick up your waste.</p>
 
 <?php
-if(isset($_SESSION['denied']) && $_SESSION['denied']){
-    echo '<p style="color:red;"><strong>Request denied.</strong></p>';
-    $_SESSION['denied']=false;
-}
-
-
   //db connection
   $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
   if (!$conn) {
@@ -54,12 +48,12 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
             //delete request from db
             $deleteRequest = "DELETE FROM requests WHERE materialID=$materialIDPost";
             
-            //refresh the page to show changes
+            //echo alert to show changes
             $deleteResult = $conn->query($deleteRequest);
             if ($deleteResult){
-                $_SESSION['denied']=true;
-                header('Location: requests.php');
-                exit();
+                echo '<script>alert("Request denied!");</script>';
+                // header('Location: requests.php');
+                // exit();
             }
         }
     }
@@ -99,18 +93,17 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
                     }
 
                 //echo each request
-                echo '<div class="container">
-                <div class="grid-item">';
+                echo '<div class="grid-item mb-3">';
                 echo '<div>';
                 echo '<h5>Request from: ' . $recycler . '</h5>';
                 echo '</div><div><p>';
-                echo 'Material name: ' . $material . '</p>';
-                echo '<p>Quantity: ' . $quantity . ' lbs</p>';
+                echo 'Material name: <strong>' . $material . '</strong></p>';
+                echo '<p>Quantity: <strong>' . $quantity . ' lbs</strong></p></div>';
                 echo '<form action="requests.php" method="post">';
                 if (!$isAccepted) {
                     // Show "Accept" and "Deny" buttons
                     echo '<input type="hidden" name="materialIDhidden" value="' . $matID . '">';
-                    echo '<button type="submit" class="btn btn-success" name="acceptBtn">Accept</button>';
+                    echo '<button type="submit" class="btn btn-success mr-3" name="acceptBtn">Accept</button>';
                     echo '<button type="submit" class="btn btn-danger" name="denyBtn">Deny</button>';
                 } else {
                     // Check if the chat already exists
@@ -160,7 +153,7 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
                     echo '<button type="button" class="btn btn-primary">Go to Chat</button>';
                     echo '</a>';
                 }
-                echo '</form></div></div>';
+                echo '</form></div>';
             }
         }
             else{

@@ -94,7 +94,7 @@ if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
 
             //GET EACH MANUFACTURER QUANTITY which doesn't have a request
             $manufactWithMaterial = "SELECT 
-            SUM(m.quantity) AS quantity,
+            m.quantity,
             ma.companyName,
             m.description,
             ma.manufacturerID,
@@ -113,7 +113,7 @@ if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
                 WHERE r.materialID = m.materialID
             )
         GROUP BY
-            ma.companyName, m.materialName;";
+            ma.companyName, m.materialName";
 
             $manuResult = $conn->query($manufactWithMaterial);
             
