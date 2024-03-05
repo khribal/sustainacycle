@@ -1,5 +1,36 @@
 <?php session_start();
 $userID = $_SESSION['userID'];
+
+//db connection
+$conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+if (!$conn) {
+die("Connection failed: " . mysqli_connect_error());
+}
+
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delReq'])){
+    //vars so we can delete this entry from db
+    $materialID = $_POST['materialID'];
+    $recyclerID = $_POST['recyclerID'];
+    $transactionID = $_POST['transID'];
+
+    //delete material
+    $delMaterial = "DELETE FROM materials where materialID=$materialID";
+    $conn->query($delMaterial);
+
+    //delete user transaction
+    $deleteUT = "DELETE FROM user_transaction where userID=$userID AND transactionID=$transactionID";
+    $conn->query($deleteUT);
+
+    //delete from transaction table
+    $delTransaction = "DELETE from transactions where transactionID=$transactionID";
+    $conn->query($delTransaction);
+
+    //reload page to reflect changes
+    header('Location: user_request.php');
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,12 +60,6 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
     <p class="com">Delete requests you no longer want, and view your accepted requests.</p>
     <div class ="row">
 <?php 
-  //db connection
-  $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
 //DELETE REQUEST BUTTON
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['deleteBtn'])) {
@@ -167,30 +192,6 @@ else{
     <p>Delete drop off requests you no longer want.</p>
     <p><strong>No pending requests at this time. </strong></p>
     </div>';
-}
-
-
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delReq'])){
-    //vars so we can delete this entry from db
-    $materialID = $_POST['materialID'];
-    $recyclerID = $_POST['recyclerID'];
-    $transactionID = $_POST['transID'];
-
-    //delete material
-    $delMaterial = "DELETE FROM materials where materialID=$materialID";
-    $conn->query($delMaterial);
-
-    //delete user transaction
-    $deleteUT = "DELETE FROM user_transaction where userID=$userID AND transactionID=$transactionID";
-    $conn->query($deleteUT);
-
-    //delete from transaction table
-    $delTransaction = "DELETE from transactions where transactionID=$transactionID";
-    $conn->query($delTransaction);
-
-    //reload page to reflect changes
-    header('Location: user_request.php');
-    exit();
 }
 
 
