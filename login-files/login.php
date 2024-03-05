@@ -67,9 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['profilePic'] = $profilePic;
             $_SESSION['tele'] = $tele;
 
-            //set login success flag
-            $_SESSION['login_success'] = true; // Set a success flag
-
             //Redirect user back to LANDING page
             if($_SESSION['usertype'] == 'individual_user'){
                 header('Location: ../user-home.php');

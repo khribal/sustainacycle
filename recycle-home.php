@@ -12,7 +12,10 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<?php include('includes/nav.php'); ?>
+<?php 
+  include('includes/nav.php');
+  include('./includes/chart-data.php'); 
+?>
 
 <div class="container mx-auto p-2">
 <img src="./img/logo.png" alt="logo" height="250px" width="250px">
@@ -97,6 +100,34 @@
 include('../includes/footer.php');
 include('../includes/boot-script.php');
 ?>
+
+<!-- JS files --> 
+<script src="js/confirm-logout.js"></script>
+    <!-- Link to charts.js extension -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="./js/charts.js" type="module"></script>
+
+
+<!-- Call chart functions -->
+<script type="module">
+    //manufacturer
+    import { createHorizontalBarChart, createLine, vertBar } from './js/charts.js';
+    var dataFromPHP = <?php echo $jsonResult; ?>;
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.manufacturer), dataFromPHP.map(entry => entry.quantity), 'manu-chart', 'rgba(72, 143, 132, 0.2)', 'rgba(72, 143, 132, 1)');
+
+    //recycler
+    var dataFromPHP1 = <?php echo $jsonResult1; ?>;
+    createHorizontalBarChart(dataFromPHP1.map(entry => entry.recycler), dataFromPHP1.map(entry => entry.quantity), 'recy-chart', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
+
+    //textiles recycled over time
+    var dataFromPHP2 = <?php echo $jsonResult2; ?>;
+    createLine(dataFromPHP2.map(entry => entry.quantity), dataFromPHP2.map(entry => entry.transationDate), 'lineSpot');
+    
+    //materials chart
+    var dataFromPHP3 = <?php echo $jsonResult3; ?>;
+    vertBar(dataFromPHP3.map(entry => entry.materialName), dataFromPHP3.map(entry => entry.quantity), 'materialSpot', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
+
+</script>
 
 </body>
 </html>

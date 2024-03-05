@@ -26,13 +26,6 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     // Reset the flag to avoid showing the message on subsequent visits
     $_SESSION['registration_success'] = false;
 }
-
-//Login successful
-if (isset($_SESSION['login_success']) && $_SESSION['login_success']) {
-  echo '<div style="text-align: center; color: green; font-size: 16px; font-weight: bold;">Login successful! Welcome, ' . $_SESSION['name'] . '!</div>';
-  // Reset the flag to avoid showing the message on subsequent visits
-  $_SESSION['login_success'] = false;
-}
 ?>
 
 <!-- container around body to prevent dropdowns from appearing off the page -->
