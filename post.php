@@ -7,7 +7,6 @@ $userID = $_SESSION['userID'];
 // $communityID = '';  // default value
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createPost'])) {
     $communityID = isset($_POST['communityID']) ? $_POST['communityID'] : '';
-    echo $communityID;
 }
 
 elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
@@ -15,21 +14,26 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
     $postTitle = $_POST['postTitle'];
     $postBody = $_POST['postBody'];
 
-    //db connection
-    $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-    if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());}
+    echo "comm id:" . $communityID;
+    echo "post tit:" . $postTitle;
+    echo "post bod:" . $postBody;
+
+    
+    // //db connection
+    // $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+    // if (!$conn) {
+    // die("Connection failed: " . mysqli_connect_error());}
     
         //get the current time
         $currentTime = time();
         $currentTimeFormatted = date('Y-m-d H:i:s', $currentTime);
 
-        //insert the post into the db
-        $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID)";
-        $conn->query($insertPost);
+        // //insert the post into the db
+        // $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID)";
+        // $conn->query($insertPost);
 
-        //close db
-        $conn->close();
+        // //close db
+        // $conn->close();
 }
 ?>
 
