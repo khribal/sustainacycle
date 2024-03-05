@@ -41,6 +41,13 @@
         echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'waste.php' ? 'active' : '') . '"><a class="nav-link" href="./waste/waste.php">Available waste</a></li>';
       }
     ?>
+
+     <!-- allow recyclers to see their requests -->
+  <?php 
+      if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler') {
+        echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == './waste/recyrequests.php' ? 'active' : '') . '"><a class="nav-link" href="./waste/recyrequests.php">Your Requests</a></li>';
+      }
+    ?>
   
           <!-- Only allow individual users to join a community -->
           <?php 
@@ -71,13 +78,13 @@
                 echo '<img src="./img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               if ($_SESSION['usertype'] == 'individual_user'){
-                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./waste/user_request.php">Your Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'manufacturer'){
                 echo '<a class="dropdown-item" href="./waste/manu_waste.php">Your Materials</a><a class="dropdown-item" href="./waste/requests.php">Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
               elseif($_SESSION['usertype'] == 'recycler'){
-                echo '<a class="dropdown-item" href="./waste/recyrequests.php">Your requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
+                echo '<a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
               }
           } else {
               // User is not logged in

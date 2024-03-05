@@ -178,16 +178,14 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST"){
         $formattedDateTime = date('Y-m-d H:i:s', $timestamp);
 
     //insert this message into the db
-    $insertNewMessage = "INSERT INTO chat_content (chatID, message_content, userID, time_stamp) VALUES ($chatIDPost, '$messageContent', $userID, '$formattedDateTime')";
-    
-    if($conn->query($insertNewMessage) == TRUE){
-        //reload the page to reflect new chats
-        header("Location: chat.php?chatID=$chatIDPost");
-        exit();
-    }else {
-        echo "Error: " . $insertNewMessage . "<br>" . $conn->error;
-    }
+    $insertNewMessage = "INSERT INTO chat_content (chatID, message_content, userID, time_stamp) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($insertNewMessage);
+    $stmt->bind_param("isis", $chatIDPost, $messageContent, $userID, $formattedDateTime);
+    $stmt->execute();
+    $stmt->close();    
 
+    header("Location: chat.php?chatID=$chatIDPost");
+    exit();
  } 
 }
 

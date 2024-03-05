@@ -70,6 +70,7 @@ include('../includes/waste-nav.php');
     <h1 class="com">Your requests</h1>
     <p class="com">Delete requests you no longer want, and chat with the manufacturers who have accepted your request for materials.</p>
     <div class ="row">
+
 <?php 
   //db connection
   $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -118,8 +119,10 @@ $acceptedResult = $conn->query($recylersAcceptedRequests);
 //DISPLAY ACCEPTED REQUESTS & CHAT BUTTON
 if ($acceptedResult->num_rows != 0){
     //Heading for accepted requests
-    echo '<div class="col"><h3 class="com">Your accepted requests</h3>
-    <p>Chat with the manufacturers who accepted your material request to complete your transaction.</p>';
+    echo '<div class="col">
+            <h3 class="com">Your accepted requests</h3>
+            <p>Chat with the manufacturers who accepted your material request to complete your transaction.</p>
+            ';
 
     while ($row_accepted = mysqli_fetch_assoc($acceptedResult)) {
 
@@ -134,12 +137,9 @@ if ($acceptedResult->num_rows != 0){
         $recyclerID = $row_accepted['recyclerID'];
 
             //echo each request
-            echo '<div class="container">
-            <div class="grid-item">';
-            echo '<div>';
+            echo '<div class="grid-item mb-3">';
             echo '<h5>Request accepted by: ' . $manufacturerName . '</h5>';
-            echo '</div><div><p>';
-            echo 'Material name: ' . $materialName . '</p>';
+            echo '<p> Material name: ' . $materialName . '</p>';
             echo '<p>Quantity: ' . $acceptedQuantity . ' lbs</p>';
             echo '<form action="requests.php" method="post">';
                 
@@ -187,9 +187,10 @@ if ($acceptedResult->num_rows != 0){
             // Redirect the user to the chat with the correct chatID
             echo '<a href="chat.php?chatID=' . $chatID . '&time_stamp=' . $formattedDateTime . '&requestID=' . $requestID .'">';
             echo '<button type="button" class="btn btn-primary">Go to Chat</button>';
-            echo '</a>';
+            echo '</a></form></div>';
         }
-                echo '</form></div></div></div>';
+        //close the col
+        echo '</div>';
 }else{
     echo '<div class="col">
     <h3 class="com">Your accepted requests</h3>

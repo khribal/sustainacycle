@@ -146,7 +146,7 @@ if ($userPendingResult->num_rows != 0){
 
             //echo each request
             echo '<form method="post" action="user_request.php"><div class="grid-item">';
-            echo '<h5>Request accepted by: ' . $recyclerName . '</h5>';
+            echo '<h5>Request to: ' . $recyclerName . '</h5>';
             echo '<p>Material name: ' . $materialName . '</p>
                 <p>Quantity: ' . $acceptQuantity . ' lbs</p>
                 <p>Recycler Name: ' . $recyclerName . '</p>

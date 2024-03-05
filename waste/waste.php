@@ -29,10 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['requestBtn'])) {
   $insertRequest="INSERT INTO requests (materialID, recyclerID, quantity, reqStatus) VALUES ($materialID, $recyclerID, $quantity, 'Pending')";
   $conn->query($insertRequest);
 
-  // set success flag for user
-  $_SESSION['request-success'] = true;
-  //redirect so the page reloads
-  header('Location: waste.php');
+  echo "<script>";
+  echo "localStorage.setItem('requestSuccess', 'true');";
+  echo "alert('Request successful!');";
+  echo "window.location.href = 'waste.php';";
+  echo "</script>";
   exit();
 }
 
@@ -56,11 +57,6 @@ $conn->close();
 <body>
 
 <?php include('../includes/waste-nav.php');
-if (isset($_SESSION['request-success']) && $_SESSION['request-success']) {
-  echo '<div style="text-align: center; color: green; font-size: 20px; font-weight: bold;">Request Successful.</div>';
-  // Reset the flag to avoid showing the message on subsequent visits
-  $_SESSION['registration_success'] = false;
-}
 ?>
 
 <div class="container px-4 mx-auto p-2">

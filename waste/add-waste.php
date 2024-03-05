@@ -79,54 +79,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitMat'])) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        // Use the user ID to find the manufacturer ID
-        $manuIDQuery = "SELECT * FROM manufacturers WHERE userID=$userID";
-        $manuIDResult = mysqli_query($conn, $manuIDQuery);
-        
-        if ($manuIDResult) {
-            $row = mysqli_fetch_assoc($manuIDResult);
+        //Check if this manufacturer already has this material
+        $checkMaterials = "SELECT materialName, quantity from materials where userID=$userID";
+        $checkMatResult = $conn->query($checkMaterials);
 
-            $manufacturerID = $row['manufacturerID']; 
-  
-            $checkMaterials = "SELECT materialName, quantity from materials where userID=$userID";
-            $checkMatResult = $conn->query($checkMaterials);
+            
+        if ($checkMatResult) {
+          while ($row = $checkMatResult->fetch_assoc()) {
+              // Access the materialName column in the current row
+              $existingMaterialName = $row['materialName'];
+              $existingQuantity = $row['quantity'];
 
-            //check if manufacturer already has that material in database
-            if ($checkMatResult) {
-              while ($row = $checkMatResult->fetch_assoc()) {
-                  // Access the materialName column in the current row
-                  $existingMaterialName = $row['materialName'];
-                  $existingQuantity = $row['quantity'];
+              // Compare with the materialName you want to check
+              if ($materialName == $existingMaterialName) {
+                  // Material name already exists, update that quantity
+                  $totalQuantity = $existingQuantity + $quantity;
+                  //update record
+                  $updateMat = "UPDATE materials SET quantity=$totalQuantity, description='$description'
+                  where userID=$userID AND materialName='$materialName'";
 
-                  // Compare with the materialName you want to check
-                  if ($materialName == $existingMaterialName) {
-                      // Material name already exists, update that quantity
-                      $totalQuantity = $existingQuantity + $quantity;
-                      //update record
-                      $updateMat = "UPDATE materials SET quantity=$totalQuantity, description='$description'
-                      where userID=$userID AND materialName='$materialName'";
-
-                      $conn->query($updateMat);
-                  }
+                  $conn->query($updateMat);
               }
-          }else{
-            //create new record for that material
-            $sql = "INSERT INTO materials (userID, materialName, quantity, description) VALUES ($userID, '$materialName', $quantity, '$description')";
-            
-            // Insert form results into the database
-            $result = $conn->query($sql);
-            
-          }
-            mysqli_close($conn); // Close the database connection
-
-            if ($result) {
+              //User doesn't have this specific material, add new record
+              else{
+              //create new record for that material
+              $sql = "INSERT INTO materials (userID, materialName, quantity, description) VALUES ($userID, '$materialName', $quantity, '$description')";
+              // Insert form results into the database
+              $result = $conn->query($sql);
+              if ($result) {
                 $_SESSION['add_success'] = true; // Set a success flag
                 header("Location: ./manu_waste.php");
                 exit();
+              }
+              }
+              }
             }
-        } else {
-            echo "Error: " . $manuIDQuery . "<br>" . $conn->error;
-        }
+            //user doesn't have ANY material in database yet, make new record
+            else{
+              //create new record for that material
+              $sql = "INSERT INTO materials (userID, materialName, quantity, description) VALUES ($userID, '$materialName', $quantity, '$description')";
+              // Insert form results into the database
+              $result = $conn->query($sql);
+              if ($result) {
+                $_SESSION['add_success'] = true; // Set a success flag
+                header("Location: ./manu_waste.php");
+                exit();
+              }
+            }
+
+            mysqli_close($conn); // Close the database connection
     }
 }
 ?>
