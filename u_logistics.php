@@ -262,7 +262,7 @@ $conn->close();
             
             mixedChart(mixedAll.map(entry => entry.transactionDate), mixedUser.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
             mixedAll.map(entry => ({ x: entry.transactionDate, y: entry.quantity })), 
-            "Your donations", "All donations");
+            "Your donations (lbs)", "All donations (lbs)");
 
 
     //YEAR DROPDOWN SELECTOR

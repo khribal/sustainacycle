@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitMat'])) {
               }
           }else{
             //create new record for that material
-            $sql = "INSERT INTO materials (manufacturerID, materialName, quantity, description) VALUES ($manufacturerID, '$materialName', $quantity, '$description')";
+            $sql = "INSERT INTO materials (userID, materialName, quantity, description) VALUES ($userID, '$materialName', $quantity, '$description')";
             
             // Insert form results into the database
             $result = $conn->query($sql);

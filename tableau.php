@@ -27,70 +27,14 @@
 </div>
 
 
-  <tableau-viz id="tabviz"></tableau-viz>
-
-
-
-<script type="text/javascript">
-  //RENDER TABLEAU CHARTS
-    const tviz = document.getElementById("tabviz")
-    tviz.src = 'https://public.tableau.com/views/Superstore_24/Overview'
-    tviz.height = "400px"
-    tviz.style.width = "100%"
-</script>
-
-
 <!-- THE ONE THAT IS WORKING -->
-<div class='tableauPlaceholder' id='viz1709593824046' style='position: relative'><noscript><a href='#'><img alt=' '
-                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;ManuDash&#47;RecyDash&#47;1_rss.png'
-                style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='ManuDash&#47;RecyDash' />
-        <param name='tabs' value='yes' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image'
-            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ma&#47;ManuDash&#47;RecyDash&#47;1.png' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-    </object></div>
-<script
-    type='text/javascript'>                    
-    var divElement = document.getElementById('viz1709593824046'); 
-    var vizElement = divElement.getElementsByTagName('object')[0]; 
-    if (divElement.offsetWidth > 800) { 
-        vizElement.style.minWidth = '1000px'; vizElement.style.maxWidth = '100%'; vizElement.style.minHeight = '650px'; vizElement.style.maxHeight = (divElement.offsetWidth * 0.50) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.minWidth = '1000px'; vizElement.style.maxWidth = '100%'; vizElement.style.minHeight = '650px'; vizElement.style.maxHeight = (divElement.offsetWidth * 0.50) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.minHeight = '550px'; vizElement.style.maxHeight = (divElement.offsetWidth * 1) + 'px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-    </script>
-
-
-
-<!-- recycler manufacturer row -->
-<div>
-      <tableau-viz id="tableauViz" style="width: 100%; height:100%;"      
-      src='https://public.tableau.com/views/ManuDash/RecyDash' hide-tabs>
-      </tableau-viz>
-</div>
-
-<div>
-  <tableau-viz id="tableauViz" style="width: 100%; height:500px;"      
-      src='https://public.tableau.com/views/ManuDash/ManuDash' hide-tabs>
-      </tableau-viz>
-</div>
-
-
-
-
 <div class="container">
-  <h2 class="log">Textile Waste Donation and Recycling Insights</h2>
+<h2 class="log">Textile Waste Donation and Recycling Insights</h2>
   <p class="log">Explore the impact of textile waste donations by manufacturers and the recycling efforts of partnered recyclers. This dashboard provides a comprehensive overview, showcasing manufacturers ranked by the quantity of textile waste donated, and recyclers recognized for accepting the most waste. Gain insights into the sustainability efforts within the textile industry and understand the positive environmental contributions made by manufacturers and recyclers alike. Discover the leaders driving positive change and contributing to a more sustainable future through responsible waste management practices. Use the filters at the top of the dashboard to filter down by month and year.</p>
     <!-- Recycler + manufacturer textile donations/accepted -->
-      <div class='tableauPlaceholder' id='viz1709160688912' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;RecyclingManuComparison&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='RecyclingManuComparison&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;RecyclingManuComparison&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1709160688912');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-  </div>
+    <div class='tableauPlaceholder' id='viz1709652292476' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;RecyclingManuComparison&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='RecyclingManuComparison&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Re&#47;RecyclingManuComparison&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1709652292476');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+</div>
+
 
 <div class="container">     
 <!--Quantity over time -->
@@ -102,12 +46,10 @@
   </div>
 
   <div class="container">
-  <!--Materials -->
-  <h2 class="log">Types of Textiles Recycled: Diverse Contributions for a Colorful Impact</h2>
-    <p class="log">The bar chart reveals the diverse types of textiles recycled on our platform. Explore the proportions of each material recycled, measured in pounds. From cotton and polyester to innovative eco-friendly fabrics, our community's contributions paint a colorful picture of sustainability in fashion.</p>
-
-    <div class='tableauPlaceholder' id='viz1709094993791' style='position: relative'><noscript><a href='#'><img alt='MaterialDash ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;Team20Materials&#47;MaterialDash&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Team20Materials&#47;MaterialDash' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Te&#47;Team20Materials&#47;MaterialDash&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1709094993791');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-    </div>
+    <!--Materials -->
+    <h2 class="log">Types of Textiles Recycled: Diverse Contributions for a Colorful Impact</h2>
+      <p class="log">The bar chart reveals the diverse types of textiles recycled on our platform. Explore the proportions of each material recycled, measured in pounds. From cotton and polyester to innovative eco-friendly fabrics, our community's contributions paint a colorful picture of sustainability in fashion.</p>
+      <div class='tableauPlaceholder' id='viz1709653579364' style='position: relative'><noscript><a href='#'><img alt='MaterialDash ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;On&#47;OnlyMaterials&#47;MaterialDash&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='OnlyMaterials&#47;MaterialDash' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;On&#47;OnlyMaterials&#47;MaterialDash&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1709653579364');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>  </div>
 
 <div class="container">
 <!--Users over time -->
