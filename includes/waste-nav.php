@@ -19,12 +19,6 @@
       ?>
 
 
-      <!-- Only allow individual users / manufacturers to see their impact -->
-        <?php 
-            if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user' || isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'manufacturer') {
-                echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'u_logistics.php' ? 'active' : '') . '"><a class="nav-link" href="../u_logistics.php">Your Impact</a></li>';
-            }
-          ?> 
       
         <!-- Only show "Find Nearby Recycling" to users not logged in, individuals, or manufacturers -->
       <?php 
