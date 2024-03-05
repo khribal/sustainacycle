@@ -24,10 +24,19 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
         $currentTime = time();
         $currentTimeFormatted = date('Y-m-d H:i:s', $currentTime);
 
-        //insert the post into the db
-        $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID, communityID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID, $communityID)";
-        $conn->query($insertPost);
-
+        //insert the post into the db, prepared statement
+        $insertPost = $conn->prepare("INSERT INTO posts (title, content, like_count, time_stamp, userID, communityID) VALUES (?, ?, 0, ?, ?, ?)");
+        $insertPost->bind_param("ssssi", $postTitle, $postBody, $currentTimeFormatted, $userID, $communityID);
+        $insertPostResult = $insertPost->execute();
+        $insertPost->close();
+        
+        if($insertPostResult){
+            header('Location: user_communities.php?community_id=' . $communityID);
+            exit();
+        }
+        else{
+            echo "Something went wrong.";
+        }
         //close db
         $conn->close();
 }
