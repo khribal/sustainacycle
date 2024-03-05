@@ -77,7 +77,7 @@ include('./includes/nav.php'); ?>
         while ($row = $result->fetch_assoc()) {
             echo '<div class="grid-item mb-3">';
             echo '<h3 class="com">' . htmlspecialchars($row["communityName"]) . '</h3>';
-            echo '<p class="com"><strong>Description:</strong> ' . nl2br(htmlspecialchars($row["communityDescription"])) . '</p>';
+            echo '<p class="com"><strong>Description: </strong> ' . nl2br(htmlspecialchars($row["communityDescription"])) . '</p>';
             echo '<p class="com"><strong>Rules: </strong>' . nl2br(htmlspecialchars($row["communityRules"])) . '</p>';
             echo '<p class="com"><strong>Tags: </strong>' . htmlspecialchars($row["tags"]) . '</p>';
             echo '<a class="button mt-2" href="join-community.php?community_id=' . $row["communityID"] . '">Join &raquo;</a>';
