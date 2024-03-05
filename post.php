@@ -14,10 +14,6 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
     $postTitle = $_POST['postTitle'];
     $postBody = $_POST['postBody'];
 
-    echo "comm id:" . $communityID;
-    echo "post tit:" . $postTitle;
-    echo "post bod:" . $postBody;
-
 
     // //db connection
     $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
@@ -28,9 +24,8 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
         $currentTime = time();
         $currentTimeFormatted = date('Y-m-d H:i:s', $currentTime);
 
-        echo $currentTimeFormatted;
         //insert the post into the db
-        $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID, $communityID)";
+        $insertPost = "INSERT INTO posts (title, content, like_count, time_stamp, userID, communityID) VALUES ('$postTitle', '$postBody', 0, '$currentTimeFormatted', $userID, $communityID)";
         $conn->query($insertPost);
 
         //close db
