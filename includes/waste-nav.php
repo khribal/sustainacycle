@@ -18,6 +18,9 @@
         }
       ?>
 
+   <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
+        <a class="nav-link" href="../tableau.php">Recycling Logistics</a>
+      </li>
 
       
         <!-- Only show "Find Nearby Recycling" to users not logged in, individuals, or manufacturers -->
@@ -27,9 +30,7 @@
         }
       ?>
       
-      <li class="nav-item <?php if(basename($_SERVER['PHP_SELF']) == 'tableau.php'){echo 'active';} ?>">
-        <a class="nav-link" href="../tableau.php">Recycling Logistics</a>
-      </li>
+  
     
       <!-- Only allow manufacturer to add waste -->
     <?php 
