@@ -21,7 +21,7 @@
 <img src="./img/logo.png" alt="logo" height="250px" width="250px">
     <h1 class="index">Welcome to SustainaCycle!</h1>
     <div class="options mt-5">
-        <a href="waste.php" class="option-button">
+        <a href="./waste/waste.php" class="option-button">
             <img src="img/shirt.png" alt="Waste Icon" class="option-icon" height="96px" width="96px">
             <div class="option-content">
                 <span>See waste that is available now!</span>
