@@ -4,20 +4,18 @@ session_start();
 $userID = $_SESSION['userID'];
 
 
-$communityID = '';  // default value
+// $communityID = '';  // default value
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createPost'])) {
     $communityID = isset($_POST['communityID']) ? $_POST['communityID'] : '';
     echo $communityID;
 }
+
 elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
-    
+    $communityID = $_POST['communityID'];
+    echo "comm id: " . $communityID;
 }
 
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST"){
-//     if(isset($_POST['createPost'])){
-//         $communityID = $_POST['communityID'];
-//     }
 
 //     if(isset($_POST['createBtn'])){
 //         $postTitle = $_POST['postTitle'];
