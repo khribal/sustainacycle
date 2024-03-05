@@ -156,8 +156,9 @@ if ($userPendingResult->num_rows != 0){
                 <input type="hidden" name="recyclerID" value="' . $recyclerID . '">
                 <input type="hidden" name="materialID" value="' . $materialID . '">
                 <button name="delReq" class="btn btn-danger">Delete request </button>
-                </div></form></div>';
-        }     
+                </div></form>';
+        }    
+        echo '</div>';
 }
 }
 else{
