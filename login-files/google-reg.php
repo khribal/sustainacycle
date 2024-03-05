@@ -84,10 +84,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET"){
                 exit();
             }
             else{
-            $_SESSION['registration_success'] = true; // Set a success flag
-            //Redirect user back to home page
-            header('Location: ../index.php');
-            exit();
+            //Redirect user back to LANDING page
+            if($_SESSION['usertype'] == 'individual_user'){
+                header('Location: ../user-home.php');
+                exit();
+            }elseif($_SESSION['usertype'] == 'manufacturer'){
+                header('Location: ../manufacturer-home.php');
+                exit();
+            }elseif($_SESSION['usertype'] == 'recycler'){
+                header('Location: ../recycle-home.php');
+                exit();
+            }else{
+                header('Location: ../index.php');
+                exit();
+            }
             }
         }
     

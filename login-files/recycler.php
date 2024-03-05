@@ -28,9 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     else{
-        $_SESSION['registration_success'] = true; // Set a success flag
-        //Redirect user back to home page
-        header('Location: ../index.php');
+        //Redirect user back to landing page
+        header('Location: ../recycle-home.php');
         exit();
         }
 

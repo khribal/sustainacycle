@@ -31,9 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     else{
-        $_SESSION['registration_success'] = true; // Set a success flag
         //Redirect user back to home page
-        header('Location: ../index.php');
+        header('Location: ../manufacturer-home.php');
         exit();
         }
 
