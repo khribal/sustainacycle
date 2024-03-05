@@ -121,7 +121,8 @@ $userPendingResult = $conn->query($userPendingrequests);
 //DISPLAY PENDING REQUESTS
 if ($userPendingResult->num_rows != 0){
     //Heading for pending requests
-    echo '<div class="col"><h3 class="com">Your pending requests</h3>
+    echo '<div class="col">
+    <h3 class="com">Your pending requests</h3>
     <p>Delete drop off requests you no longer want.</p>';
 
     while ($row_pending = mysqli_fetch_assoc($userPendingResult)) {
@@ -145,20 +146,20 @@ if ($userPendingResult->num_rows != 0){
             $recyclerID = $recycler_pending['companyID'];
 
             //echo each request
-            echo '<form method="post" action="user_request.php"><div class="grid-item">';
+            echo '<div class="grid-item">
+                <form method="post" action="user_request.php">';
             echo '<h5>Request to: ' . $recyclerName . '</h5>';
             echo '<p>Material name: ' . $materialName . '</p>
-                <p>Quantity: ' . $acceptQuantity . ' lbs</p>
-                <p>Recycler Name: ' . $recyclerName . '</p>
-                <p>Address: ' . $recyAddress . '</p>
-                <p>Drop off date and time: ' . $transDate . '</p>
+                    <p>Quantity: ' . $acceptQuantity . ' lbs</p>
+                    <p>Recycler Name: ' . $recyclerName . '</p>
+                    <p>Address: ' . $recyAddress . '</p>
+                    <p>Drop off date and time: ' . $transDate . '</p>
                 <input type="hidden" name="transID" value="' . $transactionID . '">
                 <input type="hidden" name="recyclerID" value="' . $recyclerID . '">
                 <input type="hidden" name="materialID" value="' . $materialID . '">
                 <button name="delReq" class="btn btn-danger">Delete request </button>
-                </div></form>';
+                </form></div>';
         }    
-        echo '</div>';
 }
 }
 else{
