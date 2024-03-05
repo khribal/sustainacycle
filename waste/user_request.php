@@ -146,7 +146,7 @@ if ($userPendingResult->num_rows != 0){
             $recyclerID = $recycler_pending['companyID'];
 
             //echo each request
-            echo '<div class="grid-item">
+            echo '<div class="grid-item mb-3">
                 <form method="post" action="user_request.php">';
             echo '<h5>Request to: ' . $recyclerName . '</h5>';
             echo '<p>Material name: ' . $materialName . '</p>
