@@ -12,10 +12,6 @@
 
 <p>test</p>
 
-<div class="row">
-        <div class="col">hi</div>
-        <div class="col">hi</div>
-    </div>
 
 <?php include('./includes/boot-script.php'); ?>
 </body>
