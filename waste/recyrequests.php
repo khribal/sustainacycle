@@ -105,6 +105,49 @@ $recyclerID = $recyclerData['companyID'];
 
 //////////////////////////PAGE CONTENT HERE /////////////////////////////
 
+//GET each PENDING REQUEST for this user
+$yourRequests = "select re.requestID, m.materialName, re.materialID, re.quantity, re.recyclerID, ma.manufacturerID, ma.companyName as 'manufacturerName', u.userID, r.companyName, re.reqStatus
+from requests as re
+join recyclers as r on r.companyID=re.recyclerID
+join materials as m on m.materialID=re.materialID
+join users as u on u.userID=m.userID
+join manufacturers as ma on ma.userID=u.userID
+where re.recyclerID=$recyclerID AND re.reqStatus='Pending'";
+
+$requestResult = $conn->query($yourRequests);
+
+if ($requestResult->num_rows != 0){
+    //Heading for pending requests
+    echo '<div class="col"><h3 class="com">Pending requests</h3>
+    <p>Your requests that are still awaiting approval from the manufacturer.</p>';
+    
+    while ($row_request = mysqli_fetch_assoc($requestResult)) {
+        //get request info
+        $material = $row_request['materialName'];
+        $quantity = $row_request['quantity'];
+        $manufacturer = $row_request['manufacturerName'];
+        $matID = $row_request['materialID'];
+        $requestID = $row_request['requestID'];
+    
+    //echo each request
+    echo '<div class="card mb-3">';
+    echo '<div class="card-header">';
+    echo 'Request to: <strong>' . $manufacturer . '</strong>';
+    echo '</div><div class="card-body"><h5 class="card-title">';
+    echo 'Material name: ' . $material . '</h5>';
+    echo '<p class="card-text">Quantity: ' . $quantity . ' lbs</p>';
+    echo '<form action="recyrequests.php" method="post">';
+    echo '<input type="hidden" name="materialIDhidden" value="' . $matID . '">';
+    echo '<button type="submit" class="btn btn-danger" name="deleteBtn">Delete request</button></form></div></div>';
+    }
+}
+else{
+    echo '<div class="col">
+    <h3 class="com">Your pending requests</h3>
+    <p>You have no pending requests.</p>
+    </div>';
+}
+
 //ACCEPTED REQUESTS so the user can access the chat
 $recylersAcceptedRequests = "select re.requestID, m.materialName, re.materialID, re.quantity, re.recyclerID, ma.manufacturerID, ma.companyName as 'manufacturerName', u.userID, r.companyName, re.reqStatus
 from requests as re
@@ -243,51 +286,6 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
 }
 
 echo "</div></div>";
-
-
-
-//GET each PENDING REQUEST for this user
-$yourRequests = "select re.requestID, m.materialName, re.materialID, re.quantity, re.recyclerID, ma.manufacturerID, ma.companyName as 'manufacturerName', u.userID, r.companyName, re.reqStatus
-from requests as re
-join recyclers as r on r.companyID=re.recyclerID
-join materials as m on m.materialID=re.materialID
-join users as u on u.userID=m.userID
-join manufacturers as ma on ma.userID=u.userID
-where re.recyclerID=$recyclerID AND re.reqStatus='Pending'";
-
-$requestResult = $conn->query($yourRequests);
-
-if ($requestResult->num_rows != 0){
-    //Heading for pending requests
-    echo '<div class="col"><h3 class="com">Pending requests</h3>
-    <p>Your requests that are still awaiting approval from the manufacturer.</p>';
-    
-    while ($row_request = mysqli_fetch_assoc($requestResult)) {
-        //get request info
-        $material = $row_request['materialName'];
-        $quantity = $row_request['quantity'];
-        $manufacturer = $row_request['manufacturerName'];
-        $matID = $row_request['materialID'];
-        $requestID = $row_request['requestID'];
-    
-    //echo each request
-    echo '<div class="card mb-3">';
-    echo '<div class="card-header">';
-    echo 'Request to: <strong>' . $manufacturer . '</strong>';
-    echo '</div><div class="card-body"><h5 class="card-title">';
-    echo 'Material name: ' . $material . '</h5>';
-    echo '<p class="card-text">Quantity: ' . $quantity . ' lbs</p>';
-    echo '<form action="recyrequests.php" method="post">';
-    echo '<input type="hidden" name="materialIDhidden" value="' . $matID . '">';
-    echo '<button type="submit" class="btn btn-danger" name="deleteBtn">Delete request</button></form></div></div>';
-    }
-}
-else{
-    echo '<div class="col">
-    <h3 class="com">Your pending requests</h3>
-    <p>You have no pending requests.</p>
-    </div>';
-}
 
 
 ?>

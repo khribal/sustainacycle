@@ -34,6 +34,7 @@
         echo '<li class="nav-item' . (basename($_SERVER['PHP_SELF']) == 'add-waste.php' ? 'active' : '') . '"><a class="nav-link" href="./waste/add-waste.php">Add Textile Waste</a></li>';
       }
     ?>
+
  
  <!-- Only allow recyclers to see available waste -->
   <?php 
