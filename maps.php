@@ -232,8 +232,6 @@ include('includes/nav.php');
   
 <div class="row">
 <div class="col">
-
-
       <!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
       <?php 
       if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
@@ -277,11 +275,13 @@ include('includes/nav.php');
       }
       ?>
 
+  </div>
+<!-- close col -->
 </div>
 
+
 <div class="col-9">
-<p>test</p>
-<!-- close col -->
+  <p>test</p>
 </div>
 <!-- close row -->
 </div>
