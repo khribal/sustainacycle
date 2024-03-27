@@ -166,7 +166,7 @@ $acceptedResult = $conn->query($recylersAcceptedRequests);
 if ($acceptedResult->num_rows != 0){
     //Heading for accepted requests
     echo '<div class="col">
-            <h3 class="com">Your accepted requests</h3>
+            <h3 class="com">Accepted requests</h3>
             <p>Chat with the manufacturers who accepted your material request to complete your transaction.</p>
             ';
 
