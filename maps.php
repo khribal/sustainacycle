@@ -291,7 +291,7 @@ include('includes/nav.php');
 
 <div class="row">
   <div class="col">
-      <p>test</p>
+      <p>test 2</p>
   </div>
   <div class="col-6">
         <!--The div element for the map -->
