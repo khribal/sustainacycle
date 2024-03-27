@@ -291,17 +291,18 @@ include('includes/nav.php');
           <div class="col">
             <div id="sidebar" class="custom-scroll-container">
               <h5 class="map">Recycling Centers Near You</h5>
+            </div>
           </div>
         </div>
-      </div>
     </div>
-</div>
-
 <!-- close col -->
 </div>
 
 <!-- close container -->
 </div>
+
+
+
     
 
 
