@@ -279,7 +279,7 @@ include('includes/nav.php');
 
 </div>
 
-<div class="col-6">
+<div class="col-9">
 <p>test</p>
 <!-- close col -->
 </div>
