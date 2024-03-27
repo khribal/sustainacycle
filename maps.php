@@ -283,7 +283,8 @@ include('includes/nav.php');
 <p>test</p>
 <!-- close col -->
 </div>
-
+<!-- close row -->
+</div>
 <!-- close container -->
 </div>
 
