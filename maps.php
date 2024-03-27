@@ -227,6 +227,9 @@ include('includes/nav.php');
 ?>
 
 <div class="container px-4 mx-auto p-1">
+<h1 class="map">Textile Recyclers Near You</h1>
+<p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
+  
 <div class="row">
 <div class="col">
 
@@ -279,9 +282,6 @@ include('includes/nav.php');
 </div>
 
 <div class="col">
-
-<h1 class="map">Textile Recyclers Near You</h1>
-    <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
     <div class="container">
         <div class="row">
