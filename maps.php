@@ -231,30 +231,6 @@ include('includes/nav.php');
 <div class="col">
 
 
-
-</div>
-
-<div class="col">
-
-<h1 class="map">Textile Recyclers Near You</h1>
-    <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
-    <!--The div element for the map -->
-    <div class="container">
-        <div class="row">
-          <div class="col-9">
-            <div id="map"></div>
-          </div>
-          <div class="col">
-            <div id="sidebar" class="custom-scroll-container">
-              <h5 class="map">Recycling Centers Near You</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-
-</div>
-
       <!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
       <?php 
       if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
@@ -301,6 +277,30 @@ include('includes/nav.php');
       ?>
 
 </div>
+
+<div class="col">
+
+<h1 class="map">Textile Recyclers Near You</h1>
+    <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
+    <!--The div element for the map -->
+    <div class="container">
+        <div class="row">
+          <div class="col-9">
+            <div id="map"></div>
+          </div>
+          <div class="col">
+            <div id="sidebar" class="custom-scroll-container">
+              <h5 class="map">Recycling Centers Near You</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- close col -->
+</div>
+
+<!-- close container -->
 </div>
     
 
