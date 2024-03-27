@@ -43,6 +43,9 @@ include('../includes/boot-head.php');
 include('../includes/google-fonts.php');
 ?>
 
+<!-- Add to calendar button --> 
+<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+
 <!-- CSS -->
 <link rel="stylesheet" href="../css/styles.css">
 
@@ -81,7 +84,7 @@ if(isset($_SESSION['denied']) && $_SESSION['denied']){
 //////////////////////////PAGE CONTENT HERE /////////////////////////////
 
 //ACCEPTED REQUESTS
-$userAcceptedrequests = "select t.transactionID, DATE_FORMAT(t.transactionDate, '%M %e, %Y %l:%i %p') AS formatted_date, m.materialName, t.quantity
+$userAcceptedrequests = "select t.transactionID, DATE_FORMAT(t.transactionDate, '%M %e, %Y %l:%i %p') AS formatted_date, t.transactionDate, m.materialName, t.quantity
 from transactions as t
 join materials as m on m.materialID=t.materialID
 join users as u on u.userID=m.userID
@@ -93,7 +96,8 @@ $userAcceptedResult = $conn->query($userAcceptedrequests);
 //DISPLAY ACCEPTED REQUESTS
 if ($userAcceptedResult->num_rows != 0){
     //Heading for accepted requests
-    echo '<div class="col"><h3 class="com">Your accepted requests</h3>
+    echo '<div class="col">
+    <h3 class="com">Your accepted requests</h3>
     <p>View your accepted drop off requests, and the information you need to complete your drop off.</p>';
 
     while ($row_accepted = mysqli_fetch_assoc($userAcceptedResult)) {
@@ -101,6 +105,10 @@ if ($userAcceptedResult->num_rows != 0){
         $transDate = $row_accepted['formatted_date'];
         $materialName = $row_accepted['materialName'];
         $acceptQuantity = $row_accepted['quantity'];
+        $transactionDateAccepted = $row_accepted['transactionDate'];
+
+        $dateOnly = date("Y-m-d", strtotime($transactionDateAccepted));
+        $timeOnly = date("H:i:s", strtotime($transactionDateAccepted));
 
         //get the information about the recycler based on transactionID
         $recyclerInfo = "select r.companyName, concat(r.cAddress, ', ', r.city, ', ', r.cState, ' ', r.zip, ', ', r.country) as recyAddress
@@ -122,7 +130,20 @@ if ($userAcceptedResult->num_rows != 0){
                 <p>Recycler Name: ' . $recyclerName . '</p>
                 <p>Address: ' . $recyAddress . '</p>
                 <p>Drop off date and time: ' . $transDate . '</p>
-                </div></div>';
+
+                <add-to-calendar-button
+                    name="Drop off: ' . $recyclerName . '"
+                    options="\'Apple\',\'Google\', \'iCal\', \'Outlook.com\'"
+                    location="' . $recyAddress . '"
+                    startDate="' . $dateOnly . '"
+                    endDate="' . $dateOnly . '"
+                    startTime="' . $timeOnly . '"
+                    endTime="' . $timeOnly . '"
+                    timeZone="America/New_York">
+                </add-to-calendar-button>
+
+                </div>
+                </div>';
         }     
 }
 }else{
@@ -148,7 +169,7 @@ if ($userPendingResult->num_rows != 0){
     //Heading for pending requests
     echo '<div class="col">
     <h3 class="com">Your pending requests</h3>
-    <p>Delete drop off requests you no longer want.</p>';
+    <p>Find the details of your pending requests to recyclers, and delete drop off requests you no longer want.</p>';
 
     while ($row_pending = mysqli_fetch_assoc($userPendingResult)) {
         $transactionID = $row_pending['transactionID'];
@@ -172,18 +193,19 @@ if ($userPendingResult->num_rows != 0){
 
             //echo each request
             echo '<div class="grid-item mb-3">
-                <form method="post" action="user_request.php">';
-            echo '<h5>Request to: ' . $recyclerName . '</h5>';
-            echo '<p>Material name: ' . $materialName . '</p>
+                <h5>Request to: ' . $recyclerName . '</h5>
+                    <p>Material name: ' . $materialName . '</p>
                     <p>Quantity: ' . $acceptQuantity . ' lbs</p>
                     <p>Recycler Name: ' . $recyclerName . '</p>
                     <p>Address: ' . $recyAddress . '</p>
                     <p>Drop off date and time: ' . $transDate . '</p>
+                <form method="post" action="user_request.php">
                 <input type="hidden" name="transID" value="' . $transactionID . '">
                 <input type="hidden" name="recyclerID" value="' . $recyclerID . '">
                 <input type="hidden" name="materialID" value="' . $materialID . '">
                 <button name="delReq" class="btn btn-danger">Delete request </button>
-                </form></div>';
+                </form>
+                </div>';
         }    
 }
 }
