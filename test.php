@@ -11,11 +11,11 @@
 <?php include('./includes/nav.php'); ?>
 
 <p>test</p>
-    <div class="grid-container">
-        <div class="grid-item">Item 1</div>
-        <div class="grid-item">Item 2</div>
-        <div class="grid-item">Item 3</div>
-      </div>      
+
+<div class="row">
+        <div class="col">hi</div>
+        <div class="col">hi</div>
+    </div>
 
 <?php include('./includes/boot-script.php'); ?>
 </body>
