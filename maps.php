@@ -293,7 +293,7 @@ include('includes/nav.php');
   <div class="col">
       <p>test 2</p>
   </div>
-  <div class="col-6">
+  <div class="col-9">
         <!--The div element for the map -->
         <div class="container">
         <div class="row">
@@ -307,6 +307,9 @@ include('includes/nav.php');
           </div>
         </div>
     </div>
+  </div>
+  <div class="col">
+    test 3
   </div>
 </div>
 
