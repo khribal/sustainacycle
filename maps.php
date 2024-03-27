@@ -244,7 +244,7 @@ include('includes/nav.php');
         }
 
         echo '<div class="container px-4 mx-auto p-1"">
-        <h3 class="comm map">Request Drop-Off</h3>
+        <h2 class="comm map">Request Drop-Off</h2>
         <p class="map-lead">Request one of your local recyclers to drop off any of your textile waste.</p>
         <div class="container pt-0">
         <form action="maps.php" method="POST">
