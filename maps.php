@@ -280,8 +280,21 @@ include('includes/nav.php');
 </div>
 
 <div class="col-6">
-    <!--The div element for the map -->
-    <div class="container">
+<p>test</p>
+<!-- close col -->
+</div>
+
+<!-- close container -->
+</div>
+
+
+<div class="row">
+  <div class="col">
+      <p>test</p>
+  </div>
+  <div class="col-6">
+        <!--The div element for the map -->
+        <div class="container">
         <div class="row">
           <div class="col-9">
             <div id="map"></div>
@@ -293,13 +306,8 @@ include('includes/nav.php');
           </div>
         </div>
     </div>
-<!-- close col -->
+  </div>
 </div>
-
-<!-- close container -->
-</div>
-
-
 
     
 
