@@ -140,6 +140,8 @@ if ($requestResult->num_rows != 0){
     echo '<input type="hidden" name="materialIDhidden" value="' . $matID . '">';
     echo '<button type="submit" class="btn btn-danger" name="deleteBtn">Delete request</button></form></div></div>';
     }
+    //close the col
+    echo '</div>';
 }
 else{
     echo '<div class="col">
@@ -147,6 +149,7 @@ else{
     <p>You have no pending requests.</p>
     </div>';
 }
+
 
 //ACCEPTED REQUESTS so the user can access the chat
 $recylersAcceptedRequests = "select re.requestID, m.materialName, re.materialID, re.quantity, re.recyclerID, ma.manufacturerID, ma.companyName as 'manufacturerName', u.userID, r.companyName, re.reqStatus
