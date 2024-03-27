@@ -279,7 +279,7 @@ include('includes/nav.php');
 
 </div>
 
-<div class="col">
+<div class="col-6">
     <!--The div element for the map -->
     <div class="container">
         <div class="row">
