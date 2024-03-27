@@ -227,6 +227,8 @@ include('includes/nav.php');
 ?>
 
 <div class="container px-4 mx-auto p-1">
+  <div class="row">
+    <div class="col">
     <h1 class="map">Textile Recyclers Near You</h1>
     <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
     <!--The div element for the map -->
@@ -243,52 +245,56 @@ include('includes/nav.php');
       </div>
     </div>
 </div>
-
-
-<!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
-<?php 
-if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
-  //db connection
-  $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
-  echo '<div class="container px-4 mx-auto p-1"">
-  <h1 class="comm map">Request Drop-Off</h1>
-  <p class="map-lead">Request one of your local recyclers to drop off any of your textile waste.</p>
-  <div class="container pt-0">
-  <form action="maps.php" method="POST">
-  <input type="text" name="material" id="material" placeholder="Material type" required>
-  <input type="text" name="description" id="description" placeholder="Description: ">
-  <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>';
-
-
-   $recyclerSQL= "SELECT companyName from recyclers";
-   $result = $conn->query($recyclerSQL);
-   echo '<select name="recyclerDropdown" id="recyclerDropdown">';
-
-    // Loop through the results
-    while ($row = $result->fetch_assoc()) {
-        // Output an option for each result
-        echo '<option value="' . $row['companyName'] . '">' . $row['companyName'] . '</option>';
-    }
-    // Close the select element
-    echo '</select>';
-    // Free the result set
-    $result->free();
-  
-  echo '<div><label for="datechosen">Date and time for drop off:</label>
-  <input name="datechosen" type="datetime-local" id="Test_DatetimeLocal"></div>
-  <div><button type="submit" class="btn btn-success map" name="submitRequest">Submit request</button></div>
-    </form>
     </div>
-  </div>';
+    <div class="col">
+      <!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
+      <?php 
+      if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
+        //db connection
+        $conn = mysqli_connect("db.luddy.indiana.edu", "i494f23_team20", "my+sql=i494f23_team20", "i494f23_team20");
+        if (!$conn) {
+          die("Connection failed: " . mysqli_connect_error());
+        }
 
-//close db
-$conn->close();
-}
-?>
+        echo '<div class="container px-4 mx-auto p-1"">
+        <h1 class="comm map">Request Drop-Off</h1>
+        <p class="map-lead">Request one of your local recyclers to drop off any of your textile waste.</p>
+        <div class="container pt-0">
+        <form action="maps.php" method="POST">
+        <input type="text" name="material" id="material" placeholder="Material type" required>
+        <input type="text" name="description" id="description" placeholder="Description: ">
+        <input type="text" name="quantity" id="quantity" placeholder="Quantity (lbs)" required>';
+
+
+        $recyclerSQL= "SELECT companyName from recyclers";
+        $result = $conn->query($recyclerSQL);
+        echo '<select name="recyclerDropdown" id="recyclerDropdown">';
+
+          // Loop through the results
+          while ($row = $result->fetch_assoc()) {
+              // Output an option for each result
+              echo '<option value="' . $row['companyName'] . '">' . $row['companyName'] . '</option>';
+          }
+          // Close the select element
+          echo '</select>';
+          // Free the result set
+          $result->free();
+        
+        echo '<div><label for="datechosen">Date and time for drop off:</label>
+        <input name="datechosen" type="datetime-local" id="Test_DatetimeLocal"></div>
+        <div><button type="submit" class="btn btn-success map" name="submitRequest">Submit request</button></div>
+          </form>
+          </div>
+        </div>';
+
+      //close db
+      $conn->close();
+      }
+      ?>
+    </div>
+  </div>
+    
+
 
 <!-- Footer --> 
 <?php include('./includes/footer.php'); ?>
