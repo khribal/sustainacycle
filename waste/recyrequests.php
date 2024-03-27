@@ -7,6 +7,16 @@ if (!$conn) {
 die("Connection failed: " . mysqli_connect_error());
 }
 
+
+//get their recyclerID
+$recyclerIDquery = "SELECT companyID from recyclers where userID=$recyID";
+$RecyclerResult = $conn->query($recyclerIDquery);
+$recyclerData = $RecyclerResult->fetch_assoc();
+//now have the recycler id
+$recyclerID = $recyclerData['companyID'];
+
+
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['acptUserReq'])){
         $transactionID = $_POST['transactionID'];
@@ -44,6 +54,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 }
 
+//DELETE REQUEST BUTTON
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['deleteBtn'])) {
+        $materialIDPost = $_POST['materialIDhidden'];
+    
+        //delete request from db
+        $deleteRequest = "DELETE FROM requests WHERE materialID=$materialIDPost";
+        
+        //refresh the page to show changes
+        $deleteResult = $conn->query($deleteRequest);
+        if ($deleteResult){
+            echo '<script>alert("Request successfully deleted.");</script>';
+
+        }
+    }
+  }
 //close db
 $conn->close();
 ?>
@@ -66,6 +92,8 @@ include('../includes/google-fonts.php');
 <?php 
 include('../includes/waste-nav.php');
 ?>
+
+
 <div class="container px-4 mx-auto p-2">
     <h1 class="com">Your requests</h1>
     <p class="com">Delete requests you no longer want, and chat with the manufacturers who have accepted your request for materials.</p>
@@ -77,30 +105,6 @@ include('../includes/waste-nav.php');
   if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   }
-
-//DELETE REQUEST BUTTON
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['deleteBtn'])) {
-        $materialIDPost = $_POST['materialIDhidden'];
-    
-        //delete request from db
-        $deleteRequest = "DELETE FROM requests WHERE materialID=$materialIDPost";
-        
-        //refresh the page to show changes
-        $deleteResult = $conn->query($deleteRequest);
-        if ($deleteResult){
-            echo '<script>alert("Request successfully deleted.");</script>';
-
-        }
-    }
-  }
-
-//get their recyclerID
-$recyclerIDquery = "SELECT companyID from recyclers where userID=$recyID";
-$RecyclerResult = $conn->query($recyclerIDquery);
-$recyclerData = $RecyclerResult->fetch_assoc();
-//now have the recycler id
-$recyclerID = $recyclerData['companyID'];
 
 
 //////////////////////////PAGE CONTENT HERE /////////////////////////////
@@ -118,8 +122,9 @@ $requestResult = $conn->query($yourRequests);
 
 if ($requestResult->num_rows != 0){
     //Heading for pending requests
-    echo '<div class="col"><h3 class="com">Pending requests</h3>
-    <p>Your requests that are still awaiting approval from the manufacturer.</p>';
+    echo '<div class="col">
+            <h3 class="com">Pending requests</h3>
+            <p>Your requests that are still awaiting approval from the manufacturer.</p>';
     
     while ($row_request = mysqli_fetch_assoc($requestResult)) {
         //get request info
@@ -130,23 +135,27 @@ if ($requestResult->num_rows != 0){
         $requestID = $row_request['requestID'];
     
     //echo each request
-    echo '<div class="card mb-3">';
-    echo '<div class="card-header">';
-    echo 'Request to: <strong>' . $manufacturer . '</strong>';
-    echo '</div><div class="card-body"><h5 class="card-title">';
-    echo 'Material name: ' . $material . '</h5>';
-    echo '<p class="card-text">Quantity: ' . $quantity . ' lbs</p>';
-    echo '<form action="recyrequests.php" method="post">';
-    echo '<input type="hidden" name="materialIDhidden" value="' . $matID . '">';
-    echo '<button type="submit" class="btn btn-danger" name="deleteBtn">Delete request</button></form></div></div>';
+    echo '<div class="card mb-3">
+        <div class="card-header">
+            Request to: <strong>' . $manufacturer . '</strong>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Material name: ' . $material . '</h5>
+            <p class="card-text">Quantity: ' . $quantity . ' lbs</p>
+                <form action="recyrequests.php" method="post">
+                    <input type="hidden" name="materialIDhidden" value="' . $matID . '">
+                    <button type="submit" class="btn btn-danger" name="deleteBtn">Delete request</button>
+                </form>
+        </div>
+        </div>';
     }
     //close the col
     echo '</div>';
 }
 else{
     echo '<div class="col">
-    <h3 class="com">Your pending requests</h3>
-    <p>You have no pending requests.</p>
+        <h3 class="com">Your pending requests</h3>
+        <p>You have no pending requests.</p>
     </div>';
 }
 
@@ -182,17 +191,9 @@ if ($acceptedResult->num_rows != 0){
         $manufacturerID = $row_accepted['manufacturerID'];
         $recyclerID = $row_accepted['recyclerID'];
 
-            //echo each request
-            // echo '<div class="grid-item mb-3">';
-            // echo '<h5>Request accepted by: ' . $manufacturerName . '</h5>';
-            // echo '<p> Material name: ' . $materialName . '</p>';
-            // echo '<p>Quantity: ' . $acceptedQuantity . ' lbs</p>';
-            // echo '<form action="requests.php" method="post">';
-            
-            echo '<div class="card mb-3">';
-            echo '<div class="card-header">';
-            echo 'Request accepted by:' . $manufacturerName . '
-                  </div>
+            //echo each request       
+            echo '<div class="card mb-3">
+                    <div class="card-header">Request accepted by: <strong>' . $manufacturerName . '</strong></div>
                     <div class="card-body">
                         <h5 class="card-title">Material name: ' . $materialName . '</h5>
                         <p class="card-text">Quantity: ' . $acceptedQuantity . ' lbs</p>
@@ -246,7 +247,8 @@ if ($acceptedResult->num_rows != 0){
             echo '<button type="button" class="btn btn-primary">Go to Chat</button>';
             echo '</a>
                 </form>
-                </div>';
+                </div>
+            </div>';
         }
         //close the col
         echo '</div>';
@@ -273,6 +275,9 @@ echo '<div class="col">
         <h3 class="com">Drop off Requests</h3>
         <p>Requests from individuals to drop off their textile waste to your facility.</p>
     <div class="grid-container">';
+
+
+
 while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
     //assign values to vars
     $userName = $row_userReq['firstName'];
@@ -284,26 +289,27 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
     $transStatus = $row_userReq['status'];
     $reqUserID = $row_userReq['userID'];
 
-    //Each user request
-    echo '<div class="grid-item"><form method="post" action="recyrequests.php">
-            <h5><strong>Request from:</strong> ' . $userName . '</h5>
-            <p><strong>Material:</strong> ' . $materialName . '</p>
-            <p><strong>Quantity:</strong> ' . $quantity . ' lbs</p>
-            <p><strong>Requested dropoff date and time:</strong> ' . $transDate . '</p>
+    //echo each request
+    echo '<div class="card mb-3">
+    <div class="card-header">Request from: <strong>' . $userName . '</strong></div>
+    <div class="card-body">
+        <h5 class="card-title">Material name: ' . $materialName . '</h5>
+        <p class="card-text">Quantity: ' . $quantity . ' lbs</p>
+        <p><strong>Requested dropoff date and time:</strong> ' . $transDate . '</p>
+            <form method="post" action="recyrequests.php">
             <input type="hidden" name="transactionID" value="' . $transID . '">
             <input type="hidden" name="userID" value="' . $reqUserID . '">';
+
             //Echo either the accept/deny buttons, or mark as completed
             if ($transStatus === 'Accepted') {
                 echo '<div><button type="submit" class="btn btn-info" name="markComplete">Mark Transaction as Complete</button></div>';
             } elseif ($transStatus === 'Pending') {
                 echo '<div><button type="submit" class="btn btn-success mr-3" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
             }
-        echo '</form></div>';
+        echo '</form></div></div>';
 }
-
-echo "</div></div>";
-
-
+//close col
+echo "</div>";
 ?>
 
 </div>

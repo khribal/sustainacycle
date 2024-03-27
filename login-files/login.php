@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
 
-<!-- Sign in with google button -->
+<!-- Sign in with google button FIX THISS-->
 <div id="g_id_onload"
         data-client_id="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com"
         data-login_uri="https://cgi.luddy.indiana.edu/~team20/login-files/handleGoogle.php"
