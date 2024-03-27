@@ -230,8 +230,10 @@ include('includes/nav.php');
 <h1 class="map">Textile Recyclers Near You</h1>
 <p class="map-lead">Locate the nearest textile recyclers in your area with our interactive map. Take a step towards sustainable living by finding convenient drop-off points for your textile waste. Our network of recycling centers ensures your clothing contributes to a circular fashion ecosystem, minimizing environmental impact. Explore the map to easily connect with responsible recycling options and make a positive change today.</p>
   
+
+
 <div class="row">
-<div class="col">
+  <div class="col">
       <!-- INDIVIDUAL USER, REQUEST DROP OFF FORM -->
       <?php 
       if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
@@ -275,25 +277,9 @@ include('includes/nav.php');
       }
       ?>
   </div>
-  </div>
-<!-- close col -->
-</div>
-<!-- close row -->
-</div>
-<!-- close container -->
 </div>
 
 <div class="col-9">
-  <p>test</p>
-</div>
-
-
-
-<div class="row">
-  <div class="col">
-      <p>test 2</p>
-  </div>
-  <div class="col-9">
         <!--The div element for the map -->
         <div class="container">
         <div class="row">
