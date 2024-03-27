@@ -183,12 +183,23 @@ if ($acceptedResult->num_rows != 0){
         $recyclerID = $row_accepted['recyclerID'];
 
             //echo each request
-            echo '<div class="grid-item mb-3">';
-            echo '<h5>Request accepted by: ' . $manufacturerName . '</h5>';
-            echo '<p> Material name: ' . $materialName . '</p>';
-            echo '<p>Quantity: ' . $acceptedQuantity . ' lbs</p>';
-            echo '<form action="requests.php" method="post">';
-                
+            // echo '<div class="grid-item mb-3">';
+            // echo '<h5>Request accepted by: ' . $manufacturerName . '</h5>';
+            // echo '<p> Material name: ' . $materialName . '</p>';
+            // echo '<p>Quantity: ' . $acceptedQuantity . ' lbs</p>';
+            // echo '<form action="requests.php" method="post">';
+            
+            echo '<div class="card mb-3">';
+            echo '<div class="card-header">';
+            echo 'Request accepted by:' . $manufacturerName . '
+                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Material name: ' . $materialName . '</h5>
+                        <p class="card-text">Quantity: ' . $acceptedQuantity . ' lbs</p>
+                    
+                        <form action="requests.php" method="post">';
+                        
+
             // Check if the chat already exists
             $checkChatQuery = "SELECT cm.chatID FROM chat_members as cm
             JOIN chat as c ON c.chatID = cm.chatID
@@ -233,7 +244,9 @@ if ($acceptedResult->num_rows != 0){
             // Redirect the user to the chat with the correct chatID
             echo '<a href="chat.php?chatID=' . $chatID . '&time_stamp=' . $formattedDateTime . '&requestID=' . $requestID .'">';
             echo '<button type="button" class="btn btn-primary">Go to Chat</button>';
-            echo '</a></form></div>';
+            echo '</a>
+                </form>
+                </div>';
         }
         //close the col
         echo '</div>';
@@ -272,7 +285,7 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
     $reqUserID = $row_userReq['userID'];
 
     //Each user request
-    echo '<form method="post" action="recyrequests.php"><div class="grid-item">
+    echo '<div class="grid-item"><form method="post" action="recyrequests.php">
             <h5><strong>Request from:</strong> ' . $userName . '</h5>
             <p><strong>Material:</strong> ' . $materialName . '</p>
             <p><strong>Quantity:</strong> ' . $quantity . ' lbs</p>
@@ -285,7 +298,7 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
             } elseif ($transStatus === 'Pending') {
                 echo '<div><button type="submit" class="btn btn-success mr-3" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
             }
-        echo '</div></form>';
+        echo '</form></div>';
 }
 
 echo "</div></div>";
