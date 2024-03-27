@@ -246,7 +246,6 @@ include('includes/nav.php');
         echo '<div class="container px-4 mx-auto p-1"">
         <h2 class="comm map">Request Drop-Off</h2>
         <p class="map-lead">Request one of your local recyclers to drop off any of your textile waste.</p>
-        <div class="container pt-0">
         <form action="maps.php" method="POST">
         <input type="text" name="material" id="material" placeholder="Material type" required>
         <input type="text" name="description" id="description" placeholder="Description: ">
@@ -271,7 +270,6 @@ include('includes/nav.php');
         <input name="datechosen" type="datetime-local" id="Test_DatetimeLocal"></div>
         <div><button type="submit" class="btn btn-success map" name="submitRequest">Submit request</button></div>
           </form>
-          </div>
         </div>';
 
       //close db
