@@ -274,19 +274,19 @@ include('includes/nav.php');
       $conn->close();
       }
       ?>
-
+  </div>
   </div>
 <!-- close col -->
-</div>
-
-
-<div class="col-9">
-  <p>test</p>
 </div>
 <!-- close row -->
 </div>
 <!-- close container -->
 </div>
+
+<div class="col-9">
+  <p>test</p>
+</div>
+
 
 
 <div class="row">
@@ -307,9 +307,6 @@ include('includes/nav.php');
           </div>
         </div>
     </div>
-  </div>
-  <div class="col">
-    test 3
   </div>
 </div>
 
