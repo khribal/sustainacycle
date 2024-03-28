@@ -33,11 +33,16 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 <div class="container mx-auto p-2">
 <section class="index">
-      <img src="./img/logo.png" alt="logo" height="250px" width="250px">
+<div class= "text-container">      
+<img src="./img/logo.png" alt="logo" height="250px" width="250px">
       <h1 class="index">SustainaCycle</h1>
       <h2 class="index-lead">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h2>
       <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
-  </section>
+</div>
+  <img src="./img/upcycled-clothes.jpg" alt="upcycled-clothes" height="500px" width="350px">
+<div class="flex-container">
+</div>
+    </section>
 </div>
 
 
