@@ -407,6 +407,9 @@ h5.map{
     font-size: 25px;
     font-weight: 400;
     color: var(--green);
+    border: 2px solid;
+    border-color: var(--green);
+     padding: 5px;
 }
 
 h6.map{
