@@ -121,6 +121,14 @@ p.index {
     color: var(--darkblue);
 }
 
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+
+.text-contatiner {
+    margin-left: 20px;
+}
 
 
 
