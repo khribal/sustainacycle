@@ -83,7 +83,7 @@ include('./includes/nav.php');
     // USER CHOSE A COMMUNITY: DISPLAY THE COMMUNITY PAGE
     if (isset($communityID)){
         //get the posts for this community
-        $sqlPosts = "SELECT p.postID, p.title, p.content, p.like_count, u.username from posts as p join users as u on u.userID=p.userID where communityID= $communityID";
+        $sqlPosts = "SELECT p.postID, p.title, p.content, p.like_count, u.username, DATE_FORMAT(p.time_stamp, '%c-%d-%Y') as time_stamp from posts as p join users as u on u.userID=p.userID where communityID= $communityID";
         
         //get info about the community to display
         $communityInfo = "SELECT communityName, communityRules, communityDescription, tags from communities where communityID=$communityID";
@@ -104,24 +104,43 @@ include('./includes/nav.php');
                     <input type="hidden" name="communityID" value="' . $communityID . '">
                     <button class="btn btn-success mb-3" type="submit" name="createPost">Create new post</button>
                 </form>';
-            }
-        }
-        echo '<div class="container px-4 mx-auto p-2">
-            <h3 class="com">Posts</h3>
-                <div class="grid-container">';
+                }
+                //Loop through each post
+                if ($resultPosts->num_rows > 0) {
+                    while ($rowPost = $resultPosts->fetch_assoc()) {
+                    $postID = $rowPost['postID'];
 
-        //loop through posts and put them on cards
-        if ($resultPosts->num_rows > 0) {
-            while ($rowPost = $resultPosts->fetch_assoc()) {
-                $postID = $rowPost['postID'];
-                
-                echo '<div class="grid-item">
-                        <h5 class="com">' . $rowPost['title'] . '</h5>
-                        <p>' . $rowPost['content'] . '</p>
-                        <p class="com">by: ' . $rowPost['username'] . '</p>';
+                    echo '<div class="card" style="margin-bottom: 2em;">
+                        <div class="card-body">
+                            <h5 class="card-title">' . $rowPost['title'] . '</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Posted by: ' . $rowPost['username'] . '</h6>
+                            <p>' . $rowPost['time_stamp'] . '
+                            <p class="card-text">' . $rowPost['content'] . '</p>';
+                    
+
+                            $getComments="SELECT c.comment_content, c.userID, u.username from comments as c join users as u on u.userID=c.userID where postID=$postID";
+                            $resultComments = $conn->query($getComments);
+
+                            //display comment heading
+                            if($resultComments->num_rows > 0){
+                                echo '<h5>Comments</h5>';
+                                $resultComments->data_seek(0);
+                            
+                                while($rowComment=$resultComments->fetch_assoc()){
+                                echo '
+                                    <p><strong>' . $rowComment['username'] . ' </strong>' . $rowComment['comment_content'] . '</p>';
+                                }
+                            }
+                            else{
+                                echo '<p class="text-secondary">No comments yet.</p>';
+                            }
+
                         
-                        // Add comment button
-                echo '<form method="post" action="user_communities.php">
+                            
+                        
+
+                        //Form for adding comments
+                        echo '<form method="post" action="user_communities.php">
                         <input type="hidden" name="communityID" value="' . $communityID . '">
                         <input type="hidden" name="postID" value="' . $postID . '">
                         
@@ -132,26 +151,22 @@ include('./includes/nav.php');
                             <input type="text" name="commentField" style="width: 100%" placeholder="Type your comment here">
                             <button type="submit" class="btn btn-success" name="commentBtn">Comment</button>
                         <hr>
-                    </form>';
-                
-                
-
-                //get the comments for this community
-                $getComments="SELECT c.comment_content, c.userID, u.username from comments as c join users as u on u.userID=c.userID where postID=$postID";
-                $resultComments = $conn->query($getComments);
-                while($rowComment=$resultComments->fetch_assoc()){
-                    echo '<div class="grid-item mt-1 p-1">
-                        <p><strong>' . $rowComment['username'] . ':</strong> </p>
-                        <p>' . $rowComment['comment_content'] . '</p>
-                        </div>';
-                }
-                echo '</div>';
+                    </form>
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                        <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                        <a class="a2a_button_facebook"></a>
+                        <a class="a2a_button_email"></a>
+                        <a class="a2a_button_copy_link"></a>
+                    </div>
+                </div>
+            </div>';
             }
         } 
+    }      
         else {
             echo "No posts available in your community.";
         }
-        //close the grid
+        //close the container
         echo '</div>';
     }
 
@@ -177,7 +192,7 @@ include('./includes/nav.php');
                     echo '<div class="grid-item">
                     <h2 class="com">' . $rowComm['communityName'] . '</h2>
                     <div>
-                        <p>' . $rowComm['communityDescription'] . '</p>
+                        <p style="height: 100px;">' . $rowComm['communityDescription'] . '</p>
                         <a href="user_communities.php?community_id=' .  $rowComm['communityID'] . '" class="btn btn-success">Go to community</a>
                     </div>
                     </div>';
@@ -196,6 +211,7 @@ include('./includes/nav.php');
 <?php include('./includes/boot-script.php')?>
 
 
-
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny -->
 </body>
 </html>
