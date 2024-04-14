@@ -84,6 +84,9 @@ include('../includes/boot-head.php');
 include('../includes/google-fonts.php');
 ?>
 
+<!-- Add to calendar button --> 
+<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+
 <!-- CSS -->
 <link rel="stylesheet" href="../css/styles.css">
 
@@ -302,7 +305,17 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
 
             //Echo either the accept/deny buttons, or mark as completed
             if ($transStatus === 'Accepted') {
-                echo '<div><button type="submit" class="btn btn-info" name="markComplete">Mark Transaction as Complete</button></div>';
+                echo '<div><button type="submit" class="btn btn-info" name="markComplete">Mark Transaction as Complete</button></div>
+                <add-to-calendar-button
+                    name="Drop off: ' . $recyclerName . '"
+                    options="\'Apple\',\'Google\', \'iCal\', \'Outlook.com\'"
+                    location="' . $recyAddress . '"
+                    startDate="' . $dateOnly . '"
+                    endDate="' . $dateOnly . '"
+                    startTime="' . $timeOnly . '"
+                    endTime="' . $timeOnly . '"
+                    timeZone="America/New_York">
+                </add-to-calendar-button>';
             } elseif ($transStatus === 'Pending') {
                 echo '<div><button type="submit" class="btn btn-success mr-3" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
             }
