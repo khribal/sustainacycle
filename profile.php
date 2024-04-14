@@ -42,6 +42,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     }
 }
+
+//find user info for badges
+//check what badges the user has earned
+
+//number of textiles
+$findQuantity = "SELECT sum(t.quantity)
+FROM materials AS m
+JOIN transactions AS t ON t.materialID = m.materialID
+JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
+JOIN users AS u ON u.userID = ut.userID
+WHERE u.userID = $userID AND t.status='Completed'";
+
+$quantityResult = $conn->query($findQuantity);
+
+//number of transactions
+$findTransCount = "SELECT count(t.transactionID)
+FROM materials AS m
+JOIN transactions AS t ON t.materialID = m.materialID
+JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
+JOIN users AS u ON u.userID = ut.userID
+WHERE u.userID = $userID AND t.status='Completed'";
+
+$transCountResult = $conn->query($findTransCount);
+
+
+//number of communities
+$numComms = "SELECT count(communityID) from user_community
+where userID=$userID";
+
+$numCommResult = $conn->query($numComms);
+
+
 //close conn
 $conn->close();
 ?>
@@ -102,7 +134,12 @@ $conn->close();
         </div>
 
         <div class="col rounded border">
-            <p class="profile">"Badge Section"</p>
+            <h3 class="profile">Your Badges</h3>
+            <div class="row">
+                <div class="col"><img src="./img/badges/1.png" alt="badge"></div>
+                <div class="col"><img src="./img/badges/2.png" alt="badge"></div>
+                <div class="col"><img src="./img/badges/3.png" alt="badge"></div>
+            </div>
         </div>
     </div>
 </div>
