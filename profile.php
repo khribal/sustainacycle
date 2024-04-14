@@ -136,9 +136,9 @@ $conn->close();
         <div class="col rounded border">
             <h3 class="profile">Your Badges</h3>
             <div class="row">
-                <div class="col badge"><img src="./img/badges/1.png" alt="badge"></div>
-                <div class="col badge"><img src="./img/badges/2.png" alt="badge"></div>
-                <div class="col badge"><img src="./img/badges/3.png" alt="badge"></div>
+                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/1.png" alt="badge"></div>
+                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/2.png" alt="badge"></div>
+                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/3.png" alt="badge"></div>
             </div>
         </div>
     </div>
