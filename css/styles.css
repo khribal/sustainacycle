@@ -596,6 +596,10 @@ label.add {
     flex-direction: column;
 }
 
+.badge{
+    height: 100px;
+    width: 75px;
+}
 
 /* landing-pages */
 h1.landing {
