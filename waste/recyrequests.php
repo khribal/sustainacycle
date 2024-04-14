@@ -292,6 +292,11 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
     $transStatus = $row_userReq['status'];
     $reqUserID = $row_userReq['userID'];
 
+    // Extract just the date
+    $date = date("Y-m-d", strtotime($transDate));
+    // Extract just the time
+    $time = date("H:i:s", strtotime($transDate));
+
     //echo each request
     echo '<div class="card mb-3">
     <div class="card-header">Request from: <strong>' . $userName . '</strong></div>
@@ -305,17 +310,17 @@ while ($row_userReq = mysqli_fetch_assoc($userRequestsResults)) {
 
             //Echo either the accept/deny buttons, or mark as completed
             if ($transStatus === 'Accepted') {
-                echo '<div><button type="submit" class="btn btn-info" name="markComplete">Mark Transaction as Complete</button></div>
+                echo '<div><button type="submit" class="btn btn-info mb-3" name="markComplete">Mark Transaction as Complete</button></div>
                 <add-to-calendar-button
-                    name="Drop off: ' . $recyclerName . '"
-                    options="\'Apple\',\'Google\', \'iCal\', \'Outlook.com\'"
-                    location="' . $recyAddress . '"
-                    startDate="' . $dateOnly . '"
-                    endDate="' . $dateOnly . '"
-                    startTime="' . $timeOnly . '"
-                    endTime="' . $timeOnly . '"
-                    timeZone="America/New_York">
-                </add-to-calendar-button>';
+                name="Drop off from: ' . $userName . '"
+                options="\'Apple\',\'Google\', \'iCal\', \'Outlook.com\'"
+                location="World Wide Web"
+                startDate="' . $date . '"
+                endDate="' . $date . '"
+                startTime="' . $time . '"
+                endTime="' . $time . '"
+                timeZone="America/New_York"
+                ></add-to-calendar-button>';
             } elseif ($transStatus === 'Pending') {
                 echo '<div><button type="submit" class="btn btn-success mr-3" name="acptUserReq">Accept</button><button type="submit" name="denyUserReq" class="btn btn-danger">Deny</button></div>';
             }
