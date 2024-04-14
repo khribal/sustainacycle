@@ -19,14 +19,19 @@ h2 {
     margin-bottom: 30px;
 }
 
-input, select, label{
+input,
+select,
+label {
     font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 400;
     color: var(--darkblue);
 }
 
-.nav-link,.dropdown-menu,.dropdown-item,.dropdown-toggle{
+.nav-link,
+.dropdown-menu,
+.dropdown-item,
+.dropdown-toggle {
     font-family: "DM Sans", sans-serif;
     color: #c5c6c7;
 }
@@ -76,7 +81,7 @@ h2.index-lead {
 .button {
     border: 2px solid var(--neonblue);
     color: var(--darkblue);
-    padding: 15px 32px; 
+    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -133,13 +138,13 @@ team.php
     align-items: center;
     margin-bottom: 30px;
 }
-  
+
 .team-member img {
     border-radius: 50%;
     width: 150px;
-    height: 150px; 
-    margin-right: 20px; 
-    margin-left: 20px; 
+    height: 150px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .member-info {
@@ -361,16 +366,16 @@ p.com {
 
 
 /************* Maps **********************/
-#map{
+#map {
     height: 400px;
 }
 
-.custom-scroll-container{
+.custom-scroll-container {
     max-height: 400px;
     overflow-y: auto;
 }
 
-#sidebar > div:active {
+#sidebar>div:active {
     background-color: lightgrey;
 }
 
@@ -401,38 +406,38 @@ p.map {
     color: var(--darkblue);
 }
 
-h5.map{
+h5.map {
     font-family: "DM Sans", sans-serif;
     font-size: 25px;
     font-weight: 400;
     color: var(--green);
     border: 2px solid;
     border-color: var(--green);
-     padding: 5px;
+    padding: 5px;
 }
 
-h6.map{
+h6.map {
     font-family: "DM Sans", sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: var(--darkblue);
 }
 
-h3.map{
+h3.map {
     font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 700;
     color: var(--green);
 }
 
-p.map-mini{
+p.map-mini {
     font-family: "DM Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
     color: var(--darkblue);
 }
 
-button.map{
+button.map {
     font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 400;
@@ -440,7 +445,7 @@ button.map{
 
 
 /************* Logistics/Tableau **********************/
-.horiz-parent{
+.horiz-parent {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -495,7 +500,7 @@ select {
     margin-top: 5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius:5px;
+    border-radius: 5px;
     box-sizing: border-box;
 }
 
@@ -552,7 +557,7 @@ label.add {
 
 /*tableau (starter) */
 
-.recymanu-row{
+.recymanu-row {
     display: flex;
 }
 
@@ -563,12 +568,12 @@ label.add {
     display: inline-block;
 }
 
-#profileImage{
+#profileImage {
     height: 250px;
     width: 250px;
 }
 
-#profileImage:hover{
+#profileImage:hover {
     opacity: 0.5;
     cursor: pointer;
 }
@@ -578,28 +583,28 @@ label.add {
     opacity: 1;
 }
 
-.profile-hover{
-  position: absolute;
-  top: 50%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgb(63, 63, 63);
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  visibility: hidden;
-  opacity: 0;
+.profile-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(63, 63, 63);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
 }
 
-#profile-form{
+#profile-form {
     display: flex;
     flex-direction: column;
 }
 
-.badge{
-    height: 100px;
-    width: 75px;
+#myImage {
+    filter: grayscale(100%);
 }
+
 
 /* landing-pages */
 h1.landing {
@@ -621,7 +626,7 @@ h1.landing {
     flex-direction: column;
     align-items: center;
     padding: 15px 30px;
-    border-radius: 5px; 
+    border-radius: 5px;
     border: 2px solid var(--neonblue);
     color: var(--darkblue);
     background-color: white;
@@ -659,7 +664,7 @@ h5.profile {
     color: var(--darkblue);
 }
 
-p.profile{
+p.profile {
     font-family: "DM Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
@@ -678,13 +683,13 @@ input.login {
     width: 100%;
 }
 
-input.login-button{
+input.login-button {
     font-family: "DM Sans", sans-serif;
     font-size: 15px;
     font-weight: 400;
 }
 
-p.login{
+p.login {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
@@ -693,46 +698,46 @@ p.login{
 
 /* u_logistics */
 
-h4.impact{
+h4.impact {
     font-family: 'DM Serif Display', serif;
     font-size: 70px;
     color: var(--darkblue);
 }
 
-.impact{
+.impact {
     font-family: 'DM Serif Display', serif;
     color: var(--darkblue);
 }
 
-p.impact-lead{
+p.impact-lead {
     font-family: "DM Sans", sans-serif;
     font-size: 25px;
     font-weight: 300;
     color: var(--green);
 }
 
-h5.impact{
+h5.impact {
     font-family: "DM Sans", sans-serif;
     font-size: 30px;
     font-weight: 600;
     color: var(--darkblue);
 }
 
-p.impact{
+p.impact {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
     color: var(--darkblue);
 }
 
-p.impact-no{
+p.impact-no {
     font-family: "DM Sans", sans-serif;
     font-size: 17px;
     font-weight: 400;
     color: var(--green);
 }
 
-.pie-chart-container{
+.pie-chart-container {
     width: 300px;
     height: 300px;
     margin: 0 auto;

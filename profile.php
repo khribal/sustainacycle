@@ -73,6 +73,30 @@ where userID=$userID";
 
 $numCommResult = $conn->query($numComms);
 
+//num recyclers 
+$numRecycler = "SELECT DISTINCT r.companyID
+FROM transactions AS t
+JOIN user_transaction AS ut ON ut.transactionID = t.transactionID 
+JOIN recyclers AS r ON r.companyID = ut.recyclerID 
+WHERE ut.userID = $userID";
+
+$recyclerResult = $conn->query($numRecycler);
+
+//num posts
+$numPosts = "select count(p.postID)
+from posts as p
+join users as u on u.userID=p.userID
+where u.userID=$userID";
+
+$postsResult = $conn->query($numPosts);
+
+//num comments 
+$numComments = "select count(c.commentID)
+from comments as c
+join users as u on u.userID=c.userID
+where u.userID=$userID";
+
+$commentsResult = $conn->query($numComments);
 
 //close conn
 $conn->close();
@@ -85,16 +109,23 @@ $conn->close();
     <title>Your Profile</title>
     <?php include('./includes/boot-head.php'); ?>
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <style>
+        #greyImg {
+            filter: grayscale(100%);
+        }
+    </style>
 </head>
 <body class="profile-body">
 <?php include('./includes/nav.php'); ?>
 
+
 <div class="container mx-auto px-4">
+    <h5 class="profile"><strong>Profile Information</strong></h5>
     <div class="row">
         <div class="col rounded border text-center d-flex flex-column" style="height: fit-content;">
         <form action="profile.php" method="post" enctype="multipart/form-data" id="imageUploadForm">
@@ -111,7 +142,7 @@ $conn->close();
         </div>
 
         <!--  -->
-        <div class="col-6 rounded border">
+        <div class="col rounded border">
         <?php 
             // Enable edit mode to show save button if necessary
             $isEditMode = isset($_POST['editBtn']);
@@ -132,18 +163,96 @@ $conn->close();
                 </div>';
             ?>
         </div>
+    </div>
 
-        <div class="col rounded border">
-            <h3 class="profile">Your Badges</h3>
-            <div class="row">
-                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/1.png" alt="badge"></div>
-                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/2.png" alt="badge"></div>
-                <div class="col" style="width: 100px; height: 100px;"><img src="./img/badges/3.png" alt="badge"></div>
-            </div>
-        </div>
+    
+    <h5 class="profile mt-4"><strong>Your Badges</strong></h5>
+    <div class="row rounded border">
+        <?php
+            $imgArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $quantity = $quantityResult->fetch_row();
+            $transaction = $transCountResult->fetch_row();
+            $communities = $numCommResult->fetch_row();
+            $recyclers = $recyclerResult->fetch_row();
+            $posts = $postsResult->fetch_row();
+            $comments = $commentsResult->fetch_row();
+                
+            if ($quantity[0] > 0){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/1.png" alt="badge" class="img-fluid"></div>';
+                //remove 1 from array for unearned badge display
+                unset($imgArray[0]);
+            }
+            if($quantity[0] > 25){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/2.png" alt="badge" class="img-fluid"></div>';
+                //remove 2 from array for unearned badge display
+                unset($imgArray[1]);
+            }
+            if($transaction[0] >= 10){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/3.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[2]);
+            }
+            if($quantity[0] >= 100){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/4.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[3]);
+            }
+            if($communities[0] >= 1){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/5.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[4]);
+            }
+            if($recyclers[0] >= 3){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/6.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[5]);
+            }
+            if($quantity[0] >= 100){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/7.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[6]);
+            }
+            if($posts[0] >= 1){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/8.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[7]);
+            }
+            if($comments[0] >= 5){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/9.png" alt="badge" class="img-fluid"></div>';
+                unset($imgArray[8]);
+            }
+        ?>
+    </div>
+
+    <h5 class="profile mt-4"><strong>Keep earning! Unearned badges:</strong></h5>
+    <div class="row rounded border">
+        <?php 
+            //use the array to determine which badges were not earned yet
+            if (in_array(1, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/1.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(2, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/2.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(3, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/3.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(4, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/4.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(5, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/5.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(6, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/6.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(7, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/7.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(8, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/8.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+            if (in_array(9, $imgArray)){
+                echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/9.png" alt="badge" class="img-fluid" id="greyImg"></div>';
+            }
+
+        ?>
     </div>
 </div>
-
 
 <script>
     //change profile pic script
