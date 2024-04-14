@@ -31,7 +31,6 @@ input, select, label{
     color: #c5c6c7;
 }
 
-
 /*
 index.php
 */
@@ -722,4 +721,10 @@ p.impact-no{
     font-size: 17px;
     font-weight: 400;
     color: var(--green);
+}
+
+.pie-chart-container{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
 }

@@ -55,7 +55,10 @@ export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertB
   const vertConfig = {
     type: 'bar',
     data: vertData,
-    options: {
+    options: 
+    {
+      responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
             display: false,
@@ -87,10 +90,10 @@ export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPD
       label: 'lbs Donated',
       data: [vertPHPData2, vertPHPData22],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)'
+        'rgba(79, 121, 66, 0.4)'
       ],
       borderColor: [
-        'rgb(255, 99, 132)'
+        'rgba(79, 121, 66, 1)'
       ],
       borderWidth: 1
     }]
@@ -131,7 +134,7 @@ export function createPieChart(userVal, allVal, pieCanvas) {
     datasets: [
       {
         data: [userVal, allVal],
-        backgroundColor: ['#FF6347', '#FFD700'],
+        backgroundColor: ['#ACE1AF', '#008B8B'],
       },
     ],
   };
@@ -141,6 +144,7 @@ export function createPieChart(userVal, allVal, pieCanvas) {
     data: data,
     options: {
       responsive: true,
+      maintainAspectRatio: false, 
       plugins: {
         legend: {
           position: 'top',
@@ -198,8 +202,8 @@ const mixData = {
     type: 'bar',
     label: barLabel,
     data: mixedData,
-    borderColor: 'rgb(255, 99, 132)',
-    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+    borderColor: 'rgba(113, 188, 120, 1)',
+    backgroundColor: 'rgba(113, 188, 120, 0.4)'
   }, {
     type: 'line',
     label: lineLabel,

@@ -12,6 +12,7 @@
         include('./includes/google-fonts.php');
     ?>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 </head>
 <body>
 <?php 
@@ -52,7 +53,7 @@ while($row = $result->fetch_assoc()){
 //convert to json
 $jsonResult = json_encode($data);
 
-$userDonationsOverTime = "SELECT t.quantity, t.transactionDate
+$userDonationsOverTime = "SELECT t.quantity, DATE_FORMAT(t.transactionDate, '%c-%d-%Y') as transactionDate
 FROM materials AS m
 JOIN transactions AS t ON t.materialID = m.materialID
 JOIN user_transaction AS ut ON t.transactionID = ut.transactionID
@@ -76,7 +77,7 @@ $jsonUserDon = json_encode($userDon);
 
 
 //all donations, so you can compare yourself
-$allDonations = "SELECT sum(quantity) as quantity, transactionDate
+$allDonations = "SELECT sum(quantity) as quantity, DATE_FORMAT(transactionDate, '%c-%d-%Y') as formattedDate
 FROM transactions
 where status = 'Completed'
 GROUP BY transactionDate
@@ -88,7 +89,7 @@ $allResult = $conn->query($allDonations);
 $allDon = array();
 while($row = $allResult->fetch_assoc()){
     $allDon[] = array(
-        'transactionDate' => $row['transactionDate'],
+        'transactionDate' => $row['formattedDate'],
         'quantity'=> (int)$row['quantity']
     );
 }
@@ -160,7 +161,7 @@ $conn->close();
 
 <!--Chart container -->
 <div class="container mx-auto">
-  <h4 class="impact">Our Impact</h4>
+  <h4 class="com">Your Impact</h4>
   <p class="impact-lead">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability.
 </p>
 
@@ -197,18 +198,27 @@ $conn->close();
         </select>
     </div>
   </div>
-  <div class="row align-items-start">
+
+<div class="row">
     <div class="col">
-        <h5 class="impact">Comparison of Your Donations</h5>
+    <h5 class="impact">Comparison of Your Donations</h5>
         <p class="impact">Compare your individual textile donations with the average donations made by other users. This vertical bar chart helps you understand how your efforts align with the broader community.</p>
-    <canvas id="compare-bar"></canvas>
+        <canvas id="compare-bar"></canvas>
     </div>
-    <div class="col">
-        <h5 class="impact">Distribution of Textile Donations</h5>
+    <div class="col-6">
+    <h5 class="impact">Distribution of Textile Donations</h5>
         <p class="impact">Explore the composition of textile donations with this pie chart. It illustrates the proportion of your contributions compared to the total donations, offering a visual representation of your impact within the larger context.</p>
-    <canvas id="pie-canvas"></canvas>
+        <div class="container mt-0">
+            <canvas id="pie-canvas"></canvas>
+        </div>
+
     </div>
-  </div>
+</div>
+        
+
+
+        
+        
 </div>
 
 
@@ -218,7 +228,7 @@ $conn->close();
 <!-- Link to js chart functions -->
 <script type="module" src="js/charts.js"></script>
 <!-- Year dropdown -->
-<script type="module" src="js/year-filter.js"></script>
+
 
 
 <!-- render charts -->
@@ -238,7 +248,7 @@ $conn->close();
         chartCanvas1.parentNode.replaceChild(messageDiv1, chartCanvas1);
 
     } else {
-    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space', 'chart-space1', 'rgba(65, 135, 0, 0.2)', 'rgba(65, 135, 0, 1)');
+    createHorizontalBarChart(dataFromPHP.map(entry => entry.materialName), dataFromPHP.map(entry => entry.totalQuantity), 'chart-space', 'chart-space1', 'rgba(113, 188, 120, 0.3)', 'rgba(113, 188, 120, 1)');
     }
     //Mixed Chart
     var mixedUser = <?php echo $jsonUserDon; ?>;

@@ -73,10 +73,10 @@
               // User is logged in
               echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
               if (isset($_SESSION['profilePic']) && $_SESSION['profilePic'] != ""){
-                echo '<img src="' . $_SESSION['profilePic'] . '" style="width: 20px; height: 20px; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+                echo '<img src="' . $_SESSION['profilePic'] . '" style="width: 20px; height: 20px; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               else{
-                echo '<img src="./img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
+                echo '<img src="./img/empty.jpg" style="height: 20px; width: 20px; object-fit: cover; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }
               if ($_SESSION['usertype'] == 'individual_user'){
                 echo '<a class="dropdown-item" href="u_logistics.php">Your Impact</a><a class="dropdown-item" href="./waste/user_request.php">Your Requests</a><a class="dropdown-item" href="./login-files/logout.php">Log out</a></div></div>';
