@@ -260,7 +260,7 @@ if ($acceptedResult->num_rows != 0){
 
 
 //USER REQUESTS TO RECYCLER
-$userRequests = "SELECT t.transactionDate, t.transactionID, ut.recyclerID, t.quantity, m.materialName, m.materialID, u.firstName, t.status, u.userID
+$userRequests = "SELECT DATE_FORMAT(t.transactionDate, '%M %e, %Y %l:%i%p') as transactionDate, t.transactionID, ut.recyclerID, t.quantity, m.materialName, m.materialID, u.firstName, t.status, u.userID
 from transactions as t
 join user_transaction as ut on ut.transactionID=t.transactionID
 join materials as m on m.materialID=t.materialID
