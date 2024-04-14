@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Sign in with google button -->
 <div id="g_id_onload"
         data-client_id="605347545950-imrjc8ufcpoeb1rv424p2ggd4qtghpku.apps.googleusercontent.com"
-        data-login_uri="https://cgi.luddy.indiana.edu/~team20/team20/login-files/handleGoogle.php"
+        data-login_uri="https://cgi.luddy.indiana.edu/~team20/login-files/handleGoogle.php"
         data-auto_prompt="false">
     </div>
     <div class="g_id_signin"
