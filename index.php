@@ -17,6 +17,35 @@
         .index-line {
         height: 250px;
         }
+        /*hover effects */
+/*!
+ * Hover.css (http://ianlunn.github.io/Hover/)
+ * Version: 2.3.2
+ * Author: Ian Lunn @IanLunn
+ * Author URL: http://ianlunn.co.uk/
+ * Github: https://github.com/IanLunn/Hover
+
+ * Hover.css Copyright Ian Lunn 2017. Generated with Sass.
+ */
+/* Grow */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
     </style>
     <title>SustainaCycle</title>
   </head>
@@ -43,26 +72,52 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
       <h2 class="index-lead">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h2>
       <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
   </section>
-</div>
+
+
 
 
 <div class="container mx-auto p-2">
-<h2 class="index">Our Sustainable Fashion Initiative</h2>
+<h2 class="index mb-0">Our Sustainable Fashion Initiative</h2>
+<p class="index mb-5">Learn more about why we created our platform, and the goals of our site.</p>
 <section class="row">
-    <div class="col-md-4">
-      <h3 class="index">Sustainability</h3>
-      <p class="index">The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
+  <div class="col hvr-grow">
+    <div class="card h-100" style="width: 21rem;">
+      <img class="card-img-top mx-auto" src="./img/homepage_icons/1.png" alt="Card image cap" style="height: 50%; width: 50%;">
+      <div class="card-body">
+        <h3 class="index">Sustainability</h3>
+        <p class="index">The core of our solution is rooted in sustainability, and the ability to maintain the current fashion market without causing significant negative impacts on the environment, society, and economy. We are looking to meet the needs of the present generation without compromising the ability of future generations to meet their needs.</p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h3 class="index">Circular Fashion Solution</h3>
-      <p class="index">Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
+  </div>
+  
+  <div class="col hvr-grow">
+    <div class="card h-100" style="width: 21rem;">
+      <img class="card-img-top mx-auto" src="./img/homepage_icons/2.png" alt="Card image cap" style="height: 50%; width: 50%;">
+      <div class="card-body">
+        <h3 class="index">Circular Fashion Solution</h3>
+        <p class="index">Our solution is designed to break free from the linear fashion system, and instead advocating for a circular fashion ecosystem where clothing waste is repurposed instead of ending up in landfills. Discover how we connect recycling companies with manufacturers to establish a sustainable fashion economy.</p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h3 class="index">Aligning Style with the Environment</h3>
-      <p class="index">The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
+  </div>
+
+  <div class="col hvr-grow">
+    <div class="card h-100" style="width: 21rem;">
+      <img class="card-img-top mx-auto" src="./img/homepage_icons/3.png" alt="Card image cap" style="height: 50%; width: 50%;">
+      <div class="card-body">
+        <h3 class="index">Aligning Style with the Environment</h3>
+        <p class="index">The heart of our project is addressing the critical gap between fashion demand and environmental responsibility. We hope to align the pulse of social trends with sustainability, to reduce the industry's environmental footprint and contribute to a more responsible future.</p>
+      </div>
     </div>
+  </div>
+
 </section>
+  
 </div>
+
+
+
+
+
 
 <!-- Sneak peek at logistics -->
 <div class="container mx-auto p-2">
@@ -105,22 +160,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
   </div>
 </div>
 
-
-<!-- Google login -->
-<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
-<a href="#" onclick="signOut();">Sign out</a>
-
-<script src="js/google-login.js"></script>
-
-<script>
-  function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-  }
-</script> -->
+</div>
 
 </main>
 
