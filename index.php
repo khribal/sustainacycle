@@ -8,11 +8,16 @@
     <!-- Bootstrap -->
     <?php include('./includes/boot-head.php');?>
 
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <style>
+        .index-line {
+        height: 250px;
+        }
+    </style>
     <title>SustainaCycle</title>
   </head>
 <body class="index">
@@ -82,7 +87,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
       </div>
     </div>
   </div>
-  <div class="row align-items-end">
+  <div class="row">
     <div class="col">
     <div>
       <h3 class="index">Textiles Recycled Timeline</h3>
@@ -91,7 +96,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     </div>
     </div>
     <div class="col">
-      <div>
+      <div class="index-line">
         <h3 class="index">Diverse Textile Recycling</h3>
         <p class="index">Dive into the bar chart showcasing the variety of textiles recycled.</p>
         <canvas id="materialSpot" class="chart-container"></canvas>

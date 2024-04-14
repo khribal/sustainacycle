@@ -29,6 +29,7 @@ limit 10";
 //transactions and quantities over time
 $sql2 = "SELECT DATE_FORMAT(completionDate, '%M %Y') AS monthYear, SUM(quantity) AS quantity
 FROM requests
+where reqStatus='Completed'
 GROUP BY monthYear
 ORDER BY completionDate";
 

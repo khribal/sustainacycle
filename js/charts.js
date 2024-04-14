@@ -2,34 +2,34 @@
 export function createHorizontalBarChart(labels, dataset, chartspace, colorChoice, borderChoice) {
   // Set up data for the chart
   const data = {
-      labels: labels,
-      datasets: [
-          {
-              label: `Lbs of textiles:`,
-              data: dataset,
-              backgroundColor: colorChoice,
-              borderColor: borderChoice,
-              borderWidth: 1,
-          }
-      ]
+    labels: labels,
+    datasets: [
+      {
+        label: `Lbs of textiles:`,
+        data: dataset,
+        backgroundColor: colorChoice,
+        borderColor: borderChoice,
+        borderWidth: 1,
+      }
+    ]
   };
 
   // Set up the chart configuration
   const config = {
-      type: 'bar',
-      data: data,
-      options: {
-          indexAxis: 'y',
-          responsive: true,
-          plugins: {
-              legend: {
-                  display: false,
-              },
-              title: {
-                  display: false,
-              }
-          }
-      },
+    type: 'bar',
+    data: data,
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: false,
+        }
+      }
+    },
   };
 
   // Create the chart instance
@@ -40,7 +40,7 @@ export function createHorizontalBarChart(labels, dataset, chartspace, colorChoic
 
 
 ////////////////////VERTICAL BAR
-export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertBorder){  
+export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertBorder) {
   const vertData = {
     labels: vertLabels,
     datasets: [{
@@ -55,35 +55,35 @@ export function vertBar(vertLabels, vertPHPData, vertChartSpot, vertColor, vertB
   const vertConfig = {
     type: 'bar',
     data: vertData,
-    options: 
+    options:
     {
       responsive: true,
-      maintainAspectRatio: false,
       plugins: {
         legend: {
-            display: false,
+          display: false,
         },
         title: {
-            display: false,
+          display: false,
         }
-    },
+      },
       scales: {
         y: {
-          beginAtZero: true
+          type: 'logarithmic',
+          beginAtZero: true,
         }
       }
     },
   };
 
-    // Create the chart instance
-    const vertNewChart = document.getElementById(vertChartSpot).getContext('2d');
-    new Chart(vertNewChart, vertConfig);
+  // Create the chart instance
+  const vertNewChart = document.getElementById(vertChartSpot).getContext('2d');
+  new Chart(vertNewChart, vertConfig);
 }
 
 
 //another version of vertical bar (two different value sources)
 ////////////////////VERTICAL BAR
-export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPData22, vertChartSpot2){  
+export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPData22, vertChartSpot2) {
   const vertData2 = {
     labels: [vertLabels1, vertLabels2],
     datasets: [{
@@ -105,12 +105,12 @@ export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPD
     options: {
       plugins: {
         legend: {
-            display: false,
+          display: false,
         },
         title: {
-            display: false,
+          display: false,
         }
-    },
+      },
       scales: {
         y: {
           beginAtZero: true
@@ -119,9 +119,9 @@ export function vertBarSpecific(vertLabels1, vertLabels2, vertPHPData2, vertPHPD
     },
   };
 
-    // Create the chart instance
-    const vertNewChart2 = document.getElementById(vertChartSpot2).getContext('2d');
-    new Chart(vertNewChart2, vertConfig2);
+  // Create the chart instance
+  const vertNewChart2 = document.getElementById(vertChartSpot2).getContext('2d');
+  new Chart(vertNewChart2, vertConfig2);
 }
 
 
@@ -144,7 +144,7 @@ export function createPieChart(userVal, allVal, pieCanvas) {
     data: data,
     options: {
       responsive: true,
-      maintainAspectRatio: false, 
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: 'top',
@@ -164,77 +164,77 @@ export function createPieChart(userVal, allVal, pieCanvas) {
 
 
 ////////LINE CHART
-export function createLine(quantityLine, lineLabels, lineChartLocation){
-const dataForChart = {
+export function createLine(quantityLine, lineLabels, lineChartLocation) {
+  const dataForChart = {
     labels: lineLabels,
     datasets: [{
-    label: 'lbs of materials donated',
-    data: quantityLine,
-    fill: false,
-    borderColor: 'rgb(75, 192, 192)',
-    tension: 0.1
+      label: 'lbs of materials donated',
+      data: quantityLine,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
     }]
-};
-const lineChartConfig = {
-type: 'line',
-data: dataForChart,
-};
+  };
+  const lineChartConfig = {
+    type: 'line',
+    data: dataForChart,
+  };
 
-const lineChartCanvas = document.getElementById(lineChartLocation).getContext('2d');
+  const lineChartCanvas = document.getElementById(lineChartLocation).getContext('2d');
 
   // Create the line chart
-new Chart(lineChartCanvas, lineChartConfig);
+  new Chart(lineChartCanvas, lineChartConfig);
 }
 
 
 //////////MIXED CHART  
 let chartInstance = null;
-export function mixedChart(mixedLabels, mixedData, mixLineData, barLabel, lineLabel){
+export function mixedChart(mixedLabels, mixedData, mixLineData, barLabel, lineLabel) {
 
   //destroy and recreate chart when date filter is used
   if (chartInstance) {
     chartInstance.destroy();
   }
 
-const mixData = {
-  labels: mixedLabels,
-  datasets: [{
-    type: 'bar',
-    label: barLabel,
-    data: mixedData,
-    borderColor: 'rgba(113, 188, 120, 1)',
-    backgroundColor: 'rgba(113, 188, 120, 0.4)'
-  }, {
-    type: 'line',
-    label: lineLabel,
-    data: mixLineData,
-    fill: false,
-    borderColor: 'rgb(54, 162, 235)'
-  }]
-};
+  const mixData = {
+    labels: mixedLabels,
+    datasets: [{
+      type: 'bar',
+      label: barLabel,
+      data: mixedData,
+      borderColor: 'rgba(113, 188, 120, 1)',
+      backgroundColor: 'rgba(113, 188, 120, 0.4)'
+    }, {
+      type: 'line',
+      label: lineLabel,
+      data: mixLineData,
+      fill: false,
+      borderColor: 'rgb(54, 162, 235)'
+    }]
+  };
 
 
-const configMixed = {
-  type: 'scatter',
-  data: mixData,
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
+  const configMixed = {
+    type: 'scatter',
+    data: mixData,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  }
-};
+  };
 
-const chartSpot = document.getElementById('mixed-chart').getContext('2d');
+  const chartSpot = document.getElementById('mixed-chart').getContext('2d');
 
-chartInstance = new Chart(chartSpot, configMixed);
+  chartInstance = new Chart(chartSpot, configMixed);
 
 }
 
 
 //Regular Bar Chart
-export function regBar(compareUser1, compareUser2){
+export function regBar(compareUser1, compareUser2) {
 
   const compareData = {
     labels: "label", // Only one set of labels for the entire chart
@@ -276,9 +276,9 @@ export function regBar(compareUser1, compareUser2){
 
 
 
-const chartRegBar = document.getElementById('compare-bar').getContext('2d');
+  const chartRegBar = document.getElementById('compare-bar').getContext('2d');
 
-new Chart(chartRegBar, compareConfig);
+  new Chart(chartRegBar, compareConfig);
 }
 
 
@@ -291,7 +291,7 @@ export function createBubble(bubble1, bubbleChartSpace) {
     y: parseInt(entry.y),
     r: parseInt(entry.r),
   }));
-  
+
   const bubbleData = {
     datasets: [
       {
