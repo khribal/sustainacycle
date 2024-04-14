@@ -64,14 +64,71 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 
 <!-- container around body to prevent dropdowns from appearing off the page -->
 <main role="main" class="index">
-
 <div class="container mx-auto p-2">
-<section class="index">
-      <img src="./img/logo.png" alt="logo" height="250px" width="250px">
-      <h1 class="index">SustainaCycle</h1>
-      <h2 class="index-lead">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h2>
-      <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
-  </section>
+
+<!-- display homepage content based on usertype -->
+<?php 
+if(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user'){
+  echo '<img src="./img/logo.png" alt="logo" height="250px" width="250px">
+  <h1 class="index">Welcome to SustainaCycle!</h1>
+  <div class="options">
+      <a href="maps.php" class="option-button">
+          <img src="img/map.png" alt="Location Icon" class="option-icon" height="96px" width="96px">
+          <div class="option-content">
+              <span>See nearby recycling centers to donate waste.</span>
+</div></a>
+      <a href="project.php" class="option-button">
+          <img src="img/tree.png" alt="Project Icon" class="option-icon" height="96px" width="96px">
+          <div class="option-content">
+              <span>Learn more about the project.</span>
+</div></a>
+  </div>
+</div>';
+}
+elseif(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'recycler'){
+  echo '<img src="./img/logo.png" alt="logo" height="250px" width="250px">
+        <h1 class="index">Welcome to SustainaCycle!</h1>
+        <div class="options mt-5">
+            <a href="./waste/waste.php" class="option-button">
+                <img src="img/shirt.png" alt="Waste Icon" class="option-icon" height="96px" width="96px">
+                <div class="option-content">
+                    <span>See waste that is available now!</span>
+      </div></a>
+            <a href="project.php" class="option-button">
+                <img src="img/tree.png" alt="Project Icon" class="option-icon" height="96px" width="96px">
+                <div class="option-content">
+                    <span>Learn more about the project.</span>
+      </div></a>
+        </div>
+      </div>';
+}
+elseif(isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'manufacturer'){
+      echo '<img src="./img/logo.png" alt="logo" height="250px" width="250px">
+      <h1 class="index">Welcome to SustainaCycle!</h1>
+      <div class="options mt-5">
+          <a href="./waste/add-waste.php" class="option-button">
+              <img src="img/shirt.png" alt="Waste Icon" class="option-icon" height="96px" width="96px">
+              <div class="option-content">
+                  <span>Have more available waste? Log it here!</span>
+    </div></a>
+          <a href="project.php" class="option-button">
+              <img src="img/tree.png" alt="Project Icon" class="option-icon" height="96px" width="96px">
+              <div class="option-content">
+                  <span>Learn more about the project.</span>
+    </div></a>
+      </div>
+    </div>';
+}
+else{
+  echo '<section class="index">
+  <img src="./img/logo.png" alt="logo" height="250px" width="250px">
+  <h1 class="index">SustainaCycle</h1>
+  <h2 class="index-lead">Transforming fashion: bridging the gap between keeping up with fast moving trends and environmental responsibility through a circular fashion ecosystem.</h2>
+  <p><a class="button mt-2" href="project.php">Learn more &raquo;</a></p>
+</section>';
+}
+
+?>
 
 
 
@@ -80,7 +137,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
 <h2 class="index mb-0">Our Sustainable Fashion Initiative</h2>
 <p class="index mb-5">Learn more about why we created our platform, and the goals of our site.</p>
 <section class="row">
-  <div class="col hvr-grow">
+  <div class="col hvr-grow mb-5">
     <div class="card h-100" style="width: 21rem;">
       <img class="card-img-top mx-auto" src="./img/homepage_icons/1.png" alt="Card image cap" style="height: 50%; width: 50%;">
       <div class="card-body">
@@ -90,7 +147,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     </div>
   </div>
   
-  <div class="col hvr-grow">
+  <div class="col hvr-grow mb-5">
     <div class="card h-100" style="width: 21rem;">
       <img class="card-img-top mx-auto" src="./img/homepage_icons/2.png" alt="Card image cap" style="height: 50%; width: 50%;">
       <div class="card-body">
@@ -100,7 +157,7 @@ if (isset($_SESSION['registration_success']) && $_SESSION['registration_success'
     </div>
   </div>
 
-  <div class="col hvr-grow">
+  <div class="col hvr-grow mb-5">
     <div class="card h-100" style="width: 21rem;">
       <img class="card-img-top mx-auto" src="./img/homepage_icons/3.png" alt="Card image cap" style="height: 50%; width: 50%;">
       <div class="card-body">

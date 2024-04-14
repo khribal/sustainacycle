@@ -6,7 +6,7 @@ $userID = $_SESSION['userID'];
 
 // $communityID = '';  // default value
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createPost'])) {
-    $communityID = isset($_POST['communityID']) ? $_POST['communityID'] : '';
+    $communityID = $_POST['communityID'];
 }
 
 elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
@@ -63,6 +63,7 @@ elseif($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['createBtn'])){
 <?php 
 include('./includes/nav.php');
 ?>
+
 <div class="container px-4 mx-auto p-2">
     <a href="user_communities.php?community_id=<?php echo $communityID; ?>"><p>Back to community</p></a>
     <h1 class="com">Create new post</h1>

@@ -54,7 +54,7 @@
           <?php 
         if (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 'individual_user') {
             echo '<div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Communities
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -65,13 +65,13 @@
         }
       ?> 
     </ul>
-
     <!-- Login/logout buttons -->
     <ul class="navbar-nav ml-auto">
       <?php
           if (isset($_SESSION['username'])) {
               // User is logged in
-              echo '<div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+              echo '<div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
               if (isset($_SESSION['profilePic']) && $_SESSION['profilePic'] != ""){
                 echo '<img src="' . $_SESSION['profilePic'] . '" style="width: 20px; height: 20px; border-radius:50%; margin-right: 0.4em;">' . $_SESSION['username'] . '</button> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="profile.php">Profile</a>';
               }

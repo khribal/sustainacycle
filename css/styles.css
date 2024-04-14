@@ -362,6 +362,9 @@ p.com {
     color: var(--green);
 }
 
+li.com {
+    list-style-type: none;
+}
 
 /************* Maps **********************/
 #map {

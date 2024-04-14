@@ -61,13 +61,48 @@ $conn->close();
     ?>
     <!-- CSS --> 
     <link rel="stylesheet" href="./css/styles.css" type="text/css">
+    <link rel="stylesheet" href="./styles.css" type="text/css">
     <!-- icons link -->
     <script src="https://kit.fontawesome.com/9a3fe9bd1f.js" crossorigin="anonymous"></script>
+
+    <style>
+        .custom-scroll-container {
+            max-height: 400px; /* Set the maximum height as needed */
+            overflow-y: auto;
+        }
+
+        #sidebar > div:hover {
+            background-color: var(--lightblue);
+        }
+        
+        li.com{
+            list-style-type: none;
+        }
+
+        li > p{
+            max-height: 70px;
+            overflow-y: hidden;
+        }
+        .history > ul{
+            padding-left: 0;
+        }
+</style>
 
 </head>
 <body>
 <?php 
 include('./includes/nav.php');
+
+//flags for deleting posts/leaving community
+if ($_SESSION['left_comm'] == true){
+    echo '<script>alert("Successfully left community!");</script>';
+    //reset flag
+    $_SESSION['left_comm'] = false;
+}
+elseif($_SESSION['delete_post'] == true){
+    echo '<script>alert("Successfully deleted post!");</script>';
+    $_SESSION['delete_post'] = false;
+}
 ?>    
 
 <?php 
@@ -100,10 +135,18 @@ include('./includes/nav.php');
                 <h4 class="com"> Description: ' . $rowComm['communityDescription'] . '</h4>
                 <p class="com">Rules: ' . $rowComm['communityRules'] . '</p>
                 <p> Tags: ' . $rowComm['tags'] . '</p>
-                <form action="post.php" method="post">
-                    <input type="hidden" name="communityID" value="' . $communityID . '">
-                    <button class="btn btn-success mb-3" type="submit" name="createPost">Create new post</button>
-                </form>';
+                <div class="d-flex justify-content-between">
+                    <form action="post.php" method="post">
+                        <input type="hidden" name="communityID" value="' . $communityID . '">
+                        <button class="btn btn-success mb-3" type="submit" name="createPost">Create new post</button>
+                    </form>
+                    <form action="leave-community.php" method="POST">
+                        <input type="hidden" name="communityID" value="' . $communityID . '">
+                        <button class="btn btn-danger" type="submit">Leave community</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">';
                 }
                 //Loop through each post
                 if ($resultPosts->num_rows > 0) {
@@ -162,7 +205,50 @@ include('./includes/nav.php');
             </div>';
             }
         } 
-    }      
+        echo '</div>';
+
+        //SIDE BAR
+
+        //Get posts
+        $postHistory = "SELECT title, content, postID
+        from posts
+        where userID=$userID AND communityID=$communityID";
+
+        $postHisResult = $conn->query($postHistory);
+
+        echo '<div class="col-md-3 rounded border custom-scroll-container" id="sidebar">
+        <div class="history">
+                <h3 class="com mt-3">Post History</h3>
+                <hr>
+                <ul>';
+        
+        if ($postHisResult->num_rows > 0) {
+            // Loop through each row of the result set
+            while ($row = $postHisResult->fetch_assoc()) {
+                $postID = $row['postID'];
+                $title = $row['title'];
+                $content = $row['content'];
+                
+                
+                echo '<li class="com">
+                        <h5>' . $title . '</h5>
+                        <p>' . $content . '</p>
+                        <form action="delete-post.php" method="POST">
+                            <input type="hidden" name="postID" value="' . $postID . '">
+                            <input type="hidden" name="communityID" value="' . $communityID . '">
+                            <button class="btn btn-danger mb-3" type="submit">Delete post</button>
+                        </form>
+                    </li>';
+            }
+        } else {
+            // Handle case where there are no results
+            echo "No results found.";
+        }
+        
+        echo '</ul>
+            </div>
+            </div>';
+    }
         else {
             echo "No posts available in your community.";
         }
@@ -190,10 +276,13 @@ include('./includes/nav.php');
                 echo '<div class="grid-container">';
                 while ($rowComm = $resultFind->fetch_assoc()) {
                     echo '<div class="grid-item">
+                    
+
                     <h2 class="com">' . $rowComm['communityName'] . '</h2>
                     <div>
                         <p style="height: 100px;">' . $rowComm['communityDescription'] . '</p>
                         <a href="user_communities.php?community_id=' .  $rowComm['communityID'] . '" class="btn btn-success">Go to community</a>
+                        
                     </div>
                     </div>';
                 }

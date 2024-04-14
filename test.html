@@ -1,51 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Example</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .div-item {
-            height: 200px;
-            width: 200px;
-            background-color: red;
+    <title>Resizing</title>
+
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        var viz;
+
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "https://public.tableau.com/views/RecyclingManuComparison/Dashboard1",
+                options = {
+                    hideTabs: true
+                };
+
+            viz = new tableau.Viz(containerDiv, url, options);
         }
 
-        /* Grow */
-        .hvr-grow {
-            display: inline-block;
-            vertical-align: middle;
-            -webkit-transform: perspective(1px) translateZ(0);
-            transform: perspective(1px) translateZ(0);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-            -webkit-transition-duration: 0.3s;
-            transition-duration: 0.3s;
-            -webkit-transition-property: transform;
-            transition-property: transform;
-        }
+        /* Important: Worksheets automatically resize to fill the div container for
+         * the visualization. However, dashboards and stories do not resize automatically
+         * unless you create them with the automatic size option in Tableau Desktop. 
+         * Scroll down to see how to change the size of a visualization that contains
+         * a dashboard or story.
+         *
+         * To change the size of a visualization that contains a dashboard or story, 
+         * use the following function instead:
+         *
+         * function vizResize() {
+         *     var width = document.getElementById("resizeWidth").value;
+         *     var height = document.getElementById("resizeHeight").value;
+         *     var sheet = viz.getWorkbook().getActiveSheet();
+         *     
+         *     sheet.changeSizeAsync(
+         *         {"behavior": "EXACTLY", "maxSize": { "height": height, "width": width }})
+         *         .then(viz.setFrameSize(parseInt(width, 10), parseInt(height, 10)));
+         * }
+        */
 
-        .hvr-grow:hover,
-        .hvr-grow:focus,
-        .hvr-grow:active {
-            -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-        }
-    </style>
+    </script>
 </head>
 
-<div class="div-item hvr-grow"></div>
-
-<body>
-
-
-
-
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<body onload="initViz();">
+    <div id="vizContainer" style="width: 100%; height:550px; overflow:auto;"></div>
+    <div id="controls" style="padding:20px;">
+    </div>
 </body>
 
 </html>

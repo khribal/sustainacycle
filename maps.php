@@ -72,6 +72,19 @@ $conn->close();
   <!-- PHP recycler locations -->
   <?php include('./includes/maps-data.php'); ?>
 <script>
+
+   // Define a function to load the Google Maps JavaScript API script
+   function loadGoogleMapsScript() {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM&libraries=places'; // Replace YOUR_API_KEY with your actual API key and add any additional libraries you need
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+
+
 // Initialize and add the map
 let map;
 let userPosition;
@@ -99,6 +112,8 @@ let mapLoaded = false;
 async function initMap() {
   // Request needed libraries.
   //@ts-ignore
+  await loadGoogleMapsScript();
+
   const { Map } = await google.maps.importLibrary("maps", "places");
 //   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
@@ -299,40 +314,6 @@ include('includes/nav.php');
 
 <!-- Bootstrap -->
 <?php include('./includes/boot-script.php'); ?>
-
-<!-- prettier-ignore -->
-    <script>
-(g => {
-  var h, a, k, p = "The Google Maps JavaScript API",
-    c = "google",
-    l = "importLibrary",
-    q = "__ib__",
-    m = document,
-    b = window;
-  b = b[c] || (b[c] = {});
-  var d = b.maps || (b.maps = {}),
-    r = new Set,
-    e = new URLSearchParams,
-    u = () => h || (h = new Promise(async (f, n) => {
-    await (a = m.createElement("script"));
-    e.set("libraries", [...r, "places", "infowindow"] + ""); // Add "places" to the libraries
-    for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
-    e.set("callback", c + ".maps." + q);
-    a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
-    d[q] = f;
-    a.onerror = () => h = n(Error(p + " could not load."));
-    a.nonce = m.querySelector("script[nonce]")?.nonce || "";
-    m.head.append(a);
-  }));
-  d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
-})({
-  key: "AIzaSyAcZcRcS3sF91dolcW5Ft5SWBztjbBZYlM",
-  v: "weekly",
-});
-
-//force the page to reload, for some reason the map wont load otherwise
-
-</script>
 
   </body>
 </html>

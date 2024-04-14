@@ -1,3 +1,14 @@
+// Define a function to load the Google Maps JavaScript API script
+function loadGoogleMapsScript() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places'; // Add any additional libraries you need
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
 // Initialize and add the map
 let map;
 
@@ -6,7 +17,7 @@ async function initMap() {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps", "places");
-//   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  //   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   map = new Map(document.getElementById("map"), {
     zoom: 12,
@@ -14,7 +25,7 @@ async function initMap() {
     mapId: "DEMO_MAP_ID",
   });
 
-  
+
   // Create a PlacesService instance
   const service = new google.maps.places.PlacesService(map);
 
@@ -28,18 +39,18 @@ async function initMap() {
     (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (const place of results) {
-            
-            const placePosition = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
-            const marker = new google.maps.Marker({
-                position: placePosition,
-                map: map,
-                title: place.name,
-            });
 
-            marker.setVisible(true);
-            marker.setMap(map);
+          const placePosition = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() };
+          const marker = new google.maps.Marker({
+            position: placePosition,
+            map: map,
+            title: place.name,
+          });
 
-        //   console.log("Marker created: " + place.geometry.location.lat())
+          marker.setVisible(true);
+          marker.setMap(map);
+
+          //   console.log("Marker created: " + place.geometry.location.lat())
 
 
 
@@ -52,25 +63,25 @@ async function initMap() {
 }
 
 function addMarkerClickListener(marker, place) {
-    console.log('Marker Click Event Triggered');
-    marker.addListener('click', () => {
-        // Set content for the InfoWindow
-        const content = `
+  console.log('Marker Click Event Triggered');
+  marker.addListener('click', () => {
+    // Set content for the InfoWindow
+    const content = `
     <div>
         <strong>${place.name}</strong><br>
         Address: ${place.formatted_address || 'N/A'}<br>
         Rating: ${place.rating || 'N/A'}
     </div>
 `;
-        // console.log(content);
+    // console.log(content);
 
-        const infoWindow = new google.maps.InfoWindow();
+    const infoWindow = new google.maps.InfoWindow();
 
-        // Set the content and open the InfoWindow
+    // Set the content and open the InfoWindow
 
-        infoWindow.setContent(content);
-        infoWindow.open(map, marker);
-    });
+    infoWindow.setContent(content);
+    infoWindow.open(map, marker);
+  });
 }
 
 
