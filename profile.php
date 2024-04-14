@@ -91,10 +91,9 @@ where u.userID=$userID";
 $postsResult = $conn->query($numPosts);
 
 //num comments 
-$numComments = "select count(c.commentID)
-from comments as c
-join users as u on u.userID=c.userID
-where u.userID=$userID";
+$numComments = "SELECT COUNT(DISTINCT c.postID) AS num_posts
+FROM comments AS c
+where c.userID=$userID;";
 
 $commentsResult = $conn->query($numComments);
 
