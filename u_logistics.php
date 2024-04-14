@@ -161,7 +161,7 @@ $conn->close();
 
 <!--Chart container -->
 <div class="container mx-auto">
-  <h4 class="com">Your Impact</h4>
+  <h4 class="impact">Your Impact</h4>
   <p class="impact-lead">Explore our visual overview showcasing the transformative journey of your textile donations. We bridge manufacturers, users, and recycling centers, creating a circular fashion ecosystem. Dive into the graphs below to witness the collective impact on sustainability.
 </p>
 

@@ -695,6 +695,11 @@ h4.impact{
     color: var(--darkblue);
 }
 
+.impact{
+    font-family: 'DM Serif Display', serif;
+    color: var(--darkblue);
+}
+
 p.impact-lead{
     font-family: "DM Sans", sans-serif;
     font-size: 25px;
