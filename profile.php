@@ -164,10 +164,10 @@ $conn->close();
         </div>
     </div>
 
-    
-    <h5 class="profile mt-4"><strong>Your Badges</strong></h5>
-    <div class="row rounded border">
-        <?php
+    <?php 
+        if($_SESSION['usertype'] == 'individual_user'){
+            echo '<h5 class="profile mt-4"><strong>Your Badges</strong></h5>
+            <div class="row rounded border">';
             $imgArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             $quantity = $quantityResult->fetch_row();
             $transaction = $transCountResult->fetch_row();
@@ -248,8 +248,9 @@ $conn->close();
             if (in_array(9, $imgArray)){
                 echo '<div class="col-md-4 mb-3 pt-3"><img src="./img/badges/9.png" alt="badge" class="img-fluid" id="greyImg"></div>';
             }
+        }
+    ?>
 
-        ?>
     </div>
 </div>
 
