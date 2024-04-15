@@ -1,7 +1,9 @@
 <?php session_start(); ?>
 <link rel="stylesheet" href="css/styles.css" />
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"></a>
+  <a class="navbar-brand" href="#">
+    <img src="logo.png" alt="Logo" height="40">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
